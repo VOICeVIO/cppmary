@@ -7,3 +7,8 @@ MACRO(add_example name)
 ENDMACRO()
 
 add_example(jieba_test)
+
+add_executable(htsengine_test hts_engine.c)
+target_link_libraries(htsengine_test HTSEngine)
+
+#install (TARGETS htsengine_test DESTINATION ${CMAKE_BINARY_DIR}/bin)

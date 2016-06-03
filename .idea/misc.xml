@@ -4,6 +4,7 @@
   <component name="CidrRootsConfiguration">
     <sourceRoots>
       <file path="$PROJECT_DIR$/deps/cppjieba" />
+      <file path="$PROJECT_DIR$/deps/hts_engine" />
     </sourceRoots>
     <libraryRoots />
     <excludeRoots />
