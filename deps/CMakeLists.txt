@@ -1,1 +1,2 @@
 ADD_SUBDIRECTORY(hts_engine)
+ADD_SUBDIRECTORY(pugixml)
