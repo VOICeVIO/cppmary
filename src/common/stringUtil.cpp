@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <functional>
+#include <algorithm>
 namespace cppmary {
 
    std::vector <std::string> split(const std::string &text, char sep) {
