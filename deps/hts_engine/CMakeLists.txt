@@ -1,18 +1,18 @@
 set(SOURCE
-        lib/HTS_audio.c
-        lib/HTS_engine.c
-        lib/HTS_gstream.c
-        lib/HTS_label.c
-        lib/HTS_misc.c
-        lib/HTS_model.c
-        lib/HTS_pstream.c
-        lib/HTS_sstream.c
-        lib/HTS_vocoder.c
+        src/HTS_audio.c
+        src/HTS_engine.c
+        src/HTS_gstream.c
+        src/HTS_label.c
+        src/HTS_misc.c
+        src/HTS_model.c
+        src/HTS_pstream.c
+        src/HTS_sstream.c
+        src/HTS_vocoder.c
         )
 
 set(HEADER
         HTS_engine.h
-        lib/HTS_hidden.h
+        src/HTS_hidden.h
         )
 
 add_library(HTSEngine ${SOURCE} ${HEADERS})
