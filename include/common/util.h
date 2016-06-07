@@ -32,6 +32,8 @@ namespace cppmary {
 
     std::string getMaryXmlHeaderWithLocale(std::string locale);
 
+    std::string getFileString(std::string filepath);
+
 }
 
 

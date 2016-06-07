@@ -6,6 +6,7 @@
 #include <string>
 #include <functional>
 #include <iostream>
+#include <fstream>
 #include "cppjieba/Unicode.hpp"
 
 namespace cppmary {
@@ -65,5 +66,34 @@ namespace cppmary {
         return std::string("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n") + "<maryxml version=\"0.4\"\n"
                + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" + "xmlns=\"http://mary.dfki.de/2002/MaryXML\"\n"
                + "xml:lang=\"" + locale + "\">\n";
+    }
+
+    std::string getFileString(std::string filepath) {
+        std::ifstream is(filepath);
+        std::string filebuffer="";
+        if (is) {
+            // get length of file:
+            is.seekg (0, is.end);
+            long long length = is.tellg();
+            is.seekg (0, is.beg);
+
+            char * buffer = new char [length];
+
+            std::cout << "Reading " << length << " characters... ";
+            // read data as a block:
+            is.read (buffer,length);
+
+            if (is)
+                std::cout << "all characters read successfully.";
+            else
+                std::cout << "error: only " << is.gcount() << " could be read";
+            is.close();
+
+            // ...buffer contains the entire file...
+            filebuffer=buffer;
+            delete[] buffer;
+
+        }
+        return filebuffer;
     }
 }
