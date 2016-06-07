@@ -2,17 +2,24 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/test/hts_engine.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/test/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/jieba_test.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test/pinyin_utf8_test.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test/hts_engine.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test/module_test.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test/pugi_test.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/deps/cppjieba" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/deps/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/deps/pugixml/pugixml.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/deps/pugixml/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/deps/pugixml/pugixml.hpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/deps/hts_engine" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/cppmary.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/modules/TextToMaryXml.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/common/util.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/common/WordsProcess.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/common/convertPinyin.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/cppmary.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/examples/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/examples/libtest.cpp" isTestSource="false" />
