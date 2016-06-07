@@ -13,5 +13,6 @@ add_executable(htsengine_test hts_engine.c)
 target_link_libraries(htsengine_test cppmary)
 
 add_example(pinyin_utf8_test)
+add_example(module_test)
 
 #install (TARGETS htsengine_test DESTINATION ${CMAKE_BINARY_DIR}/bin)

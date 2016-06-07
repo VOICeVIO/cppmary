@@ -60,4 +60,10 @@ namespace cppmary {
         }
         return sylsVec;
     }
+
+    std::string getMaryXmlHeaderWithLocale(std::string locale) {
+        return std::string("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n") + "<maryxml version=\"0.4\"\n"
+               + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" + "xmlns=\"http://mary.dfki.de/2002/MaryXML\"\n"
+               + "xml:lang=\"" + locale + "\">\n";
+    }
 }

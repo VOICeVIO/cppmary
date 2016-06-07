@@ -63,8 +63,17 @@ void wide_char_test() {
     }
 }
 
+void narrow_char_test() {
+    pugi::xml_document doc;
+    std::ifstream stream("test/pos.xml");
+    pugi::xml_parse_result result = doc.load(stream);
+    //print_doc("UTF8 file from wide stream", doc, result);
+    transverse_base(doc);
+}
+
 int main() {
     //simple_test();
-    wide_char_test();
+    //wide_char_test();
+    narrow_char_test();
 }
 
