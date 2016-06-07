@@ -9,8 +9,9 @@
 // Created by sooda on 16/6/6.
 //
 #include <string>
-#include "common/stringUtils.h"
+#include "common/util.h"
 #include <vector>
+#include <map>
 
 namespace cppmary {
 
@@ -24,6 +25,8 @@ namespace cppmary {
 
     // trim from both ends
     std::string &trim(std::string &s);
+
+    void dumpStringMap(std::map<std::string, std::string> stringMap);
 
 }
 

@@ -4,8 +4,9 @@
 #include "cppjieba/Unicode.hpp"
 #include <iostream>
 #include <string>
+#include "common/convertPinyin.h"
 
-int main() {
+void utf8_test() {
     std::string test_str = "欢迎使用文本转语音服务";
     cppjieba::RuneStrArray sentence;
     DecodeRunesInString(test_str, sentence);
@@ -26,5 +27,16 @@ int main() {
     }
     std::string subStr = GetStringFromRunes(test_str, left, right);
     std::cout << subStr << std::endl;
-    return 0;
+}
+
+void pinyin_test() {
+    std::string sylDictName = "test/pinyin_han.txt";
+    std::string wordDictName = "test/mix_pinyin_word.txt";
+    cppmary::ConvertPinyin pinyinConverter(wordDictName, sylDictName);
+    std::cout << "convert pinyin done" << std::endl;
+}
+
+int main() {
+    //utf8_test();
+    pinyin_test();
 }

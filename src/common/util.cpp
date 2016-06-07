@@ -1,10 +1,11 @@
 //
 // Created by sooda on 16/6/6.
 //
-#include "common/stringUtils.h"
+#include "common/util.h"
 #include <vector>
 #include <string>
 #include <functional>
+#include <iostream>
 
 namespace cppmary {
 
@@ -34,5 +35,12 @@ namespace cppmary {
     // trim from both ends
     std::string &trim(std::string &s) {
         return ltrim(rtrim(s));
+    }
+
+    void dumpStringMap(std::map<std::string, std::string> stringMap) {
+        std::map<std::string, std::string>::iterator iter;
+        for (iter = stringMap.begin(); iter != stringMap.end(); iter++) {
+            std::cout << iter->first << " " << iter->second << std::endl;
+        }
     }
 }

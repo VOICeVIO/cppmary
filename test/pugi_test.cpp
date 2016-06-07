@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <vector>
 
-#include "common/stringUtils.h"
+#include "common/util.h"
 
 
 bool try_imbue(std::wistream &stream, const char *name) {
