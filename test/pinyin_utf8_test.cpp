@@ -33,6 +33,9 @@ void pinyin_test() {
     std::string sylDictName = "test/pinyin_han.txt";
     std::string wordDictName = "test/mix_pinyin_word.txt";
     cppmary::ConvertPinyin pinyinConverter(wordDictName, sylDictName);
+    std::cout << pinyinConverter.getWordPinyin("你好") << std::endl;
+    std::cout << pinyinConverter.getWordPinyin("只得") << std::endl;
+    std::cout << pinyinConverter.getWordPinyin("你。好的?") << std::endl;
     std::cout << "convert pinyin done" << std::endl;
 }
 

@@ -10,9 +10,8 @@
 #include "cppjieba/limonp/StringUtil.hpp"
 #include "common/convertPinyin.h"
 #include "common/util.h"
+#include "cppjieba/Unicode.hpp"
 #include <fstream>
-
-#define _DEBUG
 
 namespace cppmary {
     ConvertPinyin::~ConvertPinyin() { }
@@ -29,16 +28,49 @@ namespace cppmary {
 
         for (size_t lineno = 0; getline(ifs, line); lineno++) {
             limonp::Split(line, buf, pattern);
-//#ifdef _DEBUG
-//            for (int i = 0; i < buf.size(); i++) {
-//                std::cout << buf[i] << " ";
-//            }
-//            std::cout << std::endl;
-//#endif
             assert(buf.size() >= 2);
             dict[trim(buf[0])] = trim(buf[1]);
         }
         //dumpStringMap(dict);
+    }
+
+    //找每个字的拼音
+    std::string ConvertPinyin::getSyllablePinyin(std::string syllable) {
+        std::map<std::string, std::string>::iterator iter;
+        iter = syllableDict_.find(syllable);
+        if (iter != syllableDict_.end()) {
+            return iter->second;
+        } else {
+            return syllable;
+        }
+    }
+
+    //找不到词的拼音,需要找对词进行拆分,查找每个字的拼音
+    std::string ConvertPinyin::getSyllablesPinyin(std::string word) {
+        std::string result = "";
+        std::vector<std::string> syllables = getSyllablesStringVec(word);
+        for (int i = 0; i < syllables.size(); i++) {
+            std::string syl = syllables[i];
+            std::string syllablePinyin = getSyllablePinyin(syl);
+            syllablePinyin = limonp::Lower(syllablePinyin);
+            std::cout << syl << " " << syllablePinyin << std::endl;
+            if (result.empty()) {
+                result = syllablePinyin;
+            } else {
+                result = result + " " + syllablePinyin;
+            }
+        }
+        return result;
+    }
+
+    std::string ConvertPinyin::getWordPinyin(std::string word) {
+        std::map<std::string, std::string>::iterator iter;
+        iter = wordDict_.find(word);
+        if (iter != wordDict_.end()) {
+            return iter->second;
+        } else {
+            return getSyllablesPinyin(word);
+        }
     }
 
 }

@@ -28,6 +28,8 @@ namespace cppmary {
 
     void dumpStringMap(std::map<std::string, std::string> stringMap);
 
+    std::vector<std::string> getSyllablesStringVec(std::string& word);
+
 }
 
 

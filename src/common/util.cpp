@@ -6,6 +6,7 @@
 #include <string>
 #include <functional>
 #include <iostream>
+#include "cppjieba/Unicode.hpp"
 
 namespace cppmary {
 
@@ -42,5 +43,21 @@ namespace cppmary {
         for (iter = stringMap.begin(); iter != stringMap.end(); iter++) {
             std::cout << iter->first << " " << iter->second << std::endl;
         }
+    }
+
+    std::vector<std::string> getSyllablesStringVec(std::string& word) {
+        cppjieba::RuneStrArray syllables;
+        DecodeRunesInString(word, syllables);
+        cppjieba::RuneStrArray::const_iterator iter;
+        std::vector<std::string> sylsVec;
+        for (iter = syllables.begin(); iter != syllables.end(); iter++) {
+            std::string subStr = cppjieba::GetStringFromRunes(word, iter, iter);
+            subStr = trim(subStr);
+            if (subStr.empty()) {
+                continue;
+            }
+            sylsVec.push_back(subStr);
+        }
+        return sylsVec;
     }
 }
