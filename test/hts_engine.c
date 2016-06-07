@@ -60,299 +60,309 @@ HTS_ENGINE_C_START;
 #include "hts_engine/HTS_engine.h"
 
 /* usage: output usage */
-void usage(void)
-{
-   fprintf(stderr, "%s\n", HTS_COPYRIGHT);
-   fprintf(stderr, "hts_engine - The HMM-based speech synthesis engine \"hts_engine API\"\n");
-   fprintf(stderr, "\n");
-   fprintf(stderr, "  usage:\n");
-   fprintf(stderr, "    hts_engine [ options ] [ infile ]\n");
-   fprintf(stderr, "  options:                                                                   [  def][ min-- max]\n");
-   fprintf(stderr, "    -m  htsvoice   : HTS voice files                                         [  N/A]\n");
-   fprintf(stderr, "    -od s          : filename of output label with duration                  [  N/A]\n");
-   fprintf(stderr, "    -om s          : filename of output spectrum                             [  N/A]\n");
-   fprintf(stderr, "    -of s          : filename of output log F0                               [  N/A]\n");
-   fprintf(stderr, "    -ol s          : filename of output low-pass filter                      [  N/A]\n");
-   fprintf(stderr, "    -or s          : filename of output raw audio (generated speech)         [  N/A]\n");
-   fprintf(stderr, "    -ow s          : filename of output wav audio (generated speech)         [  N/A]\n");
-   fprintf(stderr, "    -ot s          : filename of output trace information                    [  N/A]\n");
-   fprintf(stderr, "    -vp            : use phoneme alignment for duration                      [  N/A]\n");
-   fprintf(stderr, "    -i  i f1 .. fi : enable interpolation & specify number(i),coefficient(f) [  N/A]\n");
-   fprintf(stderr, "    -s  i          : sampling frequency                                      [ auto][   1--    ]\n");
-   fprintf(stderr, "    -p  i          : frame period (point)                                    [ auto][   1--    ]\n");
-   fprintf(stderr, "    -a  f          : all-pass constant                                       [ auto][ 0.0-- 1.0]\n");
-   fprintf(stderr, "    -b  f          : postfiltering coefficient                               [  0.0][ 0.0-- 1.0]\n");
-   fprintf(stderr, "    -r  f          : speech speed rate                                       [  1.0][ 0.0--    ]\n");
-   fprintf(stderr, "    -fm f          : additional half-tone                                    [  0.0][    --    ]\n");
-   fprintf(stderr, "    -u  f          : voiced/unvoiced threshold                               [  0.5][ 0.0-- 1.0]\n");
-   fprintf(stderr, "    -jm f          : weight of GV for spectrum                               [  1.0][ 0.0--    ]\n");
-   fprintf(stderr, "    -jf f          : weight of GV for log F0                                 [  1.0][ 0.0--    ]\n");
-   fprintf(stderr, "    -g  f          : volume (dB)                                             [  0.0][    --    ]\n");
-   fprintf(stderr, "    -z  i          : audio buffer size (if i==0, turn off)                   [    0][   0--    ]\n");
-   fprintf(stderr, "  infile:\n");
-   fprintf(stderr, "    label file\n");
-   fprintf(stderr, "  note:\n");
-   fprintf(stderr, "    generated spectrum, log F0, and low-pass filter coefficient\n");
-   fprintf(stderr, "    sequences are saved in natural endian, binary (float) format.\n");
-   fprintf(stderr, "\n");
+void usage(void) {
+    fprintf(stderr, "%s\n", HTS_COPYRIGHT);
+    fprintf(stderr, "hts_engine - The HMM-based speech synthesis engine \"hts_engine API\"\n");
+    fprintf(stderr, "\n");
+    fprintf(stderr, "  usage:\n");
+    fprintf(stderr, "    hts_engine [ options ] [ infile ]\n");
+    fprintf(stderr,
+            "  options:                                                                   [  def][ min-- max]\n");
+    fprintf(stderr, "    -m  htsvoice   : HTS voice files                                         [  N/A]\n");
+    fprintf(stderr, "    -od s          : filename of output label with duration                  [  N/A]\n");
+    fprintf(stderr, "    -om s          : filename of output spectrum                             [  N/A]\n");
+    fprintf(stderr, "    -of s          : filename of output log F0                               [  N/A]\n");
+    fprintf(stderr, "    -ol s          : filename of output low-pass filter                      [  N/A]\n");
+    fprintf(stderr, "    -or s          : filename of output raw audio (generated speech)         [  N/A]\n");
+    fprintf(stderr, "    -ow s          : filename of output wav audio (generated speech)         [  N/A]\n");
+    fprintf(stderr, "    -ot s          : filename of output trace information                    [  N/A]\n");
+    fprintf(stderr, "    -vp            : use phoneme alignment for duration                      [  N/A]\n");
+    fprintf(stderr, "    -i  i f1 .. fi : enable interpolation & specify number(i),coefficient(f) [  N/A]\n");
+    fprintf(stderr,
+            "    -s  i          : sampling frequency                                      [ auto][   1--    ]\n");
+    fprintf(stderr,
+            "    -p  i          : frame period (point)                                    [ auto][   1--    ]\n");
+    fprintf(stderr,
+            "    -a  f          : all-pass constant                                       [ auto][ 0.0-- 1.0]\n");
+    fprintf(stderr,
+            "    -b  f          : postfiltering coefficient                               [  0.0][ 0.0-- 1.0]\n");
+    fprintf(stderr,
+            "    -r  f          : speech speed rate                                       [  1.0][ 0.0--    ]\n");
+    fprintf(stderr,
+            "    -fm f          : additional half-tone                                    [  0.0][    --    ]\n");
+    fprintf(stderr,
+            "    -u  f          : voiced/unvoiced threshold                               [  0.5][ 0.0-- 1.0]\n");
+    fprintf(stderr,
+            "    -jm f          : weight of GV for spectrum                               [  1.0][ 0.0--    ]\n");
+    fprintf(stderr,
+            "    -jf f          : weight of GV for log F0                                 [  1.0][ 0.0--    ]\n");
+    fprintf(stderr,
+            "    -g  f          : volume (dB)                                             [  0.0][    --    ]\n");
+    fprintf(stderr,
+            "    -z  i          : audio buffer size (if i==0, turn off)                   [    0][   0--    ]\n");
+    fprintf(stderr, "  infile:\n");
+    fprintf(stderr, "    label file\n");
+    fprintf(stderr, "  note:\n");
+    fprintf(stderr, "    generated spectrum, log F0, and low-pass filter coefficient\n");
+    fprintf(stderr, "    sequences are saved in natural endian, binary (float) format.\n");
+    fprintf(stderr, "\n");
 
-   exit(0);
+    exit(0);
 }
 
-int main(int argc, char **argv)
-{
-   int i;
-   double f;
-   int use_binary = 0;
+int main(int argc, char **argv) {
+    int i;
+    double f;
+    int use_binary = 0;
 
-   /* hts_engine API */
-   HTS_Engine engine;
+    /* hts_engine API */
+    HTS_Engine engine;
 
-   /* HTS voices */
-   size_t num_voices;
-   char **fn_voices;
+    /* HTS voices */
+    size_t num_voices;
+    char **fn_voices;
 
-   /* input label file name */
-   char *labfn = NULL;
+    /* input label file name */
+    char *labfn = NULL;
 
-   /* output file pointers */
-   FILE *durfp = NULL, *mgcfp = NULL, *lf0fp = NULL, *lpffp = NULL, *wavfp = NULL, *rawfp = NULL, *tracefp = NULL;
+    /* output file pointers */
+    FILE *durfp = NULL, *mgcfp = NULL, *lf0fp = NULL, *lpffp = NULL, *wavfp = NULL, *rawfp = NULL, *tracefp = NULL;
 
-   /* interpolation weights */
-   size_t num_interpolation_weights;
+    /* interpolation weights */
+    size_t num_interpolation_weights;
 
-   /* output usage */
-   if (argc <= 1)
-      usage();
+    /* output usage */
+    if (argc <= 1)
+        usage();
 
-   /* initialize hts_engine API */
-   HTS_Engine_initialize(&engine);
+    /* initialize hts_engine API */
+    HTS_Engine_initialize(&engine);
 
-   /* get HTS voice file names */
-   num_voices = 0;
-   fn_voices = (char **) malloc(argc * sizeof(char *));
-   for (i = 0; i < argc; i++) {
-      if (argv[i][0] == '-' && argv[i][1] == 'm')
-         fn_voices[num_voices++] = argv[++i];
-      if (argv[i][0] == '-' && argv[i][1] == 'h')
-         usage();
-   }
-   if (num_voices == 0) {
-      fprintf(stderr, "Error: HTS voice must be specified.\n");
-      free(fn_voices);
-      exit(1);
-   }
-
-   /* load HTS voices */
-   if (HTS_Engine_load(&engine, fn_voices, num_voices) != TRUE) {
-      fprintf(stderr, "Error: HTS voices cannot be loaded.\n");
-      free(fn_voices);
-      HTS_Engine_clear(&engine);
-      exit(1);
-   }
-   free(fn_voices);
-
-   /* get options */
-   while (--argc) {
-      if (**++argv == '-') {
-         switch (*(*argv + 1)) {
-            case 'B':
-               use_binary = 1;
-               break;
-         case 'v':
-            switch (*(*argv + 2)) {
-            case 'p':
-               HTS_Engine_set_phoneme_alignment_flag(&engine, TRUE);
-               break;
-            default:
-               fprintf(stderr, "Error: Invalid option '-v%c'.\n", *(*argv + 2));
-               HTS_Engine_clear(&engine);
-               exit(1);
-            }
-            break;
-         case 'o':
-            switch (*(*argv + 2)) {
-            case 'w':
-               wavfp = fopen(*++argv, "wb");
-               break;
-            case 'r':
-               rawfp = fopen(*++argv, "wb");
-               break;
-            case 'd':
-               durfp = fopen(*++argv, "wt");
-               break;
-            case 'm':
-               if (use_binary) {
-                  mgcfp = fopen(*++argv, "wb");
-               } else {
-                  mgcfp = fopen(*++argv, "w");
-               }
-               break;
-            case 'f':
-            case 'p':
-               if (use_binary) {
-                  lf0fp = fopen(*++argv, "wb");
-               } else {
-                  lf0fp = fopen(*++argv, "w");
-               }
-               break;
-            case 'l':
-               if (use_binary) {
-                  lpffp = fopen(*++argv, "wb");
-               } else {
-                  lpffp = fopen(*++argv, "w");
-               }
-               break;
-            case 't':
-               tracefp = fopen(*++argv, "wt");
-               break;
-            default:
-               fprintf(stderr, "Error: Invalid option '-o%c'.\n", *(*argv + 2));
-               HTS_Engine_clear(&engine);
-               exit(1);
-            }
-            --argc;
-            break;
-         case 'h':
+    /* get HTS voice file names */
+    num_voices = 0;
+    fn_voices = (char **) malloc(argc * sizeof(char *));
+    for (i = 0; i < argc; i++) {
+        if (argv[i][0] == '-' && argv[i][1] == 'm')
+            fn_voices[num_voices++] = argv[++i];
+        if (argv[i][0] == '-' && argv[i][1] == 'h')
             usage();
-            break;
-         case 'm':
-            argv++;             /* HTS voices were already loaded */
-            --argc;
-            break;
-         case 's':
-            HTS_Engine_set_sampling_frequency(&engine, (size_t) atoi(*++argv));
-            --argc;
-            break;
-         case 'p':
-            HTS_Engine_set_fperiod(&engine, (size_t) atoi(*++argv));
-            --argc;
-            break;
-         case 'a':
-            HTS_Engine_set_alpha(&engine, atof(*++argv));
-            --argc;
-            break;
-         case 'b':
-            HTS_Engine_set_beta(&engine, atof(*++argv));
-            --argc;
-            break;
-         case 'r':
-            HTS_Engine_set_speed(&engine, atof(*++argv));
-            --argc;
-            break;
-         case 'f':
-            switch (*(*argv + 2)) {
-            case 'm':
-               HTS_Engine_add_half_tone(&engine, atof(*++argv));
-               break;
-            default:
-               fprintf(stderr, "Error: Invalid option '-f%c'.\n", *(*argv + 2));
-               HTS_Engine_clear(&engine);
-               exit(1);
+    }
+    if (num_voices == 0) {
+        fprintf(stderr, "Error: HTS voice must be specified.\n");
+        free(fn_voices);
+        exit(1);
+    }
+
+    /* load HTS voices */
+    if (HTS_Engine_load(&engine, fn_voices, num_voices) != TRUE) {
+        fprintf(stderr, "Error: HTS voices cannot be loaded.\n");
+        free(fn_voices);
+        HTS_Engine_clear(&engine);
+        exit(1);
+    }
+    free(fn_voices);
+
+    /* get options */
+    while (--argc) {
+        if (**++argv == '-') {
+            switch (*(*argv + 1)) {
+                case 'B':
+                    use_binary = 1;
+                    break;
+                case 'v':
+                    switch (*(*argv + 2)) {
+                        case 'p':
+                            HTS_Engine_set_phoneme_alignment_flag(&engine, TRUE);
+                            break;
+                        default:
+                            fprintf(stderr, "Error: Invalid option '-v%c'.\n", *(*argv + 2));
+                            HTS_Engine_clear(&engine);
+                            exit(1);
+                    }
+                    break;
+                case 'o':
+                    switch (*(*argv + 2)) {
+                        case 'w':
+                            wavfp = fopen(*++argv, "wb");
+                            break;
+                        case 'r':
+                            rawfp = fopen(*++argv, "wb");
+                            break;
+                        case 'd':
+                            durfp = fopen(*++argv, "wt");
+                            break;
+                        case 'm':
+                            if (use_binary) {
+                                mgcfp = fopen(*++argv, "wb");
+                            } else {
+                                mgcfp = fopen(*++argv, "w");
+                            }
+                            break;
+                        case 'f':
+                        case 'p':
+                            if (use_binary) {
+                                lf0fp = fopen(*++argv, "wb");
+                            } else {
+                                lf0fp = fopen(*++argv, "w");
+                            }
+                            break;
+                        case 'l':
+                            if (use_binary) {
+                                lpffp = fopen(*++argv, "wb");
+                            } else {
+                                lpffp = fopen(*++argv, "w");
+                            }
+                            break;
+                        case 't':
+                            tracefp = fopen(*++argv, "wt");
+                            break;
+                        default:
+                            fprintf(stderr, "Error: Invalid option '-o%c'.\n", *(*argv + 2));
+                            HTS_Engine_clear(&engine);
+                            exit(1);
+                    }
+                    --argc;
+                    break;
+                case 'h':
+                    usage();
+                    break;
+                case 'm':
+                    argv++;             /* HTS voices were already loaded */
+                    --argc;
+                    break;
+                case 's':
+                    HTS_Engine_set_sampling_frequency(&engine, (size_t) atoi(*++argv));
+                    --argc;
+                    break;
+                case 'p':
+                    HTS_Engine_set_fperiod(&engine, (size_t) atoi(*++argv));
+                    --argc;
+                    break;
+                case 'a':
+                    HTS_Engine_set_alpha(&engine, atof(*++argv));
+                    --argc;
+                    break;
+                case 'b':
+                    HTS_Engine_set_beta(&engine, atof(*++argv));
+                    --argc;
+                    break;
+                case 'r':
+                    HTS_Engine_set_speed(&engine, atof(*++argv));
+                    --argc;
+                    break;
+                case 'f':
+                    switch (*(*argv + 2)) {
+                        case 'm':
+                            HTS_Engine_add_half_tone(&engine, atof(*++argv));
+                            break;
+                        default:
+                            fprintf(stderr, "Error: Invalid option '-f%c'.\n", *(*argv + 2));
+                            HTS_Engine_clear(&engine);
+                            exit(1);
+                    }
+                    --argc;
+                    break;
+                case 'u':
+                    HTS_Engine_set_msd_threshold(&engine, 1, atof(*++argv));
+                    --argc;
+                    break;
+                case 'i':
+                    num_interpolation_weights = atoi(*++argv);
+                    argc--;
+                    if (num_interpolation_weights != num_voices) {
+                        HTS_Engine_clear(&engine);
+                        exit(1);
+                    }
+                    for (i = 0; i < num_interpolation_weights; i++) {
+                        f = atof(*++argv);
+                        argc--;
+                        HTS_Engine_set_duration_interpolation_weight(&engine, i, f);
+                        HTS_Engine_set_parameter_interpolation_weight(&engine, i, 0, f);
+                        HTS_Engine_set_parameter_interpolation_weight(&engine, i, 1, f);
+                        HTS_Engine_set_gv_interpolation_weight(&engine, i, 0, f);
+                        HTS_Engine_set_gv_interpolation_weight(&engine, i, 1, f);
+                    }
+                    break;
+                case 'j':
+                    switch (*(*argv + 2)) {
+                        case 'm':
+                            HTS_Engine_set_gv_weight(&engine, 0, atof(*++argv));
+                            break;
+                        case 'f':
+                        case 'p':
+                            HTS_Engine_set_gv_weight(&engine, 1, atof(*++argv));
+                            break;
+                        default:
+                            fprintf(stderr, "Error: Invalid option '-j%c'.\n", *(*argv + 2));
+                            HTS_Engine_clear(&engine);
+                            exit(1);
+                    }
+                    --argc;
+                    break;
+                case 'g':
+                    HTS_Engine_set_volume(&engine, atof(*++argv));
+                    --argc;
+                    break;
+                case 'z':
+                    HTS_Engine_set_audio_buff_size(&engine, (size_t) atoi(*++argv));
+                    --argc;
+                    break;
+                default:
+                    fprintf(stderr, "Error: Invalid option '-%c'.\n", *(*argv + 1));
+                    HTS_Engine_clear(&engine);
+                    exit(1);
             }
-            --argc;
-            break;
-         case 'u':
-            HTS_Engine_set_msd_threshold(&engine, 1, atof(*++argv));
-            --argc;
-            break;
-         case 'i':
-            num_interpolation_weights = atoi(*++argv);
-            argc--;
-            if (num_interpolation_weights != num_voices) {
-               HTS_Engine_clear(&engine);
-               exit(1);
-            }
-            for (i = 0; i < num_interpolation_weights; i++) {
-               f = atof(*++argv);
-               argc--;
-               HTS_Engine_set_duration_interpolation_weight(&engine, i, f);
-               HTS_Engine_set_parameter_interpolation_weight(&engine, i, 0, f);
-               HTS_Engine_set_parameter_interpolation_weight(&engine, i, 1, f);
-               HTS_Engine_set_gv_interpolation_weight(&engine, i, 0, f);
-               HTS_Engine_set_gv_interpolation_weight(&engine, i, 1, f);
-            }
-            break;
-         case 'j':
-            switch (*(*argv + 2)) {
-            case 'm':
-               HTS_Engine_set_gv_weight(&engine, 0, atof(*++argv));
-               break;
-            case 'f':
-            case 'p':
-               HTS_Engine_set_gv_weight(&engine, 1, atof(*++argv));
-               break;
-            default:
-               fprintf(stderr, "Error: Invalid option '-j%c'.\n", *(*argv + 2));
-               HTS_Engine_clear(&engine);
-               exit(1);
-            }
-            --argc;
-            break;
-         case 'g':
-            HTS_Engine_set_volume(&engine, atof(*++argv));
-            --argc;
-            break;
-         case 'z':
-            HTS_Engine_set_audio_buff_size(&engine, (size_t) atoi(*++argv));
-            --argc;
-            break;
-         default:
-            fprintf(stderr, "Error: Invalid option '-%c'.\n", *(*argv + 1));
-            HTS_Engine_clear(&engine);
-            exit(1);
-         }
-      } else {
-         labfn = *argv;
-      }
-   }
+        } else {
+            labfn = *argv;
+        }
+    }
 
-   /* synthesize */
-   if (HTS_Engine_synthesize_from_fn(&engine, labfn) != TRUE) {
-      fprintf(stderr, "Error: waveform cannot be synthesized.\n");
-      HTS_Engine_clear(&engine);
-      exit(1);
-   }
+    /* synthesize */
+    if (HTS_Engine_synthesize_from_fn(&engine, labfn) != TRUE) {
+        fprintf(stderr, "Error: waveform cannot be synthesized.\n");
+        HTS_Engine_clear(&engine);
+        exit(1);
+    }
 
-   /* output */
-   if (tracefp != NULL)
-      HTS_Engine_save_information(&engine, tracefp);
-   if (durfp != NULL)
-      HTS_Engine_save_label(&engine, durfp);
-   if (rawfp)
-      HTS_Engine_save_generated_speech(&engine, rawfp);
-   if (wavfp)
-      HTS_Engine_save_riff(&engine, wavfp);
-   if (mgcfp)
-      HTS_Engine_save_generated_parameter(&engine, 0, mgcfp, use_binary);
-   if (lf0fp)
-      HTS_Engine_save_generated_parameter(&engine, 1, lf0fp, use_binary);
-   if (lpffp)
-      HTS_Engine_save_generated_parameter(&engine, 2, lpffp, use_binary);
+    /* output */
+    if (tracefp != NULL)
+        HTS_Engine_save_information(&engine, tracefp);
+    if (durfp != NULL)
+        HTS_Engine_save_label(&engine, durfp);
+    if (rawfp)
+        HTS_Engine_save_generated_speech(&engine, rawfp);
+    if (wavfp)
+        HTS_Engine_save_riff(&engine, wavfp);
+    if (mgcfp)
+        HTS_Engine_save_generated_parameter(&engine, 0, mgcfp, use_binary);
+    if (lf0fp)
+        HTS_Engine_save_generated_parameter(&engine, 1, lf0fp, use_binary);
+    if (lpffp)
+        HTS_Engine_save_generated_parameter(&engine, 2, lpffp, use_binary);
 
-   /* reset */
-   HTS_Engine_refresh(&engine);
+    /* reset */
+    HTS_Engine_refresh(&engine);
 
-   /* free memory */
-   HTS_Engine_clear(&engine);
+    /* free memory */
+    HTS_Engine_clear(&engine);
 
-   /* close files */
-   if (durfp != NULL)
-      fclose(durfp);
-   if (mgcfp != NULL)
-      fclose(mgcfp);
-   if (lf0fp != NULL)
-      fclose(lf0fp);
-   if (lpffp != NULL)
-      fclose(lpffp);
-   if (wavfp != NULL)
-      fclose(wavfp);
-   if (rawfp != NULL)
-      fclose(rawfp);
-   if (tracefp != NULL)
-      fclose(tracefp);
+    /* close files */
+    if (durfp != NULL)
+        fclose(durfp);
+    if (mgcfp != NULL)
+        fclose(mgcfp);
+    if (lf0fp != NULL)
+        fclose(lf0fp);
+    if (lpffp != NULL)
+        fclose(lpffp);
+    if (wavfp != NULL)
+        fclose(wavfp);
+    if (rawfp != NULL)
+        fclose(rawfp);
+    if (tracefp != NULL)
+        fclose(tracefp);
 
-   return 0;
+    return 0;
 }
 
 HTS_ENGINE_C_END;
