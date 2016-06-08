@@ -3,9 +3,10 @@
 //
 
 #include <iostream>
-#include "modules/TextToMaryXml.h"
+//#include "modules/TextToMaryXml.h"
 #include "pugixml/pugixml.hpp"
-#include "common/WordsProcess.h"
+//#include "common/WordsProcess.h"
+#include "cppmary.h"
 using namespace std;
 
 void text2MaryTest() {
@@ -27,7 +28,15 @@ void TokenizerTest() {
     }
 }
 
+void tokenModuleTest() {
+    cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
+    std::string result = tokenizer->process("你好啊");
+    std::cout << result << std::endl;
+    std::cout << "tokenModuleTest done" << std::endl;
+}
+
 int main() {
     //text2MaryTest();
-    TokenizerTest();
+    //TokenizerTest();
+    tokenModuleTest();
 }
