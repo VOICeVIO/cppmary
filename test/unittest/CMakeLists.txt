@@ -1,4 +1,4 @@
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/deps/gtest/include)
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/gtest/include)
 
 ADD_EXECUTABLE(test.run
         gtest_main.cpp

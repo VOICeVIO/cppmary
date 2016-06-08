@@ -3,9 +3,9 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <sourceRoots>
-      <file path="$PROJECT_DIR$/deps/cppjieba" />
-      <file path="$PROJECT_DIR$/deps/hts_engine" />
-      <file path="$PROJECT_DIR$/deps/limonp" />
+      <file path="$PROJECT_DIR$/3rdparty/cppjieba" />
+      <file path="$PROJECT_DIR$/3rdparty/hts_engine" />
+      <file path="$PROJECT_DIR$/3rdparty/limonp" />
     </sourceRoots>
     <libraryRoots />
     <excludeRoots />
