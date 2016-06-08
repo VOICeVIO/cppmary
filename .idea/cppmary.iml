@@ -12,21 +12,16 @@
       <sourceFolder url="file://$MODULE_DIR$/test/unittest/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/unittest/jieba_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/unittest/unicode_test.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/3rdparty/limonp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/3rdparty/gtest/src/gtest-all.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/3rdparty/gtest/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/3rdparty/hts_engine" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/3rdparty/cppjieba" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/3rdparty/pugixml/pugixml.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/3rdparty/pugixml/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/3rdparty/pugixml/pugixml.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/3rdparty/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/3rdparty" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/modules/Tokenizer.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/modules/TextToMaryXml.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/common/util.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/common/WordsProcess.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/common/convertPinyin.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/common/MaryXml.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/cppmary.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/include" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/examples/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/examples/libtest.cpp" isTestSource="false" />

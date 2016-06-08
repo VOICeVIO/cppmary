@@ -30,9 +30,11 @@ namespace cppmary {
 
     std::vector<std::string> getSyllablesStringVec(std::string& word);
 
-    std::string getMaryXmlHeaderWithLocale(std::string locale);
+
 
     std::string getFileString(std::string filepath);
+
+
 
 }
 

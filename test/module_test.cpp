@@ -29,8 +29,9 @@ void TokenizerTest() {
 }
 
 void tokenModuleTest() {
+    std::string rawXml = cppmary::TextToMaryXml::getInstance().process("欢迎使用文本转语音服务!");
     cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
-    std::string result = tokenizer->process("你好啊");
+    std::string result = tokenizer->process(rawXml);
     std::cout << result << std::endl;
     std::cout << "tokenModuleTest done" << std::endl;
 }

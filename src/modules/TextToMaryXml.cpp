@@ -3,10 +3,10 @@
 //
 
 #include "modules/TextToMaryXml.h"
-#include "common/util.h"
+#include "common.h"
 
 namespace cppmary {
     std::string TextToMaryXml::process(std::string text, std::string locale, std::string phoneset) {
-        return getMaryXmlHeaderWithLocale(locale) + "<p>\n" + text + "\n</p>\n</maryxml>" ;
+        return MaryXml::getMaryXmlHeaderWithLocale(locale) + "<p>\n" + text + "\n</p>\n</maryxml>" ;
     }
 }

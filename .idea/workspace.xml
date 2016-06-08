@@ -21,97 +21,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7856b9b-4fe1-4bf5-9fcd-397921d0af9e" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/CMakeLists.txt" afterPath="$PROJECT_DIR$/3rdparty/CMakeLists.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/DictTrie.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/DictTrie.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/FullSegment.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/FullSegment.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/HMMModel.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/HMMModel.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/HMMSegment.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/HMMSegment.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/Jieba.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/Jieba.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/KeywordExtractor.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/KeywordExtractor.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/MPSegment.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/MPSegment.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/MixSegment.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/MixSegment.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/PosTagger.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/PosTagger.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/PreFilter.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/PreFilter.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/QuerySegment.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/QuerySegment.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/SegmentBase.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/SegmentBase.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/TextRankExtractor.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/TextRankExtractor.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/Trie.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/Trie.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/cppjieba/Unicode.hpp" afterPath="$PROJECT_DIR$/3rdparty/cppjieba/Unicode.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/CMakeLists.txt" afterPath="$PROJECT_DIR$/3rdparty/gtest/CMakeLists.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/gtest-death-test.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/gtest-death-test.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/gtest-message.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/gtest-message.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/gtest-param-test.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/gtest-param-test.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/gtest-param-test.h.pump" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/gtest-param-test.h.pump" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/gtest-printers.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/gtest-printers.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/gtest-spi.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/gtest-spi.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/gtest-test-part.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/gtest-test-part.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/gtest-typed-test.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/gtest-typed-test.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/gtest.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/gtest.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/gtest_pred_impl.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/gtest_pred_impl.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/gtest_prod.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/gtest_prod.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/internal/gtest-death-test-internal.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/internal/gtest-death-test-internal.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/internal/gtest-filepath.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/internal/gtest-filepath.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/internal/gtest-internal.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/internal/gtest-internal.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/internal/gtest-linked_ptr.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/internal/gtest-linked_ptr.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/internal/gtest-param-util-generated.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/internal/gtest-param-util-generated.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/internal/gtest-param-util-generated.h.pump" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/internal/gtest-param-util-generated.h.pump" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/internal/gtest-param-util.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/internal/gtest-param-util.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/internal/gtest-port.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/internal/gtest-port.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/internal/gtest-string.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/internal/gtest-string.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/internal/gtest-tuple.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/internal/gtest-tuple.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/internal/gtest-tuple.h.pump" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/internal/gtest-tuple.h.pump" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/internal/gtest-type-util.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/internal/gtest-type-util.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/include/gtest/internal/gtest-type-util.h.pump" afterPath="$PROJECT_DIR$/3rdparty/gtest/include/gtest/internal/gtest-type-util.h.pump" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/src/gtest-all.cc" afterPath="$PROJECT_DIR$/3rdparty/gtest/src/gtest-all.cc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/src/gtest-death-test.cc" afterPath="$PROJECT_DIR$/3rdparty/gtest/src/gtest-death-test.cc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/src/gtest-filepath.cc" afterPath="$PROJECT_DIR$/3rdparty/gtest/src/gtest-filepath.cc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/src/gtest-internal-inl.h" afterPath="$PROJECT_DIR$/3rdparty/gtest/src/gtest-internal-inl.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/src/gtest-port.cc" afterPath="$PROJECT_DIR$/3rdparty/gtest/src/gtest-port.cc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/src/gtest-printers.cc" afterPath="$PROJECT_DIR$/3rdparty/gtest/src/gtest-printers.cc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/src/gtest-test-part.cc" afterPath="$PROJECT_DIR$/3rdparty/gtest/src/gtest-test-part.cc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/src/gtest-typed-test.cc" afterPath="$PROJECT_DIR$/3rdparty/gtest/src/gtest-typed-test.cc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/src/gtest.cc" afterPath="$PROJECT_DIR$/3rdparty/gtest/src/gtest.cc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/gtest/src/gtest_main.cc" afterPath="$PROJECT_DIR$/3rdparty/gtest/src/gtest_main.cc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/hts_engine/CMakeLists.txt" afterPath="$PROJECT_DIR$/3rdparty/hts_engine/CMakeLists.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/hts_engine/HTS_engine.h" afterPath="$PROJECT_DIR$/3rdparty/hts_engine/HTS_engine.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/hts_engine/src/HTS_audio.c" afterPath="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_audio.c" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/hts_engine/src/HTS_engine.c" afterPath="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_engine.c" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/hts_engine/src/HTS_gstream.c" afterPath="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_gstream.c" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/hts_engine/src/HTS_hidden.h" afterPath="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_hidden.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/hts_engine/src/HTS_label.c" afterPath="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_label.c" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/hts_engine/src/HTS_misc.c" afterPath="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_misc.c" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/hts_engine/src/HTS_model.c" afterPath="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_model.c" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/hts_engine/src/HTS_pstream.c" afterPath="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_pstream.c" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/hts_engine/src/HTS_sstream.c" afterPath="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_sstream.c" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/hts_engine/src/HTS_vocoder.c" afterPath="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_vocoder.c" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/ArgvContext.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/ArgvContext.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/BlockingQueue.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/BlockingQueue.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/BoundedBlockingQueue.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/BoundedBlockingQueue.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/BoundedQueue.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/BoundedQueue.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/Closure.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/Closure.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/Colors.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/Colors.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/Condition.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/Condition.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/Config.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/Config.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/FileLock.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/FileLock.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/ForcePublic.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/ForcePublic.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/LocalVector.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/LocalVector.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/Logging.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/Logging.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/Md5.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/Md5.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/MutexLock.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/MutexLock.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/NonCopyable.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/NonCopyable.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/StdExtension.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/StdExtension.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/StringUtil.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/StringUtil.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/Thread.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/Thread.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/limonp/ThreadPool.hpp" afterPath="$PROJECT_DIR$/3rdparty/limonp/ThreadPool.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/pugixml/CMakeLists.txt" afterPath="$PROJECT_DIR$/3rdparty/pugixml/CMakeLists.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/pugixml/pugiconfig.hpp" afterPath="$PROJECT_DIR$/3rdparty/pugixml/pugiconfig.hpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/pugixml/pugixml.cpp" afterPath="$PROJECT_DIR$/3rdparty/pugixml/pugixml.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/deps/pugixml/pugixml.hpp" afterPath="$PROJECT_DIR$/3rdparty/pugixml/pugixml.hpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/include/common/MaryXml.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/common/MaryXml.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/cppmary.iml" afterPath="$PROJECT_DIR$/.idea/cppmary.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unittest/CMakeLists.txt" afterPath="$PROJECT_DIR$/test/unittest/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/common.h" afterPath="$PROJECT_DIR$/include/common.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/common/WordsProcess.h" afterPath="$PROJECT_DIR$/include/common/WordsProcess.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/common/util.h" afterPath="$PROJECT_DIR$/include/common/util.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/WordsProcess.cpp" afterPath="$PROJECT_DIR$/src/common/WordsProcess.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/convertPinyin.cpp" afterPath="$PROJECT_DIR$/src/common/convertPinyin.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/util.cpp" afterPath="$PROJECT_DIR$/src/common/util.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modules/TextToMaryXml.cpp" afterPath="$PROJECT_DIR$/src/modules/TextToMaryXml.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modules/Tokenizer.cpp" afterPath="$PROJECT_DIR$/src/modules/Tokenizer.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/module_test.cpp" afterPath="$PROJECT_DIR$/test/module_test.cpp" />
     </list>
     <ignored path="cppmary.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -135,105 +59,105 @@
       <file leaf-file-name="pinyin_utf8_test.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/pinyin_utf8_test.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+            <state relative-caret-position="468">
+              <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <file leaf-file-name="convertPinyin.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/common/convertPinyin.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="40" column="41" selection-start-line="40" selection-start-column="41" selection-end-line="40" selection-end-column="41" />
+              <folding>
+                <element signature="e#100#119#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StringUtil.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/3rdparty/limonp/StringUtil.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="76" column="71" selection-start-line="76" selection-start-column="71" selection-end-line="76" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ctype.h" pinned="false" current-in-tab="false">
+        <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/ctype.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="291" column="0" selection-start-line="291" selection-start-column="0" selection-end-line="291" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WordsProcess.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/common/WordsProcess.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+              <folding>
+                <element signature="e#170#188#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="module_test.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/module_test.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/CMakeLists.txt">
+      <file leaf-file-name="Tokenizer.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modules/Tokenizer.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/3rdparty/gtest/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/unittest/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/3rdparty/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="unicode_test.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/unittest/unicode_test.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+            <state relative-caret-position="405">
+              <caret line="27" column="82" selection-start-line="27" selection-start-column="82" selection-end-line="27" selection-end-column="82" />
               <folding>
-                <element signature="e#0#31#0" expanded="true" />
+                <element signature="e#38#68#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gtest_main.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/unittest/gtest_main.cpp">
+      <file leaf-file-name="pos.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/pos.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
-              <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
-              <folding>
-                <element signature="e#1557#1576#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jieba_test.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/unittest/jieba_test.cpp">
+      <file leaf-file-name="WordsProcess.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/WordsProcess.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="641">
-              <caret line="83" column="30" selection-start-line="83" selection-start-column="30" selection-end-line="83" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="270">
+              <caret line="55" column="102" selection-start-line="55" selection-start-column="102" selection-end-line="55" selection-end-column="102" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MaryXml.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/MaryXml.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -250,7 +174,6 @@
         <option value="$PROJECT_DIR$/deps/cppjieba/QuerySegment.hpp" />
         <option value="$PROJECT_DIR$/src/libtest.cpp.cpp" />
         <option value="$PROJECT_DIR$/test/libtest.cpp" />
-        <option value="$PROJECT_DIR$/include/cppmary.h" />
         <option value="$PROJECT_DIR$/examples/libtest.cpp" />
         <option value="$PROJECT_DIR$/examples/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/cppmary.cpp" />
@@ -260,16 +183,10 @@
         <option value="$PROJECT_DIR$/deps/hts_engine/lib/HTS_vocoder.c" />
         <option value="$PROJECT_DIR$/test/jieba_test.cpp" />
         <option value="$PROJECT_DIR$/deps/pugixml/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/src/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/test/tree.xml" />
-        <option value="$PROJECT_DIR$/test/module_test.cpp" />
-        <option value="$PROJECT_DIR$/include/common/util.h" />
-        <option value="$PROJECT_DIR$/src/common/util.cpp" />
-        <option value="$PROJECT_DIR$/src/common/WordsProcess.cpp" />
         <option value="$PROJECT_DIR$/deps/cppjieba/HMMModel.hpp" />
         <option value="$PROJECT_DIR$/deps/cppjieba/limonp/Logging.hpp" />
         <option value="$PROJECT_DIR$/test/pugi_test.cpp" />
-        <option value="$PROJECT_DIR$/src/common/convertPinyin.cpp" />
         <option value="$PROJECT_DIR$/deps/limonp/FileLock.hpp" />
         <option value="$PROJECT_DIR$/deps/limonp/Logging.hpp" />
         <option value="$PROJECT_DIR$/deps/CMakeLists.txt" />
@@ -278,6 +195,25 @@
         <option value="$PROJECT_DIR$/test/unittest/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/test/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/3rdparty/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/modules/InterModules.cpp" />
+        <option value="$PROJECT_DIR$/include/modules.h" />
+        <option value="$PROJECT_DIR$/include/cppmary.h" />
+        <option value="$PROJECT_DIR$/include/modules/InterModules.h" />
+        <option value="$PROJECT_DIR$/include/modules/Tokenizer.h" />
+        <option value="$PROJECT_DIR$/include/common/Ptr.h" />
+        <option value="$PROJECT_DIR$/test/module_test.cpp" />
+        <option value="$PROJECT_DIR$/3rdparty/limonp/StdExtension.hpp" />
+        <option value="$PROJECT_DIR$/include/common.h" />
+        <option value="$PROJECT_DIR$/include/common/util.h" />
+        <option value="$PROJECT_DIR$/src/common/util.cpp" />
+        <option value="$PROJECT_DIR$/src/modules/TextToMaryXml.cpp" />
+        <option value="$PROJECT_DIR$/src/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/include/common/MaryXml.h" />
+        <option value="$PROJECT_DIR$/src/common/MaryXml.cpp" />
+        <option value="$PROJECT_DIR$/src/common/WordsProcess.cpp" />
+        <option value="$PROJECT_DIR$/include/common/WordsProcess.h" />
+        <option value="$PROJECT_DIR$/src/modules/Tokenizer.cpp" />
+        <option value="$PROJECT_DIR$/src/common/convertPinyin.cpp" />
       </list>
     </option>
   </component>
@@ -287,7 +223,7 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="38" />
+    <option name="x" value="30" />
     <option name="y" value="23" />
     <option name="width" value="1882" />
     <option name="height" value="1019" />
@@ -299,7 +235,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
@@ -359,11 +295,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="unittest" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -378,6 +310,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -410,6 +346,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="include" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cppmary" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cppmary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="include" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -509,12 +463,34 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cppmary" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cppmary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="3rdparty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gtest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
@@ -528,11 +504,11 @@
       <recent name="$PROJECT_DIR$/examples" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/common" />
+      <recent name="$PROJECT_DIR$/src/modules" />
       <recent name="$PROJECT_DIR$/deps" />
       <recent name="$PROJECT_DIR$/deps/hts_engine" />
       <recent name="$PROJECT_DIR$/include/hts_engine" />
-      <recent name="$PROJECT_DIR$/examples" />
-      <recent name="$PROJECT_DIR$/test" />
     </key>
   </component>
   <component name="RunManager" selected="Application.libtest">
@@ -704,7 +680,7 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="libtest" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cppmary" RUN_TARGET_NAME="test.run" EXPLICIT_BUILD_TARGET_NAME="all">
+    <configuration default="false" name="libtest" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-m data/bai.htsvoice -ow bai.wav data/bai.lab" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cppmary" RUN_TARGET_NAME="module_test" EXPLICIT_BUILD_TARGET_NAME="all">
       <envs />
       <method />
     </configuration>
@@ -775,7 +751,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="38" y="23" width="1882" height="1019" extended-state="0" />
+    <frame x="30" y="23" width="1882" height="1019" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -783,7 +759,7 @@
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32947367" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32947367" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973433" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -804,147 +780,23 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/test/module_test.cpp</url>
+          <line>33</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/include/common/Ptr.h</url>
+          <line>206</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/3rdparty/cppjieba/TextRankExtractor.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/cppjieba/SegmentBase.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/cppjieba/Jieba.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
-          <folding>
-            <element signature="e#51#78#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/cppjieba/KeywordExtractor.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/cppjieba/MixSegment.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="61" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
-          <folding>
-            <element signature="e#61#79#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/cppjieba/MPSegment.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/cppjieba/PosTagger.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/cppjieba/PreFilter.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/cppjieba/QuerySegment.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding>
-            <element signature="e#65#85#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/cppjieba/DictTrie.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1995">
-          <caret line="143" column="27" selection-start-line="143" selection-start-column="27" selection-end-line="143" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deps/hts_engine/lib/HTS_label.c" />
-    <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/HTS_engine.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
-          <caret line="462" column="57" selection-start-line="462" selection-start-column="57" selection-end-line="462" selection-end-column="57" />
-          <folding>
-            <marker date="1464939341000" expanded="false" signature="3234:3285" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deps/hts_engine/lib/HTS_hidden.h" />
-    <entry file="file://$PROJECT_DIR$/include/cppmary.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deps/hts_engine/lib/HTS_vocoder.c" />
-    <entry file="file://$PROJECT_DIR$/src/cppmary.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/libtest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/pugixml/pugiconfig.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/pugixml/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/tree.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -953,49 +805,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/module_test.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
-          <folding>
-            <element signature="e#38#57#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/common/util.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/WordsProcess.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
-          <folding>
-            <element signature="e#95#127#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/common/convertPinyin.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/common/WordsProcess.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#170#188#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1031,48 +845,6 @@
             <marker date="1465354584000" expanded="true" signature="1987:2128" placeholder="{...}" />
             <marker date="1465354584000" expanded="true" signature="2175:2389" placeholder="{...}" />
             <marker date="1465354584000" expanded="true" signature="2447:2980" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/pugi_test.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-          <folding>
-            <marker date="1465354449000" expanded="true" signature="9:163" placeholder="..." />
-            <marker date="1465354449000" expanded="true" signature="222:369" placeholder="{...}" />
-            <marker date="1465354449000" expanded="true" signature="390:632" placeholder="{...}" />
-            <marker date="1465354449000" expanded="true" signature="739:971" placeholder="{...}" />
-            <marker date="1465354449000" expanded="true" signature="1025:1600" placeholder="{...}" />
-            <marker date="1465354449000" expanded="true" signature="1624:1927" placeholder="{...}" />
-            <marker date="1465354449000" expanded="true" signature="1953:2208" placeholder="{...}" />
-            <marker date="1465354449000" expanded="true" signature="2221:2293" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/convertPinyin.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-          <folding>
-            <marker date="1465354468000" expanded="true" signature="312:2468" placeholder="{...}" />
-            <marker date="1465354468000" expanded="true" signature="457:562" placeholder="{...}" />
-            <marker date="1465354468000" expanded="true" signature="696:1117" placeholder="{...}" />
-            <marker date="1465354468000" expanded="true" signature="1204:1447" placeholder="{...}" />
-            <marker date="1465354468000" expanded="true" signature="1550:2153" placeholder="{...}" />
-            <marker date="1465354468000" expanded="true" signature="2218:2465" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/util.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
-          <folding>
-            <element signature="e#37#61#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1146,42 +918,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/hts_engine.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="282" column="60" selection-start-line="282" selection-start-column="60" selection-end-line="282" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/jieba_test.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="24" column="65" selection-start-line="24" selection-start-column="65" selection-end-line="24" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/pinyin_utf8_test.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -1191,7 +931,7 @@
         <state relative-caret-position="505">
           <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
           <folding>
-            <element signature="e#1557#1576#0" expanded="true" />
+            <element signature="e#1557#1576#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1201,7 +941,7 @@
         <state relative-caret-position="641">
           <caret line="83" column="30" selection-start-line="83" selection-start-column="30" selection-end-line="83" selection-end-column="30" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#0#29#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1219,7 +959,7 @@
         <state relative-caret-position="356">
           <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1253,6 +993,302 @@
         <state relative-caret-position="300">
           <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/libtest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/pugi_test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="70" column="52" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#30#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/InterModules.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/cppmary.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#90#109#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/common/Ptr.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1890">
+          <caret line="140" column="27" selection-start-line="140" selection-start-column="27" selection-end-line="140" selection-end-column="27" />
+          <folding>
+            <element signature="e#371#485#0" expanded="false" />
+            <element signature="e#761#840#0" expanded="false" />
+            <element signature="e#890#1488#0" expanded="false" />
+            <element signature="e#1505#1600#0" expanded="false" />
+            <element signature="e#1669#1683#0" expanded="false" />
+            <element signature="e#2040#2055#0" expanded="false" />
+            <element signature="e#2593#2608#0" expanded="false" />
+            <element signature="e#2642#2657#0" expanded="false" />
+            <element signature="e#3067#3081#0" expanded="false" />
+            <element signature="e#3142#3156#0" expanded="false" />
+            <element signature="e#3384#3398#0" expanded="false" />
+            <element signature="e#3485#3499#0" expanded="false" />
+            <element signature="e#3720#3734#0" expanded="false" />
+            <element signature="e#3825#3839#0" expanded="false" />
+            <element signature="e#3892#3906#0" expanded="false" />
+            <element signature="e#4051#4065#0" expanded="false" />
+            <element signature="e#4414#4428#0" expanded="false" />
+            <element signature="e#4494#4508#0" expanded="false" />
+            <element signature="e#4587#4601#0" expanded="false" />
+            <element signature="e#4664#4678#0" expanded="false" />
+            <element signature="e#4753#4767#0" expanded="false" />
+            <element signature="e#4838#4852#0" expanded="false" />
+            <element signature="e#4861#4876#0" expanded="false" />
+            <element signature="e#5178#5192#0" expanded="false" />
+            <element signature="e#5201#5216#0" expanded="false" />
+            <element signature="e#5571#5585#0" expanded="false" />
+            <element signature="e#5594#5609#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/ostream">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="321" column="0" selection-start-line="321" selection-start-column="0" selection-end-line="321" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/modules/InterModules.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/pinyin_han.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/modules.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/modules/Tokenizer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3rdparty/pugixml/pugixml.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="615" column="9" selection-start-line="615" selection-start-column="9" selection-end-line="615" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3rdparty/limonp/StdExtension.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="128" column="50" selection-start-line="128" selection-start-column="50" selection-end-line="128" selection-end-column="50" />
+          <folding>
+            <marker date="1465380741000" expanded="true" signature="625:3084" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/common.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding>
+            <element signature="e#93#117#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/util.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding>
+            <element signature="e#37#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="47" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/TextToMaryXml.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding>
+            <element signature="e#38#72#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/modules/TextToMaryXml.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/common/util.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/hts_engine.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="275" column="45" selection-start-line="275" selection-start-column="45" selection-end-line="275" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/common/MaryXml.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+          <folding>
+            <element signature="e#90#120#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/jieba_test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="57" column="21" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/pos.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/WordsProcess.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="55" column="102" selection-start-line="55" selection-start-column="102" selection-end-line="55" selection-end-column="102" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/common/WordsProcess.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+          <folding>
+            <element signature="e#170#188#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/pinyin_utf8_test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/MaryXml.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/ctype.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="291" column="0" selection-start-line="291" selection-start-column="0" selection-end-line="291" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/module_test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/Tokenizer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="82" selection-start-line="27" selection-start-column="82" selection-end-line="27" selection-end-column="82" />
+          <folding>
+            <element signature="e#38#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3rdparty/limonp/StringUtil.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="76" column="71" selection-start-line="76" selection-start-column="71" selection-end-line="76" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/convertPinyin.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="41" selection-start-line="40" selection-start-column="41" selection-end-line="40" selection-end-column="41" />
+          <folding>
+            <element signature="e#100#119#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

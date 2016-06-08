@@ -15,8 +15,7 @@ WordsProcess* WordsProcess::Instance(){
 
 void WordsProcess::LoadResource(std::string dir)
 {
-    if(_app!=NULL)
-    {
+    if(_app!=NULL) {
         return;
     }
 
@@ -47,12 +46,19 @@ void WordsProcess::LoadResource(std::string dir)
 
 void WordsProcess::Cut(const std::string &sentence, std::vector<std::string> &words)
 {
-    if(_app==NULL)
-    {
+    if(_app==NULL) {
         return;
     }
     cppjieba::Jieba* app=(cppjieba::Jieba*)_app;
     app->Cut(sentence, words);
+}
+
+void WordsProcess::Tag(const std::string& sentence, std::vector<std::pair<std::string, std::string> >& wordTags) {
+    if(_app==NULL) {
+        return;
+    }
+    cppjieba::Jieba* app=(cppjieba::Jieba*)_app;
+    app->Tag(sentence, wordTags);
 }
 
 //void WordsProcess::Extract(const std::string &sentence, std::vector<std::string> &words,int topN)

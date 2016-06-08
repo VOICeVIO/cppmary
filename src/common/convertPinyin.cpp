@@ -52,7 +52,7 @@ namespace cppmary {
         for (int i = 0; i < syllables.size(); i++) {
             std::string syl = syllables[i];
             std::string syllablePinyin = getSyllablePinyin(syl);
-            syllablePinyin = limonp::Lower(syllablePinyin);
+            transform(syllablePinyin.begin(), syllablePinyin.end(), syllablePinyin.begin(), (int (*)(int))tolower);
             std::cout << syl << " " << syllablePinyin << std::endl;
             if (result.empty()) {
                 result = syllablePinyin;

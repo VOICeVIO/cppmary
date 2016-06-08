@@ -10,6 +10,7 @@
 #include "stdio.h"
 #include <vector>
 #include <string>
+#include <utility>
 class WordsProcess
 {
 public:
@@ -21,6 +22,7 @@ public:
                       std::string &idf_buffer,
                       std::string &stop_buffer);
     void Cut(const std::string& sentence, std::vector<std::string>& words);
+    void Tag(const std::string& sentence, std::vector<std::pair<std::string, std::string> >& wordTags);
     void Extract(const std::string& sentence,std::vector<std::string>&words,int topN=1);
     void InsertNewWords(std::vector<std::string>& words);
 protected:
