@@ -13,6 +13,7 @@
       <sourceFolder url="file://$MODULE_DIR$/deps/pugixml/pugixml.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/deps/pugixml/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/deps/pugixml/pugixml.hpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/deps/limonp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/deps/hts_engine" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/modules/TextToMaryXml.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/CMakeLists.txt" isTestSource="false" />

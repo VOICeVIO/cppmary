@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "common/util.h"
-#include "cppjieba/limonp/Logging.hpp"
+#include "limonp/Logging.hpp"
 
 
 bool try_imbue(std::wistream &stream, const char *name) {

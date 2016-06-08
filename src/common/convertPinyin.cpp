@@ -6,8 +6,8 @@
  * accept utf8 string, then convert to pinyin string
  * */
 #include <iostream>
-#include "cppjieba/limonp/Logging.hpp"
-#include "cppjieba/limonp/StringUtil.hpp"
+#include "limonp/Logging.hpp"
+#include "limonp/StringUtil.hpp"
 #include "common/convertPinyin.h"
 #include "common/util.h"
 #include "cppjieba/Unicode.hpp"

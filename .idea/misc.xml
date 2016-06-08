@@ -5,6 +5,7 @@
     <sourceRoots>
       <file path="$PROJECT_DIR$/deps/cppjieba" />
       <file path="$PROJECT_DIR$/deps/hts_engine" />
+      <file path="$PROJECT_DIR$/deps/limonp" />
     </sourceRoots>
     <libraryRoots />
     <excludeRoots />
