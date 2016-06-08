@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "common/util.h"
+#include "cppjieba/limonp/Logging.hpp"
 
 
 bool try_imbue(std::wistream &stream, const char *name) {
@@ -64,6 +65,7 @@ void wide_char_test() {
 }
 
 void narrow_char_test() {
+    XLOG(INFO) << "in narrow char test" ;
     pugi::xml_document doc;
     std::ifstream stream("test/pos.xml");
     pugi::xml_parse_result result = doc.load(stream);
