@@ -6,10 +6,11 @@
 #include <iostream>
 #include "common.h"
 #include "pugixml/pugixml.hpp"
+#include "limonp/Logging.hpp"
 
 namespace cppmary {
     std::string Tokenizer::process(std::string input) {
-        std::cout << input << std::endl;
+        XLOG(DEBUG) << "tokenizer input: " << input;
         pugi::xml_document doc;
         pugi::xml_parse_result result = doc.load_string(input.c_str());
         pugi::xml_node paragraph = doc.child("maryxml").first_child();
@@ -30,7 +31,8 @@ namespace cppmary {
         }
         cppmary::xml_string_writer writer;
         doc.print(writer);
-            std::string xmlstring = writer.result;
-            return xmlstring;
+        std::string tokenStr = writer.result;
+        XLOG(DEBUG) << "tokenizer output: " << tokenStr;
+        return tokenStr;
     }
 }

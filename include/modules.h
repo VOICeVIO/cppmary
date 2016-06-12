@@ -7,5 +7,6 @@
 #include "modules/TextToMaryXml.h"
 #include "modules/InterModules.h"
 #include "modules/Tokenizer.h"
+#include "modules/Phonemiser.h"
 
 #endif //CPPMARY_MODULES_H

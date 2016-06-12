@@ -36,8 +36,17 @@ void tokenModuleTest() {
     std::cout << "tokenModuleTest done" << std::endl;
 }
 
+void phonemiserTest() {
+    std::string rawXml = cppmary::TextToMaryXml::getInstance().process("欢迎使用文本转语音服务!");
+    cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
+    std::string tokenStr = tokenizer->process(rawXml);
+    cppmary::InterModules* phonemiser = new cppmary::Phonemiser();
+    std::string phoneStr = phonemiser->process(tokenStr);
+}
+
 int main() {
     //text2MaryTest();
     //TokenizerTest();
-    tokenModuleTest();
+    //tokenModuleTest();
+    phonemiserTest();
 }
