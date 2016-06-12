@@ -13,14 +13,11 @@
       <sourceFolder url="file://$MODULE_DIR$/test/unittest/jieba_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/unittest/unicode_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/3rdparty" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/modules/Tokenizer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/modules/TextToMaryXml.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/common/util.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/common/WordsProcess.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/common/convertPinyin.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/common/MaryXml.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/cppmary.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/common" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/cppmaryAll.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/modules" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/examples/CMakeLists.txt" isTestSource="false" />

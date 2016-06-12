@@ -12,7 +12,6 @@ namespace cppmary {
     public:
         Lexicon(const std::string& lexiconDictName);
         ~Lexicon();
-        void loadDict(std::map<std::string, std::string>& dict, const std::string& filePath, const std::string& pattern);
         std::string getLexiconPhonemes(std::string syllable);
     private:
         std::string lexiconDictName_;

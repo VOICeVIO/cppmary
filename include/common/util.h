@@ -34,6 +34,8 @@ namespace cppmary {
 
     std::string getFileString(std::string filepath);
 
+    void loadDict(std::map<std::string, std::string>& dict, const std::string& filePath, const std::string& pattern = " ");
+
 
 
 }

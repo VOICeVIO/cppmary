@@ -16,7 +16,6 @@ namespace cppmary {
         ConvertPinyin(const std::string &wordDictName, const std::string &syllableDictName);
         ConvertPinyin();
         ~ConvertPinyin();
-        void loadDict(std::map<std::string, std::string>& dict, const std::string& filePath, const std::string& pattern = " ");
         std::string getWordPinyin(std::string word);
         std::string getSyllablesPinyin(std::string word);
         std::string getWordsPinyin(std::string words);
