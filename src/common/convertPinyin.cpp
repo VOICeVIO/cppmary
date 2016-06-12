@@ -41,7 +41,8 @@ namespace cppmary {
         if (iter != syllableDict_.end()) {
             return iter->second;
         } else {
-            return syllable;
+            //return syllable;
+            return "";
         }
     }
 
