@@ -15,4 +15,19 @@ namespace cppmary {
         doc.append_child(childName.c_str());
     }
 
+    std::string MaryXml::saveDoc2String(const pugi::xml_document& doc) {
+        cppmary::xml_string_writer writer;
+        doc.print(writer);
+        return writer.result;
+    }
+
+    bool MaryXml::hasAttribute(const pugi::xml_node &node, const std::string& attributeName) {
+        for (pugi::xml_attribute attr = node.first_attribute(); attr; attr = attr.next_attribute()) {
+            if (attr.name() == attributeName) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

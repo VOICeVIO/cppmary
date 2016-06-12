@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <vector>
 
-#include "common/util.h"
+#include "common.h"
 #include "limonp/Logging.hpp"
 
 
@@ -48,7 +48,7 @@ void transverse_base(const pugi::xml_document &doc) {
             std::cout << "name:  " << attr.name() << " value: " << attr.value();
         }
 
-        std::cout << std::endl;
+        std::cout << " posattribute: " << cppmary::MaryXml::hasAttribute(token, "pos") << std::endl;
     }
 }
 

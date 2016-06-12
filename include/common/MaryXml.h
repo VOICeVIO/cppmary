@@ -17,7 +17,9 @@ namespace cppmary {
     class MaryXml {
     public:
         static std::string getMaryXmlHeaderWithLocale(std::string locale);
+        static std::string saveDoc2String(const pugi::xml_document& doc);
         static void appendChild(pugi::xml_node doc, std::string childName);
+        static bool hasAttribute(const pugi::xml_node& node, const std::string& attributeName);
     };
 }
 

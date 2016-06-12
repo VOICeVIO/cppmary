@@ -22,16 +22,15 @@ namespace cppmary {
         WordsProcess::Instance()->Tag(text, wordTags);
         pugi::xml_node textNode = paragraph.first_child();
         paragraph.remove_child(textNode);
+        pugi::xml_node sentence = paragraph.append_child("s");
         for (int i = 0; i < wordTags.size(); i++) {
-            pugi::xml_node token = paragraph.append_child("t");
+            pugi::xml_node token = sentence.append_child("t");
             token.append_child(pugi::node_pcdata).set_value(wordTags[i].first.c_str());
             std::string pos = wordTags[i].second;
             transform(pos.begin(), pos.end(), pos.begin(), (int (*)(int))toupper);
             token.append_attribute("pos") = pos.c_str();
         }
-        cppmary::xml_string_writer writer;
-        doc.print(writer);
-        std::string tokenStr = writer.result;
+        std::string tokenStr = MaryXml::saveDoc2String(doc);
         XLOG(DEBUG) << "tokenizer output: " << tokenStr;
         return tokenStr;
     }
