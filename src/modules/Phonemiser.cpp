@@ -16,6 +16,9 @@ namespace cppmary {
         std::string sylDictName = "test/pinyin_han.txt";
         std::string wordDictName = "test/mix_pinyin_word.txt";
         cppmary::ConvertPinyin pinyinConverter(wordDictName, sylDictName);
+        std::string lexiconDictName = "test/zh_ph64_lexicon.dict";
+        cppmary::Lexicon lexiconTranslator(lexiconDictName);
+
         for (pugi::xml_node token = tokens.first_child(); token; token = token.next_sibling()) {
             std::string tokenValue(token.child_value());
             tokenValue = cppmary::trim(tokenValue);
@@ -25,8 +28,10 @@ namespace cppmary {
                 assert(pinyins.size() >= 1);
                 std::string pinyinseq = "";
                 std::string toneseq = "";
+                std::string lexiconseq = "";
                 for (int i = 0; i < pinyins.size(); i++) {
                     std::string currentPinyin = cppmary::trim(pinyins[i]);
+                    std::string lexiconStr = lexiconTranslator.getLexiconPhonemes(currentPinyin);
                     if (currentPinyin.empty()) {
                         continue;
                     } else {
@@ -35,15 +40,19 @@ namespace cppmary {
                         if (pinyinseq.empty()) {
                             pinyinseq = currentPinyin;
                             toneseq = tone;
+                            lexiconseq = lexiconStr;
                         } else {
                             pinyinseq = pinyinseq + " - " + currentPinyin;
                             toneseq = toneseq + " - ";
                             toneseq.push_back(tone);
+                            lexiconseq = lexiconseq + " - " + lexiconStr;
                         }
                     }
                 }
                 token.append_attribute("pinyinseq") = pinyinseq.c_str();
                 token.append_attribute("toneseq") = toneseq.c_str();
+                token.append_attribute("ph") = lexiconseq.c_str();
+
             }
         }
         std::string phonemiserStr = MaryXml::saveDoc2String(doc);

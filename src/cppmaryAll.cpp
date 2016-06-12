@@ -11,3 +11,4 @@
 #include "common/MaryXml.cpp"
 #include "common/util.cpp"
 #include "common/WordsProcess.cpp"
+#include "common/Lexicon.cpp"
