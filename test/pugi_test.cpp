@@ -73,9 +73,37 @@ void narrow_char_test() {
     transverse_base(doc);
 }
 
+void maryxml_test() {
+    pugi::xml_document doc;
+    std::ifstream stream("test/pos.xml");
+    pugi::xml_parse_result result = doc.load(stream);
+    pugi::xml_node tokens = doc.child("maryxml").child("p").child("s");
+    pugi::xml_node paragraph = doc.child("maryxml").child("p");
+    std::cout << "is ancestor: " << cppmary::MaryXml::isAncestor(paragraph, tokens) << std::endl;
+    std::cout << "is ancestor: " << cppmary::MaryXml::isAncestor(tokens, paragraph) << std::endl;
+
+    pugi::xml_node common = cppmary::MaryXml::closestCommonAncestor(tokens, paragraph);
+    std::cout << "common " <<  common.name() << std::endl;
+
+    pugi::xml_node common1 = cppmary::MaryXml::closestCommonAncestor(paragraph, tokens);
+    std::cout << "common1 " << common1.name() << std::endl;
+
+    pugi::xml_node enclose = cppmary::MaryXml::encloseNodesWithNewElement(paragraph, tokens, "enclose");
+
+    std::string encloseStr = cppmary::MaryXml::saveDoc2String(doc);
+    std::cout << encloseStr << std::endl;
+
+
+    //for (pugi::xml_node token = tokens.first_child(); token; token = token.next_sibling()) {
+    //    std::string token_value(token.child_value());
+    //    std::cout << token_value << std::endl;
+    //}
+}
+
 int main() {
     //simple_test();
     //wide_char_test();
-    narrow_char_test();
+    //narrow_char_test();
+    maryxml_test();
 }
 

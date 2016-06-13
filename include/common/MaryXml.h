@@ -20,6 +20,13 @@ namespace cppmary {
         static std::string saveDoc2String(const pugi::xml_document& doc);
         static void appendChild(pugi::xml_node doc, std::string childName);
         static bool hasAttribute(const pugi::xml_node& node, const std::string& attributeName);
+        static bool isAncestor(pugi::xml_node ancestor, pugi::xml_node node);
+        static pugi::xml_node getAncestor(pugi::xml_node node, std::string ancestorName);
+        static pugi::xml_node getClosetAncestorWithAttribute(pugi::xml_node node, std::string ancestorName, std::string attributeName);
+        static pugi::xml_node closestCommonAncestor(pugi::xml_node first, pugi::xml_node last);
+        static pugi::xml_node encloseNodesWithNewElement(pugi::xml_node first, pugi::xml_node last, std::string newElementName);
+
+
     };
 }
 
