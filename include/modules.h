@@ -8,5 +8,6 @@
 #include "modules/InterModules.h"
 #include "modules/Tokenizer.h"
 #include "modules/Phonemiser.h"
+#include "modules/Prosody.h"
 
 #endif //CPPMARY_MODULES_H

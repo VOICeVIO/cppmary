@@ -44,9 +44,28 @@ void phonemiserTest() {
     std::string phoneStr = phonemiser->process(tokenStr);
 }
 
+void prosodyTest() {
+    std::string rawXml = cppmary::TextToMaryXml::getInstance().process("欢迎，使用。文本转！语音？服务!");
+    cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
+    std::string tokenStr = tokenizer->process(rawXml);
+    cppmary::InterModules* phonemiser = new cppmary::Phonemiser();
+    std::string phoneStr = phonemiser->process(tokenStr);
+    cppmary::InterModules* prosody = new cppmary::Prosody();
+    std::string prodyStr = prosody->process(phoneStr);
+}
+
+void replaceTest() {
+    std::string orig = "欢迎，使用。文本转！语音？服务!";
+    std::string result = cppmary::replaceAll(orig, "，", ",");
+    result = cppmary::replaceAll(result, "。", ".");
+    std::cout << orig << " --> " << result << std::endl;
+}
+
 int main() {
     //text2MaryTest();
     //TokenizerTest();
     //tokenModuleTest();
-    phonemiserTest();
+    //phonemiserTest();
+    prosodyTest();
+    //replaceTest();
 }

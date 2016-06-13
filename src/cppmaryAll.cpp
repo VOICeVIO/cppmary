@@ -6,6 +6,7 @@
 #include "modules/Phonemiser.cpp"
 #include "modules/TextToMaryXml.cpp"
 #include "modules/Tokenizer.cpp"
+#include "modules/Prosody.cpp"
 
 #include "common/convertPinyin.cpp"
 #include "common/MaryXml.cpp"
