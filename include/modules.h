@@ -9,5 +9,6 @@
 #include "modules/Tokenizer.h"
 #include "modules/Phonemiser.h"
 #include "modules/Prosody.h"
+#include "modules/Pronunciation.h"
 
 #endif //CPPMARY_MODULES_H

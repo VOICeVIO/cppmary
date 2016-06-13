@@ -61,11 +61,24 @@ void replaceTest() {
     std::cout << orig << " --> " << result << std::endl;
 }
 
+void pronunciationTest() {
+    std::string rawXml = cppmary::TextToMaryXml::getInstance().process("欢迎，使用。文本转！语音？服务!");
+    cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
+    std::string tokenStr = tokenizer->process(rawXml);
+    cppmary::InterModules* phonemiser = new cppmary::Phonemiser();
+    std::string phoneStr = phonemiser->process(tokenStr);
+    cppmary::InterModules* prosody = new cppmary::Prosody();
+    std::string prodyStr = prosody->process(phoneStr);
+    cppmary::InterModules* pronuciation = new cppmary::Pronunciation();
+    std::string pronunStr = pronuciation->process(prodyStr);
+}
+
 int main() {
     //text2MaryTest();
     //TokenizerTest();
     //tokenModuleTest();
     //phonemiserTest();
-    prosodyTest();
     //replaceTest();
+    //prosodyTest();
+    pronunciationTest();
 }
