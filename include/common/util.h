@@ -36,6 +36,8 @@ namespace cppmary {
 
     void loadDict(std::map<std::string, std::string>& dict, const std::string& filePath, const std::string& pattern = " ");
 
+    std::string replaceAll(const std::string& orig, const std::string& replaceThis, const std::string& replaceWith);
+
 
 
 }

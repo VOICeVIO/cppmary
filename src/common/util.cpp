@@ -105,4 +105,12 @@ namespace cppmary {
         }
         //dumpStringMap(dict);
     }
+
+    std::string replaceAll(const std::string& orig, const std::string& replaceThis, const std::string& replaceWith) {
+        std::string result = orig;
+        while(result.find(replaceThis) != std::string::npos) {
+            result.replace(result.find(replaceThis),replaceThis.size(),replaceWith);
+        }
+        return result;
+    }
 }
