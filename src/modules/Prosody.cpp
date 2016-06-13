@@ -49,10 +49,10 @@ namespace cppmary {
                 }
                 newNode.append_attribute("breakindex") = breakindexValue;
                 last = newNode;
-                MaryXml::encloseNodesWithNewElement(first, last, "phrase");
                 token = newNode.next_sibling();
+                MaryXml::encloseNodesWithNewElement(first, last, "phrase");
                 first = token;
-            } 
+            }
         }
         if (last != tokens.last_child()) {
             last = tokens.last_child();
