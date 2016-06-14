@@ -16,6 +16,7 @@
 namespace cppmary {
 
     std::vector<std::string> split(const std::string &text, char sep);
+    std::vector<std::string> splitAndTrim(const std::string& text, char sep);
 
     // trim from start
     std::string &ltrim(std::string &s);

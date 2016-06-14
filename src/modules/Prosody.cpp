@@ -28,14 +28,14 @@ namespace cppmary {
         }
     }
 
+    //增加phase和bournary
     std::string Prosody::process(std::string input) {
-        //增加phase和bournary
         XLOG(DEBUG) << "Prosody input: " << input;
         pugi::xml_document doc;
         pugi::xml_parse_result result = doc.load_string(input.c_str());
         pugi::xml_node tokens = doc.child("maryxml").child("p").child("s");
         
-        pugi::xml_node first, last;
+        pugi::xml_node first, last, lastPhrase;
         first = tokens.first_child();
         for (pugi::xml_node token = tokens.first_child(); token; token = token.next_sibling()) {
             last = token;
@@ -44,17 +44,17 @@ namespace cppmary {
             if (isPuncinatiion(tokenValue)) {
                 pugi::xml_node newNode = tokens.insert_child_after("bounary", token);
                 int breakindexValue = 3;
-                if (last == tokens.last_child()) {
+                if (newNode == tokens.last_child()) {
                     breakindexValue = 6;
                 }
                 newNode.append_attribute("breakindex") = breakindexValue;
                 last = newNode;
                 token = newNode.next_sibling();
-                MaryXml::encloseNodesWithNewElement(first, last, "phrase");
+                lastPhrase = MaryXml::encloseNodesWithNewElement(first, last, "phrase");
                 first = token;
             }
         }
-        if (last != tokens.last_child()) {
+        if (lastPhrase != tokens.last_child()) {
             last = tokens.last_child();
             pugi::xml_node newNode = tokens.insert_child_after("bounary", last);
             last = newNode;

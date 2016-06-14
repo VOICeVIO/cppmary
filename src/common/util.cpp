@@ -22,6 +22,20 @@ namespace cppmary {
         return tokens;
     }
 
+    std::vector<std::string> splitAndTrim(const std::string& text, char sep) {
+        std::vector<std::string> tokens = split(text, sep);
+        std::vector<std::string> trimTokens;
+        for (int i = 0; i < tokens.size(); i++) {
+            std::string tokenStr = tokens[i];
+            tokenStr = trim(tokenStr);
+            if (tokenStr.empty()) {
+                continue;
+            }
+            trimTokens.push_back(tokenStr);
+        }
+        return trimTokens;
+    }
+
     // trim from start
     std::string &ltrim(std::string &s) {
         s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));

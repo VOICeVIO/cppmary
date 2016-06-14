@@ -17,23 +17,47 @@ namespace cppmary {
      *   </syllable>
      */
     std::string Pronunciation::process(std::string input) {
-        XLOG(DEBUG) << "Pronunciation input: " << input;
+        std::cout << "in Pronunciation" << std::endl;
+        //XLOG(DEBUG) << "Pronunciation input: " << input;
         pugi::xml_document doc;
         pugi::xml_parse_result result = doc.load_string(input.c_str());
         pugi::xml_node phrases = doc.child("maryxml").child("p").child("s");
         for (pugi::xml_node phrase = phrases.first_child(); phrase; phrase = phrase.next_sibling()) {
-            pugi::xml_node tokens = phrase.child("phrase");
-            for (pugi::xml_node token = tokens.first_child(); token; token = token.next_sibling()) {
+            //phrase.print(std::cout, "", pugi::format_raw);
+            for (pugi::xml_node token = phrase.first_child(); token; token = token.next_sibling()) {
                 std::string toneStr = token.attribute("toneseq").as_string();
                 std::string pinyinStr = token.attribute("pinyinseq").as_string();
+                std::string phoneStr = token.attribute("ph").as_string();
                 std::cout << token.name() << " " << pinyinStr << std::endl;
-                if (toneStr.empty()) {
+                if (toneStr.empty() || pinyinStr.empty() || phoneStr.empty()) {
                     continue;
+                }
+                std::vector<std::string> tones = splitAndTrim(toneStr, '-');
+                std::vector<std::string> pinyins = splitAndTrim(pinyinStr, '-');
+                std::vector<std::string> phones = splitAndTrim(phoneStr, '-');
+                assert(tones.size() == pinyins.size());
+                assert(tones.size() == phones.size());
+                for (int i = 0; i < pinyins.size(); i++) {
+                    std::string phone = phones[i];
+                    std::string pinyin = pinyins[i];
+                    std::string tone = tones[i];
+                    std::vector<std::string> sylPhones = splitAndTrim(phone, ' ');
+                    pugi::xml_node syllable =  token.append_child("syllable");
+                    syllable.append_attribute("ph") = phone.c_str();
+                    syllable.append_attribute("zhtone") = tone.c_str();
+                    syllable.append_attribute("pinyin") = pinyin.c_str();
+                    for (int i = 0; i < sylPhones.size(); i++) {
+                        std::string sylPhone = sylPhones[i];
+                        if (sylPhone.empty()) {
+                            continue;
+                        }
+                        syllable.append_child("ph").append_attribute("p") = sylPhone.c_str();
+                    }
                 }
 
             }
         }
-        std::string pronunStr = input;
+        std::string pronunStr = MaryXml::saveDoc2String(doc);
         XLOG(DEBUG) << "Pronunciation output: " << pronunStr;
         return pronunStr;
     }
