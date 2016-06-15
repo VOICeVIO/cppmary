@@ -15,6 +15,7 @@ namespace cppmary {
         for (int i = 0; i <= RAIL_LIMIT; i++) {
             values.push_back(std::to_string(i));
         }
+        return values;
     }
 
     int PhraseNumSyls::process(Target target) {

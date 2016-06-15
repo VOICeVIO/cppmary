@@ -61,6 +61,18 @@ void replaceTest() {
     std::cout << orig << " --> " << result << std::endl;
 }
 
+void traverseTest(std::string input) {
+    //cppmary::token_walker tw;
+    cppmary::token_boundary_walker tw;
+    pugi::xml_document doc;
+    pugi::xml_parse_result result = doc.load_string(input.c_str());
+    doc.traverse(tw);
+    std::cout << tw.nodes_.size() << std::endl;
+    for (int i = 0; i < tw.nodes_.size(); i++) {
+        std::cout << i << " " << tw.nodes_[i].child_value() << std::endl;
+    }
+}
+
 void pronunciationTest() {
     std::string rawXml = cppmary::TextToMaryXml::getInstance().process("欢迎，使用。文本转！语音？服务!");
     cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
@@ -71,6 +83,9 @@ void pronunciationTest() {
     std::string prodyStr = prosody->process(phoneStr);
     cppmary::InterModules* pronuciation = new cppmary::Pronunciation();
     std::string pronunStr = pronuciation->process(prodyStr);
+
+    traverseTest(pronunStr);
+
 }
 
 int main() {
