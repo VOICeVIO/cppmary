@@ -14,3 +14,10 @@
 #include "common/util.cpp"
 #include "common/WordsProcess.cpp"
 #include "common/Lexicon.cpp"
+
+
+#include "features/FeatureProcessorManager.cpp"
+#include "features/GenericFeatureProcessors.cpp"
+#include "features/Target.cpp"
+#include "features/TargetElementNavigator.cpp"
+#include "features/FeatureProcessorBase.cpp"

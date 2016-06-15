@@ -17,8 +17,7 @@ namespace cppmary {
      *   </syllable>
      */
     std::string Pronunciation::process(std::string input) {
-        std::cout << "in Pronunciation" << std::endl;
-        //XLOG(DEBUG) << "Pronunciation input: " << input;
+        XLOG(DEBUG) << "Pronunciation input: " << input;
         pugi::xml_document doc;
         pugi::xml_parse_result result = doc.load_string(input.c_str());
         pugi::xml_node phrases = doc.child("maryxml").child("p").child("s");
@@ -28,7 +27,6 @@ namespace cppmary {
                 std::string toneStr = token.attribute("toneseq").as_string();
                 std::string pinyinStr = token.attribute("pinyinseq").as_string();
                 std::string phoneStr = token.attribute("ph").as_string();
-                std::cout << token.name() << " " << pinyinStr << std::endl;
                 if (toneStr.empty() || pinyinStr.empty() || phoneStr.empty()) {
                     continue;
                 }
@@ -54,7 +52,6 @@ namespace cppmary {
                         syllable.append_child("ph").append_attribute("p") = sylPhone.c_str();
                     }
                 }
-
             }
         }
         std::string pronunStr = MaryXml::saveDoc2String(doc);
