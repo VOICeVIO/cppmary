@@ -7,7 +7,9 @@
 #include "pugixml/pugixml.hpp"
 //#include "common/WordsProcess.h"
 #include "cppmary.h"
+#include "features.h"
 using namespace std;
+using namespace cppmary;
 
 void text2MaryTest() {
     std::string rawXml = cppmary::TextToMaryXml::getInstance().process("欢迎使用文本转语音服务!");
@@ -61,16 +63,46 @@ void replaceTest() {
     std::cout << orig << " --> " << result << std::endl;
 }
 
-void traverseTest(std::string input) {
+
+std::vector<Target> createTargetWithPauses(std::vector<pugi::xml_node> segmentsAndPauses,
+                                           std::string pauseSymbol) {
+    std::vector<Target> targets;
+    if (segmentsAndPauses.size() == 0) {
+        return targets;
+    }
+    //TODO: add final bounary
+    for (int i = 0; i < segmentsAndPauses.size(); i++) {
+        pugi::xml_node seg = segmentsAndPauses[i];
+        std::string phone = seg.attribute("p").as_string();
+        if (phone == "") {
+            phone = pauseSymbol;
+        }
+        Target temp(phone, seg);
+        targets.push_back(temp);
+    }
+    return targets;
+}
+
+void featureTest(std::string input) {
     //cppmary::token_walker tw;
-    cppmary::token_boundary_walker tw;
+    cppmary::phone_boundary_walker tw;
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_string(input.c_str());
     doc.traverse(tw);
     std::cout << tw.nodes_.size() << std::endl;
     for (int i = 0; i < tw.nodes_.size(); i++) {
-        std::cout << i << " " << tw.nodes_[i].child_value() << std::endl;
+        std::cout << i << " " << tw.nodes_[i].attribute("p").as_string() << std::endl;
     }
+    std::vector<Target> targets = createTargetWithPauses(tw.nodes_, "_");
+    FeatureProcessorManager manager("zh");
+    manager.setupGenericFeatureProcessors();
+    TargetFeatureComputer featureComputer(manager, "phrase_numsyls");
+    for (int i = 0; i < targets.size(); i++) {
+        Target target = targets[i];
+        std::vector<int> features = featureComputer.computeFeatureVector(target);
+        std::cout << target.getName() << " " << features[0] << std::endl;
+    }
+
 }
 
 void pronunciationTest() {
@@ -84,7 +116,7 @@ void pronunciationTest() {
     cppmary::InterModules* pronuciation = new cppmary::Pronunciation();
     std::string pronunStr = pronuciation->process(prodyStr);
 
-    traverseTest(pronunStr);
+    featureTest(pronunStr);
 
 }
 

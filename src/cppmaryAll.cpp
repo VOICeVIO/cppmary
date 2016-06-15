@@ -21,3 +21,4 @@
 #include "features/Target.cpp"
 #include "features/TargetElementNavigator.cpp"
 #include "features/FeatureProcessorBase.cpp"
+#include "features/TargetFeatureComputer.cpp"

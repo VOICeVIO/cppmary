@@ -10,5 +10,6 @@
 #include "features/GenericFeatureProcessors.h"
 #include "features/Target.h"
 #include "features/TargetElementNavigator.h"
+#include "features/TargetFeatureComputer.h"
 
 #endif //CPPMARY_FEATURES_H
