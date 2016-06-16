@@ -10,7 +10,7 @@ namespace cppmary {
 
     }
     ByteValuedFeatureProcessor::~ByteValuedFeatureProcessor() {
-        std::cout << "deconstruct ByteValuedFeatureProcessor" << std::endl;
+        XLOG(DEBUG) << "deconstruct ByteValuedFeatureProcessor";
     }
 
     std::vector<std::string> ByteValuedFeatureProcessor::getValues() {

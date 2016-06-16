@@ -8,11 +8,11 @@
 namespace cppmary {
 
     PhraseNumSyls::PhraseNumSyls() {
-        std::cout << "construct PhraseNumSyls" << std::endl;
+        XLOG(DEBUG) << "construct PhraseNumSyls";
     }
 
     PhraseNumSyls::~PhraseNumSyls() {
-        std::cout << "deconstruct PhraseNumSyls" << std::endl;
+        XLOG(DEBUG) << "deconstruct PhraseNumSyls";
     }
 
     std::string PhraseNumSyls::getName() {

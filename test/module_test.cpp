@@ -83,16 +83,9 @@ std::vector<Target> createTargetWithPauses(std::vector<pugi::xml_node> segmentsA
     return targets;
 }
 
-void featureTest(std::string input) {
-    //cppmary::token_walker tw;
+void featureTest(pugi::xml_node doc) {
     cppmary::phone_boundary_walker tw;
-    pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_string(input.c_str());
     doc.traverse(tw);
-    std::cout << tw.nodes_.size() << std::endl;
-    for (int i = 0; i < tw.nodes_.size(); i++) {
-        std::cout << i << " " << tw.nodes_[i].attribute("p").as_string() << std::endl;
-    }
     std::vector<Target> targets = createTargetWithPauses(tw.nodes_, "_");
     FeatureProcessorManager manager("zh");
     TargetFeatureComputer featureComputer(manager, "phrase_numsyls");
@@ -101,7 +94,6 @@ void featureTest(std::string input) {
         std::vector<int> features = featureComputer.computeFeatureVector(target);
         std::cout << target.getName() << " " << features[0] << std::endl;
     }
-
 }
 
 void pronunciationTest() {
@@ -114,9 +106,16 @@ void pronunciationTest() {
     std::string prodyStr = prosody->process(phoneStr);
     cppmary::InterModules* pronuciation = new cppmary::Pronunciation();
     std::string pronunStr = pronuciation->process(prodyStr);
+    pugi::xml_document doc;
+    pugi::xml_parse_result result = doc.load_string(pronunStr.c_str());
+    featureTest(doc);
+}
 
-    featureTest(pronunStr);
-
+void labelTest() {
+    std::string puncxmlName = "test/punc.xml";
+    pugi::xml_document doc;
+    pugi::xml_parse_result result = doc.load_file(puncxmlName.c_str());
+    featureTest(doc);
 }
 
 int main() {
@@ -126,5 +125,6 @@ int main() {
     //phonemiserTest();
     //replaceTest();
     //prosodyTest();
-    pronunciationTest();
+    //pronunciationTest();
+    labelTest();
 }
