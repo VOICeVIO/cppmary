@@ -95,7 +95,6 @@ void featureTest(std::string input) {
     }
     std::vector<Target> targets = createTargetWithPauses(tw.nodes_, "_");
     FeatureProcessorManager manager("zh");
-    manager.setupGenericFeatureProcessors();
     TargetFeatureComputer featureComputer(manager, "phrase_numsyls");
     for (int i = 0; i < targets.size(); i++) {
         Target target = targets[i];

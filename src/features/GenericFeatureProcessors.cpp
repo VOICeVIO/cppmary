@@ -6,6 +6,15 @@
 #include "pugixml/pugixml.hpp"
 
 namespace cppmary {
+
+    PhraseNumSyls::PhraseNumSyls() {
+        std::cout << "construct PhraseNumSyls" << std::endl;
+    }
+
+    PhraseNumSyls::~PhraseNumSyls() {
+        std::cout << "deconstruct PhraseNumSyls" << std::endl;
+    }
+
     std::string PhraseNumSyls::getName() {
         return "phrase_numsyls";
     }

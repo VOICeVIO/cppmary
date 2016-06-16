@@ -11,13 +11,14 @@
 namespace cppmary {
     class TargetFeatureComputer {
     public:
-        TargetFeatureComputer(FeatureProcessorManager manager, std::string featuresProcessorNames);
+        TargetFeatureComputer(FeatureProcessorManager& manager, std::string featuresProcessorNames);
         ~TargetFeatureComputer();
         //Feature vector 暂时用std::vector<int>保存
         std::vector<int> computeFeatureVector(Target target);
         std::string toStringValue(std::vector<int> featureVector);
     private:
         std::vector<ByteValuedFeatureProcessor* > byteProcessor_;
+        //std::vector<PhraseNumSyls* > byteProcessor_;
     };
 
 }

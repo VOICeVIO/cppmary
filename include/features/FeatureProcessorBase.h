@@ -22,6 +22,8 @@ namespace cppmary {
         virtual std::vector<std::string> getValues();
         virtual std::string getName();
         virtual int process(Target target);
+        ByteValuedFeatureProcessor();
+        virtual ~ByteValuedFeatureProcessor();
     };
 }
 

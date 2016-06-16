@@ -15,6 +15,8 @@ namespace cppmary {
         virtual std::string getName();
         virtual std::vector<std::string> getValues();
         virtual int process(Target target);
+        PhraseNumSyls();
+        ~PhraseNumSyls();
     };
 }
 

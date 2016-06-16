@@ -6,8 +6,9 @@
 #include "common.h"
 
 namespace cppmary  {
-    TargetFeatureComputer::TargetFeatureComputer(FeatureProcessorManager manager,
+    TargetFeatureComputer::TargetFeatureComputer(FeatureProcessorManager& manager,
                                                  std::string featuresProcessorNames) {
+        byteProcessor_.clear();
         std::vector<std::string> featureNames = splitAndTrim(featuresProcessorNames, ' ');
         for (int i = 0; i < featureNames.size(); i++) {
             ByteValuedFeatureProcessor* fp = manager.getByteFeatureProcessor(featureNames[i]);
