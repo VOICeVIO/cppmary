@@ -6,7 +6,7 @@
 #define CPPMARY_TARGETFEATURECOMPUTER_H
 #include <vector>
 #include "FeatureProcessorManager.h"
-#include "FeatureProcessorBase.h"
+#include "FeatureProcessor.h"
 
 namespace cppmary {
     class TargetFeatureComputer {
@@ -17,8 +17,7 @@ namespace cppmary {
         std::vector<int> computeFeatureVector(Target target);
         std::string toStringValue(std::vector<int> featureVector);
     private:
-        std::vector<ByteValuedFeatureProcessor* > byteProcessor_;
-        //std::vector<PhraseNumSyls* > byteProcessor_;
+        std::vector<FeatureProcessor * > processor_;
     };
 
 }

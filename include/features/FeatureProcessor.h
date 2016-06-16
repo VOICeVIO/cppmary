@@ -12,18 +12,13 @@
 
 namespace cppmary {
 
-    class FeatureProcessorBase {
-    public:
-        virtual std::string getName() = 0;
-    };
-
-    class ByteValuedFeatureProcessor : public FeatureProcessorBase {
+    class FeatureProcessor {
     public:
         virtual std::vector<std::string> getValues();
         virtual std::string getName();
         virtual int process(Target target);
-        ByteValuedFeatureProcessor();
-        virtual ~ByteValuedFeatureProcessor();
+        FeatureProcessor ();
+        virtual ~FeatureProcessor ();
     };
 }
 

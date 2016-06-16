@@ -10,7 +10,7 @@ namespace cppmary {
     //class GenericFeatureProcessors {
     //};
     const int RAIL_LIMIT = 19;
-    class PhraseNumSyls : public ByteValuedFeatureProcessor {
+    class PhraseNumSyls : public FeatureProcessor  {
     public:
         virtual std::string getName();
         virtual std::vector<std::string> getValues();

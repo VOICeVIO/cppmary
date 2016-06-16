@@ -14,23 +14,23 @@ namespace cppmary {
     }
 
     FeatureProcessorManager::~FeatureProcessorManager() {
-        std::map<std::string, ByteValuedFeatureProcessor*>::iterator iter;
-        for (iter = byteProcessors_.begin(); iter != byteProcessors_.end(); ++iter) {
+        std::map<std::string, FeatureProcessor *>::iterator iter;
+        for (iter = processors_.begin(); iter != processors_.end(); ++iter) {
             delete iter->second;
         }
     }
 
     void FeatureProcessorManager::setupGenericFeatureProcessors() {
-        addByteFeatureProcessor(new PhraseNumSyls());
+        addFeatureProcessor(new PhraseNumSyls());
         //add other
     }
 
-    void FeatureProcessorManager::addByteFeatureProcessor(ByteValuedFeatureProcessor* fp) {
-        byteProcessors_[fp->getName()] = fp;
+    void FeatureProcessorManager::addFeatureProcessor(FeatureProcessor * fp) {
+        processors_[fp->getName()] = fp;
     }
 
-    ByteValuedFeatureProcessor* FeatureProcessorManager::getByteFeatureProcessor(std::string name) {
-        //faild process
-        return byteProcessors_[name];
+    FeatureProcessor * FeatureProcessorManager::getFeatureProcessor(std::string name) {
+        //TODO: faild process
+        return processors_[name];
     }
 }

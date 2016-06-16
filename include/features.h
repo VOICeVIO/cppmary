@@ -5,7 +5,7 @@
 #ifndef CPPMARY_FEATURES_H
 #define CPPMARY_FEATURES_H
 
-#include "features/FeatureProcessorBase.h"
+#include "features/FeatureProcessor.h"
 #include "features/FeatureProcessorManager.h"
 #include "features/GenericFeatureProcessors.h"
 #include "features/Target.h"

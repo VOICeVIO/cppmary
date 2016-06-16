@@ -6,7 +6,7 @@
 #define CPPMARY_FEATUREPROCESSORMANAGER_H
 #include <map>
 #include <string>
-#include "FeatureProcessorBase.h"
+#include "FeatureProcessor.h"
 
 
 namespace cppmary {
@@ -15,12 +15,12 @@ namespace cppmary {
             FeatureProcessorManager(std::string localeString);
             ~FeatureProcessorManager();
             void setupGenericFeatureProcessors();
-            void addByteFeatureProcessor(ByteValuedFeatureProcessor* fp);
-            ByteValuedFeatureProcessor* getByteFeatureProcessor(std::string name);
+            void addFeatureProcessor(FeatureProcessor * fp);
+            FeatureProcessor * getFeatureProcessor(std::string name);
 
         private:
             std::string localeString_;
-            std::map<std::string, ByteValuedFeatureProcessor*> byteProcessors_;
+            std::map<std::string, FeatureProcessor *> processors_;
             std::map<std::string, std::vector<std::string> > phonefeature2values_;
 
     };
