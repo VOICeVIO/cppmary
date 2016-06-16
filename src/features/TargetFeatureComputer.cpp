@@ -31,14 +31,22 @@ namespace cppmary  {
         return features;
     }
 
-    std::string toStringValue(std::vector<int> features) {
+    std::string TargetFeatureComputer::getFeatureValue(int processorIndex, int feature) {
+        if (processorIndex >= processor_.size()) {
+            XLOG(ERROR) << "feature index exceesd " << processorIndex;
+            return "";
+        }
+        return processor_[processorIndex]->getValues()[feature];
+    }
+
+    std::string TargetFeatureComputer::toStringValue(std::vector<int> features) {
         if (features.empty()) {
             XLOG(ERROR) << "feature is empty";
             return "";
         }
-        std::string featureStr = std::to_string(features[0]);
+        std::string featureStr = getFeatureValue(0, features[0]);
         for (int i = 1; i < features.size(); i++) {
-            featureStr = featureStr + std::to_string(featureStr[i]);
+            featureStr = featureStr + getFeatureValue(i, features[i]);
         }
         return featureStr;
     }

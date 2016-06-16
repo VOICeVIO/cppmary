@@ -93,6 +93,8 @@ void featureTest(pugi::xml_node doc) {
         Target target = targets[i];
         std::vector<int> features = featureComputer.computeFeatureVector(target);
         std::cout << target.getName() << " " << features[0] << std::endl;
+        std::string featureValues = featureComputer.toStringValue(features);
+        std::cout << featureValues << std::endl;
     }
 }
 
@@ -113,6 +115,7 @@ void pronunciationTest() {
 
 void labelTest() {
     std::string puncxmlName = "test/punc.xml";
+    //std::string puncxmlName = "test/allophone_v1.xml";
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(puncxmlName.c_str());
     featureTest(doc);
