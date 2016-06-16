@@ -121,6 +121,14 @@ void labelTest() {
     featureTest(doc);
 }
 
+void allophoneTest() {
+    std::string allophoneSetName = "test/allophones.zh.xml";
+    pugi::xml_document doc;
+    pugi::xml_parse_result result = doc.load_file(allophoneSetName.c_str());
+    std::string alloStr = MaryXml::saveDoc2String(doc);
+    AllophoneSet phoneset(alloStr);
+}
+
 int main() {
     //text2MaryTest();
     //TokenizerTest();
@@ -129,5 +137,6 @@ int main() {
     //replaceTest();
     //prosodyTest();
     //pronunciationTest();
-    labelTest();
+    //labelTest();
+    allophoneTest();
 }

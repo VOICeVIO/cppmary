@@ -22,3 +22,5 @@
 #include "features/TargetElementNavigator.cpp"
 #include "features/FeatureProcessor.cpp"
 #include "features/TargetFeatureComputer.cpp"
+#include "features/Allophone.cpp"
+#include "features/AllophoneSet.cpp"

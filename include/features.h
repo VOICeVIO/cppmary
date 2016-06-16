@@ -11,5 +11,7 @@
 #include "features/Target.h"
 #include "features/TargetElementNavigator.h"
 #include "features/TargetFeatureComputer.h"
+#include "features/Allophone.h"
+#include "features/AllophoneSet.h"
 
 #endif //CPPMARY_FEATURES_H

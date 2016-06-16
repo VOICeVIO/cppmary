@@ -7,6 +7,7 @@
 #include <map>
 #include <string>
 #include "FeatureProcessor.h"
+#include "AllophoneSet.h"
 
 
 namespace cppmary {
@@ -15,6 +16,7 @@ namespace cppmary {
             FeatureProcessorManager(std::string localeString);
             ~FeatureProcessorManager();
             void setupGenericFeatureProcessors();
+            void setupPhoneFeatureProcessors(AllophoneSet phoneset);
             void addFeatureProcessor(FeatureProcessor * fp);
             FeatureProcessor * getFeatureProcessor(std::string name);
 
