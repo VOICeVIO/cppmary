@@ -23,6 +23,21 @@ namespace cppmary {
         public:
             pugi::xml_node getElement(Target target);
     };
+
+    class PrevSyllableNavigator : public TargetElementNavigator {
+        public:
+            pugi::xml_node getElement(Target target);
+    };
+
+    class NextSyllableNavigator : public TargetElementNavigator {
+    public:
+        pugi::xml_node getElement(Target target);
+    };
+
+    class NextNextSyllableNavigator : public TargetElementNavigator {
+    public:
+        pugi::xml_node getElement(Target target);
+    };
 }
 
 

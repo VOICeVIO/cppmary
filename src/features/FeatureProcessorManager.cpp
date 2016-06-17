@@ -26,8 +26,15 @@ namespace cppmary {
         addFeatureProcessor(new PhraseNumSyls());
         std::vector<std::string> zhToneValues;
         zhToneValues.assign(ZHTONES, ZHTONES+6);
-        TargetElementNavigator* syllable = new SyllableNavigator();
-        addFeatureProcessor(new Zhtone("zhtone", zhToneValues, syllable));
+        TargetElementNavigator* syllableNav = new SyllableNavigator();
+        TargetElementNavigator* prevSyllableNav = new PrevSyllableNavigator();
+        TargetElementNavigator* nextSyllableNav = new NextSyllableNavigator();
+        TargetElementNavigator* nextnextSyllableNav = new NextNextSyllableNavigator();
+        addFeatureProcessor(new Zhtone("zhtone", zhToneValues, syllableNav));
+        addFeatureProcessor(new Zhtone("prev_zhtone", zhToneValues, prevSyllableNav));
+        addFeatureProcessor(new Zhtone("next_zhtone", zhToneValues, nextSyllableNav));
+        addFeatureProcessor(new Zhtone("nextnext_zhtone", zhToneValues, nextnextSyllableNav));
+
     }
 
     void FeatureProcessorManager::addFeatureProcessor(FeatureProcessor * fp) {
@@ -43,7 +50,7 @@ namespace cppmary {
         std::vector<std::string> phoneValues;
         std::vector<std::string> pValues = phoneset.getAllophoneNames();
         std::string pauseSymbol = phoneset.getSilent().name();
-        TargetElementNavigator* segment = new SegmentNavigator();
-        addFeatureProcessor(new Phone("phone", pValues, pauseSymbol, segment));
+        TargetElementNavigator* segmentNavigator = new SegmentNavigator();
+        addFeatureProcessor(new Phone("phone", pValues, pauseSymbol, segmentNavigator));
     }
 }
