@@ -13,7 +13,7 @@
 namespace cppmary {
     class FeatureProcessorManager {
         public:
-            FeatureProcessorManager(std::string localeString);
+            FeatureProcessorManager(std::string localeString, std::string phonesetXmlStr);
             ~FeatureProcessorManager();
             void setupGenericFeatureProcessors();
             void setupPhoneFeatureProcessors(AllophoneSet phoneset);

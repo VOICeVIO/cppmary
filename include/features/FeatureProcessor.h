@@ -17,6 +17,7 @@ namespace cppmary {
         virtual std::vector<std::string> getValues();
         virtual std::string getName();
         virtual int process(Target target);
+        virtual std::string getPauseSymbol();
         FeatureProcessor ();
         virtual ~FeatureProcessor ();
     };

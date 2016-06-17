@@ -6,10 +6,10 @@
 
 namespace cppmary {
 
-    FeatureProcessor ::FeatureProcessor () {
+    FeatureProcessor::FeatureProcessor () {
 
     }
-    FeatureProcessor ::~FeatureProcessor () {
+    FeatureProcessor::~FeatureProcessor () {
         XLOG(DEBUG) << "deconstruct FeatureProcessor ";
     }
 
@@ -17,12 +17,16 @@ namespace cppmary {
         return std::vector<std::string>();
     }
 
-    std::string FeatureProcessor ::getName() {
+    std::string FeatureProcessor::getName() {
         return "";
     }
 
-    int FeatureProcessor ::process(Target target) {
+    int FeatureProcessor::process(Target target) {
         return 0;
+    }
+
+    std::string FeatureProcessor::getPauseSymbol() {
+        return "_";
     }
 
 }

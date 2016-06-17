@@ -4,13 +4,15 @@
 
 #include "features/FeatureProcessorManager.h"
 #include "features/GenericFeatureProcessors.h"
+#include "features/LanguageFeatureProcessors.h"
 
 namespace cppmary {
-    FeatureProcessorManager::FeatureProcessorManager(std::string localeString) {
+    FeatureProcessorManager::FeatureProcessorManager(std::string localeString, std::string phonesetXmlStr) {
         //locale process
         localeString_ = localeString;
         setupGenericFeatureProcessors();
-        //setupPhoneFeature.. need to read allophone
+        AllophoneSet phonset(phonesetXmlStr);
+        setupPhoneFeatureProcessors(phonset);
     }
 
     FeatureProcessorManager::~FeatureProcessorManager() {
@@ -32,5 +34,12 @@ namespace cppmary {
     FeatureProcessor * FeatureProcessorManager::getFeatureProcessor(std::string name) {
         //TODO: faild process
         return processors_[name];
+    }
+
+    void FeatureProcessorManager::setupPhoneFeatureProcessors(AllophoneSet phoneset) {
+        std::vector<std::string> phoneValues;
+        std::vector<std::string> pValues = phoneset.getAllophoneNames();
+        std::string pauseSymbol = phoneset.getSilent().name();
+        addFeatureProcessor(new Phone("phone", pValues, pauseSymbol));
     }
 }

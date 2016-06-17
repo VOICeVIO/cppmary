@@ -13,5 +13,7 @@
 #include "features/TargetFeatureComputer.h"
 #include "features/Allophone.h"
 #include "features/AllophoneSet.h"
+#include "features/LanguageFeatureProcessors.h"
+#include "features/StringTranslator.h"
 
 #endif //CPPMARY_FEATURES_H

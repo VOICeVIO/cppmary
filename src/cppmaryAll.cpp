@@ -24,3 +24,5 @@
 #include "features/TargetFeatureComputer.cpp"
 #include "features/Allophone.cpp"
 #include "features/AllophoneSet.cpp"
+#include "features/LanguageFeatureProcessors.cpp"
+#include "features/StringTranslator.cpp"

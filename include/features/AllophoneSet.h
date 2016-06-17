@@ -17,10 +17,12 @@ namespace cppmary {
 
             Allophone getAllophone(std::string ph);
             Allophone getSilent();
+            std::vector<std::string> getAllophoneNames();
 
-        private:
+    private:
             std::map<std::string, Allophone> allophones_;
             std::map<std::string, std::vector<std::string> > featureValuesMap_;
+            std::vector<std::string> allophoneNames_;
             std::string name_;
             std::string localeStr_;
             Allophone silence_; //Allophone没有默认构造函数,这个应该会出错?

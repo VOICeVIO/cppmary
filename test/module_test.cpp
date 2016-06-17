@@ -87,12 +87,22 @@ void featureTest(pugi::xml_node doc) {
     cppmary::phone_boundary_walker tw;
     doc.traverse(tw);
     std::vector<Target> targets = createTargetWithPauses(tw.nodes_, "_");
-    FeatureProcessorManager manager("zh");
-    TargetFeatureComputer featureComputer(manager, "phrase_numsyls");
+
+    std::string allophoneSetName = "test/allophones.zh.xml";
+    pugi::xml_document doc1;
+    pugi::xml_parse_result result = doc1.load_file(allophoneSetName.c_str());
+    std::string alloStr = MaryXml::saveDoc2String(doc1);
+
+    FeatureProcessorManager manager("zh", alloStr);
+    TargetFeatureComputer featureComputer(manager, "phrase_numsyls phone");
     for (int i = 0; i < targets.size(); i++) {
         Target target = targets[i];
         std::vector<int> features = featureComputer.computeFeatureVector(target);
-        std::cout << target.getName() << " " << features[0] << std::endl;
+        std::cout << target.getName() << " " ;
+        for (int j = 0; j < features.size(); j++) {
+            std::cout << features[j] << " ";
+        }
+        std::cout << std::endl;
         std::string featureValues = featureComputer.toStringValue(features);
         std::cout << featureValues << std::endl;
     }
@@ -137,6 +147,6 @@ int main() {
     //replaceTest();
     //prosodyTest();
     //pronunciationTest();
-    //labelTest();
-    allophoneTest();
+    labelTest();
+    //allophoneTest();
 }

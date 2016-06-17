@@ -28,6 +28,7 @@ namespace cppmary {
                 return;
             }
             allophones_[phoneName] = ap;
+            allophoneNames_.push_back(phoneName);
             if (ap.isPause()) {
                 silence_ = ap;
             }
@@ -74,6 +75,10 @@ namespace cppmary {
 
     Allophone AllophoneSet::getSilent() {
         return silence_;
+    }
+
+    std::vector<std::string> AllophoneSet::getAllophoneNames() {
+        return allophoneNames_;
     }
 
 

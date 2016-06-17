@@ -46,7 +46,7 @@ namespace cppmary  {
         }
         std::string featureStr = getFeatureValue(0, features[0]);
         for (int i = 1; i < features.size(); i++) {
-            featureStr = featureStr + getFeatureValue(i, features[i]);
+            featureStr = featureStr + " " + getFeatureValue(i, features[i]);
         }
         return featureStr;
     }
