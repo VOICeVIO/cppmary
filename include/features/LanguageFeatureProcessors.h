@@ -8,11 +8,12 @@
 #include <string>
 #include "StringTranslator.h"
 #include "Target.h"
+#include "TargetElementNavigator.h"
 
 namespace cppmary {
     class Phone : public FeatureProcessor {
     public:
-        Phone(std::string name, std::vector<std::string> possibleValues, std::string pausesymbol);
+        Phone(std::string name, std::vector<std::string> possibleValues, std::string pausesymbol, TargetElementNavigator* segmentNavigator);
         ~Phone();
         virtual std::string getName();
         virtual std::vector<std::string> getValues();
@@ -20,6 +21,7 @@ namespace cppmary {
     private:
         std::string name_;
         StringTranslator translator_;
+        TargetElementNavigator* navigator_;
     };
 }
 

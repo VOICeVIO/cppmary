@@ -7,6 +7,9 @@
 
 namespace cppmary {
 
+    /*
+     * PhraseNumSyls
+     */
     PhraseNumSyls::PhraseNumSyls() {
         XLOG(DEBUG) << "construct PhraseNumSyls";
     }
@@ -46,5 +49,40 @@ namespace cppmary {
         }
         return count;
     }
+
+    /*
+     * Zhtone
+     */
+
+    Zhtone::Zhtone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+        translator_(possibleValues), name_(name) {
+        navigator_ = navigator;
+    }
+
+    Zhtone::~Zhtone() {}
+
+    std::string Zhtone::getName() {
+        return name_;
+    }
+
+    std::vector<std::string> Zhtone::getValues() {
+        return translator_.getStringValues();
+    }
+
+    int Zhtone::process(Target target) {
+        pugi::xml_node syllable = navigator_->getElement(target);
+        if (syllable.empty()) {
+            return 0;
+        }
+        std::string tone = syllable.attribute("zhtone").as_string();
+        if (tone.empty()) {
+            return 0;
+        }
+        return translator_.getValue(tone);
+    }
+
+
+
+
 }
 

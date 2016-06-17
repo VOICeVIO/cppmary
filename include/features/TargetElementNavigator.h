@@ -18,6 +18,11 @@ namespace cppmary {
         public:
             pugi::xml_node getElement(Target target);
     };
+
+    class SyllableNavigator : public TargetElementNavigator {
+        public:
+            pugi::xml_node getElement(Target target);
+    };
 }
 
 
