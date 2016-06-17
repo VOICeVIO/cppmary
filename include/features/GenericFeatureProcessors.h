@@ -15,6 +15,10 @@ namespace cppmary {
     //};
     const int RAIL_LIMIT = 19;
     const std::string ZHTONES[6] = {"0", "1", "2", "3", "4", "5"};
+    const std::string ZHPOS[46] = { "0", "AG", "A", "AD", "AN", "B", "C", "DG", "D", "E", "F", "G", "H",
+                                  "I", "J", "K", "L", "M", "NG", "N", "NR", "NS", "NT", "NZ", "O", "P",
+                                  "Q", "R", "S", "TG", "T", "U", "VG", "V", "VD", "VN", "W", "X",
+                                  "Y", "Z","NL","NW","VF","VX","VI","VL" };
     class PhraseNumSyls : public FeatureProcessor  {
     public:
         virtual std::string getName();
