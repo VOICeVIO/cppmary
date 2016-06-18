@@ -30,10 +30,16 @@ namespace cppmary {
         TargetElementNavigator* prevSyllableNav = new PrevSyllableNavigator();
         TargetElementNavigator* nextSyllableNav = new NextSyllableNavigator();
         TargetElementNavigator* nextnextSyllableNav = new NextNextSyllableNavigator();
+        TargetElementNavigator* wordNav = new WordNavigator();
         addFeatureProcessor(new Zhtone("zhtone", zhToneValues, syllableNav));
         addFeatureProcessor(new Zhtone("prev_zhtone", zhToneValues, prevSyllableNav));
         addFeatureProcessor(new Zhtone("next_zhtone", zhToneValues, nextSyllableNav));
         addFeatureProcessor(new Zhtone("nextnext_zhtone", zhToneValues, nextnextSyllableNav));
+
+        std::vector<std::string> posValues;
+        posValues.assign(ZHPOS, ZHPOS+46);
+        addFeatureProcessor(new Pos("pos", posValues, wordNav));
+
 
     }
 

@@ -94,7 +94,7 @@ void featureTest(pugi::xml_node doc) {
     std::string alloStr = MaryXml::saveDoc2String(doc1);
 
     FeatureProcessorManager manager("zh", alloStr);
-    TargetFeatureComputer featureComputer(manager, "phrase_numsyls phone zhtone prev_zhtone next_zhtone nextnext_zhtone");
+    TargetFeatureComputer featureComputer(manager, "phrase_numsyls phone zhtone prev_zhtone next_zhtone nextnext_zhtone pos");
     for (int i = 0; i < targets.size(); i++) {
         Target target = targets[i];
         std::vector<int> features = featureComputer.computeFeatureVector(target);

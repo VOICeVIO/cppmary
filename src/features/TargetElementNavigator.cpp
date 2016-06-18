@@ -22,6 +22,22 @@ namespace cppmary {
         return syllable;
     }
 
+    pugi::xml_node WordNavigator::getElement(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (strcmp(segment.name(), "bounary") == 0) { //bounary没有token父节点
+            return segment;
+        }
+        if (segment.empty()) {
+            return pugi::xml_node();
+        }
+        pugi::xml_node word = MaryXml::getAncestor(segment, "t");
+        if (word.empty()) {
+            XLOG(ERROR) << "segment " << segment.name() << " have not word parent " << target.getName();
+            return pugi::xml_node();
+        }
+        return word;
+    }
+
     pugi::xml_node PrevSyllableNavigator::getElement(Target target) {
         pugi::xml_node segment = target.getMaryElement();
         if (segment.empty()) {

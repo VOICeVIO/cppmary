@@ -2,8 +2,10 @@
 // Created by sooda on 16/6/15.
 //
 
+#include <features.h>
 #include "features/GenericFeatureProcessors.h"
 #include "pugixml/pugixml.hpp"
+#include "common.h"
 
 namespace cppmary {
 
@@ -15,7 +17,7 @@ namespace cppmary {
     }
 
     PhraseNumSyls::~PhraseNumSyls() {
-        XLOG(DEBUG) << "deconstruct PhraseNumSyls";
+        //XLOG(DEBUG) << "deconstruct PhraseNumSyls";
     }
 
     std::string PhraseNumSyls::getName() {
@@ -80,6 +82,38 @@ namespace cppmary {
         }
         return translator_.getValue(tone);
     }
+
+    /*
+     * pos
+     */
+    Pos::Pos(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator *wordNavigator) :
+            translator_(possibleValues), name_(name) {
+       navigator_ = wordNavigator;
+    }
+
+    Pos::~Pos() {}
+
+    std::string Pos::getName() {
+        return name_;
+    }
+
+    std::vector<std::string> Pos::getValues() {
+        return translator_.getStringValues();
+    }
+
+    int Pos::process(Target target) {
+        pugi::xml_node word = navigator_->getElement(target);
+        if (word.empty()) {
+            return 0;
+        }
+        std::string pos = word.attribute("pos").as_string();
+        if (pos.empty()) {
+            return 0;
+        }
+        pos = trim(pos);
+        return translator_.getValue(pos);
+    }
+
 
 
 

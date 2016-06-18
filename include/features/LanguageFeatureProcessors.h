@@ -23,6 +23,19 @@ namespace cppmary {
         StringTranslator translator_;
         TargetElementNavigator* navigator_;
     };
+
+    class Pos : public FeatureProcessor {
+    public:
+        Pos(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* wordNavigator);
+        ~Pos();
+        virtual std::string getName();
+        virtual std::vector<std::string> getValues();
+        virtual int process(Target target);
+    private:
+        std::string name_;
+        StringTranslator translator_;
+        TargetElementNavigator* navigator_;
+    };
 }
 
 
