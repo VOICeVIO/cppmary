@@ -38,6 +38,78 @@ namespace cppmary {
         return word;
     }
 
+    pugi::xml_node NextWordNavigator::getElement(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return pugi::xml_node();
+        }
+        pugi::xml_node current;
+        if (strcmp(segment.name(), "ph") == 0) {
+            current = MaryXml::getAncestor(segment, "t");
+            if (current.empty()) {
+                return pugi::xml_node();
+            }
+        } else { //boundary
+            current = segment;
+        }
+
+        pugi::xml_node sentence = MaryXml::getAncestor(segment, "s");
+        if (sentence.empty()) {
+            return pugi::xml_node();
+        }
+        token_walker tw;
+        sentence.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int index = -1;
+        for (int i = 0; i < nodes.size(); i++) {
+            if (nodes[i] == current) {
+                index = i;
+                break;
+            }
+        }
+        if (index >= 0 && index < nodes.size()-1) {
+            return nodes[index+1];
+        } else {
+            return pugi::xml_node();
+        }
+    }
+
+    pugi::xml_node PrevWordNavigator::getElement(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return pugi::xml_node();
+        }
+        pugi::xml_node current;
+        if (strcmp(segment.name(), "ph") == 0) {
+            current = MaryXml::getAncestor(segment, "t");
+            if (current.empty()) {
+                return pugi::xml_node();
+            }
+        } else { //boundary
+            current = segment;
+        }
+
+        pugi::xml_node sentence = MaryXml::getAncestor(segment, "s");
+        if (sentence.empty()) {
+            return pugi::xml_node();
+        }
+        token_walker tw;
+        sentence.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int index = 0;
+        for (int i = 0; i < nodes.size(); i++) {
+            if (nodes[i] == current) {
+                index = i;
+                break;
+            }
+        }
+        if (index != 0) {
+            return nodes[index-1];
+        } else {
+            return pugi::xml_node();
+        }
+    }
+
     pugi::xml_node PrevSyllableNavigator::getElement(Target target) {
         pugi::xml_node segment = target.getMaryElement();
         if (segment.empty()) {
@@ -56,7 +128,8 @@ namespace cppmary {
         }
 
         syllable_boundary_walker tw;
-        pugi::xml_node doc = segment.root();
+        //pugi::xml_node doc = segment.root();
+        pugi::xml_node doc = segment.parent().parent(); //traverse subtree by setting the root node
         doc.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
         int index = 0;
@@ -139,6 +212,25 @@ namespace cppmary {
         } else {
             return pugi::xml_node();
         }
+    }
+
+    pugi::xml_node LastSyllableInPhraseNavigator::getElement(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return pugi::xml_node();
+        }
+        pugi::xml_node phrase = MaryXml::getAncestor(segment, "phrase");
+        if (phrase.empty()) {
+            return pugi::xml_node();
+        }
+        syllable_walker tw;
+        phrase.traverse(tw);
+        pugi::xml_node last = tw.nodes_.back();
+        if (last.empty()) {
+            XLOG(ERROR) << "segment " << segment.name() << " have not last syllable " << target.getName();
+            return pugi::xml_node();
+        }
+        return last;
     }
 
 }
