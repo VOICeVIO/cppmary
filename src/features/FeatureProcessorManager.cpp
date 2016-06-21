@@ -28,13 +28,16 @@ namespace cppmary {
         zhToneValues.assign(ZHTONES, ZHTONES+6);
         TargetElementNavigator* syllableNav = new SyllableNavigator();
         TargetElementNavigator* prevSyllableNav = new PrevSyllableNavigator();
+        TargetElementNavigator* prevPrevSyllableNav = new PrevPrevSyllableNavigator();
         TargetElementNavigator* nextSyllableNav = new NextSyllableNavigator();
         TargetElementNavigator* nextnextSyllableNav = new NextNextSyllableNavigator();
         TargetElementNavigator* wordNav = new WordNavigator();
+        TargetElementNavigator* firstSylInWord = new FirstSyllableInWordNavigator();
         addFeatureProcessor(new Zhtone("zhtone", zhToneValues, syllableNav));
         addFeatureProcessor(new Zhtone("prev_zhtone", zhToneValues, prevSyllableNav));
         addFeatureProcessor(new Zhtone("next_zhtone", zhToneValues, nextSyllableNav));
         addFeatureProcessor(new Zhtone("nextnext_zhtone", zhToneValues, nextnextSyllableNav));
+        addFeatureProcessor(new Zhtone("prevprev_zhtone", zhToneValues, prevPrevSyllableNav));
 
         std::vector<std::string> posValues;
         posValues.assign(ZHPOS, ZHPOS+46);

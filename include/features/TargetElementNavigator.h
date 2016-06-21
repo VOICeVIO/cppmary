@@ -44,6 +44,11 @@ namespace cppmary {
             pugi::xml_node getElement(Target target);
     };
 
+    class PrevPrevSyllableNavigator : public TargetElementNavigator {
+    public:
+        pugi::xml_node getElement(Target target);
+    };
+
     class NextSyllableNavigator : public TargetElementNavigator {
     public:
         pugi::xml_node getElement(Target target);
@@ -55,6 +60,16 @@ namespace cppmary {
     };
 
     class LastSyllableInPhraseNavigator : public TargetElementNavigator {
+    public:
+        pugi::xml_node getElement(Target target);
+    };
+
+    class LastSyllableInWordNavigator : public TargetElementNavigator {
+    public:
+        pugi::xml_node getElement(Target target);
+    };
+
+    class FirstSyllableInWordNavigator : public TargetElementNavigator {
     public:
         pugi::xml_node getElement(Target target);
     };
