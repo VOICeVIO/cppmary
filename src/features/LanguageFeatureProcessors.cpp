@@ -10,18 +10,7 @@ namespace cppmary {
             FeatureProcessor(name, possibleValues, segmentNavigator) {
     }
 
-
-    Phone::~Phone() {
-
-    }
-
-    std::string Phone::getName() {
-        return name_;
-    }
-
-    std::vector<std::string> Phone::getValues() {
-        return translator_.getStringValues();
-    }
+    Phone::~Phone() { }
 
     int Phone::process(Target target) {
         pugi::xml_node segment = navigator_->getElement(target);
@@ -49,14 +38,6 @@ namespace cppmary {
     }
 
     Pos::~Pos() {}
-
-    std::string Pos::getName() {
-        return name_;
-    }
-
-    std::vector<std::string> Pos::getValues() {
-        return translator_.getStringValues();
-    }
 
     int Pos::process(Target target) {
         pugi::xml_node word = navigator_->getElement(target);

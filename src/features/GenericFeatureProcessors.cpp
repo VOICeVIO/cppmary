@@ -21,19 +21,6 @@ namespace cppmary {
         //XLOG(DEBUG) << "deconstruct PhraseNumSyls";
     }
 
-    std::string PhraseNumSyls::getName() {
-        return name_;
-    }
-
-    std::vector<std::string> PhraseNumSyls::getValues() {
-        //std::vector<std::string> values;
-        //for (int i = 0; i <= RAIL_LIMIT; i++) {
-        //    values.push_back(std::to_string(i));
-        //}
-        //return values;
-        return translator_.getStringValues();
-    }
-
     int PhraseNumSyls::process(Target target) {
         pugi::xml_node segment = target.getMaryElement();
         if (segment.empty()) {
@@ -63,14 +50,6 @@ namespace cppmary {
     }
 
     Zhtone::~Zhtone() {}
-
-    std::string Zhtone::getName() {
-        return name_;
-    }
-
-    std::vector<std::string> Zhtone::getValues() {
-        return translator_.getStringValues();
-    }
 
     int Zhtone::process(Target target) {
         pugi::xml_node syllable = navigator_->getElement(target);

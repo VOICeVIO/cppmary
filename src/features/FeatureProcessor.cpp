@@ -12,7 +12,7 @@ namespace cppmary {
     }
 
     FeatureProcessor::~FeatureProcessor () {
-        XLOG(DEBUG) << "deconstruct FeatureProcessor ";
+        XLOG(DEBUG) << "deconstruct FeatureProcessor " << name_;
     }
 
     std::vector<std::string> FeatureProcessor ::getValues() {
