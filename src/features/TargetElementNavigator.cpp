@@ -10,6 +10,29 @@ namespace cppmary {
         return target.getMaryElement();
     }
 
+    pugi::xml_node PrevSegmentNavigator::getElement(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return pugi::xml_node();
+        }
+        cppmary::phone_boundary_walker tw;
+        pugi::xml_node doc = segment.root();
+        doc.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int index = 0;
+        for (int i = 0; i < nodes.size(); i++) {
+            if (nodes[i] == segment) {
+                index = i;
+                break;
+            }
+        }
+        if (index != 0) {
+            return nodes[index-1];
+        } else {
+            return pugi::xml_node();
+        }
+    }
+
     pugi::xml_node SyllableNavigator::getElement(Target target) {
         pugi::xml_node segment = target.getMaryElement();
         if (segment.empty() || strcmp(segment.name(), "ph")) {
@@ -166,7 +189,6 @@ namespace cppmary {
 
         syllable_boundary_walker tw;
         pugi::xml_node doc = segment.root();
-        //pugi::xml_node doc = segment.parent().parent(); //traverse subtree by setting the root node
         doc.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
         int index = 0;

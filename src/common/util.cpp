@@ -99,7 +99,7 @@ namespace cppmary {
             is.close();
 
             // ...buffer contains the entire file...
-            filebuffer=buffer;
+            filebuffer = std::string(buffer,length);
             delete[] buffer;
 
         }

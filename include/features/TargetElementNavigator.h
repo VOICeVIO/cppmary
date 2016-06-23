@@ -19,6 +19,11 @@ namespace cppmary {
             pugi::xml_node getElement(Target target);
     };
 
+    class PrevSegmentNavigator : public TargetElementNavigator {
+        public:
+            pugi::xml_node getElement(Target target);
+    };
+
     class WordNavigator : public TargetElementNavigator {
     public:
         pugi::xml_node getElement(Target target);
