@@ -6,6 +6,67 @@
 #include "common.h"
 
 namespace cppmary {
+
+    pugi::xml_node TargetElementNavigator::prevElement(std::vector<pugi::xml_node> nodes, pugi::xml_node current) {
+        int index = 0;
+        for (int i = 0; i < nodes.size(); i++) {
+            if (nodes[i] == current) {
+                index = i;
+                break;
+            }
+        }
+        if (index != 0) {
+            return nodes[index-1];
+        } else {
+            return pugi::xml_node();
+        }
+    }
+
+    pugi::xml_node TargetElementNavigator::prevPrevElement(std::vector<pugi::xml_node> nodes, pugi::xml_node current) {
+        int index = 0;
+        for (int i = 2; i < nodes.size(); i++) {
+            if (nodes[i] == current) {
+                index = i;
+                break;
+            }
+        }
+        if (index != 0) {
+            return nodes[index-2];
+        } else {
+            return pugi::xml_node();
+        }
+    }
+
+    pugi::xml_node TargetElementNavigator::nextElement(std::vector<pugi::xml_node> nodes, pugi::xml_node current) {
+        int index = -1;
+        for (int i = 0; i < nodes.size(); i++) {
+            if (nodes[i] == current) {
+                index = i;
+                break;
+            }
+        }
+        if (index >= 0 && index < nodes.size()-1) {
+            return nodes[index+1];
+        } else {
+            return pugi::xml_node();
+        }
+    }
+
+    pugi::xml_node TargetElementNavigator::nextNextElement(std::vector<pugi::xml_node> nodes, pugi::xml_node current) {
+        int index = -1;
+        for (int i = 0; i < nodes.size(); i++) {
+            if (nodes[i] == current) {
+                index = i;
+                break;
+            }
+        }
+        if (index >= 0 && index < nodes.size()-2) {
+            return nodes[index+2];
+        } else {
+            return pugi::xml_node();
+        }
+    }
+
     pugi::xml_node SegmentNavigator::getElement(Target target) {
         return target.getMaryElement();
     }
@@ -19,18 +80,7 @@ namespace cppmary {
         pugi::xml_node doc = segment.root();
         doc.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
-        int index = 0;
-        for (int i = 0; i < nodes.size(); i++) {
-            if (nodes[i] == segment) {
-                index = i;
-                break;
-            }
-        }
-        if (index != 0) {
-            return nodes[index-1];
-        } else {
-            return pugi::xml_node();
-        }
+        return prevElement(nodes, segment);
     }
 
     pugi::xml_node SyllableNavigator::getElement(Target target) {
@@ -83,18 +133,7 @@ namespace cppmary {
         token_walker tw;
         sentence.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
-        int index = -1;
-        for (int i = 0; i < nodes.size(); i++) {
-            if (nodes[i] == current) {
-                index = i;
-                break;
-            }
-        }
-        if (index >= 0 && index < nodes.size()-1) {
-            return nodes[index+1];
-        } else {
-            return pugi::xml_node();
-        }
+        return nextElement(nodes, current);
     }
 
     pugi::xml_node PrevWordNavigator::getElement(Target target) {
@@ -155,19 +194,7 @@ namespace cppmary {
         //pugi::xml_node doc = segment.parent().parent(); //traverse subtree by setting the root node
         doc.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
-        int index = 0;
-        for (int i = 1; i < nodes.size(); i++) {
-            //is the node compre right?
-            if (nodes[i] == current) {
-                index = i;
-                break;
-            }
-        }
-        if (index != 0) {
-            return nodes[index-1];
-        } else {
-            return pugi::xml_node();
-        }
+        return prevElement(nodes, current);
     }
 
     pugi::xml_node PrevPrevSyllableNavigator::getElement(Target target) {
@@ -191,19 +218,7 @@ namespace cppmary {
         pugi::xml_node doc = segment.root();
         doc.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
-        int index = 0;
-        for (int i = 2; i < nodes.size(); i++) {
-            //is the node compre right?
-            if (nodes[i] == current) {
-                index = i;
-                break;
-            }
-        }
-        if (index != 0) {
-            return nodes[index-2];
-        } else {
-            return pugi::xml_node();
-        }
+        return prevPrevElement(nodes, current);
     }
 
 
@@ -259,18 +274,7 @@ namespace cppmary {
         pugi::xml_node doc = segment.root();
         doc.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
-        int index = -1;
-        for (int i = 0; i < nodes.size(); i++) {
-            if (nodes[i] == current) {
-                index = i;
-                break;
-            }
-        }
-        if (index >= 0 && index < nodes.size()-2) {
-            return nodes[index+2];
-        } else {
-            return pugi::xml_node();
-        }
+        return nextNextElement(nodes, current);
     }
 
     pugi::xml_node LastSyllableInPhraseNavigator::getElement(Target target) {
