@@ -24,6 +24,13 @@ namespace cppmary {
         virtual ~Pos();
         virtual int process(Target target);
     };
+
+    class Zhtone : public FeatureProcessor {
+    public:
+        Zhtone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~Zhtone();
+        virtual int process(Target target);
+    };
 }
 
 

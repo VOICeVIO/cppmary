@@ -41,26 +41,21 @@ namespace cppmary {
         return count;
     }
 
-    /*
-     * Zhtone
-     */
-
-    Zhtone::Zhtone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
-        FeatureProcessor(name, possibleValues, navigator) {
+    TobiAccent::TobiAccent(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
-    Zhtone::~Zhtone() {}
+    TobiAccent::~TobiAccent() { }
 
-    int Zhtone::process(Target target) {
+    int TobiAccent::process(Target target) {
         pugi::xml_node syllable = navigator_->getElement(target);
         if (syllable.empty()) {
             return 0;
         }
-        std::string tone = syllable.attribute("zhtone").as_string();
-        if (tone.empty()) {
+        std::string accent = syllable.attribute("accent").as_string();
+        if (accent.empty()) {
             return 0;
         }
-        return translator_.getValue(tone);
+        return translator_.getValue(accent);
     }
 }
 

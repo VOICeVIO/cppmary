@@ -30,7 +30,7 @@ namespace cppmary {
         }
         addFeatureProcessor(new PhraseNumSyls("phrase_numsyls", phraseValues, NULL));
         std::vector<std::string> zhToneValues;
-        zhToneValues.assign(ZHTONES, ZHTONES+6);
+        zhToneValues.assign(ZHTONES, ZHTONES+ZHTONE_NUM);
         TargetElementNavigator* syllableNav = new SyllableNavigator();
         TargetElementNavigator* prevSyllableNav = new PrevSyllableNavigator();
         TargetElementNavigator* prevPrevSyllableNav = new PrevPrevSyllableNavigator();
@@ -38,14 +38,26 @@ namespace cppmary {
         TargetElementNavigator* nextnextSyllableNav = new NextNextSyllableNavigator();
         TargetElementNavigator* wordNav = new WordNavigator();
         TargetElementNavigator* firstSylInWord = new FirstSyllableInWordNavigator();
+        TargetElementNavigator* lastSylInPhrase = new LastSyllableInPhraseNavigator();
         addFeatureProcessor(new Zhtone("zhtone", zhToneValues, syllableNav));
         addFeatureProcessor(new Zhtone("prev_zhtone", zhToneValues, prevSyllableNav));
         addFeatureProcessor(new Zhtone("next_zhtone", zhToneValues, nextSyllableNav));
         addFeatureProcessor(new Zhtone("nextnext_zhtone", zhToneValues, nextnextSyllableNav));
         addFeatureProcessor(new Zhtone("prevprev_zhtone", zhToneValues, prevPrevSyllableNav));
+        addFeatureProcessor(new Zhtone("phrase_zhtone", zhToneValues, lastSylInPhrase));
+
+
+        std::vector<std::string> tobiValues;
+        tobiValues.assign(TOBIACCENTS, TOBIACCENTS+TOBIACCENT_NUM);
+        addFeatureProcessor(new TobiAccent("tobiAccent", tobiValues, syllableNav));
+        addFeatureProcessor(new TobiAccent("prev_tobiAccent", tobiValues, prevSyllableNav));
+        addFeatureProcessor(new TobiAccent("prevprev_tobiAccent", tobiValues, prevPrevSyllableNav));
+        addFeatureProcessor(new TobiAccent("next_toAccent", tobiValues, nextSyllableNav));
+        addFeatureProcessor(new TobiAccent("nextnext_tobiAccent", tobiValues, nextnextSyllableNav));
+
 
         std::vector<std::string> posValues;
-        posValues.assign(ZHPOS, ZHPOS+46);
+        posValues.assign(ZHPOS, ZHPOS+ZHPOS_NUM);
         addFeatureProcessor(new Pos("pos", posValues, wordNav));
 
 

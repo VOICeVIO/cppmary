@@ -41,6 +41,8 @@ namespace cppmary {
                     std::string tone = tones[i];
                     std::vector<std::string> sylPhones = splitAndTrim(phone, ' ');
                     pugi::xml_node syllable =  token.append_child("syllable");
+                    //add accent for test; TODO: use the true accent instead
+                    syllable.append_attribute("accent") = "H*";
                     syllable.append_attribute("ph") = phone.c_str();
                     syllable.append_attribute("zhtone") = tone.c_str();
                     syllable.append_attribute("pinyin") = pinyin.c_str();

@@ -52,5 +52,27 @@ namespace cppmary {
         return translator_.getValue(pos);
     }
 
+    /*
+     * Zhtone
+     */
+
+    Zhtone::Zhtone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+        FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    Zhtone::~Zhtone() {}
+
+    int Zhtone::process(Target target) {
+        pugi::xml_node syllable = navigator_->getElement(target);
+        if (syllable.empty()) {
+            return 0;
+        }
+        std::string tone = syllable.attribute("zhtone").as_string();
+        if (tone.empty()) {
+            return 0;
+        }
+        return translator_.getValue(tone);
+    }
+
 }
 
