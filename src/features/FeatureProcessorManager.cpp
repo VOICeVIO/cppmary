@@ -24,11 +24,11 @@ namespace cppmary {
 
     void FeatureProcessorManager::setupGenericFeatureProcessors() {
 
-        std::vector<std::string> phraseValues;
+        std::vector<std::string> intValues;
         for (int i = 0; i <= RAIL_LIMIT; i++) {
-            phraseValues.push_back(std::to_string(i));
+            intValues.push_back(std::to_string(i));
         }
-        addFeatureProcessor(new PhraseNumSyls("phrase_numsyls", phraseValues, NULL));
+        addFeatureProcessor(new PhraseNumSyls("phrase_numsyls", intValues, NULL));
         std::vector<std::string> zhToneValues;
         zhToneValues.assign(ZHTONES, ZHTONES+ZHTONE_NUM);
         TargetElementNavigator* syllableNav = new SyllableNavigator();
@@ -52,13 +52,20 @@ namespace cppmary {
         addFeatureProcessor(new TobiAccent("tobiAccent", tobiValues, syllableNav));
         addFeatureProcessor(new TobiAccent("prev_tobiAccent", tobiValues, prevSyllableNav));
         addFeatureProcessor(new TobiAccent("prevprev_tobiAccent", tobiValues, prevPrevSyllableNav));
-        addFeatureProcessor(new TobiAccent("next_toAccent", tobiValues, nextSyllableNav));
+        addFeatureProcessor(new TobiAccent("next_tobiAccent", tobiValues, nextSyllableNav));
         addFeatureProcessor(new TobiAccent("nextnext_tobiAccent", tobiValues, nextnextSyllableNav));
-
 
         std::vector<std::string> posValues;
         posValues.assign(ZHPOS, ZHPOS+ZHPOS_NUM);
         addFeatureProcessor(new Pos("pos", posValues, wordNav));
+
+        std::vector<std::string> boolValues;
+        boolValues.push_back("0");
+        boolValues.push_back("1");
+        addFeatureProcessor(new Accented("accented", boolValues, syllableNav));
+        addFeatureProcessor(new Accented("prev_accent", boolValues, prevSyllableNav));
+        addFeatureProcessor(new AccentedSylsFromPhraseStart("accented_syls_from_phrase_start", intValues, syllableNav));
+        addFeatureProcessor(new AccentedSylsFromPhraseEnd("accented_syls_from_phrase_end", intValues, syllableNav));
 
 
     }

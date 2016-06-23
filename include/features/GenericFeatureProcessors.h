@@ -39,8 +39,28 @@ namespace cppmary {
         virtual ~TobiAccent();
         virtual int process(Target target);
     };
+
+    class Accented : public FeatureProcessor {
+    public:
+        Accented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~Accented();
+        virtual int process(Target target);
+    };
+
+    class AccentedSylsFromPhraseStart : public FeatureProcessor {
+    public:
+        AccentedSylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~AccentedSylsFromPhraseStart();
+        virtual int process(Target target);
+    };
     
 
+    class AccentedSylsFromPhraseEnd : public FeatureProcessor {
+    public:
+        AccentedSylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~AccentedSylsFromPhraseEnd();
+        virtual int process(Target target);
+    };
 
 }
 
