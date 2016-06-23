@@ -30,6 +30,20 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    class PhraseNumWords : public FeatureProcessor  {
+    public:
+        PhraseNumWords(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~PhraseNumWords();
+        virtual int process(Target target);
+    };
+
+    class WordNumSyls : public FeatureProcessor  {
+    public:
+        WordNumSyls(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~WordNumSyls();
+        virtual int process(Target target);
+    };
+
     /*
      * The Tobi accent of current syllable
      */
@@ -76,6 +90,12 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    class SylsFromPhraseStart : public FeatureProcessor {
+    public:
+        SylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~SylsFromPhraseStart();
+        virtual int process(Target target);
+    };
 
     class SylsFromPhraseEnd : public FeatureProcessor {
     public:

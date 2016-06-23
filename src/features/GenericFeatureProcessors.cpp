@@ -14,19 +14,71 @@ namespace cppmary {
      */
     PhraseNumSyls::PhraseNumSyls(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
                 FeatureProcessor(name, possibleValues, navigator) {
-        XLOG(DEBUG) << "construct PhraseNumSyls";
     }
 
     PhraseNumSyls::~PhraseNumSyls() {
-        //XLOG(DEBUG) << "deconstruct PhraseNumSyls";
     }
 
     int PhraseNumSyls::process(Target target) {
         pugi::xml_node segment = target.getMaryElement();
         if (segment.empty()) {
-            return 0 ;
+            return 0;
         }
         pugi::xml_node phrase = MaryXml::getAncestor(segment, "phrase");
+        if (phrase.empty()) {
+            return 0;
+        }
+        pugi::xml_node syls = phrase.child("t").child("syllable");
+        int count = 0;
+        for (pugi::xml_node iterNode = syls.first_child(); iterNode; iterNode = iterNode.next_sibling()) {
+            count++;
+            if (count == RAIL_LIMIT) {
+                break;
+            }
+        }
+        return count;
+    }
+
+    PhraseNumWords::PhraseNumWords(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+                FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    PhraseNumWords::~PhraseNumWords() {
+    }
+
+    int PhraseNumWords::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node phrase = MaryXml::getAncestor(segment, "phrase");
+        if (phrase.empty()) {
+            return 0;
+        }
+        pugi::xml_node words = phrase.child("t");
+        int count = 0;
+        for (pugi::xml_node iterNode = words.first_child(); iterNode; iterNode = iterNode.next_sibling()) {
+            count++;
+            if (count == RAIL_LIMIT) {
+                break;
+            }
+        }
+        return count;
+    }
+
+    WordNumSyls::WordNumSyls(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+                FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    WordNumSyls::~WordNumSyls() {
+    }
+
+    int WordNumSyls::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node phrase = MaryXml::getAncestor(segment, "t");
         if (phrase.empty()) {
             return 0;
         }
@@ -196,13 +248,12 @@ namespace cppmary {
         return count;
     }
 
-
-    SylsFromPhraseEnd::SylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    SylsFromPhraseStart::SylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
-    SylsFromPhraseEnd::~SylsFromPhraseEnd(){}
+    SylsFromPhraseStart::~SylsFromPhraseStart(){}
 
-    int SylsFromPhraseEnd::process(Target target) {
+    int SylsFromPhraseStart::process(Target target) {
         pugi::xml_node syllable = navigator_->getElement(target);
         if (syllable.empty()) {
             return 0;
@@ -224,6 +275,36 @@ namespace cppmary {
         return count;
     }
 
+    SylsFromPhraseEnd::SylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    SylsFromPhraseEnd::~SylsFromPhraseEnd(){}
+
+    int SylsFromPhraseEnd::process(Target target) {
+        pugi::xml_node syllable = navigator_->getElement(target);
+        if (syllable.empty()) {
+            return 0;
+        }
+        syllable_walker tw;
+        pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
+        phrase.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = 0;
+        bool startCounter = false;
+        for (int i = 0; i < nodes.size(); i++) {
+            pugi::xml_node node = nodes[i];
+            if (!node.empty() && startCounter) {
+                count++;
+            }
+            if (node == syllable) {
+                startCounter = true;
+            }
+            if (count >= RAIL_LIMIT) {
+                break;
+            }
+        }
+        return count;
+    }
 
 }
 
