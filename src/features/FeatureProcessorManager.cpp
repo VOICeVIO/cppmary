@@ -66,6 +66,7 @@ namespace cppmary {
         addFeatureProcessor(new Accented("prev_accent", boolValues, prevSyllableNav));
         addFeatureProcessor(new AccentedSylsFromPhraseStart("accented_syls_from_phrase_start", intValues, syllableNav));
         addFeatureProcessor(new AccentedSylsFromPhraseEnd("accented_syls_from_phrase_end", intValues, syllableNav));
+        addFeatureProcessor(new SylsFromPrevAccented("syls_from_prev_accent", intValues, syllableNav));
 
 
     }

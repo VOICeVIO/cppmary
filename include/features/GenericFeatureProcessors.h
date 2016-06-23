@@ -62,6 +62,28 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    class SylsFromPrevAccented : public FeatureProcessor {
+    public:
+        SylsFromPrevAccented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~SylsFromPrevAccented();
+        virtual int process(Target target);
+    };
+
+    class SylsToNextAccented : public FeatureProcessor {
+    public:
+        SylsToNextAccented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~SylsToNextAccented();
+        virtual int process(Target target);
+    };
+
+
+    class SylsFromPhraseEnd : public FeatureProcessor {
+    public:
+        SylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~SylsFromPhraseEnd();
+        virtual int process(Target target);
+    };
+
 }
 
 

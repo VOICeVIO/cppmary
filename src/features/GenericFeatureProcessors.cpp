@@ -82,7 +82,7 @@ namespace cppmary {
         if (syllable.empty()) {
             return 0;
         }
-        syllable_boundary_walker tw;
+        syllable_walker tw;
         pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
         phrase.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
@@ -109,7 +109,7 @@ namespace cppmary {
         if (syllable.empty()) {
             return 0;
         }
-        syllable_boundary_walker tw;
+        syllable_walker tw;
         pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
         phrase.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
@@ -124,6 +124,100 @@ namespace cppmary {
                 startCounter = true;
             }
             if (count >= RAIL_LIMIT) {
+                break;
+            }
+        }
+        return count;
+    }
+
+
+    SylsFromPrevAccented::SylsFromPrevAccented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    SylsFromPrevAccented::~SylsFromPrevAccented(){}
+
+    int SylsFromPrevAccented::process(Target target) {
+        pugi::xml_node syllable = navigator_->getElement(target);
+        if (syllable.empty()) {
+            return 0;
+        }
+        syllable_walker tw;
+        pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
+        phrase.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = 0;
+        for (int i = 0; i < nodes.size(); i++) {
+            pugi::xml_node node = nodes[i];
+            if (MaryXml::hasAttribute(node, "accent")) {
+                count = 0;
+            } else {
+                count++;
+            }
+            if (node == syllable || count >= RAIL_LIMIT) {
+                break;
+            }
+        }
+        return count;
+    }
+
+    SylsToNextAccented::SylsToNextAccented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    SylsToNextAccented::~SylsToNextAccented(){}
+
+    int SylsToNextAccented::process(Target target) {
+        pugi::xml_node syllable = navigator_->getElement(target);
+        if (syllable.empty()) {
+            return 0;
+        }
+        syllable_walker tw;
+        pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
+        phrase.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = 0;
+        int tempCount = 0;
+        bool startCounter = false;
+        for (int i = 0; i < nodes.size(); i++) {
+            pugi::xml_node node = nodes[i];
+            if (!node.empty() && startCounter) {
+                tempCount++;
+            }
+            if (node == syllable) {
+                startCounter = true;
+            }
+            if (count >= RAIL_LIMIT) {
+                break;
+            }
+            if (MaryXml::hasAttribute(node, "accent")) {
+                count = tempCount;
+                break;
+            }
+        }
+        return count;
+    }
+
+
+    SylsFromPhraseEnd::SylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    SylsFromPhraseEnd::~SylsFromPhraseEnd(){}
+
+    int SylsFromPhraseEnd::process(Target target) {
+        pugi::xml_node syllable = navigator_->getElement(target);
+        if (syllable.empty()) {
+            return 0;
+        }
+        syllable_walker tw;
+        pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
+        phrase.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = 0;
+        for (int i = 0; i < nodes.size(); i++) {
+            pugi::xml_node node = nodes[i];
+            if (!node.empty()) {
+                count++;
+            }
+            if (node == syllable || count >= RAIL_LIMIT) {
                 break;
             }
         }
