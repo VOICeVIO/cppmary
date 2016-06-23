@@ -7,6 +7,8 @@
 #include "Target.h"
 #include <string>
 #include <vector>
+#include "TargetElementNavigator.h"
+#include "StringTranslator.h"
 
 //通用特征定义MaryGenericFeatureProcessors的下半部分, 原本在例如,Phone, nextPhone等. 包含大量的类,大量的对象..
 
@@ -18,8 +20,12 @@ namespace cppmary {
         virtual std::string getName();
         virtual int process(Target target);
         virtual std::string getPauseSymbol();
-        FeatureProcessor ();
+        FeatureProcessor(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
         virtual ~FeatureProcessor ();
+    protected:
+        std::string name_;
+        TargetElementNavigator* navigator_;
+        StringTranslator translator_;
     };
 }
 

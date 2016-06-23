@@ -6,27 +6,29 @@
 
 namespace cppmary {
 
-    FeatureProcessor::FeatureProcessor () {
+    FeatureProcessor::FeatureProcessor(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+        translator_(possibleValues), name_(name), navigator_(navigator) {
 
     }
+
     FeatureProcessor::~FeatureProcessor () {
-        //XLOG(DEBUG) << "deconstruct FeatureProcessor ";
+        XLOG(DEBUG) << "deconstruct FeatureProcessor ";
     }
 
     std::vector<std::string> FeatureProcessor ::getValues() {
-        return std::vector<std::string>();
+        return translator_.getStringValues();
     }
 
     std::string FeatureProcessor::getName() {
-        return "";
+        return name_;
     }
 
     int FeatureProcessor::process(Target target) {
+        std::cout << "precess feature in base" << std::endl;
         return 0;
     }
 
     std::string FeatureProcessor::getPauseSymbol() {
         return "_";
     }
-
 }

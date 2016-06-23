@@ -12,7 +12,8 @@ namespace cppmary {
     /*
      * PhraseNumSyls
      */
-    PhraseNumSyls::PhraseNumSyls() {
+    PhraseNumSyls::PhraseNumSyls(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+                FeatureProcessor(name, possibleValues, navigator) {
         XLOG(DEBUG) << "construct PhraseNumSyls";
     }
 
@@ -21,15 +22,16 @@ namespace cppmary {
     }
 
     std::string PhraseNumSyls::getName() {
-        return "phrase_numsyls";
+        return name_;
     }
 
     std::vector<std::string> PhraseNumSyls::getValues() {
-        std::vector<std::string> values;
-        for (int i = 0; i <= RAIL_LIMIT; i++) {
-            values.push_back(std::to_string(i));
-        }
-        return values;
+        //std::vector<std::string> values;
+        //for (int i = 0; i <= RAIL_LIMIT; i++) {
+        //    values.push_back(std::to_string(i));
+        //}
+        //return values;
+        return translator_.getStringValues();
     }
 
     int PhraseNumSyls::process(Target target) {
@@ -57,8 +59,7 @@ namespace cppmary {
      */
 
     Zhtone::Zhtone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
-        translator_(possibleValues), name_(name) {
-        navigator_ = navigator;
+        FeatureProcessor(name, possibleValues, navigator) {
     }
 
     Zhtone::~Zhtone() {}
@@ -82,41 +83,5 @@ namespace cppmary {
         }
         return translator_.getValue(tone);
     }
-
-    /*
-     * pos
-     */
-    Pos::Pos(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator *wordNavigator) :
-            translator_(possibleValues), name_(name) {
-       navigator_ = wordNavigator;
-    }
-
-    Pos::~Pos() {}
-
-    std::string Pos::getName() {
-        return name_;
-    }
-
-    std::vector<std::string> Pos::getValues() {
-        return translator_.getStringValues();
-    }
-
-    int Pos::process(Target target) {
-        pugi::xml_node word = navigator_->getElement(target);
-        if (word.empty()) {
-            return 0;
-        }
-        std::string pos = word.attribute("pos").as_string();
-        if (pos.empty()) {
-            return 0;
-        }
-        pos = trim(pos);
-        return translator_.getValue(pos);
-    }
-
-
-
-
-
 }
 

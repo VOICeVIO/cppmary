@@ -25,7 +25,7 @@ namespace cppmary {
         virtual std::string getName();
         virtual std::vector<std::string> getValues();
         virtual int process(Target target);
-        PhraseNumSyls();
+        PhraseNumSyls(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
         ~PhraseNumSyls();
     };
     
@@ -36,11 +36,8 @@ namespace cppmary {
             virtual int process(Target target);
             Zhtone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
             ~Zhtone();
-        private:
-            std::string name_;
-            TargetElementNavigator* navigator_;
-            StringTranslator translator_;
     };
+
 }
 
 

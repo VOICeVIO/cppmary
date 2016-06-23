@@ -23,7 +23,12 @@ namespace cppmary {
     }
 
     void FeatureProcessorManager::setupGenericFeatureProcessors() {
-        addFeatureProcessor(new PhraseNumSyls());
+
+        std::vector<std::string> phraseValues;
+        for (int i = 0; i <= RAIL_LIMIT; i++) {
+            phraseValues.push_back(std::to_string(i));
+        }
+        addFeatureProcessor(new PhraseNumSyls("phrase_numsyls", phraseValues, NULL));
         std::vector<std::string> zhToneValues;
         zhToneValues.assign(ZHTONES, ZHTONES+6);
         TargetElementNavigator* syllableNav = new SyllableNavigator();
@@ -60,6 +65,7 @@ namespace cppmary {
         std::vector<std::string> pValues = phoneset.getAllophoneNames();
         std::string pauseSymbol = phoneset.getSilent().name();
         TargetElementNavigator* segmentNavigator = new SegmentNavigator();
-        addFeatureProcessor(new Phone("phone", pValues, pauseSymbol, segmentNavigator));
+        //addFeatureProcessor(new Phone("phone", pValues, pauseSymbol, segmentNavigator));
+        addFeatureProcessor(new Phone("phone", pValues, segmentNavigator));
     }
 }

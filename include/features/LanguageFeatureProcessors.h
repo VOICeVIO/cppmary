@@ -13,15 +13,15 @@
 namespace cppmary {
     class Phone : public FeatureProcessor {
     public:
-        Phone(std::string name, std::vector<std::string> possibleValues, std::string pausesymbol, TargetElementNavigator* segmentNavigator);
+        Phone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* segmentNavigator);
         ~Phone();
         virtual std::string getName();
         virtual std::vector<std::string> getValues();
         virtual int process(Target target);
-    private:
-        std::string name_;
-        StringTranslator translator_;
-        TargetElementNavigator* navigator_;
+    //private:
+    //    std::string name_;
+    //    StringTranslator translator_;
+    //    TargetElementNavigator* navigator_;
     };
 
     class Pos : public FeatureProcessor {
@@ -31,10 +31,10 @@ namespace cppmary {
         virtual std::string getName();
         virtual std::vector<std::string> getValues();
         virtual int process(Target target);
-    private:
-        std::string name_;
-        StringTranslator translator_;
-        TargetElementNavigator* navigator_;
+    //private:
+    //    std::string name_;
+    //    StringTranslator translator_;
+    //    TargetElementNavigator* navigator_;
     };
 }
 
