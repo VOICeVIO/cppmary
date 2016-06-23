@@ -44,6 +44,13 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    class WordNumSegs : public FeatureProcessor  {
+    public:
+        WordNumSegs(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~WordNumSegs();
+        virtual int process(Target target);
+    };
+
     /*
      * The Tobi accent of current syllable
      */

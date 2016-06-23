@@ -28,15 +28,10 @@ namespace cppmary {
         if (phrase.empty()) {
             return 0;
         }
-        pugi::xml_node syls = phrase.child("t").child("syllable");
-        int count = 0;
-        for (pugi::xml_node iterNode = syls.first_child(); iterNode; iterNode = iterNode.next_sibling()) {
-            count++;
-            if (count == RAIL_LIMIT) {
-                break;
-            }
-        }
-        return count;
+        syllable_walker tw;
+        phrase.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
     }
 
     PhraseNumWords::PhraseNumWords(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
@@ -55,15 +50,10 @@ namespace cppmary {
         if (phrase.empty()) {
             return 0;
         }
-        pugi::xml_node words = phrase.child("t");
-        int count = 0;
-        for (pugi::xml_node iterNode = words.first_child(); iterNode; iterNode = iterNode.next_sibling()) {
-            count++;
-            if (count == RAIL_LIMIT) {
-                break;
-            }
-        }
-        return count;
+        token_walker tw;
+        phrase.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
     }
 
     WordNumSyls::WordNumSyls(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
@@ -78,19 +68,36 @@ namespace cppmary {
         if (segment.empty()) {
             return 0;
         }
-        pugi::xml_node phrase = MaryXml::getAncestor(segment, "t");
-        if (phrase.empty()) {
+        pugi::xml_node word = MaryXml::getAncestor(segment, "t");
+        if (word.empty()) {
             return 0;
         }
-        pugi::xml_node syls = phrase.child("t").child("syllable");
-        int count = 0;
-        for (pugi::xml_node iterNode = syls.first_child(); iterNode; iterNode = iterNode.next_sibling()) {
-            count++;
-            if (count == RAIL_LIMIT) {
-                break;
-            }
+        syllable_walker tw;
+        word.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
+    }
+
+    WordNumSegs::WordNumSegs(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+                FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    WordNumSegs::~WordNumSegs() {
+    }
+
+    int WordNumSegs::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
         }
-        return count;
+        pugi::xml_node word = MaryXml::getAncestor(segment, "t");
+        if (word.empty()) {
+            return 0;
+        }
+        phone_walker tw;
+        word.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
     }
 
     TobiAccent::TobiAccent(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
