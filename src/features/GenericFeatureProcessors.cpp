@@ -100,6 +100,28 @@ namespace cppmary {
         return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
     }
 
+    SylNumSegs::SylNumSegs(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+                FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    SylNumSegs::~SylNumSegs() {
+    }
+
+    int SylNumSegs::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node syl = MaryXml::getAncestor(segment, "syllable");
+        if (syl.empty()) {
+            return 0;
+        }
+        phone_walker tw;
+        syl.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
+    }
+
     TobiAccent::TobiAccent(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 

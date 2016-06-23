@@ -51,6 +51,13 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    class SylNumSegs : public FeatureProcessor  {
+    public:
+        SylNumSegs(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~SylNumSegs();
+        virtual int process(Target target);
+    };
+
     /*
      * The Tobi accent of current syllable
      */
