@@ -29,6 +29,8 @@ namespace cppmary {
             intValues.push_back(std::to_string(i));
         }
         addFeatureProcessor(new PhraseNumSyls("phrase_numsyls", intValues, NULL));
+        addFeatureProcessor(new SegsFromSylStart("segs_from_syl_start", intValues, NULL));
+        addFeatureProcessor(new SegsFromSylEnd("segs_from_syl_end", intValues, NULL));
         std::vector<std::string> zhToneValues;
         zhToneValues.assign(ZHTONES, ZHTONES+ZHTONE_NUM);
         TargetElementNavigator* syllableNav = new SyllableNavigator();
@@ -68,6 +70,8 @@ namespace cppmary {
         addFeatureProcessor(new AccentedSylsFromPhraseEnd("accented_syls_from_phrase_end", intValues, syllableNav));
         addFeatureProcessor(new SylsFromPrevAccented("syls_from_prev_accent", intValues, syllableNav));
 
+        addFeatureProcessor(new SylsFromPhraseStart("syls_from_phrase_start", intValues, syllableNav));
+        addFeatureProcessor(new SylsFromPhraseEnd("syls_from_phrase_end", intValues, syllableNav));
 
     }
 

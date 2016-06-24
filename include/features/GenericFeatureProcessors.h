@@ -139,6 +139,7 @@ namespace cppmary {
 
     /*
      * the syllable amount from current phrase start
+     * @navigator: syllableNavigator
      */
     class SylsFromPhraseStart : public FeatureProcessor {
     public:
@@ -149,6 +150,7 @@ namespace cppmary {
 
     /*
      * the syllable amount from current phrase end
+     * @navigator: syllableNavigator
      */
     class SylsFromPhraseEnd : public FeatureProcessor {
     public:
@@ -156,6 +158,29 @@ namespace cppmary {
         virtual ~SylsFromPhraseEnd();
         virtual int process(Target target);
     };
+
+    /*
+     * the segment amount from syllable start
+     * @navigator: null
+     */
+    class SegsFromSylStart : public FeatureProcessor {
+    public:
+        SegsFromSylStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~SegsFromSylStart();
+        virtual int process(Target target);
+    };
+
+    /*
+     * the segment amount from syllable end
+     * @navigator: null
+     */
+    class SegsFromSylEnd : public FeatureProcessor {
+    public:
+        SegsFromSylEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~SegsFromSylEnd();
+        virtual int process(Target target);
+    };
+
 
 }
 

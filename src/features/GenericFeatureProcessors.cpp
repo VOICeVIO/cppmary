@@ -371,5 +371,69 @@ namespace cppmary {
         return count;
     }
 
+    /*
+     * the segment amount from syllable start
+     */
+    SegsFromSylStart::SegsFromSylStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    SegsFromSylStart::~SegsFromSylStart(){}
+
+    int SegsFromSylStart::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        phone_walker tw;
+        pugi::xml_node syllable = MaryXml::getAncestor(segment, "syllable");
+        syllable.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = 0;
+        for (int i = 0; i < nodes.size(); i++) {
+            pugi::xml_node node = nodes[i];
+            if (!node.empty()) {
+                count++;
+            }
+            if (node == segment || count >= RAIL_LIMIT) {
+                break;
+            }
+        }
+        return count;
+    }
+
+    /*
+     * the segment amount from syllable end
+     */
+    SegsFromSylEnd::SegsFromSylEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    SegsFromSylEnd::~SegsFromSylEnd(){}
+
+    int SegsFromSylEnd::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        phone_walker tw;
+        pugi::xml_node syllable = MaryXml::getAncestor(segment, "syllable");
+        syllable.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = 0;
+        bool startCounter = false;
+        for (int i = 0; i < nodes.size(); i++) {
+            pugi::xml_node node = nodes[i];
+            if (!node.empty() && startCounter) {
+                count++;
+            }
+            if (node == segment) {
+                startCounter = true;
+            }
+            if (count >= RAIL_LIMIT) {
+                break;
+            }
+        }
+        return count;
+    }
+
 }
 
