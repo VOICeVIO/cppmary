@@ -188,16 +188,7 @@ namespace cppmary {
         pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
         phrase.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
-        int count = 0;
-        for (int i = 0; i < nodes.size(); i++) {
-            pugi::xml_node node = nodes[i];
-            if (!node.empty() && MaryXml::hasAttribute(node, "accent")) {
-                count++;
-            }
-            if (node == syllable || count >= RAIL_LIMIT) {
-                break;
-            }
-        }
+        int count = countElementFromStart(nodes, syllable, "accent");
         return count;
     }
 
@@ -218,20 +209,7 @@ namespace cppmary {
         pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
         phrase.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
-        int count = 0;
-        bool startCounter = false;
-        for (int i = 0; i < nodes.size(); i++) {
-            pugi::xml_node node = nodes[i];
-            if (!node.empty() && MaryXml::hasAttribute(node, "accent") && startCounter) {
-                count++;
-            }
-            if (node == syllable) {
-                startCounter = true;
-            }
-            if (count >= RAIL_LIMIT) {
-                break;
-            }
-        }
+        int count = countElementToEnd(nodes, syllable, "accent");
         return count;
     }
 
@@ -253,19 +231,8 @@ namespace cppmary {
         pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
         phrase.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
-        int count = 0;
-        for (int i = 0; i < nodes.size(); i++) {
-            pugi::xml_node node = nodes[i];
-            if (MaryXml::hasAttribute(node, "accent")) {
-                count = 0;
-            } else {
-                count++;
-            }
-            if (node == syllable || count >= RAIL_LIMIT) {
-                break;
-            }
-        }
-        return count;
+        int dis = disToPrevAttributeElement(nodes, syllable, "accent");
+        return dis;
     }
 
     /*
@@ -285,26 +252,8 @@ namespace cppmary {
         pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
         phrase.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
-        int count = 0;
-        int tempCount = 0;
-        bool startCounter = false;
-        for (int i = 0; i < nodes.size(); i++) {
-            pugi::xml_node node = nodes[i];
-            if (!node.empty() && startCounter) {
-                tempCount++;
-            }
-            if (node == syllable) {
-                startCounter = true;
-            }
-            if (count >= RAIL_LIMIT) {
-                break;
-            }
-            if (MaryXml::hasAttribute(node, "accent")) {
-                count = tempCount;
-                break;
-            }
-        }
-        return count;
+        int dis = disToNextAttributeElement(nodes, syllable, "accent");
+        return dis;
     }
 
     /*
@@ -324,16 +273,7 @@ namespace cppmary {
         pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
         phrase.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
-        int count = 0;
-        for (int i = 0; i < nodes.size(); i++) {
-            pugi::xml_node node = nodes[i];
-            if (!node.empty()) {
-                count++;
-            }
-            if (node == syllable || count >= RAIL_LIMIT) {
-                break;
-            }
-        }
+        int count = countElementFromStart(nodes, syllable);
         return count;
     }
 
@@ -354,20 +294,7 @@ namespace cppmary {
         pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
         phrase.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
-        int count = 0;
-        bool startCounter = false;
-        for (int i = 0; i < nodes.size(); i++) {
-            pugi::xml_node node = nodes[i];
-            if (!node.empty() && startCounter) {
-                count++;
-            }
-            if (node == syllable) {
-                startCounter = true;
-            }
-            if (count >= RAIL_LIMIT) {
-                break;
-            }
-        }
+        int count = countElementToEnd(nodes, syllable);
         return count;
     }
 
@@ -388,16 +315,7 @@ namespace cppmary {
         pugi::xml_node syllable = MaryXml::getAncestor(segment, "syllable");
         syllable.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
-        int count = 0;
-        for (int i = 0; i < nodes.size(); i++) {
-            pugi::xml_node node = nodes[i];
-            if (!node.empty()) {
-                count++;
-            }
-            if (node == segment || count >= RAIL_LIMIT) {
-                break;
-            }
-        }
+        int count = countElementFromStart(nodes, segment);
         return count;
     }
 
@@ -418,20 +336,7 @@ namespace cppmary {
         pugi::xml_node syllable = MaryXml::getAncestor(segment, "syllable");
         syllable.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
-        int count = 0;
-        bool startCounter = false;
-        for (int i = 0; i < nodes.size(); i++) {
-            pugi::xml_node node = nodes[i];
-            if (!node.empty() && startCounter) {
-                count++;
-            }
-            if (node == segment) {
-                startCounter = true;
-            }
-            if (count >= RAIL_LIMIT) {
-                break;
-            }
-        }
+        int count = countElementToEnd(nodes, segment);
         return count;
     }
 

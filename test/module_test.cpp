@@ -94,7 +94,8 @@ void featureTest(pugi::xml_node doc) {
     std::string alloStr = MaryXml::saveDoc2String(doc1);
 
     FeatureProcessorManager manager("zh", alloStr);
-    TargetFeatureComputer featureComputer(manager, "phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zhtone zhtone next_zhtone nextnext_zhtone pos tobiAccent prev_tobiAccent prevprev_tobiAccent next_tobiAccent nextnext_tobiAccent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent");
+    //jTargetFeatureComputer featureComputer(manager, "phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zhtone zhtone next_zhtone nextnext_zhtone pos tobiAccent prev_tobiAccent prevprev_tobiAccent next_tobiAccent nextnext_tobiAccent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent");
+    TargetFeatureComputer featureComputer(manager, "phone phrase_numsyls zhtone segs_from_syl_start segs_from_syl_end syls_from_phrase_start syls_from_phrase_end");
     for (int i = 0; i < targets.size(); i++) {
         Target target = targets[i];
         std::vector<int> features = featureComputer.computeFeatureVector(target);
@@ -109,7 +110,7 @@ void featureTest(pugi::xml_node doc) {
 }
 
 void pronunciationTest() {
-    std::string rawXml = cppmary::TextToMaryXml::getInstance().process("欢迎，使用。文本转！语音？服务!");
+    std::string rawXml = cppmary::TextToMaryXml::getInstance().process("这个世界上，为什么只有我这么帅呢？");
     cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
     std::string tokenStr = tokenizer->process(rawXml);
     cppmary::InterModules* phonemiser = new cppmary::Phonemiser();
@@ -124,8 +125,8 @@ void pronunciationTest() {
 }
 
 void labelTest() {
-    std::string puncxmlName = "test/punc.xml";
-    //std::string puncxmlName = "test/allophone_v1.xml";
+    //std::string puncxmlName = "test/punc.xml";
+    std::string puncxmlName = "test/marytts_allophone_example.xml";
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(puncxmlName.c_str());
     featureTest(doc);

@@ -21,6 +21,10 @@ namespace cppmary {
         virtual int process(Target target);
         virtual std::string getPauseSymbol();
         FeatureProcessor(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual int countElementFromStart(std::vector<pugi::xml_node> nodes, pugi::xml_node current, std::string attrCondition = "");
+        virtual int countElementToEnd(std::vector<pugi::xml_node> nodes, pugi::xml_node current, std::string attrCondition = "");
+        virtual int disToPrevAttributeElement(std::vector<pugi::xml_node> nodes, pugi::xml_node current, std::string attr);
+        virtual int disToNextAttributeElement(std::vector<pugi::xml_node> nodes, pugi::xml_node current, std::string attr);
         virtual ~FeatureProcessor ();
     protected:
         std::string name_;
