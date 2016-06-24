@@ -23,6 +23,11 @@ namespace cppmary {
                                     "NL","NW","VF","VX","VI","VL" };
     const std::string TOBIACCENTS[TOBIACCENT_NUM] = { "0", "*", "H*", "!H*", "^H*", "L*", "L+H*", "L*+H", "L+!H*", "L*+!H", 
         "L+^H*", "L*+^H", "H+L*", "H+!H*", "H+^H*", "!H+!H*", "^H+!H*", "^H+^H*", "H*+L", "!H*+L" };
+
+
+    /*
+     * the token syllable of current phrase
+     */
     class PhraseNumSyls : public FeatureProcessor  {
     public:
         PhraseNumSyls(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
@@ -30,6 +35,9 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+     * the token amount of current phrase
+     */
     class PhraseNumWords : public FeatureProcessor  {
     public:
         PhraseNumWords(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
@@ -37,6 +45,9 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+     * the syllable amount of current token
+     */
     class WordNumSyls : public FeatureProcessor  {
     public:
         WordNumSyls(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
@@ -44,6 +55,9 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+     * the segment amount of current token
+     */
     class WordNumSegs : public FeatureProcessor  {
     public:
         WordNumSegs(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
@@ -51,6 +65,9 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+     * the segment amount of current syllable
+     */
     class SylNumSegs : public FeatureProcessor  {
     public:
         SylNumSegs(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
@@ -68,6 +85,9 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+     * the current syllable is has accente attribute?
+     */
     class Accented : public FeatureProcessor {
     public:
         Accented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
@@ -75,6 +95,9 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+     * the accented syllable amount from current phrase start
+     */
     class AccentedSylsFromPhraseStart : public FeatureProcessor {
     public:
         AccentedSylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
@@ -83,6 +106,10 @@ namespace cppmary {
     };
     
 
+
+    /*
+     * the accented syllable amount from current phrase end
+     */
     class AccentedSylsFromPhraseEnd : public FeatureProcessor {
     public:
         AccentedSylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
@@ -90,6 +117,9 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+     * the syllable amount from prev accented syllable
+     */
     class SylsFromPrevAccented : public FeatureProcessor {
     public:
         SylsFromPrevAccented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
@@ -97,6 +127,9 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+     * the syllable amount to next accented syllable
+     */
     class SylsToNextAccented : public FeatureProcessor {
     public:
         SylsToNextAccented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
@@ -104,6 +137,9 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+     * the syllable amount from current phrase start
+     */
     class SylsFromPhraseStart : public FeatureProcessor {
     public:
         SylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
@@ -111,6 +147,9 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+     * the syllable amount from current phrase end
+     */
     class SylsFromPhraseEnd : public FeatureProcessor {
     public:
         SylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);

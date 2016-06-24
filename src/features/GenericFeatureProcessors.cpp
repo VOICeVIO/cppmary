@@ -10,7 +10,7 @@
 namespace cppmary {
 
     /*
-     * PhraseNumSyls
+     * the token syllable of current phrase
      */
     PhraseNumSyls::PhraseNumSyls(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
                 FeatureProcessor(name, possibleValues, navigator) {
@@ -34,6 +34,9 @@ namespace cppmary {
         return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
     }
 
+    /*
+     * the token amount of current phrase
+     */
     PhraseNumWords::PhraseNumWords(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
                 FeatureProcessor(name, possibleValues, navigator) {
     }
@@ -56,6 +59,9 @@ namespace cppmary {
         return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
     }
 
+    /*
+     * the syllable amount of current token
+     */
     WordNumSyls::WordNumSyls(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
                 FeatureProcessor(name, possibleValues, navigator) {
     }
@@ -78,6 +84,9 @@ namespace cppmary {
         return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
     }
 
+    /*
+     * the segment amount of current token
+     */
     WordNumSegs::WordNumSegs(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
                 FeatureProcessor(name, possibleValues, navigator) {
     }
@@ -100,6 +109,9 @@ namespace cppmary {
         return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
     }
 
+    /*
+     * the segment amount of current syllable
+     */
     SylNumSegs::SylNumSegs(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
                 FeatureProcessor(name, possibleValues, navigator) {
     }
@@ -122,6 +134,9 @@ namespace cppmary {
         return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
     }
 
+    /*
+     * The Tobi accent of current syllable
+     */
     TobiAccent::TobiAccent(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
@@ -139,6 +154,9 @@ namespace cppmary {
         return translator_.getValue(accent);
     }
 
+    /*
+     * the current syllable is has accente attribute?
+     */
     Accented::Accented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
@@ -153,6 +171,9 @@ namespace cppmary {
         }
     }
 
+    /*
+     * the accented syllable amount from current phrase start
+     */
     AccentedSylsFromPhraseStart::AccentedSylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
@@ -180,6 +201,9 @@ namespace cppmary {
         return count;
     }
 
+    /*
+     * the accented syllable amount from current phrase end
+     */
     AccentedSylsFromPhraseEnd::AccentedSylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
@@ -212,6 +236,9 @@ namespace cppmary {
     }
 
 
+    /*
+     * the syllable amount from prev accented syllable
+     */
     SylsFromPrevAccented::SylsFromPrevAccented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
@@ -241,6 +268,9 @@ namespace cppmary {
         return count;
     }
 
+    /*
+     * the syllable amount to next accented syllable
+     */
     SylsToNextAccented::SylsToNextAccented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
@@ -277,6 +307,9 @@ namespace cppmary {
         return count;
     }
 
+    /*
+     * the syllable amount from current phrase start
+     */
     SylsFromPhraseStart::SylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
@@ -304,6 +337,9 @@ namespace cppmary {
         return count;
     }
 
+    /*
+     * the syllable amount from current phrase end
+     */
     SylsFromPhraseEnd::SylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
