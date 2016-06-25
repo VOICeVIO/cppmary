@@ -475,7 +475,8 @@ namespace cppmary {
             return 0;
         }
         //next_sibling elment work?
-        pugi::xml_node nextSyllable = syllable.next_sibling(syllable.name());
+        //pugi::xml_node nextSyllable = syllable.next_sibling(syllable.name());
+        pugi::xml_node nextSyllable = MaryXml::getNextSiblingElement(syllable);
         if (!nextSyllable.empty()) {
             return 0;
         }

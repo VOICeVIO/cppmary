@@ -116,4 +116,30 @@ namespace cppmary {
         return newElement;
     }
 
+    pugi::xml_node MaryXml::getNextSiblingElement(pugi::xml_node current) {
+        pugi::xml_node node = current;
+        if (node.empty()) {
+            return pugi::xml_node();
+        }
+        while (!(node = node.next_sibling()).empty()) {
+            if (node.type() == pugi::node_element && strcmp(node.name(), current.name()) == 0) {
+                return node;
+            }
+        }
+        return pugi::xml_node();
+    }
+
+    pugi::xml_node MaryXml::getPrevSiblingElement(pugi::xml_node current) {
+        pugi::xml_node node = current;
+        if (node.empty()) {
+            return pugi::xml_node();
+        }
+        while (!(node = node.previous_sibling()).empty()) {
+            if (node.type() == pugi::node_element && strcmp(node.name(), current.name()) == 0) {
+                return node;
+            }
+        }
+        return pugi::xml_node();
+    }
+
 }

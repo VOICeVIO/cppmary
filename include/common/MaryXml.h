@@ -98,6 +98,8 @@ namespace cppmary {
         static pugi::xml_node closestCommonAncestor(pugi::xml_node first, pugi::xml_node last);
         static pugi::xml_node encloseNodesWithNewElement(pugi::xml_node first, pugi::xml_node last, std::string newElementName);
         static const char* getMaryDataTypeStr(int enumVal);
+        static pugi::xml_node getNextSiblingElement(pugi::xml_node current);
+        static pugi::xml_node getPrevSiblingElement(pugi::xml_node current);
 
         static const char* MARYXML;
         static const char* PARAGRAPH;
