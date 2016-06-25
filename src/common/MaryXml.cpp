@@ -5,6 +5,12 @@
 #include "common/MaryXml.h"
 
 namespace cppmary {
+    const char* MaryXml::MaryDataTypeStr[] = { "ph", "syllable", "t", "phrase", "s", "p", "boundary" };
+
+    const char* MaryXml::getMaryDataTypeStr(int enumVal) {
+        return MaryXml::MaryDataTypeStr[enumVal];
+    }
+
     std::string MaryXml::getMaryXmlHeaderWithLocale(std::string locale) {
         return std::string("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n") + "<maryxml version=\"0.4\"\n"
                + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" + "xmlns=\"http://mary.dfki.de/2002/MaryXML\"\n"

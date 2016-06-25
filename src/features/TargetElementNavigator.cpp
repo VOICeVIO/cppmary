@@ -97,7 +97,7 @@ namespace cppmary {
 
     pugi::xml_node WordNavigator::getElement(Target target) {
         pugi::xml_node segment = target.getMaryElement();
-        if (strcmp(segment.name(), "bounary") == 0) { //bounary没有token父节点
+        if (strcmp(segment.name(), "boundary") == 0) { //boundary没有token父节点
             return segment;
         }
         if (segment.empty()) {

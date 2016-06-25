@@ -42,7 +42,7 @@ namespace cppmary {
             std::string tokenValue(token.child_value());
             tokenValue = cppmary::trim(tokenValue);
             if (isPuncinatiion(tokenValue)) {
-                pugi::xml_node newNode = tokens.insert_child_after("bounary", token);
+                pugi::xml_node newNode = tokens.insert_child_after("boundary", token);
                 int breakindexValue = 3;
                 if (newNode == tokens.last_child()) {
                     breakindexValue = 6;
@@ -56,7 +56,7 @@ namespace cppmary {
         }
         if (lastPhrase != tokens.last_child()) {
             last = tokens.last_child();
-            pugi::xml_node newNode = tokens.insert_child_after("bounary", last);
+            pugi::xml_node newNode = tokens.insert_child_after("boundary", last);
             last = newNode;
             newNode.append_attribute("breakindex") = 6;
             MaryXml::encloseNodesWithNewElement(first, last, "phrase");

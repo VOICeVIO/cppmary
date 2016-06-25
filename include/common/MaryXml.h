@@ -27,7 +27,17 @@ namespace cppmary {
 
     struct phone_boundary_walker: pugi::xml_tree_walker {
         virtual bool for_each(pugi::xml_node& node) {
-            if (node.type() == pugi::node_element && ((strcmp(node.name(), "ph") == 0) || (strcmp(node.name(), "bounary") == 0)) ) {
+            if (node.type() == pugi::node_element && ((strcmp(node.name(), "ph") == 0) || (strcmp(node.name(), "boundary") == 0)) ) {
+                nodes_.push_back(node);
+            }
+            return true;
+        }
+        std::vector<pugi::xml_node> nodes_;
+    };
+    
+    struct token_boundary_walker: pugi::xml_tree_walker {
+        virtual bool for_each(pugi::xml_node& node) {
+            if (node.type() == pugi::node_element && ((strcmp(node.name(), "t") == 0) || (strcmp(node.name(), "boundary") == 0)) ) {
                 nodes_.push_back(node);
             }
             return true;
@@ -47,7 +57,7 @@ namespace cppmary {
 
     struct syllable_boundary_walker: pugi::xml_tree_walker {
         virtual bool for_each(pugi::xml_node& node) {
-            if (node.type() == pugi::node_element && ((strcmp(node.name(), "syllable") == 0) || (strcmp(node.name(), "bounary") == 0)) ) {
+            if (node.type() == pugi::node_element && ((strcmp(node.name(), "syllable") == 0) || (strcmp(node.name(), "boundary") == 0)) ) {
                 nodes_.push_back(node);
             }
             return true;
@@ -87,6 +97,10 @@ namespace cppmary {
         static pugi::xml_node getClosetAncestorWithAttribute(pugi::xml_node node, std::string ancestorName, std::string attributeName);
         static pugi::xml_node closestCommonAncestor(pugi::xml_node first, pugi::xml_node last);
         static pugi::xml_node encloseNodesWithNewElement(pugi::xml_node first, pugi::xml_node last, std::string newElementName);
+        static const char* getMaryDataTypeStr(int enumVal);
+
+        enum MaryDataType {SEGMENT, SYLLABLE, WORD, PHRASE, SENTENCE,PARAGRAPH,BOUNDARY};
+        static const char * MaryDataTypeStr[];
 
 
     };
