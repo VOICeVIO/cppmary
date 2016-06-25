@@ -27,6 +27,7 @@ namespace cppmary {
 
     /*
      * the token syllable of current phrase
+     * @navigator: null
      */
     class PhraseNumSyls : public FeatureProcessor  {
     public:
@@ -37,6 +38,7 @@ namespace cppmary {
 
     /*
      * the token amount of current phrase
+     * @navigator: null
      */
     class PhraseNumWords : public FeatureProcessor  {
     public:
@@ -47,6 +49,7 @@ namespace cppmary {
 
     /*
      * the syllable amount of current token
+     * @navigator: null
      */
     class WordNumSyls : public FeatureProcessor  {
     public:
@@ -57,6 +60,7 @@ namespace cppmary {
 
     /*
      * the segment amount of current token
+     * @navigator: null
      */
     class WordNumSegs : public FeatureProcessor  {
     public:
@@ -67,6 +71,7 @@ namespace cppmary {
 
     /*
      * the segment amount of current syllable
+     * @navigator: null
      */
     class SylNumSegs : public FeatureProcessor  {
     public:
@@ -77,6 +82,7 @@ namespace cppmary {
 
     /*
      * The Tobi accent of current syllable
+     * @navigator: syllableNavigator
      */
     class TobiAccent : public FeatureProcessor {
     public:
@@ -87,6 +93,7 @@ namespace cppmary {
 
     /*
      * the current syllable is has accente attribute?
+     * @navigator: syllableNavigator
      */
     class Accented : public FeatureProcessor {
     public:
@@ -97,6 +104,7 @@ namespace cppmary {
 
     /*
      * the accented syllable amount from current phrase start
+     * @navigator: syllableNavigator
      */
     class AccentedSylsFromPhraseStart : public FeatureProcessor {
     public:
@@ -105,10 +113,9 @@ namespace cppmary {
         virtual int process(Target target);
     };
     
-
-
     /*
      * the accented syllable amount from current phrase end
+     * @navigator: syllableNavigator
      */
     class AccentedSylsFromPhraseEnd : public FeatureProcessor {
     public:
@@ -119,6 +126,8 @@ namespace cppmary {
 
     /*
      * the syllable amount from prev accented syllable
+     * @navigator: syllableNavigator
+     * @type: dis
      */
     class SylsFromPrevAccented : public FeatureProcessor {
     public:
@@ -129,6 +138,8 @@ namespace cppmary {
 
     /*
      * the syllable amount to next accented syllable
+     * @navigator: syllableNavigator
+     * @type: dis
      */
     class SylsToNextAccented : public FeatureProcessor {
     public:
@@ -140,6 +151,7 @@ namespace cppmary {
     /*
      * the syllable amount from current phrase start
      * @navigator: syllableNavigator
+     * @type: count
      */
     class SylsFromPhraseStart : public FeatureProcessor {
     public:
@@ -151,6 +163,7 @@ namespace cppmary {
     /*
      * the syllable amount from current phrase end
      * @navigator: syllableNavigator
+     * @type: count
      */
     class SylsFromPhraseEnd : public FeatureProcessor {
     public:
@@ -162,6 +175,7 @@ namespace cppmary {
     /*
      * the segment amount from syllable start
      * @navigator: null
+     * @type: count
      */
     class SegsFromSylStart : public FeatureProcessor {
     public:
@@ -173,6 +187,7 @@ namespace cppmary {
     /*
      * the segment amount from syllable end
      * @navigator: null
+     * @type: count
      */
     class SegsFromSylEnd : public FeatureProcessor {
     public:
@@ -180,6 +195,68 @@ namespace cppmary {
         virtual ~SegsFromSylEnd();
         virtual int process(Target target);
     };
+
+    /*
+     * the segment amount from word start
+     * @navigator: null
+     * @type: count
+     */
+    class SegsFromWordStart : public FeatureProcessor {
+    public:
+        SegsFromWordStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~SegsFromWordStart();
+        virtual int process(Target target);
+    };
+
+    /*
+     * the segment amount from word end
+     * @navigator: null
+     * @type: count
+     */
+    class SegsFromWordEnd : public FeatureProcessor {
+    public:
+        SegsFromWordEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~SegsFromWordEnd();
+        virtual int process(Target target);
+    };
+
+    /*
+     * the syllable from word start
+     * @navigator: syllableNavigator
+     * @type: count
+     */
+    class SylsFromWordStart : public FeatureProcessor {
+    public:
+        SylsFromWordStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~SylsFromWordStart();
+        virtual int process(Target target);
+    };
+
+    /*
+     * the syllable from word end
+     * @navigator: syllableNavigator
+     * @type: count
+     */
+    class SylsFromWordEnd : public FeatureProcessor {
+    public:
+        SylsFromWordEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~SylsFromWordEnd();
+        virtual int process(Target target);
+    };
+
+    /*
+     * determinines the break level after this syllable
+     * @navigator: syllableNavigator
+     */
+    class SylBreak : public FeatureProcessor {
+    public:
+        SylBreak(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~SylBreak();
+        virtual int process(Target target);
+    };
+
+
+
 
 
 }

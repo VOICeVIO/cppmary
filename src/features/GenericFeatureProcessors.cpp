@@ -186,6 +186,9 @@ namespace cppmary {
         }
         syllable_walker tw;
         pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
+        if (phrase.empty()) {
+            return 0;
+        }
         phrase.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
         int count = countElementFromStart(nodes, syllable, "accent");
@@ -207,6 +210,9 @@ namespace cppmary {
         }
         syllable_walker tw;
         pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
+        if (phrase.empty()) {
+            return 0;
+        }
         phrase.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
         int count = countElementToEnd(nodes, syllable, "accent");
@@ -229,6 +235,9 @@ namespace cppmary {
         }
         syllable_walker tw;
         pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
+        if (phrase.empty()) {
+            return 0;
+        }
         phrase.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
         int dis = disToPrevAttributeElement(nodes, syllable, "accent");
@@ -250,6 +259,9 @@ namespace cppmary {
         }
         syllable_walker tw;
         pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
+        if (phrase.empty()) {
+            return 0;
+        }
         phrase.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
         int dis = disToNextAttributeElement(nodes, syllable, "accent");
@@ -271,6 +283,9 @@ namespace cppmary {
         }
         syllable_walker tw;
         pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
+        if (phrase.empty()) {
+            return 0;
+        }
         phrase.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
         int count = countElementFromStart(nodes, syllable);
@@ -292,6 +307,9 @@ namespace cppmary {
         }
         syllable_walker tw;
         pugi::xml_node phrase = MaryXml::getAncestor(syllable, "phrase");
+        if (phrase.empty()) {
+            return 0;
+        }
         phrase.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
         int count = countElementToEnd(nodes, syllable);
@@ -313,6 +331,9 @@ namespace cppmary {
         }
         phone_walker tw;
         pugi::xml_node syllable = MaryXml::getAncestor(segment, "syllable");
+        if (syllable.empty()) {
+            return 0;
+        }
         syllable.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
         int count = countElementFromStart(nodes, segment);
@@ -332,13 +353,184 @@ namespace cppmary {
         if (segment.empty()) {
             return 0;
         }
-        phone_walker tw;
         pugi::xml_node syllable = MaryXml::getAncestor(segment, "syllable");
+        if (syllable.empty()) {
+            return 0;
+        }
+        phone_walker tw;
         syllable.traverse(tw);
         std::vector<pugi::xml_node> nodes = tw.nodes_;
         int count = countElementToEnd(nodes, segment);
         return count;
     }
+
+    /*
+     * the segment amount from word start
+     */
+    SegsFromWordStart::SegsFromWordStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    SegsFromWordStart::~SegsFromWordStart(){}
+
+    int SegsFromWordStart::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node word = MaryXml::getAncestor(segment, "t");
+        if (word.empty()) {
+            return 0;
+        }
+        phone_walker tw;
+        word.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = countElementFromStart(nodes, segment);
+        return count;
+    }
+    
+    /*
+     * the segment amount from word end
+     */
+    SegsFromWordEnd::SegsFromWordEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    SegsFromWordEnd::~SegsFromWordEnd(){}
+
+    int SegsFromWordEnd::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node word = MaryXml::getAncestor(segment, "t");
+        if (word.empty()) {
+            return 0;
+        }
+        phone_walker tw;
+        word.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = countElementToEnd(nodes, segment);
+        return count;
+    }
+
+
+    /*
+     * the syllable amount from word start
+     */
+    SylsFromWordStart::SylsFromWordStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    SylsFromWordStart::~SylsFromWordStart(){}
+
+    int SylsFromWordStart::process(Target target) {
+        pugi::xml_node syllable = navigator_->getElement(target);
+        if (syllable.empty()) {
+            return 0;
+        }
+        pugi::xml_node word = MaryXml::getAncestor(syllable, "t");
+        if (word.empty()) {
+            return 0;
+        }
+        syllable_walker tw;
+        word.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = countElementFromStart(nodes, syllable);
+        return count;
+    }
+    
+    /*
+     * the syllable amout from word end
+     */
+    SylsFromWordEnd::SylsFromWordEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    SylsFromWordEnd::~SylsFromWordEnd(){}
+
+    int SylsFromWordEnd::process(Target target) {
+        pugi::xml_node syllable = navigator_->getElement(target);
+        if (syllable.empty()) {
+            return 0;
+        }
+        pugi::xml_node word = MaryXml::getAncestor(syllable, "t");
+        if (word.empty()) {
+            return 0;
+        }
+        syllable_walker tw;
+        word.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = countElementToEnd(nodes, syllable);
+        return count;
+    }
+
+    /*
+     * determinines the break level after this syllable
+     */
+    SylBreak::SylBreak(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    SylBreak::~SylBreak(){}
+
+    int SylBreak::process(Target target) {
+        pugi::xml_node syllable = navigator_->getElement(target);
+        if (syllable.empty()) {
+            return 0;
+        }
+        //next_sibling elment work?
+        pugi::xml_node nextSyllable = syllable.next_sibling(syllable.name());
+        if (!nextSyllable.empty()) {
+            return 0;
+        }
+        pugi::xml_node sentence = MaryXml::getAncestor(syllable, "s");
+        if (sentence.empty()) {
+            return 0;
+        }
+        token_boundary_walker tw;
+        sentence.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+
+        pugi::xml_node word = syllable.parent();
+        if (word.empty()) {
+            return 0;
+        }
+        bool startPosition = false;
+        pugi::xml_node nextNode;
+        for (int i = 0; i < nodes.size(); i++) {
+            pugi::xml_node node = nodes[i];
+            if (startPosition) {
+                if (strcmp(node.name(), "boundary") == 0 || ( (strcmp(node.name(), "t") == 0) && MaryXml::hasAttribute(node, "ph"))) {
+                    nextNode = node;
+                    break;
+                }
+            }
+            if (nodes[i] == word) {
+                startPosition = true;
+            }
+        }
+
+        if (nextNode.empty()) {
+            return 4;
+        }
+        if (strcmp(nextNode.name(), "t") == 0) {
+            return 1;
+        }
+        std::string biIndex = nextNode.attribute("breakindex").as_string();
+        if (biIndex.empty()) {
+            return 1;
+        }
+        int bi = std::stoi(biIndex);
+        if (bi >= 4) {
+            return 4;
+        } else if(bi == 3) {
+            return 3;
+        }
+        return 1;
+    }
+        
+
+
+
+
+
+
 
 }
 

@@ -73,6 +73,8 @@ namespace cppmary {
         addFeatureProcessor(new SylsFromPhraseStart("syls_from_phrase_start", intValues, syllableNav));
         addFeatureProcessor(new SylsFromPhraseEnd("syls_from_phrase_end", intValues, syllableNav));
 
+        addFeatureProcessor(new SylBreak("syl_break", intValues, syllableNav));
+
     }
 
     void FeatureProcessorManager::addFeatureProcessor(FeatureProcessor * fp) {

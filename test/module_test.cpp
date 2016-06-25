@@ -70,7 +70,7 @@ std::vector<Target> createTargetWithPauses(std::vector<pugi::xml_node> segmentsA
     if (segmentsAndPauses.size() == 0) {
         return targets;
     }
-    //TODO: add final bounary
+    //TODO: add final boundary
     for (int i = 0; i < segmentsAndPauses.size(); i++) {
         pugi::xml_node seg = segmentsAndPauses[i];
         std::string phone = seg.attribute("p").as_string();
@@ -95,7 +95,7 @@ void featureTest(pugi::xml_node doc) {
 
     FeatureProcessorManager manager("zh", alloStr);
     //jTargetFeatureComputer featureComputer(manager, "phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zhtone zhtone next_zhtone nextnext_zhtone pos tobiAccent prev_tobiAccent prevprev_tobiAccent next_tobiAccent nextnext_tobiAccent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent");
-    TargetFeatureComputer featureComputer(manager, "phone phrase_numsyls zhtone segs_from_syl_start segs_from_syl_end syls_from_phrase_start syls_from_phrase_end");
+    TargetFeatureComputer featureComputer(manager, "phone phrase_numsyls zhtone segs_from_syl_start segs_from_syl_end syls_from_phrase_start syls_from_phrase_end syl_break");
     for (int i = 0; i < targets.size(); i++) {
         Target target = targets[i];
         std::vector<int> features = featureComputer.computeFeatureVector(target);
@@ -149,5 +149,6 @@ int main() {
     //prosodyTest();
     //pronunciationTest();
     labelTest();
+    std::cout << MaryXml::getMaryDataTypeStr(MaryXml::MaryDataType::WORD)<< std::endl;
     //allophoneTest();
 }
