@@ -479,7 +479,7 @@ namespace cppmary {
         if (!nextSyllable.empty()) {
             return 0;
         }
-        pugi::xml_node sentence = MaryXml::getAncestor(syllable, "s");
+        pugi::xml_node sentence = MaryXml::getAncestor(syllable, MaryXml::SENTENCE);
         if (sentence.empty()) {
             return 0;
         }
@@ -496,7 +496,7 @@ namespace cppmary {
         for (int i = 0; i < nodes.size(); i++) {
             pugi::xml_node node = nodes[i];
             if (startPosition) {
-                if (strcmp(node.name(), "boundary") == 0 || ( (strcmp(node.name(), "t") == 0) && MaryXml::hasAttribute(node, "ph"))) {
+                if (strcmp(node.name(), MaryXml::BOUNDARY) == 0 || ( (strcmp(node.name(), MaryXml::TOKEN) == 0) && MaryXml::hasAttribute(node, "ph"))) {
                     nextNode = node;
                     break;
                 }

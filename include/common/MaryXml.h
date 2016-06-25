@@ -99,8 +99,22 @@ namespace cppmary {
         static pugi::xml_node encloseNodesWithNewElement(pugi::xml_node first, pugi::xml_node last, std::string newElementName);
         static const char* getMaryDataTypeStr(int enumVal);
 
-        enum MaryDataType {SEGMENT, SYLLABLE, WORD, PHRASE, SENTENCE,PARAGRAPH,BOUNDARY};
-        static const char * MaryDataTypeStr[];
+        static const char* MARYXML;
+        static const char* PARAGRAPH;
+        static const char* SENTENCE;
+        static const char* VOICE;
+        static const char* PHRASE;
+        static const char* MARK;
+        static const char* SAYAS;
+        static const char* PHONOLOGY;
+        static const char* PROSODY;
+        static const char* AUDIO;
+        static const char* BOUNDARY;
+        static const char* MTU;
+        static const char* TOKEN;
+        static const char* SYLLABLE;
+        static const char* PHONE;
+        static const char* NONVERBAL;
 
 
     };

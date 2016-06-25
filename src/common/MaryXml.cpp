@@ -5,11 +5,22 @@
 #include "common/MaryXml.h"
 
 namespace cppmary {
-    const char* MaryXml::MaryDataTypeStr[] = { "ph", "syllable", "t", "phrase", "s", "p", "boundary" };
-
-    const char* MaryXml::getMaryDataTypeStr(int enumVal) {
-        return MaryXml::MaryDataTypeStr[enumVal];
-    }
+    const char* MaryXml::MARYXML = "maryxml";
+    const char* MaryXml::PARAGRAPH = "p";
+    const char* MaryXml::SENTENCE = "s";
+    const char* MaryXml::VOICE = "voice";
+    const char* MaryXml::PHRASE = "phrase";
+    const char* MaryXml::MARK = "mark";
+    const char* MaryXml::SAYAS = "say-as";
+    const char* MaryXml::PHONOLOGY = "phonology";
+    const char* MaryXml::PROSODY = "prosody";
+    const char* MaryXml::AUDIO = "audio";
+    const char* MaryXml::BOUNDARY = "boundary";
+    const char* MaryXml::MTU = "mtu";
+    const char* MaryXml::TOKEN = "t";
+    const char* MaryXml::SYLLABLE = "syllable";
+    const char* MaryXml::PHONE = "ph";
+    const char* MaryXml::NONVERBAL = "vocalization";
 
     std::string MaryXml::getMaryXmlHeaderWithLocale(std::string locale) {
         return std::string("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n") + "<maryxml version=\"0.4\"\n"
