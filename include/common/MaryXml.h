@@ -26,6 +26,16 @@ namespace cppmary {
         std::vector<pugi::xml_node> nodes_;
     };
 
+    struct phrase_walker: pugi::xml_tree_walker {
+        virtual bool for_each(pugi::xml_node& node) {
+            if (node.type() == pugi::node_element && (strcmp(node.name(), "phrase") == 0)) {
+                nodes_.push_back(node);
+            }
+            return true;
+        }
+        std::vector<pugi::xml_node> nodes_;
+    };
+
     struct phone_boundary_walker: pugi::xml_tree_walker {
         virtual bool for_each(pugi::xml_node& node) {
             if (node.type() == pugi::node_element && ((strcmp(node.name(), "ph") == 0) || (strcmp(node.name(), "boundary") == 0)) ) {

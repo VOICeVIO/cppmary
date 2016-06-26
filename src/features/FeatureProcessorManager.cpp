@@ -75,8 +75,12 @@ namespace cppmary {
 
         addFeatureProcessor(new WordsFromPhraseStart("words_from_phrase_start", intValues, NULL));
         addFeatureProcessor(new WordsFromPhraseEnd("words_from_phrase_end", intValues, NULL));
+
         addFeatureProcessor(new WordsFromSentenceStart("words_from_sentence_start", intValues, NULL));
         addFeatureProcessor(new WordsFromSentenceEnd("words_from_sentence_end", intValues, NULL));
+
+        addFeatureProcessor(new PhrasesFromSentenceStart("phrases_from_sentence_start", intValues, NULL));
+        addFeatureProcessor(new PhrasesFromSentenceEnd("phrases_from_sentence_end", intValues, NULL));
 
         addFeatureProcessor(new SylBreak("syl_break", intValues, syllableNav));
 

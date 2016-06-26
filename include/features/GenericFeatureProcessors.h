@@ -219,6 +219,29 @@ namespace cppmary {
     };
 
     /*
+     * the phrase amount from sentence start
+     * @navigator: null
+     */
+    class PhrasesFromSentenceStart : public FeatureProcessor {
+    public:
+        PhrasesFromSentenceStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~PhrasesFromSentenceStart();
+        virtual int process(Target target);
+    };
+
+    /*
+     * the phrase amount from sentence end
+     * @navigator: null
+     */
+    class PhrasesFromSentenceEnd : public FeatureProcessor {
+    public:
+        PhrasesFromSentenceEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~PhrasesFromSentenceEnd();
+        virtual int process(Target target);
+    };
+
+
+    /*
      * the segment amount from syllable start
      * @navigator: null
      * @type: count

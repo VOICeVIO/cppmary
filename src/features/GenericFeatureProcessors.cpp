@@ -445,6 +445,70 @@ namespace cppmary {
         return count;
     }
 
+
+    /*
+     * the phrase amount from current sentence start
+     */
+    PhrasesFromSentenceStart::PhrasesFromSentenceStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    PhrasesFromSentenceStart::~PhrasesFromSentenceStart(){}
+
+    int PhrasesFromSentenceStart::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node sentence = MaryXml::getAncestor(segment, MaryXml::SENTENCE);
+        if (sentence.empty()) {
+            return 0;
+        }
+        pugi::xml_node current;
+        pugi::xml_node phrase = MaryXml::getAncestor(segment, MaryXml::PHRASE);
+        if (phrase.empty()) {
+            current = segment;
+        } else {
+            current = phrase;
+        }
+        phrase_walker tw;
+        sentence.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = countElementFromStart(nodes, current);
+        return count;
+    }
+
+    /*
+     * the phrase amount from current sentence end
+     */
+    PhrasesFromSentenceEnd::PhrasesFromSentenceEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    PhrasesFromSentenceEnd::~PhrasesFromSentenceEnd(){}
+
+    int PhrasesFromSentenceEnd::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node sentence = MaryXml::getAncestor(segment, MaryXml::SENTENCE);
+        if (sentence.empty()) {
+            return 0;
+        }
+        pugi::xml_node current;
+        pugi::xml_node phrase = MaryXml::getAncestor(segment, MaryXml::PHRASE);
+        if (phrase.empty()) {
+            current = segment;
+        } else {
+            current = phrase;
+        }
+        phrase_walker tw;
+        sentence.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = countElementToEnd(nodes, current);
+        return count;
+    }
+
+
     /*
      * the segment amount from syllable start
      */
