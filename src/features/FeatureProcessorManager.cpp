@@ -88,6 +88,9 @@ namespace cppmary {
         positionTypeValues.assign(POSITIONTYPE, POSITIONTYPE + POSITIONTYPE_NUM);
         addFeatureProcessor(new PositionType("position_type", positionTypeValues, syllableNav));
         addFeatureProcessor(new IsPause("is_pause", boolValues, NULL));
+        std::vector<std::string> puncValues;
+        puncValues.assign(PUNCUATION, PUNCUATION+PUNC_NUM);
+        addFeatureProcessor(new WordPunc("word_punc", puncValues, NULL));
 
     }
 

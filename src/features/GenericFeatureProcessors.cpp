@@ -769,7 +769,34 @@ namespace cppmary {
     }
 
 
+    /*
+     * determine the word puctuation
+     */
+    WordPunc::WordPunc(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
 
+    WordPunc::~WordPunc(){}
+
+    int WordPunc::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node word = MaryXml::getAncestor(segment, MaryXml::TOKEN);
+        pugi::xml_node sentence = MaryXml::getAncestor(segment, MaryXml::SENTENCE);
+        if (sentence.empty()) {
+            return 0;
+        }
+        pugi::xml_node nextToken = MaryXml::getNextSiblingElement(word);
+        if (nextToken.empty() || strcmp(nextToken.name(), MaryXml::TOKEN) || MaryXml::hasAttribute(nextToken, "ph")) {
+            return 0;
+        }
+        std::string text = nextToken.child_value();
+        text = trim(text);
+        std::cout << text << std::endl;
+        return translator_.getValue(text);
+        
+    }
 
 
 }

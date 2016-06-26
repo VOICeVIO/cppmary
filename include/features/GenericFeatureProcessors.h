@@ -16,6 +16,7 @@ namespace cppmary {
     const int ZHPOS_NUM = 46;
     const int TOBIACCENT_NUM = 20;
     const int POSITIONTYPE_NUM = 5;
+    const int PUNC_NUM = 10;
     const std::string ZHTONES[ZHTONE_NUM] = {"0", "1", "2", "3", "4", "5"};
     const std::string ZHPOS[ZHPOS_NUM] = { "0", "AG", "A", "AD", "AN", "B", "C", "DG", "D", "E",
                                     "F", "G", "H", "I", "J", "K", "L", "M", "NG", "N",
@@ -25,7 +26,7 @@ namespace cppmary {
     const std::string TOBIACCENTS[TOBIACCENT_NUM] = { "0", "*", "H*", "!H*", "^H*", "L*", "L+H*", "L*+H", "L+!H*", "L*+!H", 
         "L+^H*", "L*+^H", "H+L*", "H+!H*", "H+^H*", "!H+!H*", "^H+!H*", "^H+^H*", "H*+L", "!H*+L" };
     const std::string POSITIONTYPE[POSITIONTYPE_NUM] = {"0", "single", "final", "initial", "mid"};
-
+    const std::string PUNCUATION[PUNC_NUM] = { "0", ".", ",", ";", ":", "(", ")", "?", "!", "\"" };
 
     /*
      * the token syllable of current phrase
@@ -343,6 +344,16 @@ namespace cppmary {
     public:
         IsPause(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
         virtual ~IsPause();
+        virtual int process(Target target);
+    };
+
+    /*
+     * determine the word puctuation
+     */
+    class WordPunc : public FeatureProcessor {
+    public:
+        WordPunc(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~WordPunc();
         virtual int process(Target target);
     };
 
