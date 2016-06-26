@@ -377,6 +377,28 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+     * determine distance to next punctuation in the sentence
+     * @navigator: word
+     */
+    class WordsToNextPunctuation : public FeatureProcessor {
+    public:
+        WordsToNextPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~WordsToNextPunctuation();
+        virtual int process(Target target);
+    };
+
+    /*
+     * determine distance to prev punctuation in the sentence
+     * @navigator: word
+     */
+    class WordsToPrevPunctuation : public FeatureProcessor {
+    public:
+        WordsToPrevPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~WordsToPrevPunctuation();
+        virtual int process(Target target);
+    };
+
 }
 
 

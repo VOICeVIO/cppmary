@@ -94,6 +94,9 @@ namespace cppmary {
         addFeatureProcessor(new NextPunctuation("next_punc", puncValues, NULL));
         addFeatureProcessor(new PrevPunctuation("prev_punc", puncValues, NULL));
 
+        addFeatureProcessor(new WordsToNextPunctuation("words_to_next_punc", intValues, wordNav));
+        addFeatureProcessor(new WordsToPrevPunctuation("words_to_prev_punc", intValues, wordNav));
+
     }
 
     void FeatureProcessorManager::addFeatureProcessor(FeatureProcessor * fp) {
