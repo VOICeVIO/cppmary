@@ -15,6 +15,7 @@ namespace cppmary {
     const int ZHTONE_NUM = 6;
     const int ZHPOS_NUM = 46;
     const int TOBIACCENT_NUM = 20;
+    const int POSITIONTYPE_NUM = 5;
     const std::string ZHTONES[ZHTONE_NUM] = {"0", "1", "2", "3", "4", "5"};
     const std::string ZHPOS[ZHPOS_NUM] = { "0", "AG", "A", "AD", "AN", "B", "C", "DG", "D", "E",
                                     "F", "G", "H", "I", "J", "K", "L", "M", "NG", "N",
@@ -23,6 +24,7 @@ namespace cppmary {
                                     "NL","NW","VF","VX","VI","VL" };
     const std::string TOBIACCENTS[TOBIACCENT_NUM] = { "0", "*", "H*", "!H*", "^H*", "L*", "L+H*", "L*+H", "L+!H*", "L*+!H", 
         "L+^H*", "L*+^H", "H+L*", "H+!H*", "H+^H*", "!H+!H*", "^H+!H*", "^H+^H*", "H*+L", "!H*+L" };
+    const std::string POSITIONTYPE[POSITIONTYPE_NUM] = {"0", "single", "final", "initial", "mid"};
 
 
     /*
@@ -61,8 +63,7 @@ namespace cppmary {
     /*
      * the segment amount of current token
      * @navigator: null
-     */
-    class WordNumSegs : public FeatureProcessor  {
+     */ class WordNumSegs : public FeatureProcessor  {
     public:
         WordNumSegs(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
         virtual ~WordNumSegs();
@@ -256,7 +257,16 @@ namespace cppmary {
     };
 
 
-
+    /*
+     * classifies the syllable as "single", "final", "initial" or "mid"
+     * @navigator: syllableNavigator
+     */
+    class PositionType : public FeatureProcessor {
+    public:
+        PositionType(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~PositionType();
+        virtual int process(Target target);
+    };
 
 
 }

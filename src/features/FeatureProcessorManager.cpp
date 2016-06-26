@@ -75,6 +75,10 @@ namespace cppmary {
 
         addFeatureProcessor(new SylBreak("syl_break", intValues, syllableNav));
 
+        std::vector<std::string> positionTypeValues;
+        positionTypeValues.assign(POSITIONTYPE, POSITIONTYPE + POSITIONTYPE_NUM);
+        addFeatureProcessor(new PositionType("position_type", positionTypeValues, syllableNav));
+
     }
 
     void FeatureProcessorManager::addFeatureProcessor(FeatureProcessor * fp) {

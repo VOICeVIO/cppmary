@@ -527,6 +527,34 @@ namespace cppmary {
     }
         
 
+    /*
+     * classifies the syllable as "single", "final", "initial" or "mid"
+     */
+    PositionType::PositionType(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    PositionType::~PositionType(){}
+
+    int PositionType::process(Target target) {
+        pugi::xml_node syllable = navigator_->getElement(target);
+        if (syllable.empty()) {
+            return 0;
+        }
+        std::string type;
+        if (MaryXml::getNextSiblingElement(syllable).empty()) {
+            if (MaryXml::getPrevSiblingElement(syllable).empty()) {
+                type = "single";
+            } else {
+                type = "final";
+            }
+        } else if (MaryXml::getPrevSiblingElement(syllable).empty()) {
+            type = "initial";
+        } else {
+            type = "mid";
+        }
+        return translator_.getValue(type);
+    }
+
 
 
 
