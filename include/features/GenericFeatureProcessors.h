@@ -174,6 +174,51 @@ namespace cppmary {
     };
 
     /*
+     * the word amount from phrase start
+     * @navigator: null
+     */
+    class WordsFromPhraseStart : public FeatureProcessor {
+    public:
+        WordsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~WordsFromPhraseStart();
+        virtual int process(Target target);
+    };
+
+
+    /*
+     * the word amount from phrase end
+     * @navigator: null
+     */
+    class WordsFromPhraseEnd : public FeatureProcessor {
+    public:
+        WordsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~WordsFromPhraseEnd();
+        virtual int process(Target target);
+    };
+
+    /*
+     * the word amount from sentence start
+     * @navigator: null
+     */
+    class WordsFromSentenceStart : public FeatureProcessor {
+    public:
+        WordsFromSentenceStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~WordsFromSentenceStart();
+        virtual int process(Target target);
+    };
+
+    /*
+     * the word amount from sentence end
+     * @navigator: null
+     */
+    class WordsFromSentenceEnd : public FeatureProcessor {
+    public:
+        WordsFromSentenceEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~WordsFromSentenceEnd();
+        virtual int process(Target target);
+    };
+
+    /*
      * the segment amount from syllable start
      * @navigator: null
      * @type: count
@@ -268,6 +313,15 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+     * check if segment is pause
+     */
+    class IsPause : public FeatureProcessor {
+    public:
+        IsPause(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~IsPause();
+        virtual int process(Target target);
+    };
 
 }
 

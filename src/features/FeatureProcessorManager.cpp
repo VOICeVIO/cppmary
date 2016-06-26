@@ -73,11 +73,17 @@ namespace cppmary {
         addFeatureProcessor(new SylsFromPhraseStart("syls_from_phrase_start", intValues, syllableNav));
         addFeatureProcessor(new SylsFromPhraseEnd("syls_from_phrase_end", intValues, syllableNav));
 
+        addFeatureProcessor(new WordsFromPhraseStart("words_from_phrase_start", intValues, NULL));
+        addFeatureProcessor(new WordsFromPhraseEnd("words_from_phrase_end", intValues, NULL));
+        addFeatureProcessor(new WordsFromSentenceStart("words_from_sentence_start", intValues, NULL));
+        addFeatureProcessor(new WordsFromSentenceEnd("words_from_sentence_end", intValues, NULL));
+
         addFeatureProcessor(new SylBreak("syl_break", intValues, syllableNav));
 
         std::vector<std::string> positionTypeValues;
         positionTypeValues.assign(POSITIONTYPE, POSITIONTYPE + POSITIONTYPE_NUM);
         addFeatureProcessor(new PositionType("position_type", positionTypeValues, syllableNav));
+        addFeatureProcessor(new IsPause("is_pause", boolValues, NULL));
 
     }
 

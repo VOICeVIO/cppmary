@@ -317,6 +317,135 @@ namespace cppmary {
     }
 
     /*
+     * the word amount from current phrase start
+     */
+    WordsFromPhraseStart::WordsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    WordsFromPhraseStart::~WordsFromPhraseStart(){}
+
+    int WordsFromPhraseStart::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node phrase = MaryXml::getAncestor(segment, MaryXml::PHRASE);
+        if (phrase.empty()) {
+            return 0;
+        }
+        pugi::xml_node current;
+        pugi::xml_node word = MaryXml::getAncestor(segment, MaryXml::TOKEN);
+        if (word.empty()) {
+            current = segment;
+        } else {
+            current = word;
+        }
+        //token_boundary_walker tw; //diff from marytts for boundary
+        token_walker tw;
+        phrase.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = countElementFromStart(nodes, current);
+        return count;
+    }
+
+    /*
+     * the word amount from current phrase end
+     */
+    WordsFromPhraseEnd::WordsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    WordsFromPhraseEnd::~WordsFromPhraseEnd(){}
+
+    int WordsFromPhraseEnd::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node phrase = MaryXml::getAncestor(segment, MaryXml::PHRASE);
+        if (phrase.empty()) {
+            return 0;
+        }
+        pugi::xml_node current;
+        pugi::xml_node word = MaryXml::getAncestor(segment, MaryXml::TOKEN);
+        if (word.empty()) {
+            current = segment;
+        } else {
+            current = word;
+        }
+        token_walker tw;
+        //token_boundary_walker tw; //diff from marytts for boundary
+        phrase.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = countElementToEnd(nodes, current);
+        return count;
+    }
+
+    /*
+     * the word amount from current sentence start
+     */
+    WordsFromSentenceStart::WordsFromSentenceStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    WordsFromSentenceStart::~WordsFromSentenceStart(){}
+
+    int WordsFromSentenceStart::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node sentence = MaryXml::getAncestor(segment, MaryXml::SENTENCE);
+        if (sentence.empty()) {
+            return 0;
+        }
+        pugi::xml_node current;
+        pugi::xml_node word = MaryXml::getAncestor(segment, MaryXml::TOKEN);
+        if (word.empty()) {
+            current = segment;
+        } else {
+            current = word;
+        }
+        token_walker tw;
+        //token_boundary_walker tw; //diff from marytts for boundary
+        sentence.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = countElementFromStart(nodes, current);
+        return count;
+    }
+
+
+    /*
+     * the word amount from current sentence end
+     */
+    WordsFromSentenceEnd::WordsFromSentenceEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    WordsFromSentenceEnd::~WordsFromSentenceEnd(){}
+
+    int WordsFromSentenceEnd::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node sentence = MaryXml::getAncestor(segment, MaryXml::SENTENCE);
+        if (sentence.empty()) {
+            return 0;
+        }
+        pugi::xml_node current;
+        pugi::xml_node word = MaryXml::getAncestor(segment, MaryXml::TOKEN);
+        if (word.empty()) {
+            current = segment;
+        } else {
+            current = word;
+        }
+        token_walker tw;
+        //token_boundary_walker tw; //diff from marytts for boundary
+        sentence.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        int count = countElementToEnd(nodes, current);
+        return count;
+    }
+
+    /*
      * the segment amount from syllable start
      */
     SegsFromSylStart::SegsFromSylStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
@@ -556,6 +685,24 @@ namespace cppmary {
     }
 
 
+    /*
+     * check if segment is pause
+     */
+    IsPause::IsPause(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    IsPause::~IsPause(){}
+
+    int IsPause::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        if (strcmp(segment.name(), MaryXml::BOUNDARY) == 0) {
+            return 1;
+        }
+        return 0;
+    }
 
 
 
