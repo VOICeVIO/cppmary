@@ -91,6 +91,8 @@ namespace cppmary {
         std::vector<std::string> puncValues;
         puncValues.assign(PUNCUATION, PUNCUATION+PUNC_NUM);
         addFeatureProcessor(new WordPunc("word_punc", puncValues, NULL));
+        addFeatureProcessor(new NextPunctuation("next_punc", puncValues, NULL));
+        addFeatureProcessor(new PrevPunctuation("prev_punc", puncValues, NULL));
 
     }
 

@@ -357,6 +357,26 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+     * determine the next word puctuation
+     */
+    class NextPunctuation : public FeatureProcessor {
+    public:
+        NextPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~NextPunctuation();
+        virtual int process(Target target);
+    };
+
+    /*
+     * determine the next word puctuation
+     */
+    class PrevPunctuation : public FeatureProcessor {
+    public:
+        PrevPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~PrevPunctuation();
+        virtual int process(Target target);
+    };
+
 }
 
 

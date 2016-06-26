@@ -793,10 +793,90 @@ namespace cppmary {
         }
         std::string text = nextToken.child_value();
         text = trim(text);
-        std::cout << text << std::endl;
         return translator_.getValue(text);
-        
     }
+
+    /*
+     * determine the next word puctuation
+     */
+    NextPunctuation::NextPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    NextPunctuation::~NextPunctuation(){}
+
+    int NextPunctuation::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node word = MaryXml::getAncestor(segment, MaryXml::TOKEN);
+        pugi::xml_node sentence = MaryXml::getAncestor(segment, MaryXml::SENTENCE);
+        if (sentence.empty()) {
+            return 0;
+        }
+
+        token_punc_walker tw;
+        sentence.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        bool startPosition = false;
+        for (int i = 0; i < nodes.size(); i++) {
+            pugi::xml_node node = nodes[i];
+            if (startPosition) {
+                if (MaryXml::hasAttribute(node, "ph")) {
+                    continue;
+                }
+                std::string text = node.child_value();
+                text = trim(text);
+                return translator_.getValue(text);
+            }
+            if (node == word) {
+                startPosition = true;
+            }
+        }
+        return 0;
+    }
+
+
+    /*
+     * determine the prev word puctuation
+     */
+    PrevPunctuation::PrevPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    PrevPunctuation::~PrevPunctuation(){}
+
+    int PrevPunctuation::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node word = MaryXml::getAncestor(segment, MaryXml::TOKEN);
+        pugi::xml_node sentence = MaryXml::getAncestor(segment, MaryXml::SENTENCE);
+        if (sentence.empty()) {
+            return 0;
+        }
+        token_punc_walker tw;
+        sentence.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        bool startPosition = false;
+        for (int i = nodes.size()-1; i >= 0; i--) {
+            pugi::xml_node node = nodes[i];
+            if (startPosition) {
+                if (MaryXml::hasAttribute(node, "ph")) {
+                    continue;
+                }
+                std::string text = node.child_value();
+                text = trim(text);
+                return translator_.getValue(text);
+            }
+            if (node == word) {
+                startPosition = true;
+            }
+        }
+        return 0;
+    }
+
+
 
 
 }
