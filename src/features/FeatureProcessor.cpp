@@ -34,17 +34,19 @@ namespace cppmary {
 
     int FeatureProcessor::countElementFromStart(std::vector<pugi::xml_node> nodes, pugi::xml_node current, std::string attrCondition) {
         int count = 0;
+        int tempCount = 0;
         for (int i = 0; i < nodes.size(); i++) {
             pugi::xml_node node = nodes[i];
             bool isBuffer = true;
             if (!attrCondition.empty()) {
                 isBuffer = MaryXml::hasAttribute(node, attrCondition);
             }
-            if (!node.empty() && isBuffer) {
-                count++;
-            }
             if (node == current || count >= RAIL_LIMIT) {
+                count = tempCount;
                 break;
+            }
+            if (!node.empty() && isBuffer) {
+                tempCount++;
             }
         }
         return count;

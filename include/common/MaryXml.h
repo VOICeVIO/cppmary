@@ -17,7 +17,8 @@ namespace cppmary {
 
     struct token_walker: pugi::xml_tree_walker {
         virtual bool for_each(pugi::xml_node& node) {
-            if (node.type() == pugi::node_element && (strcmp(node.name(), "t") == 0)) {
+            //if (node.type() == pugi::node_element && (strcmp(node.name(), "t") == 0)) {
+            if (node.type() == pugi::node_element && (strcmp(node.name(), "t") == 0 && !(std::string(node.attribute("ph").as_string()).empty()))) {
                 nodes_.push_back(node);
             }
             return true;
@@ -37,7 +38,8 @@ namespace cppmary {
     
     struct token_boundary_walker: pugi::xml_tree_walker {
         virtual bool for_each(pugi::xml_node& node) {
-            if (node.type() == pugi::node_element && ((strcmp(node.name(), "t") == 0) || (strcmp(node.name(), "boundary") == 0)) ) {
+            //if (node.type() == pugi::node_element && ((strcmp(node.name(), "t") == 0) || (strcmp(node.name(), "boundary") == 0)) ) {
+            if (node.type() == pugi::node_element && ((strcmp(node.name(), "t") == 0 && !(std::string(node.attribute("ph").as_string()).empty())) || strcmp(node.name(), "boundary") == 0)) {
                 nodes_.push_back(node);
             }
             return true;
