@@ -349,6 +349,17 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+    * determinines the breakindex
+    * @navigator: syllableNavigator
+    */
+    class BreakIndex : public FeatureProcessor {
+    public:
+        BreakIndex(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~BreakIndex();
+        virtual int process(Target target);
+    };
+
 
     /*
      * classifies the syllable as "single", "final", "initial" or "mid"

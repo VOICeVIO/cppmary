@@ -761,11 +761,93 @@ namespace cppmary {
         if (biIndex.empty()) {
             return 1;
         }
-        int bi = std::stoi(biIndex);
-        if (bi >= 4) {
+        try {
+            int bi = std::stoi(biIndex);
+            if (bi >= 4) {
+                return 4;
+            } else if (bi == 3) {
+                return 3;
+            }
+        } catch (std::exception e) {
+            XLOG(ERROR) << e.what() << std::endl;
+        }
+        return 1;
+    }
+
+    /*
+     * determinines the breakIndex
+     */
+    BreakIndex::BreakIndex(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    BreakIndex::~BreakIndex(){}
+
+    int BreakIndex::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node word = MaryXml::getAncestor(segment, MaryXml::TOKEN);
+        if (word.empty()) {
+            return 0;
+        }
+        //pugi::xml_node nextPhone = MaryXml::getNextSiblingElement(segment);
+        phone_walker phoneTw;
+        word.traverse(phoneTw);
+        pugi::xml_node nextPhone;
+        int index = 0;
+        std::vector<pugi::xml_node> phoneNodes = phoneTw.nodes_;
+        for (int i = phoneNodes.size()-2; i >= 0; i--) {
+            pugi::xml_node node = phoneNodes[i];
+            if (node == segment) {
+                index = i + 1;
+            }
+        }
+        if (index != 0) {
+            return 0;
+        }
+        pugi::xml_node sentence = MaryXml::getAncestor(segment, MaryXml::SENTENCE);
+        if (sentence.empty()) {
+            return 0;
+        }
+        token_boundary_walker tw;
+        sentence.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        bool startPosition = false;
+        pugi::xml_node nextNode;
+        for (int i = 0; i < nodes.size(); i++) {
+            pugi::xml_node node = nodes[i];
+            if (startPosition) {
+                if (strcmp(node.name(), MaryXml::BOUNDARY) == 0 || ( (strcmp(node.name(), MaryXml::TOKEN) == 0) && MaryXml::hasAttribute(node, "ph"))) {
+                    nextNode = node;
+                    break;
+                }
+            }
+            if (nodes[i] == word) {
+                startPosition = true;
+            }
+        }
+
+        if (nextNode.empty()) {
             return 4;
-        } else if(bi == 3) {
-            return 3;
+        }
+        if (strcmp(nextNode.name(), "t") == 0) {
+            return 1;
+        }
+        std::string biIndex = nextNode.attribute("breakindex").as_string();
+        if (biIndex.empty()) {
+            return 1;
+        }
+        try {
+            int bi = std::stoi(biIndex);
+            if (bi > 6) {
+                bi = 6;
+            } else if (bi < 3) {
+                bi = 2;
+            }
+            return bi;
+        } catch (std::exception e) {
+            XLOG(ERROR) << e.what() << std::endl;
         }
         return 1;
     }

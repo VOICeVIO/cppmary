@@ -108,6 +108,7 @@ namespace cppmary {
 
         addFeatureProcessor(new SylBreak("syl_break", intValues, syllableNav));
         addFeatureProcessor(new SylBreak("prev_syl_break", intValues, prevSyllableNav));
+        addFeatureProcessor(new BreakIndex("breakindex", intValues, syllableNav));
 
         std::vector<std::string> positionTypeValues;
         positionTypeValues.assign(POSITIONTYPE, POSITIONTYPE + POSITIONTYPE_NUM);
