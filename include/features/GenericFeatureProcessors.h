@@ -83,6 +83,30 @@ namespace cppmary {
     };
 
     /*
+     * the phrase amount of current sentence
+     * @navigator: null
+     */
+    class SentenceNumPhrases : public FeatureProcessor  {
+    public:
+        SentenceNumPhrases(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~SentenceNumPhrases();
+        virtual int process(Target target);
+    };
+
+
+    /*
+     * the word amount of current sentence
+     * @navigator: null
+     */
+    class SentenceNumWords : public FeatureProcessor  {
+    public:
+        SentenceNumWords(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~SentenceNumWords();
+        virtual int process(Target target);
+    };
+
+
+    /*
      * The Tobi accent of current syllable
      * @navigator: syllableNavigator
      */
@@ -349,6 +373,7 @@ namespace cppmary {
 
     /*
      * determine the word puctuation
+     * @navigator: lastWordNavigator
      */
     class WordPunc : public FeatureProcessor {
     public:

@@ -29,8 +29,13 @@ namespace cppmary {
             intValues.push_back(std::to_string(i));
         }
         addFeatureProcessor(new PhraseNumSyls("phrase_numsyls", intValues, NULL));
-        addFeatureProcessor(new SegsFromSylStart("segs_from_syl_start", intValues, NULL));
-        addFeatureProcessor(new SegsFromSylEnd("segs_from_syl_end", intValues, NULL));
+        addFeatureProcessor(new PhraseNumWords("phrase_numwords", intValues, NULL));
+        addFeatureProcessor(new SentenceNumPhrases("sentence_numphrases", intValues, NULL));
+        addFeatureProcessor(new SentenceNumWords("sentence_numwords", intValues, NULL));
+
+        addFeatureProcessor(new SylNumSegs("syl_numsegs", intValues, NULL));
+        addFeatureProcessor(new WordNumSegs("word_numsegs", intValues, NULL));
+        addFeatureProcessor(new WordNumSyls("word_numsyls", intValues, NULL));
         std::vector<std::string> zhToneValues;
         zhToneValues.assign(ZHTONES, ZHTONES+ZHTONE_NUM);
         TargetElementNavigator* syllableNav = new SyllableNavigator();
@@ -39,39 +44,58 @@ namespace cppmary {
         TargetElementNavigator* nextSyllableNav = new NextSyllableNavigator();
         TargetElementNavigator* nextnextSyllableNav = new NextNextSyllableNavigator();
         TargetElementNavigator* wordNav = new WordNavigator();
+        TargetElementNavigator* nextWordNav = new WordNavigator();
+        TargetElementNavigator* prevWordNav =  new WordNavigator();
         TargetElementNavigator* firstSylInWord = new FirstSyllableInWordNavigator();
         TargetElementNavigator* lastSylInPhrase = new LastSyllableInPhraseNavigator();
-        addFeatureProcessor(new Zhtone("zhtone", zhToneValues, syllableNav));
-        addFeatureProcessor(new Zhtone("prev_zhtone", zhToneValues, prevSyllableNav));
+        TargetElementNavigator* segmentNav = new SegmentNavigator();
+        TargetElementNavigator* prevSegmentNav = new PrevSegmentNavigator();
+        TargetElementNavigator* nextSegmentNav = new NextSegmentNavigator();
+        TargetElementNavigator* lastWordNav = new LastWordInSentenceNavigator();
+        addFeatureProcessor(new Zhtone("zh_tone", zhToneValues, syllableNav));
+        addFeatureProcessor(new Zhtone("prev_zh_tone", zhToneValues, prevSyllableNav));
         addFeatureProcessor(new Zhtone("next_zhtone", zhToneValues, nextSyllableNav));
-        addFeatureProcessor(new Zhtone("nextnext_zhtone", zhToneValues, nextnextSyllableNav));
+        addFeatureProcessor(new Zhtone("nextnext_zh_tone", zhToneValues, nextnextSyllableNav));
         addFeatureProcessor(new Zhtone("prevprev_zhtone", zhToneValues, prevPrevSyllableNav));
         addFeatureProcessor(new Zhtone("phrase_zhtone", zhToneValues, lastSylInPhrase));
 
 
         std::vector<std::string> tobiValues;
         tobiValues.assign(TOBIACCENTS, TOBIACCENTS+TOBIACCENT_NUM);
-        addFeatureProcessor(new TobiAccent("tobiAccent", tobiValues, syllableNav));
-        addFeatureProcessor(new TobiAccent("prev_tobiAccent", tobiValues, prevSyllableNav));
-        addFeatureProcessor(new TobiAccent("prevprev_tobiAccent", tobiValues, prevPrevSyllableNav));
-        addFeatureProcessor(new TobiAccent("next_tobiAccent", tobiValues, nextSyllableNav));
-        addFeatureProcessor(new TobiAccent("nextnext_tobiAccent", tobiValues, nextnextSyllableNav));
+        addFeatureProcessor(new TobiAccent("tobi_accent", tobiValues, syllableNav));
+        addFeatureProcessor(new TobiAccent("prev_accent", tobiValues, prevSyllableNav)); //注意这里是tobi accent
+        addFeatureProcessor(new TobiAccent("next_accent", tobiValues, prevPrevSyllableNav));
+        addFeatureProcessor(new TobiAccent("next_tobi_accent", tobiValues, nextSyllableNav));
+        addFeatureProcessor(new TobiAccent("nextnext_tobi_accent", tobiValues, nextnextSyllableNav));
 
         std::vector<std::string> posValues;
         posValues.assign(ZHPOS, ZHPOS+ZHPOS_NUM);
         addFeatureProcessor(new Pos("pos", posValues, wordNav));
+        addFeatureProcessor(new Pos("next_pos", posValues, nextWordNav));
+        addFeatureProcessor(new Pos("prev_pos", posValues, prevWordNav));
 
         std::vector<std::string> boolValues;
         boolValues.push_back("0");
         boolValues.push_back("1");
         addFeatureProcessor(new Accented("accented", boolValues, syllableNav));
-        addFeatureProcessor(new Accented("prev_accent", boolValues, prevSyllableNav));
+        //addFeatureProcessor(new Accented("prev_accent", boolValues, prevSyllableNav));
+        //addFeatureProcessor(new Accented("next_accent", boolValues, nextSyllableNav));
         addFeatureProcessor(new AccentedSylsFromPhraseStart("accented_syls_from_phrase_start", intValues, syllableNav));
         addFeatureProcessor(new AccentedSylsFromPhraseEnd("accented_syls_from_phrase_end", intValues, syllableNav));
         addFeatureProcessor(new SylsFromPrevAccented("syls_from_prev_accent", intValues, syllableNav));
+        addFeatureProcessor(new SylsToNextAccented("syls_to_next_accent", intValues, syllableNav));
+
+        addFeatureProcessor(new SegsFromSylStart("segs_from_syl_start", intValues, NULL));
+        addFeatureProcessor(new SegsFromSylEnd("segs_from_syl_end", intValues, NULL));
+
+        addFeatureProcessor(new SegsFromWordStart("segs_from_word_start", intValues, NULL));
+        addFeatureProcessor(new SegsFromWordEnd("segs_from_word_end", intValues, NULL));
 
         addFeatureProcessor(new SylsFromPhraseStart("syls_from_phrase_start", intValues, syllableNav));
         addFeatureProcessor(new SylsFromPhraseEnd("syls_from_phrase_end", intValues, syllableNav));
+
+        addFeatureProcessor(new SylsFromWordStart("syls_from_word_start", intValues, syllableNav));
+        addFeatureProcessor(new SylsFromWordEnd("syls_from_word_end", intValues, syllableNav));
 
         addFeatureProcessor(new WordsFromPhraseStart("words_from_phrase_start", intValues, NULL));
         addFeatureProcessor(new WordsFromPhraseEnd("words_from_phrase_end", intValues, NULL));
@@ -83,19 +107,22 @@ namespace cppmary {
         addFeatureProcessor(new PhrasesFromSentenceEnd("phrases_from_sentence_end", intValues, NULL));
 
         addFeatureProcessor(new SylBreak("syl_break", intValues, syllableNav));
+        addFeatureProcessor(new SylBreak("prev_syl_break", intValues, prevSyllableNav));
 
         std::vector<std::string> positionTypeValues;
         positionTypeValues.assign(POSITIONTYPE, POSITIONTYPE + POSITIONTYPE_NUM);
         addFeatureProcessor(new PositionType("position_type", positionTypeValues, syllableNav));
-        addFeatureProcessor(new IsPause("is_pause", boolValues, NULL));
+        addFeatureProcessor(new IsPause("is_pause", boolValues, segmentNav));
+        addFeatureProcessor(new IsPause("prev_is_pause", boolValues, prevSegmentNav));
+        addFeatureProcessor(new IsPause("next_is_pause", boolValues, nextSegmentNav));
         std::vector<std::string> puncValues;
         puncValues.assign(PUNCUATION, PUNCUATION+PUNC_NUM);
-        addFeatureProcessor(new WordPunc("word_punc", puncValues, NULL));
-        addFeatureProcessor(new NextPunctuation("next_punc", puncValues, NULL));
-        addFeatureProcessor(new PrevPunctuation("prev_punc", puncValues, NULL));
+        addFeatureProcessor(new WordPunc("sentence_punc", puncValues, lastWordNav));
+        addFeatureProcessor(new NextPunctuation("next_punctuation", puncValues, NULL));
+        addFeatureProcessor(new PrevPunctuation("prev_punctuation", puncValues, NULL));
 
-        addFeatureProcessor(new WordsToNextPunctuation("words_to_next_punc", intValues, wordNav));
-        addFeatureProcessor(new WordsToPrevPunctuation("words_to_prev_punc", intValues, wordNav));
+        addFeatureProcessor(new WordsToNextPunctuation("words_to_next_punctuation", intValues, wordNav));
+        addFeatureProcessor(new WordsToPrevPunctuation("words_from_prev_punctuation", intValues, wordNav));
 
     }
 

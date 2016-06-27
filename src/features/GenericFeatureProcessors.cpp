@@ -135,6 +135,57 @@ namespace cppmary {
     }
 
     /*
+     * the phrase amount of current sentence
+     */
+    SentenceNumPhrases::SentenceNumPhrases(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+                FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    SentenceNumPhrases::~SentenceNumPhrases() {
+    }
+
+    int SentenceNumPhrases::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node sentence = MaryXml::getAncestor(segment, MaryXml::SENTENCE);
+        if (sentence.empty()) {
+            return 0;
+        }
+        phrase_walker tw;
+        sentence.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
+    }
+
+    /*
+     * the word amount of current sentence
+     */
+    SentenceNumWords::SentenceNumWords(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+                FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    SentenceNumWords::~SentenceNumWords() {
+    }
+
+    int SentenceNumWords::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node sentence = MaryXml::getAncestor(segment, MaryXml::SENTENCE);
+        if (sentence.empty()) {
+            return 0;
+        }
+        token_walker tw;
+        sentence.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
+    }
+
+
+    /*
      * The Tobi accent of current syllable
      */
     TobiAccent::TobiAccent(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
@@ -758,7 +809,7 @@ namespace cppmary {
     IsPause::~IsPause(){}
 
     int IsPause::process(Target target) {
-        pugi::xml_node segment = target.getMaryElement();
+        pugi::xml_node segment = navigator_->getElement(target);
         if (segment.empty()) {
             return 0;
         }
@@ -778,12 +829,8 @@ namespace cppmary {
     WordPunc::~WordPunc(){}
 
     int WordPunc::process(Target target) {
-        pugi::xml_node segment = target.getMaryElement();
-        if (segment.empty()) {
-            return 0;
-        }
-        pugi::xml_node word = MaryXml::getAncestor(segment, MaryXml::TOKEN);
-        pugi::xml_node sentence = MaryXml::getAncestor(segment, MaryXml::SENTENCE);
+        pugi::xml_node word = navigator_->getElement(target);
+        pugi::xml_node sentence = MaryXml::getAncestor(word, MaryXml::SENTENCE);
         if (sentence.empty()) {
             return 0;
         }

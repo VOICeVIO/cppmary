@@ -83,6 +83,18 @@ namespace cppmary {
         return prevElement(nodes, segment);
     }
 
+    pugi::xml_node NextSegmentNavigator::getElement(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return pugi::xml_node();
+        }
+        cppmary::phone_boundary_walker tw;
+        pugi::xml_node doc = segment.root();
+        doc.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        return nextElement(nodes, segment);
+    }
+
     pugi::xml_node SyllableNavigator::getElement(Target target) {
         pugi::xml_node segment = target.getMaryElement();
         if (segment.empty() || strcmp(segment.name(), "ph")) {
@@ -343,5 +355,21 @@ namespace cppmary {
         }
         return last;
     }
+
+    pugi::xml_node LastWordInSentenceNavigator::getElement(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return pugi::xml_node();
+        }
+        pugi::xml_node sentence = MaryXml::getAncestor(segment, MaryXml::SENTENCE);
+        token_walker tw;
+        sentence.traverse(tw);
+        pugi::xml_node last = tw.nodes_.back();
+        if (last.empty()) {
+            return pugi::xml_node();
+        }
+        return last;
+    }
+
 
 }

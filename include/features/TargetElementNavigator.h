@@ -28,6 +28,11 @@ namespace cppmary {
             pugi::xml_node getElement(Target target);
     };
 
+    class NextSegmentNavigator : public TargetElementNavigator {
+    public:
+        pugi::xml_node getElement(Target target);
+    };
+
     class WordNavigator : public TargetElementNavigator {
     public:
         pugi::xml_node getElement(Target target);
@@ -79,6 +84,11 @@ namespace cppmary {
     };
 
     class FirstSyllableInWordNavigator : public TargetElementNavigator {
+    public:
+        pugi::xml_node getElement(Target target);
+    };
+
+    class LastWordInSentenceNavigator : public TargetElementNavigator {
     public:
         pugi::xml_node getElement(Target target);
     };
