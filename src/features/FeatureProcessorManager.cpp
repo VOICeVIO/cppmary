@@ -63,10 +63,12 @@ namespace cppmary {
         std::vector<std::string> tobiValues;
         tobiValues.assign(TOBIACCENTS, TOBIACCENTS+TOBIACCENT_NUM);
         addFeatureProcessor(new TobiAccent("tobi_accent", tobiValues, syllableNav));
-        addFeatureProcessor(new TobiAccent("prev_accent", tobiValues, prevSyllableNav)); //注意这里是tobi accent
+        addFeatureProcessor(new TobiAccent("prev_tobi_accent", tobiValues, prevSyllableNav)); //注意这里是tobi accent
         addFeatureProcessor(new TobiAccent("prevprev_tobi_accent", tobiValues, prevPrevSyllableNav));
-        addFeatureProcessor(new TobiAccent("next_accent", tobiValues, nextSyllableNav));
+        addFeatureProcessor(new TobiAccent("next_tobi_accent", tobiValues, nextSyllableNav));
         addFeatureProcessor(new TobiAccent("nextnext_tobi_accent", tobiValues, nextnextSyllableNav));
+        addFeatureProcessor(new TobiAccent("prev_accent", tobiValues, prevSyllableNav)); //注意这里是tobi accent
+        addFeatureProcessor(new TobiAccent("next_accent", tobiValues, nextSyllableNav));
 
         std::vector<std::string> posValues;
         posValues.assign(ZHPOS, ZHPOS+ZHPOS_NUM);

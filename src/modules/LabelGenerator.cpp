@@ -62,6 +62,7 @@ namespace cppmary {
                 if (detail_iterator != detail.end()) {
                     featureValue = detail[featureName].second;
                 } else {
+                    XLOG(ERROR) << featureName << " has no feature processor";
                     featureValue = "0";
                 }
                 label = label + "|" + featureAlias + "=" + featureValue;
