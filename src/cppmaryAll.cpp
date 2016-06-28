@@ -28,3 +28,4 @@
 #include "features/AllophoneSet.cpp"
 #include "features/LanguageFeatureProcessors.cpp"
 #include "features/StringTranslator.cpp"
+#include "features/PhoneTranslator.cpp"

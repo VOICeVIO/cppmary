@@ -12,5 +12,6 @@
 #include "modules/Pronunciation.h"
 #include "modules/LabelGenerator.h"
 #include "modules/HtsEngine.h"
+#include "modules/Phonemiser.h"
 
 #endif //CPPMARY_MODULES_H
