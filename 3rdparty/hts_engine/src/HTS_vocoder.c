@@ -906,7 +906,7 @@ void HTS_Vocoder_initialize(HTS_Vocoder * v, size_t m, size_t stage, HTS_Boolean
       v->d1 = v->cinc + m + 1;
 
       v->numM = 5;
-      v->orderM = 99;
+      v->orderM = 199;
       v->xpulseSignal = (double*) HTS_calloc(v->orderM, sizeof(double));
       v->xnoiseSignal = (double*) HTS_calloc(v->orderM, sizeof(double));
 
@@ -914,7 +914,7 @@ void HTS_Vocoder_initialize(HTS_Vocoder * v, size_t m, size_t stage, HTS_Boolean
       for (i = 0; i < v->numM; i++) {
          v->h[i] = (double*)HTS_calloc(v->orderM, sizeof(double));
       }
-      FILE* fin = fopen("data/mix_excitation_filters.txt", "r");
+      FILE* fin = fopen("data/mix_excitation_5filters_199taps_48Kz.txt", "r");
       for (i = 0; i < v->numM; i++) {
          for (j = 0; j < v->orderM; j++) { 
            fscanf(fin, "%lf%*c", &v->h[i][j]);
