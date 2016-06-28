@@ -173,7 +173,9 @@ void HtsEngineTest() {
     std::string modelName = "data/bai.htsvoice";
     InterModules* htsengine = new HtsEngine(modelName);
     std::string labelName = "data/bai.lab";
-    htsengine->process(labelName);
+    //((HtsEngine*) htsengine)->synthesisWithLableName(labelName);
+    std::string labelString = getFileString("data/bai.lab");
+    htsengine->process(labelString);
 }
 
 int main() {

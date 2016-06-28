@@ -85,23 +85,18 @@ namespace cppmary {
             is.seekg (0, is.end);
             long long length = is.tellg();
             is.seekg (0, is.beg);
-
             char * buffer = new char [length];
-
             std::cout << "Reading " << length << " characters... ";
             // read data as a block:
             is.read (buffer,length);
-
             if (is)
-                std::cout << "all characters read successfully.";
+                std::cout << "all characters read successfully." << std::endl;
             else
                 std::cout << "error: only " << is.gcount() << " could be read";
             is.close();
-
             // ...buffer contains the entire file...
             filebuffer = std::string(buffer,length);
             delete[] buffer;
-
         }
         return filebuffer;
     }

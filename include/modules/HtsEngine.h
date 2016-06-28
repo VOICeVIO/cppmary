@@ -11,8 +11,10 @@ namespace cppmary {
     public:
         HtsEngine(const std::string& modelName);
         ~HtsEngine();
-        //the input is label filename or its string;
-        virtual std::string process(std::string labelFile);
+        /*synthses data with label string*/
+        virtual std::string process(std::string labelString);
+        /*synthses data with label file*/
+        void synthesisWithLableName(std::string labelFile);
     private:
         HTS_Engine engine_;
     };

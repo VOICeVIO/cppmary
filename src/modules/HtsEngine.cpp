@@ -28,7 +28,38 @@ namespace cppmary {
         HTS_Engine_clear(&engine_);
     }
 
-    std::string HtsEngine::process(std::string labelFile) {
+    /*synthses data with label string*/
+    std::string HtsEngine::process(std::string labelString) {
+        size_t lineno;
+        char *filebuffer= new char[labelString.size()+1];
+        strcpy(filebuffer, labelString.c_str());
+
+        std::vector<char*> bufPos;
+
+        for (char *tok = strtok(filebuffer, "\n"); tok != NULL; tok = strtok(NULL, "\n"),lineno++) {
+            bufPos.push_back(tok);
+        }
+
+        char** lines = (char**)malloc((lineno+1) * sizeof(char*));
+        memset(lines, 0, (lineno+1) * sizeof(char*));
+        for (int i = 0; i < lineno; i++) {
+            lines[i] = bufPos[i];
+            //std::cout << i << " ++++++++++ " << lines[i] << std::endl;
+        }
+        if (HTS_Engine_synthesize_from_strings(&engine_, lines, lineno) != TRUE) {
+            fprintf(stderr, "Error: waveform cannot be synthesized.\n");
+            HTS_Engine_clear(&engine_);
+            exit(1);
+        }
+        FILE* wavfp = fopen("1.wav", "wb");
+        if (wavfp)
+            HTS_Engine_save_riff(&engine_, wavfp);
+        fclose(wavfp);
+        free(lines);
+        return labelString;
+    }
+
+    void HtsEngine::synthesisWithLableName(std::string labelFile) {
         if (HTS_Engine_synthesize_from_fn(&engine_, labelFile.c_str()) != TRUE) {
             fprintf(stderr, "Error: waveform cannot be synthesized.\n");
             HTS_Engine_clear(&engine_);
@@ -38,6 +69,5 @@ namespace cppmary {
         if (wavfp)
             HTS_Engine_save_riff(&engine_, wavfp);
         fclose(wavfp);
-        return labelFile;
     }
 }
