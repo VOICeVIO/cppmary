@@ -108,6 +108,7 @@ namespace cppmary {
 
     void loadDict(std::map<std::string, std::string>& dict, const std::string& filePath, const std::string& pattern) {
         std::ifstream ifs(filePath.c_str());
+        //ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         XCHECK(ifs.is_open()) << "open " << filePath << " failed.";
         std::string line;
         std::vector<std::string> buf;
@@ -118,6 +119,25 @@ namespace cppmary {
             dict[trim(buf[0])] = trim(buf[1]);
         }
         //dumpStringMap(dict);
+    }
+
+    void loadDict(std::vector<std::string>& keys, std::vector<std::string>& values, const std::string& filePath, const std::string& pattern) {
+        std::ifstream ifs(filePath.c_str());
+        //ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        XCHECK(ifs.is_open()) << "open " << filePath << " failed.";
+        std::string line;
+        std::vector<std::string> buf;
+
+        for (size_t lineno = 0; getline(ifs, line); lineno++) {
+            buf.clear();
+            line = trim(line);
+            limonp::Split(line, buf, pattern);
+            assert(buf.size() >= 2);
+            //std::cout << line << " " <<  buf[0] << " " << buf[1] << std::endl;
+            std::cout << buf[0] << " " << buf[1] << std::endl;
+            keys.push_back(buf[0]);
+            values.push_back(buf[1]);
+        }
     }
 
     std::string replaceAll(const std::string& orig, const std::string& replaceThis, const std::string& replaceWith) {

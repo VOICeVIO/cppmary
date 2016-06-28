@@ -64,8 +64,8 @@ namespace cppmary {
         tobiValues.assign(TOBIACCENTS, TOBIACCENTS+TOBIACCENT_NUM);
         addFeatureProcessor(new TobiAccent("tobi_accent", tobiValues, syllableNav));
         addFeatureProcessor(new TobiAccent("prev_accent", tobiValues, prevSyllableNav)); //注意这里是tobi accent
-        addFeatureProcessor(new TobiAccent("next_accent", tobiValues, prevPrevSyllableNav));
-        addFeatureProcessor(new TobiAccent("next_tobi_accent", tobiValues, nextSyllableNav));
+        addFeatureProcessor(new TobiAccent("prevprev_tobi_accent", tobiValues, prevPrevSyllableNav));
+        addFeatureProcessor(new TobiAccent("next_accent", tobiValues, nextSyllableNav));
         addFeatureProcessor(new TobiAccent("nextnext_tobi_accent", tobiValues, nextnextSyllableNav));
 
         std::vector<std::string> posValues;
@@ -141,7 +141,14 @@ namespace cppmary {
         std::vector<std::string> pValues = phoneset.getAllophoneNames();
         std::string pauseSymbol = phoneset.getSilent().name();
         TargetElementNavigator* segmentNavigator = new SegmentNavigator();
-        //addFeatureProcessor(new Phone("phone", pValues, pauseSymbol, segmentNavigator));
+        TargetElementNavigator* prevSegmentNavigator = new PrevSegmentNavigator();
+        TargetElementNavigator* prevPrevSegmentNavigator = new PrevPrevSyllableNavigator();
+        TargetElementNavigator* nextSegmentNavigator = new NextSegmentNavigator();
+        TargetElementNavigator* nextNextSegmentNavigator = new NextNextSegmentNavigator();
         addFeatureProcessor(new Phone("phone", pValues, segmentNavigator));
+        addFeatureProcessor(new Phone("prev_phone", pValues, prevSegmentNavigator));
+        addFeatureProcessor(new Phone("prev_prev_phone", pValues, prevPrevSegmentNavigator));
+        addFeatureProcessor(new Phone("next_phone", pValues, nextSegmentNavigator));
+        addFeatureProcessor(new Phone("next_next_phone", pValues, nextNextSegmentNavigator));
     }
 }

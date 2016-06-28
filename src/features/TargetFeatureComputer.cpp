@@ -22,10 +22,16 @@ namespace cppmary  {
 
     TargetFeatureComputer::~TargetFeatureComputer() { }
 
-    std::vector<int> TargetFeatureComputer::computeFeatureVector(Target target) {
+    std::vector<int> TargetFeatureComputer::computeFeatureVector(Target target, std::map<std::string, std::pair<int, std::string> > *detail) {
         std::vector<int> features;
         for (int i = 0; i < processor_.size(); i++) {
             int feature = processor_[i]->process(target);
+            if (NULL != detail) {
+                std::string featureName = processor_[i]->getName();
+                std::string featureStr = getFeatureValue(i, feature);
+                std::pair<int, std::string> featurePair(feature, featureStr);
+                (*detail)[featureName] = featurePair;
+            }
             features.push_back(feature);
         }
         return features;

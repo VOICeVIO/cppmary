@@ -94,8 +94,8 @@ void featureTest(pugi::xml_node doc) {
     std::string alloStr = MaryXml::saveDoc2String(doc1);
 
     FeatureProcessorManager manager("zh", alloStr);
-    //jTargetFeatureComputer featureComputer(manager, "phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zhtone zhtone next_zhtone nextnext_zhtone pos tobiAccent prev_tobiAccent prevprev_tobiAccent next_tobiAccent nextnext_tobiAccent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent");
-    TargetFeatureComputer featureComputer(manager, "phone syl_break breakindex phrase_numsyls zhtone segs_from_syl_start segs_from_syl_end syls_from_phrase_start syls_from_phrase_end syl_break is_pause words_from_phrase_start words_from_phrase_end words_from_sentence_start words_from_sentence_end phrases_from_sentence_start phrases_from_sentence_end word_punc next_punc prev_punc words_to_next_punc words_to_prev_punc position_type");
+    //TargetFeatureComputer featureComputer(manager, "phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zh_tone zh_tone next_zhtone nextnext_zh_tone pos tobi_accent prev_accent prevprev_tobi_accent next_accent nextnext_tobi_accent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent");
+    TargetFeatureComputer featureComputer(manager, "phone syl_break breakindex phrase_numsyls zh_tone segs_from_syl_start segs_from_syl_end syls_from_phrase_start syls_from_phrase_end syl_break is_pause words_from_phrase_start words_from_phrase_end words_from_sentence_start words_from_sentence_end phrases_from_sentence_start phrases_from_sentence_end sentence_punc next_punctuation prev_punctuation words_to_next_punctuation words_from_prev_punctuation position_type");
     //load feature map
     for (int i = 0; i < targets.size(); i++) {
         Target target = targets[i];
@@ -141,6 +141,35 @@ void allophoneTest() {
     AllophoneSet phoneset(alloStr);
 }
 
+void LabelGeneratorTest() {
+    std::string puncxmlName = "test/marytts_allophone_example.xml";
+    pugi::xml_document doc;
+    pugi::xml_parse_result result = doc.load_file(puncxmlName.c_str());
+    std::string allophoneExample = MaryXml::saveDoc2String(doc);
+
+    std::string allophoneSetName = "test/allophones.zh.xml";
+    pugi::xml_document doc1;
+    result = doc1.load_file(allophoneSetName.c_str());
+    std::string allosetStr = MaryXml::saveDoc2String(doc1);
+
+    FeatureProcessorManager manager("zh", allosetStr);
+    //TargetFeatureComputer featureComputer(manager, "phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zh_tone zh_tone next_zhtone nextnext_zh_tone pos tobi_accent prev_accent prevprev_tobi_accent next_accent nextnext_tobi_accent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent");
+    TargetFeatureComputer featureComputer(manager, "phone prev_phone prev_prev_phone next_phone next_next_phone phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zh_tone zh_tone next_zhtone nextnext_zh_tone pos tobi_accent prev_accent prevprev_tobi_accent next_accent nextnext_tobi_accent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent syl_break breakindex phrase_numsyls zh_tone segs_from_syl_start segs_from_syl_end syls_from_phrase_start syls_from_phrase_end syl_break is_pause words_from_phrase_start words_from_phrase_end words_from_sentence_start words_from_sentence_end phrases_from_sentence_start phrases_from_sentence_end sentence_punc next_punctuation prev_punctuation words_to_next_punctuation words_from_prev_punctuation position_type tobi_accent");
+
+    std::string featureMapName = "test/hmmFeaturesMap1.txt";
+//    std::map<std::string, std::string> hmmFeatureMap;
+//    loadDict(hmmFeatureMap, featureMapName, " ");
+//    std::map<std::string, std::string>::iterator iter;
+//    for (iter = hmmFeatureMap.begin(); iter != hmmFeatureMap.end(); ++iter) {
+//        std::cout << iter->first << " ===> " << iter->second << std::endl;
+//    }
+
+
+    InterModules* label = new LabelGenerator(&manager, &featureComputer, featureMapName);
+    label->process(allophoneExample);
+
+}
+
 int main() {
     //text2MaryTest();
     //TokenizerTest();
@@ -149,6 +178,7 @@ int main() {
     //replaceTest();
     //prosodyTest();
     //pronunciationTest();
-    labelTest();
+    //labelTest();
     //allophoneTest();
+    LabelGeneratorTest();
 }

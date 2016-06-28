@@ -10,5 +10,6 @@
 #include "modules/Phonemiser.h"
 #include "modules/Prosody.h"
 #include "modules/Pronunciation.h"
+#include "modules/LabelGenerator.h"
 
 #endif //CPPMARY_MODULES_H

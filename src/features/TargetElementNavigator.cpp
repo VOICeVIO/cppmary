@@ -95,6 +95,18 @@ namespace cppmary {
         return nextElement(nodes, segment);
     }
 
+    pugi::xml_node NextNextSegmentNavigator::getElement(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return pugi::xml_node();
+        }
+        cppmary::phone_boundary_walker tw;
+        pugi::xml_node doc = segment.root();
+        doc.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        return nextNextElement(nodes, segment);
+    }
+
     pugi::xml_node SyllableNavigator::getElement(Target target) {
         pugi::xml_node segment = target.getMaryElement();
         if (segment.empty() || strcmp(segment.name(), "ph")) {

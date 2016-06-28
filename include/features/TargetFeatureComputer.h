@@ -14,7 +14,7 @@ namespace cppmary {
         TargetFeatureComputer(FeatureProcessorManager& manager, std::string featuresProcessorNames);
         ~TargetFeatureComputer();
         //Feature vector 暂时用std::vector<int>保存
-        std::vector<int> computeFeatureVector(Target target);
+        std::vector<int> computeFeatureVector(Target target, std::map<std::string, std::pair<int, std::string> > *detail = NULL);
         std::string toStringValue(std::vector<int> featureVector);
         std::string getFeatureValue(int processorIndex, int feature);
     private:
