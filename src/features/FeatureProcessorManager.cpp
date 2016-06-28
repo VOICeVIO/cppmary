@@ -142,7 +142,7 @@ namespace cppmary {
         std::string pauseSymbol = phoneset.getSilent().name();
         TargetElementNavigator* segmentNavigator = new SegmentNavigator();
         TargetElementNavigator* prevSegmentNavigator = new PrevSegmentNavigator();
-        TargetElementNavigator* prevPrevSegmentNavigator = new PrevPrevSyllableNavigator();
+        TargetElementNavigator* prevPrevSegmentNavigator = new PrevPrevSegmentNavigator();
         TargetElementNavigator* nextSegmentNavigator = new NextSegmentNavigator();
         TargetElementNavigator* nextNextSegmentNavigator = new NextNextSegmentNavigator();
         addFeatureProcessor(new Phone("phone", pValues, segmentNavigator));

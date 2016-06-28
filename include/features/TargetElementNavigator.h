@@ -28,6 +28,11 @@ namespace cppmary {
             pugi::xml_node getElement(Target target);
     };
 
+    class PrevPrevSegmentNavigator : public TargetElementNavigator {
+    public:
+        pugi::xml_node getElement(Target target);
+    };
+
     class NextSegmentNavigator : public TargetElementNavigator {
     public:
         pugi::xml_node getElement(Target target);
