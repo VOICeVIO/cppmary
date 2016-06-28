@@ -11,10 +11,10 @@ namespace cppmary {
             map_[strs[i]] = i;
         }
 
-        std::cout << "translate result " << std::endl;
-        for (std::map<std::string, int>::iterator iter = map_.begin(); iter != map_.end(); ++iter) {
-            std::cout << iter->first << " " << iter->second << std::endl;
-        }
+//        std::cout << "translate result " << std::endl;
+//        for (std::map<std::string, int>::iterator iter = map_.begin(); iter != map_.end(); ++iter) {
+//            std::cout << iter->first << " " << iter->second << std::endl;
+//        }
     }
 
     int StringTranslator::getValue(std::string s) {

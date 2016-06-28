@@ -6,7 +6,7 @@
 #include "common.h"
 
 namespace cppmary {
-    LabelGenerator::LabelGenerator(FeatureProcessorManager* manager, TargetFeatureComputer* featureComputer, const std::string& featureMapName) {
+    LabelGenerator::LabelGenerator(FeatureProcessorManager* manager, TargetFeatureComputer* featureComputer, const std::string& featureMapName, PhoneTranslator* phoneTranslator) {
         manager_ = manager;
         featureComputer_ = featureComputer;
         loadDict(featureName_, featureAlias_, featureMapName);
@@ -14,6 +14,7 @@ namespace cppmary {
 //        for (int i = 0; i < featureName_.size(); i++) {
 //            std::cout << featureName_[i] << " " << featureAlias_[i] << std::endl;
 //        }
+        phoneTranslator_ = phoneTranslator;
     }
     LabelGenerator::~LabelGenerator() {}
 
@@ -36,12 +37,31 @@ namespace cppmary {
 //            std::cout << std::endl << std::endl;
             //construct label string
             //need to repalce trickyphone, repalce punc, replace tobi
-            label = label + detail["prev_prev_phone"].second + "^" + detail["prev_phone"].second + "-" + detail["phone"].second + "+" + detail["next_phone"].second + "=" + detail["next_next_phone"].second + "|";
+            std::string prevPrevPhone = detail["prev_prev_phone"].second;
+            std::string prevPhone = detail["prev_phone"].second;
+            std::string phone = detail["phone"].second;
+            std::string nextPhone = detail["next_phone"].second;
+            std::string nextNextPhone = detail["next_next_phone"].second;
+
+            if (phoneTranslator_ != NULL) {
+                prevPrevPhone = phoneTranslator_->replaceTrickyPhones(prevPrevPhone);
+                prevPhone = phoneTranslator_->replaceTrickyPhones(prevPhone);
+                phone = phoneTranslator_->replaceTrickyPhones(phone);
+                nextPhone = phoneTranslator_->replaceTrickyPhones(nextPhone);
+                nextNextPhone = phoneTranslator_->replaceTrickyPhones(nextNextPhone);
+            }
+
+            label = label + prevPrevPhone + "^" + prevPhone + "-" + phone + "+" + nextPhone + "=" + nextNextPhone + "|";
             for (int i = 0; i < featureName_.size(); i++) {
                 std::string featureName = featureName_[i];
                 std::string featureAlias = featureAlias_[i];
-                std::string featureValue = detail[featureName].second;
-                if (featureValue.empty()) {
+                std::map<std::string, std::string>::iterator iter;
+                std::map<std::string, std::pair<int, std::string> >::iterator detail_iterator;
+                detail_iterator = detail.find(featureName);
+                std::string featureValue;
+                if (detail_iterator != detail.end()) {
+                    featureValue = detail[featureName].second;
+                } else {
                     featureValue = "0";
                 }
                 label = label + "|" + featureAlias + "=" + featureValue;
@@ -49,7 +69,7 @@ namespace cppmary {
             label = label + "||\n";
         }
         std::cout << label << std::endl;
-        return input;
+        return label;
     }
 
 

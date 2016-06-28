@@ -88,7 +88,7 @@ void featureTest(pugi::xml_node doc) {
     doc.traverse(tw);
     std::vector<Target> targets = createTargetWithPauses(tw.nodes_, "_");
 
-    std::string allophoneSetName = "test/allophones.zh.xml";
+    std::string allophoneSetName = "test/allophones.zh_PH64.xml";
     pugi::xml_document doc1;
     pugi::xml_parse_result result = doc1.load_file(allophoneSetName.c_str());
     std::string alloStr = MaryXml::saveDoc2String(doc1);
@@ -127,14 +127,14 @@ void pronunciationTest() {
 
 void labelTest() {
     //std::string puncxmlName = "test/punc.xml";
-    std::string puncxmlName = "test/marytts_allophone_example.xml";
+    std::string puncxmlName = "test/labixx_example.xml";
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(puncxmlName.c_str());
     featureTest(doc);
 }
 
 void allophoneTest() {
-    std::string allophoneSetName = "test/allophones.zh.xml";
+    std::string allophoneSetName = "test/allophones.zh_PH64.xml";
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(allophoneSetName.c_str());
     std::string alloStr = MaryXml::saveDoc2String(doc);
@@ -142,12 +142,12 @@ void allophoneTest() {
 }
 
 void LabelGeneratorTest() {
-    std::string puncxmlName = "test/marytts_allophone_example.xml";
+    std::string puncxmlName = "test/labixx_example.xml";
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(puncxmlName.c_str());
     std::string allophoneExample = MaryXml::saveDoc2String(doc);
 
-    std::string allophoneSetName = "test/allophones.zh.xml";
+    std::string allophoneSetName = "test/allophones.zh_PH64.xml";
     pugi::xml_document doc1;
     result = doc1.load_file(allophoneSetName.c_str());
     std::string allosetStr = MaryXml::saveDoc2String(doc1);
@@ -164,17 +164,22 @@ void LabelGeneratorTest() {
 //        std::cout << iter->first << " ===> " << iter->second << std::endl;
 //    }
 
+    PhoneTranslator* phoneTranslator = new PhoneTranslator("test/trickyPhones.txt");
 
-    InterModules* label = new LabelGenerator(&manager, &featureComputer, featureMapName);
-    label->process(allophoneExample);
+    InterModules* label = new LabelGenerator(&manager, &featureComputer, featureMapName, phoneTranslator);
+    std::string labelString = label->process(allophoneExample);
+    std::string modelName = "test/labixx.htsvoice";
+    InterModules* htsengine = new HtsEngine(modelName);
+    htsengine->process(labelString);
 }
 
 void HtsEngineTest() {
-    std::string modelName = "data/bai.htsvoice";
+    std::string modelName = "test/labixx.htsvoice";
     InterModules* htsengine = new HtsEngine(modelName);
-    std::string labelName = "data/bai.lab";
+    //std::string labelName = "data/bai.lab";
+    std::string labelName = "test/labixx.lab";
     //((HtsEngine*) htsengine)->synthesisWithLableName(labelName);
-    std::string labelString = getFileString("data/bai.lab");
+    std::string labelString = getFileString(labelName);
     htsengine->process(labelString);
 }
 
@@ -188,6 +193,6 @@ int main() {
     //pronunciationTest();
     //labelTest();
     //allophoneTest();
-    //LabelGeneratorTest();
-    HtsEngineTest();
+    LabelGeneratorTest();
+    //HtsEngineTest();
 }
