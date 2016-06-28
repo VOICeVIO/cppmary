@@ -167,7 +167,13 @@ void LabelGeneratorTest() {
 
     InterModules* label = new LabelGenerator(&manager, &featureComputer, featureMapName);
     label->process(allophoneExample);
+}
 
+void HtsEngineTest() {
+    std::string modelName = "data/bai.htsvoice";
+    InterModules* htsengine = new HtsEngine(modelName);
+    std::string labelName = "data/bai.lab";
+    htsengine->process(labelName);
 }
 
 int main() {
@@ -180,5 +186,6 @@ int main() {
     //pronunciationTest();
     //labelTest();
     //allophoneTest();
-    LabelGeneratorTest();
+    //LabelGeneratorTest();
+    HtsEngineTest();
 }

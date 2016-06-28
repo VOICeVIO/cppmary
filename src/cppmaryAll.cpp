@@ -9,6 +9,7 @@
 #include "modules/Prosody.cpp"
 #include "modules/Pronunciation.cpp"
 #include "modules/LabelGenerator.cpp"
+#include "modules/HtsEngine.cpp"
 
 #include "common/convertPinyin.cpp"
 #include "common/MaryXml.cpp"
