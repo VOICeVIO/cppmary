@@ -16,8 +16,8 @@
 namespace cppmary {
     ConvertPinyin::~ConvertPinyin() { }
     ConvertPinyin::ConvertPinyin(const std::string &wordDictName, const std::string &syllableDictName) {
-        loadDict(wordDict_, wordDictName, ":");
-        loadDict(syllableDict_,syllableDictName);
+        loadDict(wordDict_, wordDictName, ":", true);
+        loadDict(syllableDict_,syllableDictName, " ", true);
     }
 
     //找每个字的拼音

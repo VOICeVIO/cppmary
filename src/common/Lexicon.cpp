@@ -7,9 +7,9 @@
 
 namespace cppmary {
     Lexicon::~Lexicon() { }
-    Lexicon::Lexicon(const std::string &lexiconDictName) {
-        lexiconDictName_ = lexiconDictName;
-        loadDict(lexiconDict_, lexiconDictName, "|");
+    Lexicon::Lexicon(const std::string &lexiconDictStr) {
+        bool bufferFlag = true;
+        loadDict(lexiconDict_, lexiconDictStr, "|", bufferFlag);
     }
 
     //找每个字的拼音

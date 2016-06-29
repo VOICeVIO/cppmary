@@ -42,7 +42,13 @@ void phonemiserTest() {
     std::string rawXml = cppmary::TextToMaryXml::getInstance().process("欢迎使用文本转语音服务!");
     cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
     std::string tokenStr = tokenizer->process(rawXml);
-    cppmary::InterModules* phonemiser = new cppmary::Phonemiser();
+    std::string sylDictName = "test/pinyin_han.txt";
+    std::string wordDictName = "test/mix_pinyin_word.txt";
+    std::string sylDictStr = getFileString(sylDictName);
+    std::string wordDictStr = getFileString(wordDictName);
+    std::string lexiconDictName = "test/zh_ph64_lexicon.dict";
+    std::string lexiconDictStr = getFileString(lexiconDictName);
+    cppmary::InterModules* phonemiser = new cppmary::Phonemiser(wordDictStr, sylDictStr, lexiconDictStr);
     std::string phoneStr = phonemiser->process(tokenStr);
 }
 
@@ -50,7 +56,13 @@ void prosodyTest() {
     std::string rawXml = cppmary::TextToMaryXml::getInstance().process("欢迎，使用。文本转！语音？服务!");
     cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
     std::string tokenStr = tokenizer->process(rawXml);
-    cppmary::InterModules* phonemiser = new cppmary::Phonemiser();
+    std::string sylDictName = "test/pinyin_han.txt";
+    std::string wordDictName = "test/mix_pinyin_word.txt";
+    std::string sylDictStr = getFileString(sylDictName);
+    std::string wordDictStr = getFileString(wordDictName);
+    std::string lexiconDictName = "test/zh_ph64_lexicon.dict";
+    std::string lexiconDictStr = getFileString(lexiconDictName);
+    cppmary::InterModules* phonemiser = new cppmary::Phonemiser(wordDictStr, sylDictStr, lexiconDictStr);
     std::string phoneStr = phonemiser->process(tokenStr);
     cppmary::InterModules* prosody = new cppmary::Prosody();
     std::string prodyStr = prosody->process(phoneStr);
@@ -114,7 +126,13 @@ void pronunciationTest() {
     std::string rawXml = cppmary::TextToMaryXml::getInstance().process("这个世界上，为什么只有我这么帅呢？");
     cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
     std::string tokenStr = tokenizer->process(rawXml);
-    cppmary::InterModules* phonemiser = new cppmary::Phonemiser();
+    std::string sylDictName = "test/pinyin_han.txt";
+    std::string wordDictName = "test/mix_pinyin_word.txt";
+    std::string sylDictStr = getFileString(sylDictName);
+    std::string wordDictStr = getFileString(wordDictName);
+    std::string lexiconDictName = "test/zh_ph64_lexicon.dict";
+    std::string lexiconDictStr = getFileString(lexiconDictName);
+    cppmary::InterModules* phonemiser = new cppmary::Phonemiser(wordDictStr, sylDictStr, lexiconDictStr);
     std::string phoneStr = phonemiser->process(tokenStr);
     cppmary::InterModules* prosody = new cppmary::Prosody();
     std::string prodyStr = prosody->process(phoneStr);
@@ -175,7 +193,8 @@ void LabelGeneratorTest() {
 
 void HtsEngineTest() {
     std::string modelName = "test/labixx.htsvoice";
-    InterModules* htsengine = new HtsEngine(modelName);
+    std::string modelStr = getFileString(modelName);
+    InterModules* htsengine = new HtsEngine(modelStr);
     //std::string labelName = "data/bai.lab";
     std::string labelName = "test/labixx.lab";
     //((HtsEngine*) htsengine)->synthesisWithLableName(labelName);
@@ -184,11 +203,17 @@ void HtsEngineTest() {
 }
 
 void totalTest() {
-    std::string rawXml = cppmary::TextToMaryXml::getInstance().process("这个世界上，为什么只有我这么帅呢？");
-    //std::string rawXml = cppmary::TextToMaryXml::getInstance().process("物流信息都显示已经在晋江揽件了，还让我整整等了你四天，你们快递公司是干什么吃的！意干什么?"); //这句有时候出错,有时候不出错.可用于调试.
+    std::string rawXml = cppmary::TextToMaryXml::getInstance().process("这个世界上，为什么只有我这么帅呢?");
+    //std::string rawXml = cppmary::TextToMaryXml::getInstance().process("物流信息都显示已经在晋江揽件了，还让我整整等了你四天，你们快递公司是干什么吃的！为什么只有意干什么?"); //这句有时候出错,有时候不出错.可用于调试.
     cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
     std::string tokenStr = tokenizer->process(rawXml);
-    cppmary::InterModules* phonemiser = new cppmary::Phonemiser();
+    std::string sylDictName = "test/pinyin_han.txt";
+    std::string wordDictName = "test/mix_pinyin_word.txt";
+    std::string sylDictStr = getFileString(sylDictName);
+    std::string wordDictStr = getFileString(wordDictName);
+    std::string lexiconDictName = "test/zh_ph64_lexicon.dict";
+    std::string lexiconDictStr = getFileString(lexiconDictName);
+    cppmary::InterModules* phonemiser = new cppmary::Phonemiser(wordDictStr, sylDictStr, lexiconDictStr);
     std::string phoneStr = phonemiser->process(tokenStr);
     cppmary::InterModules* prosody = new cppmary::Prosody();
     std::string prodyStr = prosody->process(phoneStr);
@@ -213,7 +238,8 @@ void totalTest() {
     InterModules* label = new LabelGenerator(&manager, &featureComputer, featureMapName, phoneTranslator);
     std::string labelString = label->process(pronunStr);
     std::string modelName = "test/labixx.htsvoice";
-    InterModules* htsengine = new HtsEngine(modelName);
+    std::string modelStr = getFileString(modelName);
+    InterModules* htsengine = new HtsEngine(modelStr);
     htsengine->process(labelString);
 }
 

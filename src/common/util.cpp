@@ -77,7 +77,7 @@ namespace cppmary {
     }
 
 
-    std::string getFileString(std::string filepath) {
+    std::string getFileString(const std::string& filepath) {
         std::ifstream is(filepath);
         std::string filebuffer="";
         if (is) {
@@ -86,7 +86,7 @@ namespace cppmary {
             long long length = is.tellg();
             is.seekg (0, is.beg);
             char * buffer = new char [length];
-            std::cout << "Reading " << length << " characters... ";
+            std::cout << "Reading " << filepath << " " << length << " characters... ";
             // read data as a block:
             is.read (buffer,length);
             if (is)
@@ -101,37 +101,55 @@ namespace cppmary {
         return filebuffer;
     }
 
-    void loadDict(std::map<std::string, std::string>& dict, const std::string& filePath, const std::string& pattern) {
-        std::ifstream ifs(filePath.c_str());
-        //ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        XCHECK(ifs.is_open()) << "open " << filePath << " failed.";
+    void loadDict(std::map<std::string, std::string>& dict, const std::string& filePath, const std::string& pattern, bool bufferFlag) {
         std::string line;
         std::vector<std::string> buf;
 
-        for (size_t lineno = 0; getline(ifs, line); lineno++) {
-            limonp::Split(line, buf, pattern);
-            assert(buf.size() >= 2);
-            dict[trim(buf[0])] = trim(buf[1]);
+        if (bufferFlag) {
+            std::vector<std::string> bufferVec = limonp::Split(filePath,"\n");
+            for (int i = 0; i < bufferVec.size(); i++) {
+                std::string line = bufferVec[i];
+                line = trim(line);
+                limonp::Split(line, buf, pattern);
+                assert(buf.size() >= 2);
+                dict[trim(buf[0])] = trim(buf[1]);
+            }
+        } else {
+            std::ifstream ifs(filePath.c_str());
+            //ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            XCHECK(ifs.is_open()) << "open " << filePath << " failed.";
+            for (size_t lineno = 0; getline(ifs, line); lineno++) {
+                limonp::Split(line, buf, pattern);
+                assert(buf.size() >= 2);
+                dict[trim(buf[0])] = trim(buf[1]);
+            }
         }
         //dumpStringMap(dict);
     }
 
-    void loadDict(std::vector<std::string>& keys, std::vector<std::string>& values, const std::string& filePath, const std::string& pattern) {
-        std::ifstream ifs(filePath.c_str());
-        //ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        XCHECK(ifs.is_open()) << "open " << filePath << " failed.";
+    void loadDict(std::vector<std::string>& keys, std::vector<std::string>& values, const std::string& filePath, const std::string& pattern, bool bufferFlag) {
         std::string line;
         std::vector<std::string> buf;
 
-        for (size_t lineno = 0; getline(ifs, line); lineno++) {
-            buf.clear();
-            line = trim(line);
-            limonp::Split(line, buf, pattern);
-            assert(buf.size() >= 2);
-            //std::cout << line << " " <<  buf[0] << " " << buf[1] << std::endl;
-            std::cout << buf[0] << " " << buf[1] << std::endl;
-            keys.push_back(buf[0]);
-            values.push_back(buf[1]);
+        if (bufferFlag) {
+            std::vector<std::string> bufferVec = limonp::Split(filePath,"\n");
+            for (int i = 0; i < bufferVec.size(); i++) {
+                std::string line = bufferVec[i];
+                limonp::Split(line, buf, pattern);
+                assert(buf.size() >= 2);
+                keys.push_back(buf[0]);
+                values.push_back(buf[1]);
+            }
+        } else {
+            std::ifstream ifs(filePath.c_str());
+            //ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            XCHECK(ifs.is_open()) << "open " << filePath << " failed.";
+            for (size_t lineno = 0; getline(ifs, line); lineno++) {
+                limonp::Split(line, buf, pattern);
+                assert(buf.size() >= 2);
+                keys.push_back(buf[0]);
+                values.push_back(buf[1]);
+            }
         }
     }
 

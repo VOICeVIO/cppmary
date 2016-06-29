@@ -10,11 +10,10 @@
 namespace cppmary {
     class Lexicon {
     public:
-        Lexicon(const std::string& lexiconDictName);
+        Lexicon(const std::string& lexiconDictStr);
         ~Lexicon();
         std::string getLexiconPhonemes(std::string syllable);
     private:
-        std::string lexiconDictName_;
         std::map<std::string, std::string> lexiconDict_;
 
     };
