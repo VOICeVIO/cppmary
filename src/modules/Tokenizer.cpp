@@ -18,7 +18,6 @@ namespace cppmary {
         text = trim(text);
         //std::vector<std::string> words;
         std::vector<std::pair<std::string, std::string> > wordTags;
-        WordsProcess::Instance()->LoadResource("data/jieba/");
         WordsProcess::Instance()->Tag(text, wordTags);
         pugi::xml_node textNode = paragraph.first_child();
         paragraph.remove_child(textNode);

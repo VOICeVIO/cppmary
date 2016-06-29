@@ -32,6 +32,7 @@ namespace cppmary {
 
     /*synthses data with label string*/
     std::string HtsEngine::process(std::string labelString) {
+        clock_t start = clock();
         std::vector<std::string> buffervec = limonp::Split(labelString,"\n");
         int lineNum = buffervec.size();
 
@@ -50,6 +51,7 @@ namespace cppmary {
             HTS_Engine_clear(&engine_);
             exit(1);
         }
+        std::cout << "synthesis time: " << (clock()-start) * 1000.0 / CLOCKS_PER_SEC << std::endl;
         FILE* wavfp = fopen("1.wav", "wb");
         if (wavfp)
             HTS_Engine_save_riff(&engine_, wavfp);

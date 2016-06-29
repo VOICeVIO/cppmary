@@ -11,7 +11,7 @@
 namespace cppmary {
     class LabelGenerator : public InterModules {
     public:
-        LabelGenerator(FeatureProcessorManager* manager, TargetFeatureComputer* featureComputer, const std::string& featureMapName, PhoneTranslator* phoneTranslator = NULL);
+        LabelGenerator(FeatureProcessorManager* manager, TargetFeatureComputer* featureComputer, std::vector<std::string> featureName, std::vector<std::string> featureAlias, PhoneTranslator* phoneTranslator = NULL);
         virtual ~LabelGenerator();
         virtual std::string process(std::string input);
         std::vector<Target> createTargetWithPauses(std::vector<pugi::xml_node> segmentsAndPauses,

@@ -8,12 +8,22 @@
 namespace cppmary  {
     TargetFeatureComputer::TargetFeatureComputer(FeatureProcessorManager& manager,
                                                  std::string featuresProcessorNames) {
-        processor_.clear();
         std::vector<std::string> featureNames = splitAndTrim(featuresProcessorNames, ' ');
-        for (int i = 0; i < featureNames.size(); i++) {
-            FeatureProcessor * fp = manager.getFeatureProcessor(featureNames[i]);
+        init(manager, featureNames);
+    }
+
+    TargetFeatureComputer::TargetFeatureComputer(FeatureProcessorManager& manager,
+                                                 std::vector<std::string> featureNamesVec) {
+        init(manager, featureNamesVec);
+    }
+
+    void TargetFeatureComputer::init(FeatureProcessorManager& manager,
+                                                 std::vector<std::string> featureNamesVec) {
+        processor_.clear();
+        for (int i = 0; i < featureNamesVec.size(); i++) {
+            FeatureProcessor * fp = manager.getFeatureProcessor(featureNamesVec[i]);
             if (fp == NULL) {
-                XLOG(ERROR) << "can not get feature process for " << featureNames[i];
+                XLOG(ERROR) << "can not get feature process for " << featureNamesVec[i];
             } else {
                 processor_.push_back(fp); // 包含大量指针的传递,这里需要使用引用计数
             }

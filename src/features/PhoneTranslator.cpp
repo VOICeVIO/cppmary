@@ -6,14 +6,14 @@
 #include "common.h"
 
 namespace cppmary {
-    PhoneTranslator::PhoneTranslator(std::string trickyPath) {
-       loadTrickyPhones(trickyPath);
+    PhoneTranslator::PhoneTranslator(const std::string& trickyStr) {
+       loadTrickyPhones(trickyStr);
     }
 
     PhoneTranslator::~PhoneTranslator() { }
 
-    void PhoneTranslator::loadTrickyPhones(std::string trickyPath) {
-        loadDict(trickyPhones_, trickyPath);
+    void PhoneTranslator::loadTrickyPhones(const std::string& trickyStr) {
+        loadDict(trickyPhones_, trickyStr, " ", true);
         std::map<std::string, std::string>::iterator iter;
         for (iter = trickyPhones_.begin(); iter != trickyPhones_.end(); iter++) {
             actualPhones_[iter->second] = iter->first;

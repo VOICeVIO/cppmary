@@ -6,14 +6,11 @@
 #include "common.h"
 
 namespace cppmary {
-    LabelGenerator::LabelGenerator(FeatureProcessorManager* manager, TargetFeatureComputer* featureComputer, const std::string& featureMapName, PhoneTranslator* phoneTranslator) {
+    LabelGenerator::LabelGenerator(FeatureProcessorManager* manager, TargetFeatureComputer* featureComputer, std::vector<std::string> featureName, std::vector<std::string> featureAlias, PhoneTranslator* phoneTranslator) {
         manager_ = manager;
         featureComputer_ = featureComputer;
-        loadDict(featureName_, featureAlias_, featureMapName);
-        assert(featureName_.size() == featureAlias_.size());
-//        for (int i = 0; i < featureName_.size(); i++) {
-//            std::cout << featureName_[i] << " " << featureAlias_[i] << std::endl;
-//        }
+        featureName_ = featureName;
+        featureAlias_ = featureAlias;
         phoneTranslator_ = phoneTranslator;
     }
     LabelGenerator::~LabelGenerator() {}
@@ -69,7 +66,7 @@ namespace cppmary {
             }
             label = label + "||\n";
         }
-        std::cout << label << std::endl;
+        //std::cout << label << std::endl;
         return label;
     }
 

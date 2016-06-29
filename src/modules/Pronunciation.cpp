@@ -56,7 +56,7 @@ namespace cppmary {
                 }
             }
         }
-        doc.save_file("test/punc.xml");
+        //doc.save_file("test/punc.xml");
         std::string pronunStr = MaryXml::saveDoc2String(doc);
         XLOG(DEBUG) << "Pronunciation output: " << pronunStr;
         return pronunStr;

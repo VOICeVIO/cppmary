@@ -10,9 +10,9 @@
 namespace cppmary {
     class PhoneTranslator {
     public:
-        PhoneTranslator(std::string trickyPath);
+        PhoneTranslator(const std::string& trickyStr);
         ~PhoneTranslator();
-        void loadTrickyPhones(std::string trickyPath);
+        void loadTrickyPhones(const std::string& trickyPath);
         std::string replaceTrickyPhones(std::string lab);
         std::string replaceBackTrickyPhones(std::string lab);
     private:
