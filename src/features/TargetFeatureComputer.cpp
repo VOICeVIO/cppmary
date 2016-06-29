@@ -42,7 +42,12 @@ namespace cppmary  {
             XLOG(ERROR) << "feature index exceesd " << processorIndex;
             return "";
         }
-        return processor_[processorIndex]->getValues()[feature];
+        std::vector<std::string> featureValues = processor_[processorIndex]->getValues();
+        if (feature > featureValues.size()) {
+            return "0";
+        } else {
+            return featureValues[feature];
+        }
     }
 
     std::string TargetFeatureComputer::toStringValue(std::vector<int> features) {

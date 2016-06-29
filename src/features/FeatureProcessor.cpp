@@ -41,7 +41,7 @@ namespace cppmary {
             if (!attrCondition.empty()) {
                 isBuffer = MaryXml::hasAttribute(node, attrCondition);
             }
-            if (node == current || count >= RAIL_LIMIT) {
+            if (node == current || tempCount >= RAIL_LIMIT) {
                 count = tempCount;
                 break;
             }
