@@ -3,50 +3,49 @@
 //
 
 #include "modules/HtsEngine.h"
+#include "common.h"
+#include "limonp/StringUtil.hpp"
 
 namespace cppmary {
-    HtsEngine::HtsEngine(const std::string& modelName) {
+    HtsEngine::HtsEngine(const std::string& modelStr) {
         HTS_Engine_initialize(&engine_);
         size_t num_voices = 1;
-        char **fn_voices = (char**)malloc(num_voices * sizeof(char*));
-        char fileName[1024];
-        memset(fileName, 0, sizeof(fileName));
-        memcpy(fileName, modelName.c_str(), modelName.size());
-        std::cout << fileName << std::endl;
-        fn_voices[0] = fileName;
-        if (HTS_Engine_load(&engine_, fn_voices, num_voices) != TRUE) {
+        fn_voices_ = (char**)malloc(num_voices * sizeof(char*));
+        char *fileContent = new char[modelStr.size()+1];
+        memset(fileContent, 0, modelStr.size()+1);
+        memcpy(fileContent, modelStr.c_str(), modelStr.size());
+        fn_voices_[0] = fileContent;
+        if (HTS_Engine_load(&engine_, fn_voices_, num_voices) != TRUE) {
             fprintf(stderr, "Error: HTS voices cannot be loaded.\n");
-            free(fn_voices);
+            free(fn_voices_);
             HTS_Engine_clear(&engine_);
             exit(1);
         }
-        free(fn_voices);
+        delete [] fileContent;
     }
 
     HtsEngine::~HtsEngine() {
         HTS_Engine_refresh(&engine_);
         HTS_Engine_clear(&engine_);
+        free(fn_voices_);
     }
 
     /*synthses data with label string*/
     std::string HtsEngine::process(std::string labelString) {
-        size_t lineno;
-        char *filebuffer= new char[labelString.size()+1];
-        strcpy(filebuffer, labelString.c_str());
+        std::vector<std::string> buffervec = limonp::Split(labelString,"\n");
+        int lineNum = buffervec.size();
 
-        std::vector<char*> bufPos;
+        char** lines = (char**)malloc((lineNum+1) * sizeof(char*));
+        memset(lines, 0, (lineNum+1) * sizeof(char*));
 
-        for (char *tok = strtok(filebuffer, "\n"); tok != NULL; tok = strtok(NULL, "\n"),lineno++) {
-            bufPos.push_back(tok);
+        for (int i = 0; i < lineNum; i++) {
+            char * lineBuf = new char[buffervec[i].size()+1];
+            memset(lineBuf, 0, buffervec[i].size()+1);
+            memcpy(lineBuf, buffervec[i].c_str(), buffervec[i].size());
+            lines[i] = lineBuf;
         }
 
-        char** lines = (char**)malloc((lineno+1) * sizeof(char*));
-        memset(lines, 0, (lineno+1) * sizeof(char*));
-        for (int i = 0; i < lineno; i++) {
-            lines[i] = bufPos[i];
-            //std::cout << i << " ++++++++++ " << lines[i] << std::endl;
-        }
-        if (HTS_Engine_synthesize_from_strings(&engine_, lines, lineno) != TRUE) {
+        if (HTS_Engine_synthesize_from_strings(&engine_, lines, lineNum) != TRUE) {
             fprintf(stderr, "Error: waveform cannot be synthesized.\n");
             HTS_Engine_clear(&engine_);
             exit(1);
@@ -55,6 +54,9 @@ namespace cppmary {
         if (wavfp)
             HTS_Engine_save_riff(&engine_, wavfp);
         fclose(wavfp);
+        for (int i = 0; i < lineNum; i++) {
+            delete [] lines[i];
+        }
         free(lines);
         return labelString;
     }

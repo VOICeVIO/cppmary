@@ -172,7 +172,7 @@ void HTS_Audio_clear(HTS_Audio * audio);
 void HTS_ModelSet_initialize(HTS_ModelSet * ms);
 
 /* HTS_ModelSet_load: load HTS voices */
-HTS_Boolean HTS_ModelSet_load(HTS_ModelSet * ms, char **voices, size_t num_voices);
+HTS_Boolean HTS_ModelSet_load(HTS_ModelSet * ms, char **voices, size_t num_voices, int read_from_mem);
 
 /* HTS_ModelSet_get_sampling_frequency: get sampling frequency of HTS voices */
 size_t HTS_ModelSet_get_sampling_frequency(HTS_ModelSet * ms);

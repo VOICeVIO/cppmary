@@ -118,7 +118,7 @@ HTS_Boolean HTS_Engine_load(HTS_Engine * engine, char **voices, size_t num_voice
    HTS_Engine_clear(engine);
 
    /* load voices */
-   if (HTS_ModelSet_load(&engine->ms, voices, num_voices) != TRUE) {
+   if (HTS_ModelSet_load(&engine->ms, voices, num_voices, 1) != TRUE) {
       HTS_Engine_clear(engine);
       return FALSE;
    }

@@ -17,6 +17,7 @@ namespace cppmary {
         void synthesisWithLableName(std::string labelFile);
     private:
         HTS_Engine engine_;
+        char** fn_voices_;
     };
 }
 
