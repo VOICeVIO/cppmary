@@ -477,28 +477,23 @@ void HTS_Audio_clear(HTS_Audio * audio)
 #ifdef AUDIO_PLAY_NONE
 
 /* HTS_Audio_initialize: initialize audio */
-void HTS_Audio_initialize(HTS_Audio * audio)
-{
+void HTS_Audio_initialize(HTS_Audio *audio) {
 }
 
 /* HTS_Audio_set_parameter: set parameters for audio */
-void HTS_Audio_set_parameter(HTS_Audio * audio, size_t sampling_frequeny, size_t max_buff_size)
-{
+void HTS_Audio_set_parameter(HTS_Audio *audio, size_t sampling_frequeny, size_t max_buff_size) {
 }
 
 /* HTS_Audio_write: send data to audio */
-void HTS_Audio_write(HTS_Audio * audio, short data)
-{
+void HTS_Audio_write(HTS_Audio *audio, short data) {
 }
 
 /* HTS_Audio_flush: flush remain data */
-void HTS_Audio_flush(HTS_Audio * audio)
-{
+void HTS_Audio_flush(HTS_Audio *audio) {
 }
 
 /* HTS_Audio_clear: free audio */
-void HTS_Audio_clear(HTS_Audio * audio)
-{
+void HTS_Audio_clear(HTS_Audio *audio) {
 }
 
 #endif                          /* AUDIO_PLAY_NONE */
