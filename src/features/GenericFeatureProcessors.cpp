@@ -2,7 +2,7 @@
 // Created by sooda on 16/6/15.
 //
 
-#include <features.h>
+#include "feature.h"
 #include "features/GenericFeatureProcessors.h"
 #include "pugixml/pugixml.hpp"
 #include "common.h"

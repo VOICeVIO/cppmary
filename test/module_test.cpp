@@ -7,7 +7,7 @@
 #include "pugixml/pugixml.hpp"
 //#include "common/WordsProcess.h"
 #include "cppmary.h"
-#include "features.h"
+#include "feature.h"
 using namespace std;
 using namespace cppmary;
 

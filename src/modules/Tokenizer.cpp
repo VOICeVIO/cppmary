@@ -7,6 +7,7 @@
 #include "common.h"
 #include "pugixml/pugixml.hpp"
 #include "limonp/Logging.hpp"
+#include <algorithm>
 
 namespace cppmary {
 
@@ -34,7 +35,7 @@ namespace cppmary {
             pugi::xml_node token = sentence.append_child("t");
             token.append_child(pugi::node_pcdata).set_value(wordTags[i].first.c_str());
             std::string pos = wordTags[i].second;
-            transform(pos.begin(), pos.end(), pos.begin(), (int (*)(int))toupper);
+            std::transform(pos.begin(), pos.end(), pos.begin(), (int (*)(int))toupper);
             token.append_attribute("pos") = pos.c_str();
         }
         std::string tokenStr = MaryXml::saveDoc2String(doc);

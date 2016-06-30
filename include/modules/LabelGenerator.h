@@ -6,7 +6,7 @@
 #define CPPMARY_LABELGENERATOR_H
 
 #include <features/PhoneTranslator.h>
-#include "features.h"
+#include "feature.h"
 
 namespace cppmary {
     class LabelGenerator : public InterModules {

@@ -6,6 +6,7 @@
 #define CPPMARY_MARYXML_H
 #include "pugixml/pugixml.hpp"
 #include <string>
+#include <cstring>
 
 namespace cppmary {
     struct xml_string_writer : pugi::xml_writer {
