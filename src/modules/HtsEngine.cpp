@@ -14,8 +14,10 @@ namespace cppmary {
         char *fileContent = new char[modelStr.size()+1];
         memset(fileContent, 0, modelStr.size()+1);
         memcpy(fileContent, modelStr.c_str(), modelStr.size());
+        int *sizes = new int[num_voices];
+        sizes[0] = modelStr.size();
         fn_voices_[0] = fileContent;
-        if (HTS_Engine_load(&engine_, fn_voices_, num_voices) != TRUE) {
+        if (HTS_Engine_load_size(&engine_, fn_voices_, num_voices, sizes) != TRUE) {
             fprintf(stderr, "Error: HTS voices cannot be loaded.\n");
             free(fn_voices_);
             HTS_Engine_clear(&engine_);

@@ -309,6 +309,9 @@ void HTS_Engine_initialize(HTS_Engine * engine);
 /* HTS_Engine_load: load HTS voices */
 HTS_Boolean HTS_Engine_load(HTS_Engine * engine, char **voices, size_t num_voices);
 
+/* HTS_Engine_load: load HTS voices with sizes*/
+HTS_Boolean HTS_Engine_load_size(HTS_Engine *engine, char **voices, size_t num_voices, int *sizes);
+
 /* HTS_Engine_set_sampling_frequency: set sampling fraquency */
 void HTS_Engine_set_sampling_frequency(HTS_Engine * engine, size_t i);
 

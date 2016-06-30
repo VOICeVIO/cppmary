@@ -903,7 +903,7 @@ static HTS_Boolean HTS_strequal(const char *s1, const char *s2)
  * 各个模型的具体数据保存在[data]中,原始存储方式是二进制,无法直接查看.转换非二进制后是一堆float
  * 需要根据起始和结束地址到[data]域中进行读取.
  * */
-HTS_Boolean HTS_ModelSet_load(HTS_ModelSet * ms, char **voices, size_t num_voices, int read_from_mem)
+HTS_Boolean HTS_ModelSet_load(HTS_ModelSet * ms, char **voices, size_t num_voices, int* read_from_mem)
 {
    size_t i, j, k, s, e;
    HTS_Boolean error = FALSE;
@@ -962,8 +962,8 @@ HTS_Boolean HTS_ModelSet_load(HTS_ModelSet * ms, char **voices, size_t num_voice
 
    for (i = 0; i < num_voices && error == FALSE; i++) {
       /* open file */
-      if (read_from_mem) {
-         fp = HTS_fopen_from_data(voices[i], "rb");
+      if (read_from_mem != NULL) {
+         fp = HTS_fopen_from_data(voices[i], read_from_mem[i]);
       } else {
          fp = HTS_fopen_from_fn(voices[i], "rb");
       }
