@@ -11,6 +11,7 @@ target_link_libraries(htsengine_test cppmary)
 
 add_example(pinyin_utf8_test)
 add_example(module_test)
+add_example(refcount_test)
 
 add_subdirectory(unittest)
 

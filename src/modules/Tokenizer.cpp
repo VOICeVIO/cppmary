@@ -9,6 +9,14 @@
 #include "limonp/Logging.hpp"
 
 namespace cppmary {
+
+    Tokenizer::Tokenizer() {
+        name_ = "tokenizer";
+    }
+
+    Tokenizer::~Tokenizer() {
+    }
+
     std::string Tokenizer::process(std::string input) {
         XLOG(DEBUG) << "tokenizer input: " << input;
         pugi::xml_document doc;

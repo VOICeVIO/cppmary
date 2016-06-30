@@ -8,6 +8,7 @@
 
 namespace cppmary {
     HtsEngine::HtsEngine(const std::string& modelStr) {
+        name_ = "HtsEngine";
         HTS_Engine_initialize(&engine_);
         size_t num_voices = 1;
         fn_voices_ = (char**)malloc(num_voices * sizeof(char*));

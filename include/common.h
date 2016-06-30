@@ -11,5 +11,7 @@
 #include "common/Ptr.h"
 #include "common/MaryXml.h"
 #include "common/Lexicon.h"
+#include "common/ReferenceCounted.h"
+#include "common/MaryBase.h"
 
 #endif //CPPMARY_COMMON_H_H

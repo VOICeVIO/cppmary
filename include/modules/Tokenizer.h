@@ -9,6 +9,8 @@
 namespace cppmary {
     class Tokenizer : public InterModules {
     public:
+        Tokenizer();
+        ~Tokenizer();
         virtual std::string process(std::string input);
     };
 }

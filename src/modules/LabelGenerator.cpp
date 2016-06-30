@@ -7,13 +7,21 @@
 
 namespace cppmary {
     LabelGenerator::LabelGenerator(FeatureProcessorManager* manager, TargetFeatureComputer* featureComputer, std::vector<std::string> featureName, std::vector<std::string> featureAlias, PhoneTranslator* phoneTranslator) {
+        name_ = "LabelGenerator";
         manager_ = manager;
         featureComputer_ = featureComputer;
         featureName_ = featureName;
         featureAlias_ = featureAlias;
         phoneTranslator_ = phoneTranslator;
+        manager_->AddRef();
+        featureComputer_->AddRef();
+        phoneTranslator_->AddRef();
     }
-    LabelGenerator::~LabelGenerator() {}
+    LabelGenerator::~LabelGenerator() {
+        manager_->ReleaseRef();
+        featureComputer_->ReleaseRef();
+        phoneTranslator_->ReleaseRef();
+    }
 
     std::string LabelGenerator::process(std::string input) {
         pugi::xml_document doc;

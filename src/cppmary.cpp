@@ -16,6 +16,14 @@ SpeechSynthesiser::SpeechSynthesiser() {
 }
 
 SpeechSynthesiser::~SpeechSynthesiser() {
+    manager_->ReleaseRef();
+    phonemiser_->ReleaseRef();
+    prosody_->ReleaseRef();
+    pronuciation_->ReleaseRef();
+    featureComputer_->ReleaseRef();
+    tokenizer_->ReleaseRef();
+    label_->ReleaseRef();
+    htsengine_->ReleaseRef();
 
 }
 
@@ -38,6 +46,7 @@ void SpeechSynthesiser::init() {
     std::string trickyName = "test/trickyPhones.txt";
     std::string trickyStr = getFileString(trickyName);
     PhoneTranslator* phoneTranslator = new PhoneTranslator(trickyStr);
+    phoneTranslator->AddRef();
     std::string featureMapName = "test/hmmFeaturesMap1.txt";
     std::vector<string> featureName;
     std::vector<string> featureAlias;
@@ -53,9 +62,18 @@ void SpeechSynthesiser::init() {
     std::cout << "context feature size: " << contextFeatureName.size() << std::endl;
     assert(featureName.size() == featureAlias.size());
     label_ = new LabelGenerator(manager_, featureComputer_, featureName, featureAlias, phoneTranslator);
-    std::string modelName = "test/labixx.htsvoice";
+    std::string modelName = "/Users/sooda/speech/cppmary/test/labixx.htsvoice";
     std::string modelStr = getFileString(modelName);
+    tokenizer_->AddRef();
     htsengine_ = new HtsEngine(modelStr);
+    manager_->AddRef();
+    htsengine_->AddRef();
+    phonemiser_->AddRef();
+    prosody_->AddRef();
+    pronuciation_->AddRef();
+    featureComputer_->AddRef();
+    label_->AddRef();
+    phoneTranslator->ReleaseRef();
 }
 
 

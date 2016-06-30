@@ -9,7 +9,7 @@
 #include "FeatureProcessor.h"
 
 namespace cppmary {
-    class TargetFeatureComputer {
+    class TargetFeatureComputer : public MaryBase {
     public:
         TargetFeatureComputer(FeatureProcessorManager& manager, std::string featuresProcessorNames);
         TargetFeatureComputer(FeatureProcessorManager& manager, std::vector<std::string> featureNamesVec);

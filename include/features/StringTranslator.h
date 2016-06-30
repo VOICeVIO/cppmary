@@ -10,9 +10,10 @@
 #include <iostream>
 
 namespace cppmary {
-    class StringTranslator {
+    class StringTranslator : public MaryBase {
         public:
             StringTranslator(std::vector<std::string> strs);
+            virtual ~StringTranslator();
             int getValue(std::string s);
             std::vector<std::string> getStringValues();
             bool contain(std::string ph);

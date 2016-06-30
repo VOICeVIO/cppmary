@@ -9,7 +9,7 @@
 
 //原来的MaryGenericFeatureProcessors遍历部分
 namespace cppmary {
-    class TargetElementNavigator {
+    class TargetElementNavigator : public MaryBase {
         public:
             virtual pugi::xml_node getElement(Target target) = 0;
             virtual pugi::xml_node prevElement(std::vector<pugi::xml_node> nodes, pugi::xml_node current);

@@ -8,6 +8,13 @@
 #include "common.h"
 
 namespace cppmary {
+
+    Pronunciation::Pronunciation() {
+        name_ = "Pronunciation";
+    }
+
+    Pronunciation::~Pronunciation() { }
+
     /* 增加syllable的发音及特征
      *   <syllable accent="*" ph="H W aH nnH" pinyin="huan1" stress="1" zhtone="1">
      *   <ph p="H"/>

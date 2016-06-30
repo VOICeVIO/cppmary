@@ -8,6 +8,7 @@
 
 namespace cppmary {
     Prosody::Prosody() {
+        name_ = "prosody";
         resetPuncinations(SPECIAL_PUNCINATIONS);
     }
 

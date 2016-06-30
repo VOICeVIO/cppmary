@@ -10,6 +10,7 @@
 namespace cppmary {
     Phonemiser::Phonemiser(const std::string& wordDictStr, const std::string& sylDictStr, const std::string& lexiconDictStr)
         : pinyinConverter_(wordDictStr, sylDictStr), lexiconTranslator_(lexiconDictStr) {
+        name_ = "Phonemiser";
     }
 
     std::string Phonemiser::process(std::string input) {

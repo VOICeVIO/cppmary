@@ -9,9 +9,13 @@ namespace cppmary {
         name_ = name;
         maryxmlElement_ = maryxmlElement;
     }
-    
-    Target::~Target() {
 
+    Target::Target(const Target &target) {
+        name_ = target.name_;
+        maryxmlElement_ = target.maryxmlElement_;
+    }
+
+    Target::~Target() {
     }
 
     bool Target::isSilence() {

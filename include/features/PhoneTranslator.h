@@ -8,7 +8,7 @@
 #include <string>
 
 namespace cppmary {
-    class PhoneTranslator {
+    class PhoneTranslator : public MaryBase {
     public:
         PhoneTranslator(const std::string& trickyStr);
         ~PhoneTranslator();

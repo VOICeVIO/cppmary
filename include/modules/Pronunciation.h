@@ -8,6 +8,9 @@
 
 namespace cppmary {
     class Pronunciation : public InterModules {
+    public:
+        Pronunciation();
+        virtual ~Pronunciation();
         virtual std::string process(std::string input);
     };
 }

@@ -16,9 +16,10 @@ namespace cppmary {
     }
 
     FeatureProcessorManager::~FeatureProcessorManager() {
+        XLOG(INFO) << "deconstruct FeatureProcessorManager ";
         std::map<std::string, FeatureProcessor *>::iterator iter;
         for (iter = processors_.begin(); iter != processors_.end(); ++iter) {
-            delete iter->second;
+            iter->second->ReleaseRef();
         }
     }
 
@@ -130,6 +131,11 @@ namespace cppmary {
     }
 
     void FeatureProcessorManager::addFeatureProcessor(FeatureProcessor * fp) {
+        std::cout << fp->getName() << " setup ";
+        fp->AddRef();
+        if (processors_[fp->getName()] != NULL) {
+            processors_[fp->getName()]->ReleaseRef();
+        }
         processors_[fp->getName()] = fp;
     }
 

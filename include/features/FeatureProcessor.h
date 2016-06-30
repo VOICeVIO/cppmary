@@ -14,7 +14,7 @@
 
 namespace cppmary {
 
-    class FeatureProcessor {
+    class FeatureProcessor : public MaryBase {
     public:
         virtual std::vector<std::string> getValues();
         virtual std::string getName();

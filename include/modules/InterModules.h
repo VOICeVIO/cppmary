@@ -5,11 +5,16 @@
 #ifndef CPPMARY_INTERMODULES_H
 #define CPPMARY_INTERMODULES_H
 #include <string>
+#include "common.h"
 
 namespace cppmary {
-    class InterModules {
+    class InterModules : public MaryBase {
     public:
+        InterModules();
+        virtual ~InterModules();
         virtual std::string process(std::string input) = 0;
+    protected:
+        std::string name_;
     };
 }
 

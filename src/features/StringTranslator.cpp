@@ -17,6 +17,8 @@ namespace cppmary {
 //        }
     }
 
+    StringTranslator::~StringTranslator() { }
+
     int StringTranslator::getValue(std::string s) {
         //TODO: deal with not contain the key
         int value = map_[s];

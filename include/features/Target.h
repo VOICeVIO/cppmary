@@ -8,9 +8,10 @@
 #include "pugixml/pugixml.hpp"
 
 namespace cppmary {
-    class Target {
+    class Target : public MaryBase {
         public:
             Target(std::string name, pugi::xml_node maryxmlElement);
+            Target(const Target& target);
             ~Target();
             pugi::xml_node getMaryElement();
             std::string getName();
