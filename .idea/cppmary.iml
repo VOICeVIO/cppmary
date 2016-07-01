@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/test/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/jieba_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/pinyin_utf8_test.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test/refcount_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/hts_engine.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/module_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/pugi_test.cpp" isTestSource="false" />

@@ -62,7 +62,7 @@ void SpeechSynthesiser::init() {
     std::cout << "context feature size: " << contextFeatureName.size() << std::endl;
     assert(featureName.size() == featureAlias.size());
     label_ = new LabelGenerator(manager_, featureComputer_, featureName, featureAlias, phoneTranslator);
-    std::string modelName = "/Users/sooda/speech/cppmary/test/labixx.htsvoice";
+    std::string modelName = "test/labixx500.htsvoice";
     std::string modelStr = getFileString(modelName);
     tokenizer_->AddRef();
     htsengine_ = new HtsEngine(modelStr);
