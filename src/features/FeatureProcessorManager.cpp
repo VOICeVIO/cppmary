@@ -53,10 +53,10 @@ namespace cppmary {
         TargetElementNavigator* prevSegmentNav = new PrevSegmentNavigator();
         TargetElementNavigator* nextSegmentNav = new NextSegmentNavigator();
         TargetElementNavigator* lastWordNav = new LastWordInSentenceNavigator();
-        addFeatureProcessor(new Zhtone("zh_tone", zhToneValues, syllableNav));
-        addFeatureProcessor(new Zhtone("prev_zh_tone", zhToneValues, prevSyllableNav));
+        addFeatureProcessor(new Zhtone("zhtone", zhToneValues, syllableNav));
+        addFeatureProcessor(new Zhtone("prev_zhtone", zhToneValues, prevSyllableNav));
         addFeatureProcessor(new Zhtone("next_zhtone", zhToneValues, nextSyllableNav));
-        addFeatureProcessor(new Zhtone("nextnext_zh_tone", zhToneValues, nextnextSyllableNav));
+        addFeatureProcessor(new Zhtone("nextnext_zhtone", zhToneValues, nextnextSyllableNav));
         addFeatureProcessor(new Zhtone("prevprev_zhtone", zhToneValues, prevPrevSyllableNav));
         addFeatureProcessor(new Zhtone("phrase_zhtone", zhToneValues, lastSylInPhrase));
 
@@ -68,8 +68,8 @@ namespace cppmary {
         addFeatureProcessor(new TobiAccent("prevprev_tobi_accent", tobiValues, prevPrevSyllableNav));
         addFeatureProcessor(new TobiAccent("next_tobi_accent", tobiValues, nextSyllableNav));
         addFeatureProcessor(new TobiAccent("nextnext_tobi_accent", tobiValues, nextnextSyllableNav));
-        addFeatureProcessor(new TobiAccent("prev_accent", tobiValues, prevSyllableNav)); //注意这里是tobi accent
-        addFeatureProcessor(new TobiAccent("next_accent", tobiValues, nextSyllableNav));
+        //addFeatureProcessor(new TobiAccent("prev_accent", tobiValues, prevSyllableNav)); //注意这里是tobi accent
+        //addFeatureProcessor(new TobiAccent("next_accent", tobiValues, nextSyllableNav));
 
         std::vector<std::string> posValues;
         posValues.assign(ZHPOS, ZHPOS+ZHPOS_NUM);
@@ -111,6 +111,7 @@ namespace cppmary {
 
         addFeatureProcessor(new SylBreak("syl_break", intValues, syllableNav));
         addFeatureProcessor(new SylBreak("prev_syl_break", intValues, prevSyllableNav));
+        addFeatureProcessor(new SylBreak("next_syl_break", intValues, nextSyllableNav));
         addFeatureProcessor(new BreakIndex("breakindex", intValues, syllableNav));
 
         std::vector<std::string> positionTypeValues;
