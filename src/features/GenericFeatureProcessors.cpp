@@ -184,6 +184,72 @@ namespace cppmary {
         return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
     }
 
+    /*
+     * The style of current target
+     */
+    Style::Style(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    Style::~Style() { }
+
+    int Style::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        pugi::xml_node prosody = MaryXml::getAncestor(segment, MaryXml::PROSODY);
+        if (prosody.empty()) {
+            return 0;
+        } else {
+            std::string style = prosody.attribute("style").as_string();
+            if (style.empty()) {
+                style = "0";
+            }
+            return translator_.getValue(style);
+        }
+    }
+
+    /*
+     * The Tobi endtone of current syllable
+     */
+    TobiEndtone::TobiEndtone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    TobiEndtone::~TobiEndtone() { }
+
+    int TobiEndtone::process(Target target) {
+        pugi::xml_node syllable = navigator_->getElement(target);
+        if (syllable.empty()) {
+            return 0;
+        }
+        pugi::xml_node sentence = MaryXml::getAncestor(syllable, MaryXml::SENTENCE);
+        if (sentence.empty()) {
+            return 0;
+        }
+        phone_boundary_walker tw;
+        sentence.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        bool start = false;
+        for (int i = 0; i < nodes.size(); i++) {
+            pugi::xml_node node = nodes[i];
+            if (start == true) {
+                if (strcmp(node.name(), MaryXml::BOUNDARY) == 0) {
+                    return 0;
+                } else {
+                    std::string endtone = node.attribute("tone").as_string();
+                    if (endtone.empty()) {
+                        return 0;
+                    } else {
+                        return translator_.getValue(endtone);
+                    }
+                }
+            }
+            if (node == syllable) {
+                start = true;
+            }
+        }
+        return 0;
+    }
 
     /*
      * The Tobi accent of current syllable
@@ -1107,5 +1173,36 @@ namespace cppmary {
         return count;
     }
 
+    /*
+     * onset or coda
+     */
+    SegOnsetCoda::SegOnsetCoda(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator, AllophoneSet phonset) : FeatureProcessor(name, possibleValues, navigator), phoneset_(phonset) {
+    }
+
+    SegOnsetCoda::~SegOnsetCoda(){}
+
+    int SegOnsetCoda::process(Target target) {
+        pugi::xml_node segment = target.getMaryElement();
+        if (segment.empty()) {
+            return 0;
+        }
+        if (strcmp(segment.name(), MaryXml::PHONE) != 0) {
+            return 0;
+        }
+
+        while (!(segment = MaryXml::getNextSiblingElement(segment)).empty()) {
+            std::string ph = segment.attribute("p").as_string();
+            if (ph.empty()) {
+                continue;
+            }
+            if (phoneset_.getPhoneFeature(ph, "vc") == "+") {
+                return translator_.getValue("onset");
+            }
+        }
+        return translator_.getValue("coda");
+    }
+
+
 }
+
 

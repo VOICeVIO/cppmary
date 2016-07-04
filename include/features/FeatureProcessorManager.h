@@ -16,7 +16,7 @@ namespace cppmary {
             FeatureProcessorManager(std::string localeString, std::string phonesetXmlStr);
             ~FeatureProcessorManager();
             void setupGenericFeatureProcessors();
-            void setupPhoneFeatureProcessors(AllophoneSet phoneset);
+            void setupPhoneFeatureProcessors();
             void addFeatureProcessor(FeatureProcessor * fp);
             FeatureProcessor * getFeatureProcessor(std::string name);
 
@@ -24,6 +24,7 @@ namespace cppmary {
             std::string localeString_;
             std::map<std::string, FeatureProcessor *> processors_;
             std::map<std::string, std::vector<std::string> > phonefeature2values_;
+            AllophoneSet phoneset_;
 
     };
 }

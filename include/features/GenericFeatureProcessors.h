@@ -17,6 +17,8 @@ namespace cppmary {
     const int TOBIACCENT_NUM = 20;
     const int POSITIONTYPE_NUM = 5;
     const int PUNC_NUM = 10;
+    const int STYLE_NUM = 7;
+    const int ENDTONE_NUM = 13;
     const std::string ZHTONES[ZHTONE_NUM] = {"0", "1", "2", "3", "4", "5"};
     const std::string ZHPOS[ZHPOS_NUM] = { "0", "AG", "A", "AD", "AN", "B", "C", "DG", "D", "E",
                                     "F", "G", "H", "I", "J", "K", "L", "M", "NG", "N",
@@ -27,6 +29,9 @@ namespace cppmary {
         "L+^H*", "L*+^H", "H+L*", "H+!H*", "H+^H*", "!H+!H*", "^H+!H*", "^H+^H*", "H*+L", "!H*+L" };
     const std::string POSITIONTYPE[POSITIONTYPE_NUM] = {"0", "single", "final", "initial", "mid"};
     const std::string PUNCUATION[PUNC_NUM] = { "0", ".", ",", ";", ":", "(", ")", "?", "!", "\"" };
+    const std::string STYLES[STYLE_NUM] = {"0", "neutral", "poker", "happy", "sad", "angry", "excited"};
+    const std::string ENDTONE[ENDTONE_NUM] = { "0", "H-", "!H-", "L-", "H-%", "!H-%", "H-^H%", "!H-^H%", "L-H%", "L-%", 
+                                            "L-L%", "H-H%", "H-L%"};
 
     /*
      * the token syllable of current phrase
@@ -102,6 +107,30 @@ namespace cppmary {
     public:
         SentenceNumWords(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
         virtual ~SentenceNumWords();
+        virtual int process(Target target);
+    };
+
+
+    /*
+     * The style of current target
+     * @navigator: null
+     */
+    class Style : public FeatureProcessor {
+    public:
+        Style(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~Style();
+        virtual int process(Target target);
+    };
+
+
+    /*
+     * The Tobi endtone of current syllable
+     * @navigator: syllableNavigator
+     */
+    class TobiEndtone : public FeatureProcessor {
+    public:
+        TobiEndtone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        virtual ~TobiEndtone();
         virtual int process(Target target);
     };
 
@@ -433,6 +462,19 @@ namespace cppmary {
         WordsToPrevPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
         virtual ~WordsToPrevPunctuation();
         virtual int process(Target target);
+    };
+
+    /*
+     * onset or coda
+     * @navigator: null
+     */
+    class SegOnsetCoda : public FeatureProcessor {
+    public:
+        SegOnsetCoda(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator, AllophoneSet phonset);
+        virtual ~SegOnsetCoda();
+        virtual int process(Target target);
+    private:
+        AllophoneSet phoneset_;
     };
 
 }

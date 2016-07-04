@@ -17,6 +17,7 @@ namespace cppmary {
 
             Allophone getAllophone(std::string ph);
             Allophone getSilent();
+            std::string getPhoneFeature(std::string ph, std::string featureName);
             std::vector<std::string> getAllophoneNames();
 
     private:

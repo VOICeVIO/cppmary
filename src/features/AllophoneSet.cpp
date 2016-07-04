@@ -64,6 +64,15 @@ namespace cppmary {
         vcValues.push_back("-");
         featureValuesMap_["vc"] = vcValues;
     }
+
+    std::string AllophoneSet::getPhoneFeature(std::string ph, std::string featureName) {
+        if (ph.empty()) {
+            return "";
+        }
+        Allophone allo = getAllophone(ph);
+        std::string feat = allo.getFeature(featureName);
+        return feat;
+    }
     
     AllophoneSet::~AllophoneSet() {
 

@@ -7,20 +7,21 @@
 #include "features/LanguageFeatureProcessors.h"
 
 namespace cppmary {
-    FeatureProcessorManager::FeatureProcessorManager(std::string localeString, std::string phonesetXmlStr) {
+    FeatureProcessorManager::FeatureProcessorManager(std::string localeString, std::string phonesetXmlStr) : phoneset_(phonesetXmlStr) {
         //locale process
         localeString_ = localeString;
         setupGenericFeatureProcessors();
-        AllophoneSet phonset(phonesetXmlStr);
-        setupPhoneFeatureProcessors(phonset);
+        setupPhoneFeatureProcessors();
     }
 
     FeatureProcessorManager::~FeatureProcessorManager() {
         XLOG(INFO) << "deconstruct FeatureProcessorManager ";
         std::map<std::string, FeatureProcessor *>::iterator iter;
         for (iter = processors_.begin(); iter != processors_.end(); ++iter) {
+            std::cout << iter->second->getName() << std::endl;
             iter->second->ReleaseRef();
         }
+        std::cout << "manager deconstruct ok?" << std::endl;
     }
 
     void FeatureProcessorManager::setupGenericFeatureProcessors() {
@@ -43,7 +44,7 @@ namespace cppmary {
         TargetElementNavigator* prevSyllableNav = new PrevSyllableNavigator();
         TargetElementNavigator* prevPrevSyllableNav = new PrevPrevSyllableNavigator();
         TargetElementNavigator* nextSyllableNav = new NextSyllableNavigator();
-        TargetElementNavigator* nextnextSyllableNav = new NextNextSyllableNavigator();
+        TargetElementNavigator* nextNextSyllableNav = new NextNextSyllableNavigator();
         TargetElementNavigator* wordNav = new WordNavigator();
         TargetElementNavigator* nextWordNav = new WordNavigator();
         TargetElementNavigator* prevWordNav =  new WordNavigator();
@@ -56,7 +57,7 @@ namespace cppmary {
         addFeatureProcessor(new Zhtone("zhtone", zhToneValues, syllableNav));
         addFeatureProcessor(new Zhtone("prev_zhtone", zhToneValues, prevSyllableNav));
         addFeatureProcessor(new Zhtone("next_zhtone", zhToneValues, nextSyllableNav));
-        addFeatureProcessor(new Zhtone("nextnext_zhtone", zhToneValues, nextnextSyllableNav));
+        addFeatureProcessor(new Zhtone("nextnext_zhtone", zhToneValues, nextNextSyllableNav));
         addFeatureProcessor(new Zhtone("prevprev_zhtone", zhToneValues, prevPrevSyllableNav));
         addFeatureProcessor(new Zhtone("phrase_zhtone", zhToneValues, lastSylInPhrase));
 
@@ -67,7 +68,7 @@ namespace cppmary {
         addFeatureProcessor(new TobiAccent("prev_tobi_accent", tobiValues, prevSyllableNav)); //注意这里是tobi accent
         addFeatureProcessor(new TobiAccent("prevprev_tobi_accent", tobiValues, prevPrevSyllableNav));
         addFeatureProcessor(new TobiAccent("next_tobi_accent", tobiValues, nextSyllableNav));
-        addFeatureProcessor(new TobiAccent("nextnext_tobi_accent", tobiValues, nextnextSyllableNav));
+        addFeatureProcessor(new TobiAccent("nextnext_tobi_accent", tobiValues, nextNextSyllableNav));
         //addFeatureProcessor(new TobiAccent("prev_accent", tobiValues, prevSyllableNav)); //注意这里是tobi accent
         //addFeatureProcessor(new TobiAccent("next_accent", tobiValues, nextSyllableNav));
 
@@ -129,6 +130,27 @@ namespace cppmary {
         addFeatureProcessor(new WordsToNextPunctuation("words_to_next_punctuation", intValues, wordNav));
         addFeatureProcessor(new WordsToPrevPunctuation("words_from_prev_punctuation", intValues, wordNav));
 
+        std::vector<std::string> styleValues;
+        styleValues.assign(STYLES, STYLES+STYLE_NUM);
+        addFeatureProcessor(new Style("style", styleValues, NULL));
+
+        //endtone
+        std::vector<std::string> endtoneValues;
+        styleValues.assign(ENDTONE, ENDTONE+ENDTONE_NUM);
+        addFeatureProcessor(new TobiEndtone("tobi_endtone", endtoneValues, syllableNav));
+        addFeatureProcessor(new TobiEndtone("next_tobi_endtone", endtoneValues, nextSyllableNav));
+        addFeatureProcessor(new TobiEndtone("nextnext_tobi_endtone", endtoneValues, nextNextSyllableNav));
+        addFeatureProcessor(new TobiEndtone("prev_tobi_endtone", endtoneValues, prevSyllableNav));
+        addFeatureProcessor(new TobiEndtone("prevprev_tobi_endtone", endtoneValues, prevPrevSyllableNav));
+        addFeatureProcessor(new TobiEndtone("phrase_endtone", endtoneValues, lastSylInPhrase));
+
+        //onsetcoda
+        std::vector<std::string> onsetcodaValues;
+        onsetcodaValues.push_back("0");
+        onsetcodaValues.push_back("onset");
+        onsetcodaValues.push_back("coda");
+        addFeatureProcessor(new SegOnsetCoda("onsetcoda", onsetcodaValues, NULL, phoneset_));
+
     }
 
     void FeatureProcessorManager::addFeatureProcessor(FeatureProcessor * fp) {
@@ -145,10 +167,10 @@ namespace cppmary {
         return processors_[name];
     }
 
-    void FeatureProcessorManager::setupPhoneFeatureProcessors(AllophoneSet phoneset) {
+    void FeatureProcessorManager::setupPhoneFeatureProcessors() {
         std::vector<std::string> phoneValues;
-        std::vector<std::string> pValues = phoneset.getAllophoneNames();
-        std::string pauseSymbol = phoneset.getSilent().name();
+        std::vector<std::string> pValues = phoneset_.getAllophoneNames();
+        std::string pauseSymbol = phoneset_.getSilent().name();
         TargetElementNavigator* segmentNavigator = new SegmentNavigator();
         TargetElementNavigator* prevSegmentNavigator = new PrevSegmentNavigator();
         TargetElementNavigator* prevPrevSegmentNavigator = new PrevPrevSegmentNavigator();
