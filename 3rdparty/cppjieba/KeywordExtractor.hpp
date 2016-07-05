@@ -21,26 +21,22 @@ class KeywordExtractor {
         const string& hmmFilePath, 
         const string& idfPath, 
         const string& stopWordPath, 
-        const string& userDict = "") 
-    : segment_(dictPath, hmmFilePath, userDict) {
-    LoadIdfDict(idfPath);
-    LoadStopWordDict(stopWordPath);
+        const string& userDict = "",
+        bool bufferflag = false)
+    : segment_(dictPath, userDict) {
+    LoadIdfDict(idfPath, bufferflag);
+    LoadStopWordDict(stopWordPath, bufferflag);
   }
   KeywordExtractor(const DictTrie* dictTrie, 
         const HMMModel* model,
         const string& idfPath, 
-        const string& stopWordPath) 
-    : segment_(dictTrie, model) {
-    LoadIdfDict(idfPath);
-    LoadStopWordDict(stopWordPath);
+        const string& stopWordPath,
+        bool bufferflag = false)
+    : segment_(dictTrie) {
+    LoadIdfDict(idfPath, bufferflag);
+    LoadStopWordDict(stopWordPath, bufferflag);
   }
-  KeywordExtractor(const Jieba& jieba, 
-        const string& idfPath, 
-        const string& stopWordPath) 
-    : segment_(jieba.GetDictTrie(), jieba.GetHMMModel()) {
-    LoadIdfDict(idfPath);
-    LoadStopWordDict(stopWordPath);
-  }
+    
   ~KeywordExtractor() {
   }
 
@@ -97,50 +93,102 @@ class KeywordExtractor {
     keywords.resize(topN);
   }
  private:
-  void LoadIdfDict(const string& idfPath) {
-    ifstream ifs(idfPath.c_str());
-    XCHECK(ifs.is_open()) << "open " << idfPath << " failed";
-    string line ;
-    vector<string> buf;
-    double idf = 0.0;
-    double idfSum = 0.0;
-    size_t lineno = 0;
-    for (; getline(ifs, line); lineno++) {
-      buf.clear();
-      if (line.empty()) {
-        XLOG(ERROR) << "lineno: " << lineno << " empty. skipped.";
-        continue;
+  void LoadIdfDict(const string& idfPath, bool bufferflag) {
+      if(bufferflag)
+      {
+          string line ;
+          vector<string> buf;
+          double idf = 0.0;
+          double idfSum = 0.0;
+          size_t lineno = 0;
+          char *filebuffer= new char[idfPath.size()+1];
+          strcpy(filebuffer, idfPath.c_str());
+          
+          for (char *tok = strtok(filebuffer, "\n"); tok != NULL; tok = strtok(NULL, "\n"),lineno++)
+          {
+              line=std::string(tok);
+              if (line.empty()) {
+                  XLOG(ERROR) << "lineno: " << lineno << " empty. skipped.";
+                  continue;
+              }
+              Split(line, buf, " ");
+              if (buf.size() != 2) {
+                  XLOG(ERROR) << "line: " << line << ", lineno: " << lineno << " empty. skipped.";
+                  continue;
+              }
+              idf = atof(buf[1].c_str());
+              idfMap_[buf[0]] = idf;
+              idfSum += idf;
+          }
+          assert(lineno);
+          idfAverage_ = idfSum / lineno;
+          assert(idfAverage_ > 0.0);
+          delete filebuffer;
       }
-      Split(line, buf, " ");
-      if (buf.size() != 2) {
-        XLOG(ERROR) << "line: " << line << ", lineno: " << lineno << " empty. skipped.";
-        continue;
+      else
+      {
+          ifstream ifs(idfPath.c_str());
+          XCHECK(ifs.is_open()) << "open " << idfPath << " failed";
+          string line ;
+          vector<string> buf;
+          double idf = 0.0;
+          double idfSum = 0.0;
+          size_t lineno = 0;
+          for (; getline(ifs, line); lineno++) {
+              buf.clear();
+              if (line.empty()) {
+                  XLOG(ERROR) << "lineno: " << lineno << " empty. skipped.";
+                  continue;
+              }
+              Split(line, buf, " ");
+              if (buf.size() != 2) {
+                  XLOG(ERROR) << "line: " << line << ", lineno: " << lineno << " empty. skipped.";
+                  continue;
+              }
+              idf = atof(buf[1].c_str());
+              idfMap_[buf[0]] = idf;
+              idfSum += idf;
+          }
+          
+          assert(lineno);
+          idfAverage_ = idfSum / lineno;
+          assert(idfAverage_ > 0.0);
       }
-      idf = atof(buf[1].c_str());
-      idfMap_[buf[0]] = idf;
-      idfSum += idf;
-
-    }
-
-    assert(lineno);
-    idfAverage_ = idfSum / lineno;
-    assert(idfAverage_ > 0.0);
   }
-  void LoadStopWordDict(const string& filePath) {
-    ifstream ifs(filePath.c_str());
-    XCHECK(ifs.is_open()) << "open " << filePath << " failed";
-    string line ;
-    while (getline(ifs, line)) {
-      stopWords_.insert(line);
-    }
-    assert(stopWords_.size());
+  void LoadStopWordDict(const string& filePath, bool bufferflag) {
+      if(bufferflag)
+      {
+          string line ;
+          char *filebuffer= new char[filePath.size()+1];
+          strcpy(filebuffer, filePath.c_str());
+          
+          for (char *tok = strtok(filebuffer, "\n"); tok != NULL; tok = strtok(NULL, "\n"))
+          {
+              line=std::string(tok);
+              stopWords_.insert(line);
+          }
+          assert(stopWords_.size());
+          delete filebuffer;
+      }
+      else
+      {
+          ifstream ifs(filePath.c_str());
+          XCHECK(ifs.is_open()) << "open " << filePath << " failed";
+          string line ;
+          while (getline(ifs, line)) {
+              stopWords_.insert(line);
+          }
+          assert(stopWords_.size());
+      }
+
   }
 
   static bool Compare(const Word& lhs, const Word& rhs) {
     return lhs.weight > rhs.weight;
   }
 
-  MixSegment segment_;
+  //MixSegment segment_;
+  MPSegment segment_;
   unordered_map<string, double> idfMap_;
   double idfAverage_;
 

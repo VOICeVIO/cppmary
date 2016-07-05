@@ -30,8 +30,8 @@ class DictTrie {
     WordWeightMax,
   }; // enum UserWordWeightOption
 
-  DictTrie(const string& dict_path, const string& user_dict_paths = "", UserWordWeightOption user_word_weight_opt = WordWeightMedian) {
-    Init(dict_path, user_dict_paths, user_word_weight_opt);
+  DictTrie(const string& dict_path, const string& user_dict_paths = "", bool bufferflag=false, UserWordWeightOption user_word_weight_opt = WordWeightMedian) {
+    Init(dict_path, bufferflag, user_dict_paths, user_word_weight_opt);
   }
 
   ~DictTrie() {
@@ -68,13 +68,13 @@ class DictTrie {
   }
 
  private:
-  void Init(const string& dict_path, const string& user_dict_paths, UserWordWeightOption user_word_weight_opt) {
-    LoadDict(dict_path);
+  void Init(const string& dict_path, bool bufferflag, const string& user_dict_paths, UserWordWeightOption user_word_weight_opt) {
+    LoadDict(dict_path, bufferflag);
     CalculateWeight(static_node_infos_);
     SetStaticWordWeights(user_word_weight_opt);
 
     if (user_dict_paths.size()) {
-      LoadUserDict(user_dict_paths);
+      LoadUserDict(user_dict_paths, bufferflag);
     }
     Shrink(static_node_infos_);
     CreateTrie(static_node_infos_);
@@ -92,32 +92,58 @@ class DictTrie {
     trie_ = new Trie(words, valuePointers);
   }
 
-  void LoadUserDict(const string& filePaths) {
-    vector<string> files = limonp::Split(filePaths, "|;");
-    size_t lineno = 0;
-    for (size_t i = 0; i < files.size(); i++) {
-      ifstream ifs(files[i].c_str());
-      XCHECK(ifs.is_open()) << "open " << files[i] << " failed"; 
-      string line;
-      DictUnit node_info;
-      vector<string> buf;
-      for (; getline(ifs, line); lineno++) {
-        if (line.size() == 0) {
-          continue;
-        }
-        buf.clear();
-        Split(line, buf, " ");
-        DictUnit node_info;
-        MakeNodeInfo(node_info, 
-              buf[0], 
-              user_word_default_weight_,
-              (buf.size() == 2 ? buf[1] : UNKNOWN_TAG));
-        static_node_infos_.push_back(node_info);
-        if (node_info.word.size() == 1) {
-          user_dict_single_chinese_word_.insert(node_info.word[0]);
-        }
+  void LoadUserDict(const string& filePaths, bool bufferflag) {
+      if(bufferflag)
+      {
+          size_t lineno = 0;
+          string line;
+          DictUnit nodeInfo;
+          vector<string> buf;
+          char *filebuffer= new char[filePaths.size()+1];
+          strcpy(filebuffer, filePaths.c_str());
+          
+          for (char *tok = strtok(filebuffer, "\n"); tok != NULL; tok = strtok(NULL, "\n"),lineno++)
+          {
+              line=std::string(tok);
+              buf.clear();
+              Split(line, buf, " ");
+              DictUnit node_info;
+              MakeNodeInfo(node_info,
+                           buf[0],
+                           user_word_default_weight_,
+                           (buf.size() == 2 ? buf[1] : UNKNOWN_TAG));
+              static_node_infos_.push_back(node_info);
+              if (node_info.word.size() == 1) {
+                  user_dict_single_chinese_word_.insert(node_info.word[0]);
+              }
+          }
+          delete filebuffer;
       }
-    }
+      else
+      {
+          vector<string> files = limonp::Split(filePaths, ":");
+          size_t lineno = 0;
+          for (size_t i = 0; i < files.size(); i++) {
+              ifstream ifs(files[i].c_str());
+              string line;
+              DictUnit nodeInfo;
+              vector<string> buf;
+              for(; getline(ifs, line); lineno++) {
+                  buf.clear();
+                  Split(line, buf, " ");
+                  DictUnit node_info;
+                  MakeNodeInfo(node_info,
+                               buf[0],
+                               user_word_default_weight_,
+                               (buf.size() == 2 ? buf[1] : UNKNOWN_TAG));
+                  static_node_infos_.push_back(node_info);
+                  if (node_info.word.size() == 1) {
+                      user_dict_single_chinese_word_.insert(node_info.word[0]);
+                  }
+
+              }
+          }
+      }
   }
 
   bool MakeNodeInfo(DictUnit& node_info,
@@ -133,22 +159,46 @@ class DictTrie {
     return true;
   }
 
-  void LoadDict(const string& filePath) {
-    ifstream ifs(filePath.c_str());
-    XCHECK(ifs.is_open()) << "open " << filePath << " failed.";
-    string line;
-    vector<string> buf;
+  void LoadDict(const string& filePath, bool bufferflag) {
+      if(bufferflag)
+      {
+          string line;
+          DictUnit node_info;
+          vector<string> buf;
+          char *filebuffer= new char[filePath.size()+1];
+          strcpy(filebuffer, filePath.c_str());
+          
+          for (char *tok = strtok(filebuffer, "\n"); tok != NULL; tok = strtok(NULL, "\n"))
+          {
+              line=std::string(tok);
+              Split(line, buf, " ");
+              XCHECK(buf.size() == DICT_COLUMN_NUM) << "split result illegal, line:" << line;
+              MakeNodeInfo(node_info,
+                           buf[0],
+                           atof(buf[1].c_str()),
+                           buf[2]);
+              static_node_infos_.push_back(node_info);
 
-    DictUnit node_info;
-    for (size_t lineno = 0; getline(ifs, line); lineno++) {
-      Split(line, buf, " ");
-      XCHECK(buf.size() == DICT_COLUMN_NUM) << "split result illegal, line:" << line;
-      MakeNodeInfo(node_info, 
-            buf[0], 
-            atof(buf[1].c_str()), 
-            buf[2]);
-      static_node_infos_.push_back(node_info);
-    }
+          }
+          delete filebuffer;
+      }
+      else
+      {
+          ifstream ifs(filePath.c_str());
+          string line;
+          vector<string> buf;
+          
+          DictUnit node_info;
+          for(size_t lineno = 0; getline(ifs, line); lineno++) {
+              Split(line, buf, " ");
+              XCHECK(buf.size() == DICT_COLUMN_NUM) << "split result illegal, line:" << line;
+              MakeNodeInfo(node_info,
+                           buf[0],
+                           atof(buf[1].c_str()),
+                           buf[2]);
+              static_node_infos_.push_back(node_info);
+          }
+      }
   }
 
   static bool WeightCompare(const DictUnit& lhs, const DictUnit& rhs) {

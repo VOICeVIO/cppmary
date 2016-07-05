@@ -16,7 +16,10 @@ struct HMMModel {
    * */
   enum {B = 0, E = 1, M = 2, S = 3, STATUS_SUM = 4};
 
-  HMMModel(const string& modelPath) {
+  HMMModel(const string& modelPath, bool bufferflag=false) {
+    if (bufferflag && modelPath.empty()) {
+      return;
+    }
     memset(startProb, 0, sizeof(startProb));
     memset(transProb, 0, sizeof(transProb));
     statMap[0] = 'B';
@@ -27,50 +30,109 @@ struct HMMModel {
     emitProbVec.push_back(&emitProbE);
     emitProbVec.push_back(&emitProbM);
     emitProbVec.push_back(&emitProbS);
-    LoadModel(modelPath);
+    LoadModel(modelPath, bufferflag);
   }
   ~HMMModel() {
   }
-  void LoadModel(const string& filePath) {
-    ifstream ifile(filePath.c_str());
-    XCHECK(ifile.is_open()) << "open " << filePath << " failed";
-    string line;
-    vector<string> tmp;
-    vector<string> tmp2;
-    //Load startProb
-    XCHECK(GetLine(ifile, line));
-    Split(line, tmp, " ");
-    XCHECK(tmp.size() == STATUS_SUM);
-    for (size_t j = 0; j< tmp.size(); j++) {
-      startProb[j] = atof(tmp[j].c_str());
+
+    bool GetBufferLine(std::vector<std::string>& bufferVec, int& index, string& line) {
+        while (index < bufferVec.size()) {
+            line = bufferVec[index++];
+            Trim(line);
+            if (line.empty()) {
+                continue;
+            }
+            if (StartsWith(line, "#")) {
+                continue;
+            }
+            return true;
+        }
+        return false;
     }
 
-    //Load transProb
-    for (size_t i = 0; i < STATUS_SUM; i++) {
-      XCHECK(GetLine(ifile, line));
-      Split(line, tmp, " ");
-      XCHECK(tmp.size() == STATUS_SUM);
-      for (size_t j =0; j < STATUS_SUM; j++) {
-        transProb[i][j] = atof(tmp[j].c_str());
+  void LoadModel(const string& filePath, bool bufferflag = false) {
+      if (bufferflag) {
+          std::vector<std::string> bufferVec = limonp::Split(filePath, "\n");
+          string line;
+          int index = 0;
+          vector<string> tmp;
+          vector<string> tmp2;
+          //Load startProb
+          XCHECK(GetBufferLine(bufferVec, index, line));
+          Split(line, tmp, " ");
+          XCHECK(tmp.size() == STATUS_SUM);
+          for (size_t j = 0; j< tmp.size(); j++) {
+              startProb[j] = atof(tmp[j].c_str());
+          }
+          
+          //Load transProb
+          for (size_t i = 0; i < STATUS_SUM; i++) {
+              XCHECK(GetBufferLine(bufferVec, index, line));
+              Split(line, tmp, " ");
+              XCHECK(tmp.size() == STATUS_SUM);
+              for (size_t j =0; j < STATUS_SUM; j++) {
+                  transProb[i][j] = atof(tmp[j].c_str());
+              }
+          }
+          
+          //Load emitProbB
+          XCHECK(GetBufferLine(bufferVec, index, line));
+          XCHECK(LoadEmitProb(line, emitProbB));
+          
+          //Load emitProbE
+          XCHECK(GetBufferLine(bufferVec, index, line));
+          XCHECK(LoadEmitProb(line, emitProbE));
+          
+          //Load emitProbM
+          XCHECK(GetBufferLine(bufferVec, index, line));
+          XCHECK(LoadEmitProb(line, emitProbM));
+          
+          //Load emitProbS
+          XCHECK(GetBufferLine(bufferVec, index, line));
+          XCHECK(LoadEmitProb(line, emitProbS));
+          
+      } else {
+          ifstream ifile(filePath.c_str());
+          XCHECK(ifile.is_open()) << "open " << filePath << " failed";
+          string line;
+          vector<string> tmp;
+          vector<string> tmp2;
+          //Load startProb
+          XCHECK(GetLine(ifile, line));
+          Split(line, tmp, " ");
+          XCHECK(tmp.size() == STATUS_SUM);
+          for (size_t j = 0; j< tmp.size(); j++) {
+              startProb[j] = atof(tmp[j].c_str());
+          }
+          
+          //Load transProb
+          for (size_t i = 0; i < STATUS_SUM; i++) {
+              XCHECK(GetLine(ifile, line));
+              Split(line, tmp, " ");
+              XCHECK(tmp.size() == STATUS_SUM);
+              for (size_t j =0; j < STATUS_SUM; j++) {
+                  transProb[i][j] = atof(tmp[j].c_str());
+              }
+          }
+          
+          //Load emitProbB
+          XCHECK(GetLine(ifile, line));
+          XCHECK(LoadEmitProb(line, emitProbB));
+          
+          //Load emitProbE
+          XCHECK(GetLine(ifile, line));
+          XCHECK(LoadEmitProb(line, emitProbE));
+          
+          //Load emitProbM
+          XCHECK(GetLine(ifile, line));
+          XCHECK(LoadEmitProb(line, emitProbM));
+          
+          //Load emitProbS
+          XCHECK(GetLine(ifile, line));
+          XCHECK(LoadEmitProb(line, emitProbS));
       }
-    }
-
-    //Load emitProbB
-    XCHECK(GetLine(ifile, line));
-    XCHECK(LoadEmitProb(line, emitProbB));
-
-    //Load emitProbE
-    XCHECK(GetLine(ifile, line));
-    XCHECK(LoadEmitProb(line, emitProbE));
-
-    //Load emitProbM
-    XCHECK(GetLine(ifile, line));
-    XCHECK(LoadEmitProb(line, emitProbM));
-
-    //Load emitProbS
-    XCHECK(GetLine(ifile, line));
-    XCHECK(LoadEmitProb(line, emitProbS));
   }
+    
   double GetEmitProb(const EmitProbMap* ptMp, Rune key, 
         double defVal)const {
     EmitProbMap::const_iterator cit = ptMp->find(key);
