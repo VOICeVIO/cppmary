@@ -28,7 +28,12 @@ SpeechSynthesiser::~SpeechSynthesiser() {
 }
 
 void SpeechSynthesiser::init() {
-    WordsProcess::Instance()->LoadResource("data/jieba/");
+    std::string jieba_buffer = getFileString("data/jieba/jieba.dict.utf8");
+    std::string hmm_model_buffer = getFileString("data/jieba/hmm_model.utf8");;
+    std::string user_buffer = getFileString("data/jieba/user.dict.utf8");
+    JiebaSegment::Instance()->LoadResource(jieba_buffer,
+                                           hmm_model_buffer,
+                                           user_buffer);
     tokenizer_ = new cppmary::Tokenizer();
     std::string sylDictName = "test/pinyin_han.txt";
     std::string wordDictName = "test/mix_pinyin_word.txt";
@@ -47,7 +52,8 @@ void SpeechSynthesiser::init() {
     std::string trickyStr = getFileString(trickyName);
     PhoneTranslator* phoneTranslator = new PhoneTranslator(trickyStr);
     phoneTranslator->AddRef();
-    std::string featureMapName = "test/hmmFeaturesMap1.txt";
+    //std::string featureMapName = "test/hmmFeaturesMap1.txt";
+    std::string featureMapName = "test/hmmFeaturesMapNew.txt";
     std::vector<string> featureName;
     std::vector<string> featureAlias;
     loadDict(featureName, featureAlias, featureMapName);
@@ -58,11 +64,11 @@ void SpeechSynthesiser::init() {
     contextFeatureName.push_back("next_phone");
     contextFeatureName.push_back("next_next_phone");
     //TargetFeatureComputer featureComputer(manager, contextFeatureName);
-    featureComputer_ = new TargetFeatureComputer((*manager_), contextFeatureName);
+    featureComputer_ = new TargetFeatureComputer(manager_, contextFeatureName);
     std::cout << "context feature size: " << contextFeatureName.size() << std::endl;
     assert(featureName.size() == featureAlias.size());
     label_ = new LabelGenerator(manager_, featureComputer_, featureName, featureAlias, phoneTranslator);
-    std::string modelName = "test/labixx500.htsvoice";
+    std::string modelName = "test/labixx23.htsvoice";
     std::string modelStr = getFileString(modelName);
     tokenizer_->AddRef();
     htsengine_ = new HtsEngine(modelStr);

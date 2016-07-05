@@ -58,14 +58,5 @@ int main(int argc, char **argv) {
     cout << s << endl;
     cout << tagres << endl;;
 
-    cppjieba::KeywordExtractor extractor(jieba,
-                                         IDF_PATH,
-                                         STOP_WORD_PATH);
-    cout << "[demo] Keyword Extraction" << endl;
-    const size_t topk = 5;
-    vector<cppjieba::KeywordExtractor::Word> keywordres;
-    extractor.Extract(s, keywordres, topk);
-    cout << s << endl;
-    cout << keywordres << endl;
-    return EXIT_SUCCESS;
+
 }

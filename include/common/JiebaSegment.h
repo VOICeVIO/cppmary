@@ -11,29 +11,26 @@
 #include <vector>
 #include <string>
 #include <utility>
-class WordsProcess
-{
+class JiebaSegment{
 public:
-    static WordsProcess* Instance();
+    static JiebaSegment* Instance();
     void LoadResource(std::string dir);
     void LoadResource(std::string &jieba_buffer,
                       std::string &hmm_model_buffer,
-                      std::string &user_buffer,
-                      std::string &idf_buffer,
-                      std::string &stop_buffer);
+                      std::string &user_buffer);
     void Cut(const std::string& sentence, std::vector<std::string>& words);
     void Tag(const std::string& sentence, std::vector<std::pair<std::string, std::string> >& wordTags);
     void Extract(const std::string& sentence,std::vector<std::string>&words,int topN=1);
     void InsertNewWords(std::vector<std::string>& words);
 protected:
-    WordsProcess(void)
+    JiebaSegment(void)
     {
         _app=NULL;
     }
-    virtual ~WordsProcess(void)
+    virtual ~JiebaSegment(void)
     {
     }
-    static WordsProcess* _instance;
+    static JiebaSegment* _instance;
     void* _app;
 };
 #endif

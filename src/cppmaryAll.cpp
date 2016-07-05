@@ -15,7 +15,7 @@
 #include "common/convertPinyin.cpp"
 #include "common/MaryXml.cpp"
 #include "common/util.cpp"
-#include "common/WordsProcess.cpp"
+#include "common/JiebaSegment.cpp"
 #include "common/Lexicon.cpp"
 #include "common/ReferenceCounted.cpp"
 #include "common/MaryBase.cpp"

@@ -7,7 +7,7 @@
 
 #include "common/util.h"
 #include "common/convertPinyin.h"
-#include "common/WordsProcess.h"
+#include "common/JiebaSegment.h"
 #include "common/Ptr.h"
 #include "common/MaryXml.h"
 #include "common/Lexicon.h"
