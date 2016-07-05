@@ -11,9 +11,9 @@
 namespace cppmary {
     class TargetFeatureComputer : public MaryBase {
     public:
-        TargetFeatureComputer(FeatureProcessorManager& manager, std::string featuresProcessorNames);
-        TargetFeatureComputer(FeatureProcessorManager& manager, std::vector<std::string> featureNamesVec);
-        void init(FeatureProcessorManager& manager, std::vector<std::string> featureNamesVec);
+        TargetFeatureComputer(FeatureProcessorManager* manager, std::string featuresProcessorNames);
+        TargetFeatureComputer(FeatureProcessorManager* manager, std::vector<std::string> featureNamesVec);
+        void init(FeatureProcessorManager* manager, std::vector<std::string> featureNamesVec);
         ~TargetFeatureComputer();
         //Feature vector 暂时用std::vector<int>保存
         std::vector<int> computeFeatureVector(Target target, std::map<std::string, std::pair<int, std::string> > *detail = NULL);
