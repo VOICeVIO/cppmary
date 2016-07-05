@@ -14,7 +14,9 @@ namespace cppmary {
     class FeatureProcessorManager : public MaryBase {
         public:
             FeatureProcessorManager(std::string localeString, std::string phonesetXmlStr);
+            FeatureProcessorManager(const FeatureProcessorManager& manager);
             ~FeatureProcessorManager();
+            FeatureProcessorManager();
             void setupGenericFeatureProcessors();
             void setupPhoneFeatureProcessors();
             void addFeatureProcessor(FeatureProcessor * fp);

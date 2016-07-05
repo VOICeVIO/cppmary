@@ -78,6 +78,8 @@ namespace cppmary {
 
     }
 
+    AllophoneSet::AllophoneSet() { }
+
     Allophone AllophoneSet::getAllophone(std::string ph) {
         return allophones_[ph];
     }

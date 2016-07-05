@@ -14,11 +14,32 @@ namespace cppmary {
         setupPhoneFeatureProcessors();
     }
 
+    FeatureProcessorManager::FeatureProcessorManager() {
+        std::map<std::string, FeatureProcessor *>::iterator iter;
+        for (iter = processors_.begin(); iter != processors_.end(); ++iter) {
+            std::cout << iter->second->getName() << std::endl;
+            iter->second->AddRef();
+        }
+        std::cout << "manager deconstruct ok?" << std::endl;
+    }
+
+    FeatureProcessorManager::FeatureProcessorManager(const FeatureProcessorManager& manager) {
+        processors_ = manager.processors_;
+        std::map<std::string, FeatureProcessor *>::iterator iter;
+        for (iter = processors_.begin(); iter != processors_.end(); ++iter) {
+            iter->second->AddRef();
+            std::cout << iter->second->getName() << " " << iter->second->Refs() << std::endl;
+        }
+        phoneset_ = manager.phoneset_;
+        phonefeature2values_ = manager.phonefeature2values_;
+        localeString_ = manager.localeString_;
+    }
+
     FeatureProcessorManager::~FeatureProcessorManager() {
         XLOG(INFO) << "deconstruct FeatureProcessorManager ";
         std::map<std::string, FeatureProcessor *>::iterator iter;
         for (iter = processors_.begin(); iter != processors_.end(); ++iter) {
-            std::cout << iter->second->getName() << std::endl;
+            std::cout << iter->second->getName() << " " << iter->second->Refs() << std::endl;
             iter->second->ReleaseRef();
         }
         std::cout << "manager deconstruct ok?" << std::endl;

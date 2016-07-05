@@ -13,6 +13,7 @@ namespace cppmary {
     class AllophoneSet {
         public:
             AllophoneSet(std::string xmlStr);
+            AllophoneSet();
             ~AllophoneSet();
 
             Allophone getAllophone(std::string ph);
