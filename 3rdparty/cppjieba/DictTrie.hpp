@@ -95,16 +95,13 @@ class DictTrie {
   void LoadUserDict(const string& filePaths, bool bufferflag) {
       if(bufferflag)
       {
-          size_t lineno = 0;
           string line;
           DictUnit nodeInfo;
           vector<string> buf;
-          char *filebuffer= new char[filePaths.size()+1];
-          strcpy(filebuffer, filePaths.c_str());
-          
-          for (char *tok = strtok(filebuffer, "\n"); tok != NULL; tok = strtok(NULL, "\n"),lineno++)
+          std::vector<std::string>buffervec=limonp::Split(filePaths,"\n");
+          for (size_t lineno = 0;lineno<buffervec.size();lineno++)
           {
-              line=std::string(tok);
+              line=buffervec[lineno];
               buf.clear();
               Split(line, buf, " ");
               DictUnit node_info;
@@ -117,18 +114,17 @@ class DictTrie {
                   user_dict_single_chinese_word_.insert(node_info.word[0]);
               }
           }
-          delete filebuffer;
       }
       else
       {
           vector<string> files = limonp::Split(filePaths, ":");
-          size_t lineno = 0;
+
           for (size_t i = 0; i < files.size(); i++) {
               ifstream ifs(files[i].c_str());
               string line;
               DictUnit nodeInfo;
               vector<string> buf;
-              for(; getline(ifs, line); lineno++) {
+              for(size_t lineno = 0; getline(ifs, line); lineno++) {
                   buf.clear();
                   Split(line, buf, " ");
                   DictUnit node_info;
@@ -140,7 +136,6 @@ class DictTrie {
                   if (node_info.word.size() == 1) {
                       user_dict_single_chinese_word_.insert(node_info.word[0]);
                   }
-
               }
           }
       }
@@ -165,12 +160,10 @@ class DictTrie {
           string line;
           DictUnit node_info;
           vector<string> buf;
-          char *filebuffer= new char[filePath.size()+1];
-          strcpy(filebuffer, filePath.c_str());
-          
-          for (char *tok = strtok(filebuffer, "\n"); tok != NULL; tok = strtok(NULL, "\n"))
+          std::vector<std::string>buffervec=limonp::Split(filePath,"\n");
+          for (size_t lineno=0;lineno<buffervec.size();lineno++)
           {
-              line=std::string(tok);
+              line=buffervec[lineno];
               Split(line, buf, " ");
               XCHECK(buf.size() == DICT_COLUMN_NUM) << "split result illegal, line:" << line;
               MakeNodeInfo(node_info,
@@ -180,7 +173,6 @@ class DictTrie {
               static_node_infos_.push_back(node_info);
 
           }
-          delete filebuffer;
       }
       else
       {

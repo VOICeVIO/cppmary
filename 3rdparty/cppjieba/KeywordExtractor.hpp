@@ -123,7 +123,7 @@ class KeywordExtractor {
           assert(lineno);
           idfAverage_ = idfSum / lineno;
           assert(idfAverage_ > 0.0);
-          delete filebuffer;
+          delete [] filebuffer;
       }
       else
       {
@@ -168,7 +168,7 @@ class KeywordExtractor {
               stopWords_.insert(line);
           }
           assert(stopWords_.size());
-          delete filebuffer;
+          delete []filebuffer;
       }
       else
       {
