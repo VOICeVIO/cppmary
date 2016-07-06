@@ -3,6 +3,7 @@
 //
 
 #include <modules/InterModules.h>
+#include "limonp/Logging.hpp"
 
 namespace cppmary {
     InterModules::InterModules() { }

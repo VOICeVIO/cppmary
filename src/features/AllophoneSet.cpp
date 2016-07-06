@@ -5,6 +5,7 @@
 #include "features/AllophoneSet.h"
 #include "common.h"
 #include <set>
+#include "limonp/Logging.hpp"
 
 namespace cppmary {
     AllophoneSet::AllophoneSet(std::string xmlStr) {

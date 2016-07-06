@@ -4,6 +4,7 @@
 
 #include "features/TargetElementNavigator.h"
 #include "common.h"
+#include "limonp/Logging.hpp"
 
 namespace cppmary {
 

@@ -4,6 +4,7 @@
 
 #include "pugixml/pugixml.hpp"
 #include "features/LanguageFeatureProcessors.h"
+#include "common/util.h"
 
 namespace cppmary {
     Phone::Phone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* segmentNavigator) :

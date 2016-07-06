@@ -9,10 +9,12 @@
 #include <vector>
 #include "TargetElementNavigator.h"
 #include "StringTranslator.h"
+#include "limonp/Logging.hpp"
 
 //通用特征定义MaryGenericFeatureProcessors的下半部分, 原本在例如,Phone, nextPhone等. 包含大量的类,大量的对象..
 
 namespace cppmary {
+    const int RAIL_LIMIT = 19;
 
     class FeatureProcessor : public MaryBase {
     public:

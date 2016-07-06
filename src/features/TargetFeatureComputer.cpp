@@ -4,6 +4,7 @@
 
 #include "features/TargetFeatureComputer.h"
 #include "common.h"
+#include "limonp/Logging.hpp"
 
 namespace cppmary  {
     TargetFeatureComputer::TargetFeatureComputer(FeatureProcessorManager* manager,

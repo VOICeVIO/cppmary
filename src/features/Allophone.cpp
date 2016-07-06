@@ -3,6 +3,7 @@
 //
 
 #include "features/Allophone.h"
+#include "limonp/Logging.hpp"
 
 namespace cppmary {
     Allophone::Allophone(pugi::xml_node node, std::vector<std::string> featureNames) {

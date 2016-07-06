@@ -7,6 +7,7 @@
 
 #include <features/PhoneTranslator.h>
 #include "feature.h"
+#include "modules/InterModules.h"
 
 namespace cppmary {
     class LabelGenerator : public InterModules {

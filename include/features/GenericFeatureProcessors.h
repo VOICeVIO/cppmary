@@ -11,7 +11,6 @@
 
 //通用特征定义MaryGenericFeatureProcessors的下半部分, 原本在例如,Phone, nextPhone等. 包含大量的类,大量的对象..
 namespace cppmary {
-    const int RAIL_LIMIT = 19;
     const int ZHTONE_NUM = 6;
     const int ZHPOS_NUM = 46;
     const int TOBIACCENT_NUM = 20;

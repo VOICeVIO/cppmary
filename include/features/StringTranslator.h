@@ -8,6 +8,7 @@
 #include <vector>
 #include <map>
 #include <iostream>
+#include "common/MaryBase.h"
 
 namespace cppmary {
     class StringTranslator : public MaryBase {

@@ -3,6 +3,7 @@
 //
 
 #include "features/FeatureProcessor.h"
+#include "common.h"
 
 namespace cppmary {
 

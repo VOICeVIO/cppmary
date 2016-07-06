@@ -7,6 +7,7 @@
 #include "pugixml/pugixml.hpp"
 #include <string>
 #include <cstring>
+#include <vector>
 
 namespace cppmary {
     struct xml_string_writer : pugi::xml_writer {

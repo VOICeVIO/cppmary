@@ -6,6 +6,8 @@
 #define CPPMARY_TARGET_H
 #include <string>
 #include "pugixml/pugixml.hpp"
+#include <vector>
+#include "common/MaryBase.h"
 
 namespace cppmary {
     class Target : public MaryBase {

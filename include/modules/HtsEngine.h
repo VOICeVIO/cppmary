@@ -5,6 +5,8 @@
 #ifndef CPPMARY_HTSENGINE_H
 #define CPPMARY_HTSENGINE_H
 #include "../../3rdparty/hts_engine/HTS_engine.h"
+#include "modules/InterModules.h"
+#include <string>
 
 namespace cppmary {
     class HtsEngine : public InterModules {

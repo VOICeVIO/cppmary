@@ -1,7 +1,7 @@
 //
 // Created by sooda on 16/6/30.
 //
-
+#include <cassert>
 #include "common/ReferenceCounted.h"
 
 namespace cppmary {

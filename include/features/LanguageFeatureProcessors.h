@@ -9,6 +9,7 @@
 #include "StringTranslator.h"
 #include "Target.h"
 #include "TargetElementNavigator.h"
+#include "FeatureProcessor.h"
 
 namespace cppmary {
     class Phone : public FeatureProcessor {

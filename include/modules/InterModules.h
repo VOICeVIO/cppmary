@@ -6,6 +6,7 @@
 #define CPPMARY_INTERMODULES_H
 #include <string>
 #include "common.h"
+#include "limonp/Logging.hpp"
 
 namespace cppmary {
     class InterModules : public MaryBase {

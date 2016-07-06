@@ -6,6 +6,7 @@
 #define CPPMARY_PHONETRANSLATOR_H
 #include <map>
 #include <string>
+#include "common/MaryBase.h"
 
 namespace cppmary {
     class PhoneTranslator : public MaryBase {
