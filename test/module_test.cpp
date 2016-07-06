@@ -190,16 +190,20 @@ void LabelGeneratorTest() {
     assert(featureName.size() == featureAlias.size());
     InterModules* label = new LabelGenerator(&manager, &featureComputer, featureName, featureAlias, phoneTranslator);
     std::string labelString = label->process(allophoneExample);
-    std::string modelName = "test/labixx.htsvoice";
-    InterModules* htsengine = new HtsEngine(modelName);
+    std::string modelName = "test/labixx23.htsvoice";
+    std::string modelStr = getFileString(modelName);
+    std::string filterName = "data/mix_excitation_5filters_199taps_48Kz.txt";
+    std::string filterStr = getFileString(filterName);
+    InterModules* htsengine = new HtsEngine(modelStr, filterStr);
     htsengine->process(labelString);
 }
 
 void HtsEngineTest() {
-    std::string modelName = "test/labixx.htsvoice";
+    std::string modelName = "test/labixx23.htsvoice";
     std::string modelStr = getFileString(modelName);
-    InterModules* htsengine = new HtsEngine(modelStr);
-    //std::string labelName = "data/bai.lab";
+    std::string filterName = "data/mix_excitation_5filters_199taps_48Kz.txt";
+    std::string filterStr = getFileString(filterName);
+    InterModules* htsengine = new HtsEngine(modelStr, filterStr);
     std::string labelName = "test/labixx.lab";
     //((HtsEngine*) htsengine)->synthesisWithLableName(labelName);
     std::string labelString = getFileString(labelName);
@@ -268,7 +272,9 @@ void totalTest() {
     std::string labelString = label->process(pronunStr);
     std::string modelName = "test/labixx23.htsvoice";
     std::string modelStr = getFileString(modelName);
-    InterModules* htsengine = new HtsEngine(modelStr);
+    std::string filterName = "data/mix_excitation_5filters_199taps_48Kz.txt";
+    std::string filterStr = getFileString(filterName);
+    InterModules* htsengine = new HtsEngine(modelStr, filterStr);
     htsengine->process(labelString);
     //featureComputer->ReleaseRef();
     label->ReleaseRef();
