@@ -901,6 +901,71 @@ void HTS_Vocoder_initialize(HTS_Vocoder *v, size_t m, size_t stage, HTS_Boolean 
     }
 }
 
+/* HTS_Vocoder_initialize_mix : initialize vocoder */
+void HTS_Vocoder_initialize_mix(HTS_Vocoder *v, size_t m, size_t stage, HTS_Boolean use_log_gain, size_t rate,
+                                size_t fperiod, double* filter_data, int numM, int orderM) {
+    /* set parameter */
+    int i, j, index;
+    v->is_first = TRUE;
+    v->stage = stage;
+    if (stage != 0)
+        v->gamma = -1.0 / v->stage;
+    else
+        v->gamma = 0.0;
+    v->use_log_gain = use_log_gain;
+    v->fprd = fperiod;
+    v->next = SEED;
+    v->gauss = GAUSS;
+    v->rate = rate;
+    v->pitch_of_curr_point = 0.0;
+    v->pitch_counter = 0.0;
+    v->pitch_inc_per_point = 0.0;
+    v->excite_ring_buff = NULL;
+    v->excite_buff_size = 0;
+    v->excite_buff_index = 0;
+    v->sw = 0;
+    v->x = 0x55555555;
+    /* init buffer */
+    v->freqt_buff = NULL;
+    v->freqt_size = 0;
+    v->gc2gc_buff = NULL;
+    v->gc2gc_size = 0;
+    v->lsp2lpc_buff = NULL;
+    v->lsp2lpc_size = 0;
+    v->postfilter_buff = NULL;
+    v->postfilter_size = 0;
+    v->spectrum2en_buff = NULL;
+    v->spectrum2en_size = 0;
+    if (v->stage == 0) {         /* for MCP */
+        v->c = (double *) HTS_calloc(m * (3 + PADEORDER) + 5 * PADEORDER + 6, sizeof(double));
+        v->cc = v->c + m + 1;
+        v->cinc = v->cc + m + 1;
+        v->d1 = v->cinc + m + 1;
+
+        v->numM = numM;
+        v->orderM = orderM;
+        v->xpulseSignal = (double *) HTS_calloc(v->orderM, sizeof(double));
+        v->xnoiseSignal = (double *) HTS_calloc(v->orderM, sizeof(double));
+
+        v->h = (double **) HTS_calloc(v->numM, sizeof(double *));
+        for (i = 0; i < v->numM; i++) {
+            v->h[i] = (double *) HTS_calloc(v->orderM, sizeof(double));
+        }
+        index = 0;
+        for (i = 0; i < v->numM; i++) {
+            for (j = 0; j < v->orderM; j++) {
+                v->h[i][j] = filter_data[index++];
+            }
+        }
+    } else {                     /* for LSP */
+        v->c = (double *) HTS_calloc((m + 1) * (v->stage + 3), sizeof(double));
+        v->cc = v->c + m + 1;
+        v->cinc = v->cc + m + 1;
+        v->d1 = v->cinc + m + 1;
+    }
+}
+
+
 /* mix excitation */
 void HTS_Vocoder_synthesize_mix(HTS_Vocoder *v, size_t m, double lf0, double *spectrum, double *pstr, size_t nlpf,
                                 double *lpf, double alpha, double beta, double volume, double *rawdata,

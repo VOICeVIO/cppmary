@@ -225,6 +225,68 @@ HTS_Boolean HTS_Engine_load_size(HTS_Engine *engine, char **voices, size_t num_v
     return TRUE;
 }
 
+/* HTS_Engine_load: load HTS voices */
+HTS_Boolean HTS_Engine_load_size_mix(HTS_Engine *engine, char **voices, size_t num_voices, int *sizes, int numM, int orderM, double* filter_data) {
+    size_t i, j;
+    size_t nstream;
+    double average_weight;
+    const char *option, *find;
+    int vector_length;
+
+    /* load voices */
+    if (HTS_ModelSet_load(&engine->ms, voices, num_voices, sizes) != TRUE) {
+        HTS_Engine_clear(engine);
+        return FALSE;
+    }
+    nstream = HTS_ModelSet_get_nstream(&engine->ms);
+    average_weight = 1.0 / num_voices;
+
+    /* global */
+    engine->condition.sampling_frequency = HTS_ModelSet_get_sampling_frequency(&engine->ms);
+    engine->condition.fperiod = HTS_ModelSet_get_fperiod(&engine->ms);
+    engine->condition.msd_threshold = (double *) HTS_calloc(nstream, sizeof(double));
+    for (i = 0; i < nstream; i++)
+        engine->condition.msd_threshold[i] = 0.5;
+    engine->condition.gv_weight = (double *) HTS_calloc(nstream, sizeof(double));
+    for (i = 0; i < nstream; i++)
+        engine->condition.gv_weight[i] = 1.0;
+
+    /* spectrum */
+    option = HTS_ModelSet_get_option(&engine->ms, 0);
+    find = strstr(option, "GAMMA=");
+    if (find != NULL)
+        engine->condition.stage = (size_t) atoi(&find[strlen("GAMMA=")]);
+    find = strstr(option, "LN_GAIN=");
+    if (find != NULL)
+        engine->condition.use_log_gain = atoi(&find[strlen("LN_GAIN=")]) == 1 ? TRUE : FALSE;
+    find = strstr(option, "ALPHA=");
+    if (find != NULL)
+        engine->condition.alpha = atof(&find[strlen("ALPHA=")]);
+
+    /* interpolation weights */
+    engine->condition.duration_iw = (double *) HTS_calloc(num_voices, sizeof(double));
+    for (i = 0; i < num_voices; i++)
+        engine->condition.duration_iw[i] = average_weight;
+    engine->condition.parameter_iw = (double **) HTS_calloc(num_voices, sizeof(double *));
+    for (i = 0; i < num_voices; i++) {
+        engine->condition.parameter_iw[i] = (double *) HTS_calloc(nstream, sizeof(double));
+        for (j = 0; j < nstream; j++)
+            engine->condition.parameter_iw[i][j] = average_weight;
+    }
+    engine->condition.gv_iw = (double **) HTS_calloc(num_voices, sizeof(double *));
+    for (i = 0; i < num_voices; i++) {
+        engine->condition.gv_iw[i] = (double *) HTS_calloc(nstream, sizeof(double));
+        for (j = 0; j < nstream; j++)
+            engine->condition.gv_iw[i][j] = average_weight;
+    }
+    vector_length = HTS_ModelSet_get_vector_length(&engine->ms, 0);
+
+    HTS_Vocoder_initialize_mix(&(engine->v), vector_length-1, engine->condition.stage, engine->condition.use_log_gain, engine->condition.sampling_frequency, engine->condition.fperiod, filter_data, numM, orderM);
+
+    return TRUE;
+}
+
+
 /* HTS_Engine_set_sampling_frequency: set sampling frequency */
 void HTS_Engine_set_sampling_frequency(HTS_Engine *engine, size_t i) {
     if (i < 1)
@@ -505,11 +567,16 @@ HTS_Boolean HTS_Engine_generate_parameter_sequence(HTS_Engine *engine) {
 
 /* HTS_Engine_generate_sample_sequence: generate sample sequence (3rd synthesis step) */
 HTS_Boolean HTS_Engine_generate_sample_sequence(HTS_Engine *engine) {
-    return HTS_GStreamSet_create(&engine->gss, &engine->pss, engine->condition.stage, engine->condition.use_log_gain,
-                                 engine->condition.sampling_frequency, engine->condition.fperiod,
-                                 engine->condition.alpha, engine->condition.beta, &engine->condition.stop,
-                                 engine->condition.volume,
-                                 engine->condition.audio_buff_size > 0 ? &engine->audio : NULL);
+//    return HTS_GStreamSet_create(&engine->gss, &engine->pss, engine->condition.stage, engine->condition.use_log_gain,
+//                                 engine->condition.sampling_frequency, engine->condition.fperiod,
+//                                 engine->condition.alpha, engine->condition.beta, &engine->condition.stop,
+//                                 engine->condition.volume,
+//                                 engine->condition.audio_buff_size > 0 ? &engine->audio : NULL);
+    return HTS_GStreamSet_create_with_Vocoder(&engine->gss, &engine->pss, engine->condition.stage, engine->condition.use_log_gain,
+                                              engine->condition.sampling_frequency, engine->condition.fperiod,
+                                              engine->condition.alpha, engine->condition.beta, &engine->condition.stop,
+                                              engine->condition.volume,
+                                              engine->condition.audio_buff_size > 0 ? &engine->audio : NULL, &engine->v);
 }
 
 /* HTS_Engine_synthesize: synthesize speech */
@@ -822,6 +889,11 @@ void HTS_Engine_clear(HTS_Engine *engine) {
     HTS_ModelSet_clear(&engine->ms);
     HTS_Audio_clear(&engine->audio);
     HTS_Engine_initialize(engine);
+}
+
+void HTS_Engine_destory(HTS_Engine *engine) {
+    HTS_Vocoder_clear(&engine->v);
+    HTS_Engine_clear(engine);
 }
 
 HTS_ENGINE_C_END;

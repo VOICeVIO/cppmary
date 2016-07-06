@@ -27,9 +27,43 @@ namespace cppmary {
         delete [] fileContent;
     }
 
+    HtsEngine::HtsEngine(const std::string& modelStr, const std::string& filterStr) {
+        name_ = "HtsEngine";
+        HTS_Engine_initialize(&engine_);
+        size_t num_voices = 1;
+        fn_voices_ = (char**)malloc(num_voices * sizeof(char*));
+        char *fileContent = new char[modelStr.size()+1];
+        memset(fileContent, 0, modelStr.size()+1);
+        memcpy(fileContent, modelStr.c_str(), modelStr.size());
+        int *sizes = new int[num_voices];
+        sizes[0] = modelStr.size();
+        fn_voices_[0] = fileContent;
+        int numM = 5;
+        int orderM = 199;
+        double* filter_data = new double[numM*orderM];
+        std::vector<std::string> bufferVec = limonp::Split(filterStr,"\n");
+        assert(bufferVec.size() == numM*orderM);
+        for (int i = 0; i < numM*orderM; i++) {
+            double d = std::stod(bufferVec[i]);
+            filter_data[i] = d;
+        }
+        if (HTS_Engine_load_size_mix(&engine_, fn_voices_, num_voices, sizes, numM, orderM, filter_data) != TRUE) {
+            fprintf(stderr, "Error: HTS voices cannot be loaded.\n");
+            free(fn_voices_);
+            HTS_Engine_clear(&engine_);
+            exit(1);
+        }
+
+        delete [] filter_data;
+        delete [] fileContent;
+    }
+
+
+
     HtsEngine::~HtsEngine() {
         HTS_Engine_refresh(&engine_);
-        HTS_Engine_clear(&engine_);
+        //HTS_Engine_clear(&engine_);
+        HTS_Engine_destory(&engine_);
         free(fn_voices_);
     }
 

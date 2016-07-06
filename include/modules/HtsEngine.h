@@ -12,6 +12,7 @@ namespace cppmary {
     class HtsEngine : public InterModules {
     public:
         HtsEngine(const std::string& modelName);
+        HtsEngine(const std::string& modelName, const std::string& filterStr);
         ~HtsEngine();
         /*synthses data with label string*/
         virtual std::string process(std::string labelString);

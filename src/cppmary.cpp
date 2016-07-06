@@ -70,8 +70,10 @@ void SpeechSynthesiser::init() {
     label_ = new LabelGenerator(manager_, featureComputer_, featureName, featureAlias, phoneTranslator);
     std::string modelName = "test/labixx23.htsvoice";
     std::string modelStr = getFileString(modelName);
+    std::string filterName = "data/mix_excitation_5filters_199taps_48Kz.txt";
+    std::string filterStr = getFileString(filterName);
     tokenizer_->AddRef();
-    htsengine_ = new HtsEngine(modelStr);
+    htsengine_ = new HtsEngine(modelStr, filterStr);
     manager_->AddRef();
     htsengine_->AddRef();
     phonemiser_->AddRef();
