@@ -9,7 +9,6 @@
 // Created by sooda on 16/6/6.
 //
 #include <string>
-#include "common/util.h"
 #include <vector>
 #include <map>
 

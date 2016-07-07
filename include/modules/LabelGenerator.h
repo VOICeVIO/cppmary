@@ -5,7 +5,7 @@
 #ifndef CPPMARY_LABELGENERATOR_H
 #define CPPMARY_LABELGENERATOR_H
 
-#include <features/PhoneTranslator.h>
+#include "features/PhoneTranslator.h"
 #include "feature.h"
 #include "modules/InterModules.h"
 #include <memory>
