@@ -1,3 +1,4 @@
-ADD_SUBDIRECTORY(hts_engine)
-ADD_SUBDIRECTORY(pugixml)
+#ADD_SUBDIRECTORY(hts_engine)
+#ADD_SUBDIRECTORY(pugixml)
+
 ADD_SUBDIRECTORY(gtest)

@@ -56,7 +56,7 @@
 HTS_HIDDEN_H_START;
 
 /* hts_engine libraries */
-#include "../HTS_engine.h"
+#include "hts_engine/HTS_engine.h"
 
 /* common ---------------------------------------------------------- */
 

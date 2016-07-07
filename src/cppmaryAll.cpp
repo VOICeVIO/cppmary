@@ -30,3 +30,13 @@
 #include "features/LanguageFeatureProcessors.cpp"
 #include "features/StringTranslator.cpp"
 #include "features/PhoneTranslator.cpp"
+
+#include "hts_engine/HTS_audio.c"
+#include "hts_engine/HTS_engine.c"
+#include "hts_engine/HTS_gstream.c"
+#include "hts_engine/HTS_label.c"
+#include "hts_engine/HTS_misc.c"
+#include "hts_engine/HTS_model.c"
+#include "hts_engine/HTS_pstream.c"
+#include "hts_engine/HTS_sstream.c"
+#include "hts_engine/HTS_vocoder.c"
