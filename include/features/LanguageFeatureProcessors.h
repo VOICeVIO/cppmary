@@ -14,21 +14,21 @@
 namespace cppmary {
     class Phone : public FeatureProcessor {
     public:
-        Phone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* segmentNavigator);
+        Phone(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> segmentNavigator);
         virtual ~Phone();
         virtual int process(Target target);
     };
 
     class Pos : public FeatureProcessor {
     public:
-        Pos(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* wordNavigator);
+        Pos(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> wordNavigator);
         virtual ~Pos();
         virtual int process(Target target);
     };
 
     class Zhtone : public FeatureProcessor {
     public:
-        Zhtone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        Zhtone(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~Zhtone();
         virtual int process(Target target);
     };

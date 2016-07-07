@@ -12,7 +12,7 @@ namespace cppmary {
     /*
      * the token syllable of current phrase
      */
-    PhraseNumSyls::PhraseNumSyls(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+    PhraseNumSyls::PhraseNumSyls(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) :
                 FeatureProcessor(name, possibleValues, navigator) {
     }
 
@@ -37,7 +37,7 @@ namespace cppmary {
     /*
      * the token amount of current phrase
      */
-    PhraseNumWords::PhraseNumWords(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+    PhraseNumWords::PhraseNumWords(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) :
                 FeatureProcessor(name, possibleValues, navigator) {
     }
 
@@ -62,7 +62,7 @@ namespace cppmary {
     /*
      * the syllable amount of current token
      */
-    WordNumSyls::WordNumSyls(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+    WordNumSyls::WordNumSyls(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) :
                 FeatureProcessor(name, possibleValues, navigator) {
     }
 
@@ -87,7 +87,7 @@ namespace cppmary {
     /*
      * the segment amount of current token
      */
-    WordNumSegs::WordNumSegs(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+    WordNumSegs::WordNumSegs(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) :
                 FeatureProcessor(name, possibleValues, navigator) {
     }
 
@@ -112,7 +112,7 @@ namespace cppmary {
     /*
      * the segment amount of current syllable
      */
-    SylNumSegs::SylNumSegs(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+    SylNumSegs::SylNumSegs(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) :
                 FeatureProcessor(name, possibleValues, navigator) {
     }
 
@@ -137,7 +137,7 @@ namespace cppmary {
     /*
      * the phrase amount of current sentence
      */
-    SentenceNumPhrases::SentenceNumPhrases(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+    SentenceNumPhrases::SentenceNumPhrases(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) :
                 FeatureProcessor(name, possibleValues, navigator) {
     }
 
@@ -162,7 +162,7 @@ namespace cppmary {
     /*
      * the word amount of current sentence
      */
-    SentenceNumWords::SentenceNumWords(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+    SentenceNumWords::SentenceNumWords(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) :
                 FeatureProcessor(name, possibleValues, navigator) {
     }
 
@@ -187,7 +187,7 @@ namespace cppmary {
     /*
      * The style of current target
      */
-    Style::Style(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    Style::Style(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     Style::~Style() { }
@@ -212,7 +212,7 @@ namespace cppmary {
     /*
      * The Tobi endtone of current syllable
      */
-    TobiEndtone::TobiEndtone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    TobiEndtone::TobiEndtone(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     TobiEndtone::~TobiEndtone() { }
@@ -254,7 +254,7 @@ namespace cppmary {
     /*
      * The Tobi accent of current syllable
      */
-    TobiAccent::TobiAccent(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    TobiAccent::TobiAccent(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     TobiAccent::~TobiAccent() { }
@@ -274,7 +274,7 @@ namespace cppmary {
     /*
      * the current syllable is has accente attribute?
      */
-    Accented::Accented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    Accented::Accented(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     Accented::~Accented() { }
@@ -291,7 +291,7 @@ namespace cppmary {
     /*
      * the accented syllable amount from current phrase start
      */
-    AccentedSylsFromPhraseStart::AccentedSylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    AccentedSylsFromPhraseStart::AccentedSylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     AccentedSylsFromPhraseStart::~AccentedSylsFromPhraseStart(){}
@@ -315,7 +315,7 @@ namespace cppmary {
     /*
      * the accented syllable amount from current phrase end
      */
-    AccentedSylsFromPhraseEnd::AccentedSylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    AccentedSylsFromPhraseEnd::AccentedSylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     AccentedSylsFromPhraseEnd::~AccentedSylsFromPhraseEnd(){}
@@ -340,7 +340,7 @@ namespace cppmary {
     /*
      * the syllable amount from prev accented syllable
      */
-    SylsFromPrevAccented::SylsFromPrevAccented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    SylsFromPrevAccented::SylsFromPrevAccented(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     SylsFromPrevAccented::~SylsFromPrevAccented(){}
@@ -364,7 +364,7 @@ namespace cppmary {
     /*
      * the syllable amount to next accented syllable
      */
-    SylsToNextAccented::SylsToNextAccented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    SylsToNextAccented::SylsToNextAccented(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     SylsToNextAccented::~SylsToNextAccented(){}
@@ -388,7 +388,7 @@ namespace cppmary {
     /*
      * the syllable amount from current phrase start
      */
-    SylsFromPhraseStart::SylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    SylsFromPhraseStart::SylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     SylsFromPhraseStart::~SylsFromPhraseStart(){}
@@ -412,7 +412,7 @@ namespace cppmary {
     /*
      * the syllable amount from current phrase end
      */
-    SylsFromPhraseEnd::SylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    SylsFromPhraseEnd::SylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     SylsFromPhraseEnd::~SylsFromPhraseEnd(){}
@@ -436,7 +436,7 @@ namespace cppmary {
     /*
      * the word amount from current phrase start
      */
-    WordsFromPhraseStart::WordsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    WordsFromPhraseStart::WordsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     WordsFromPhraseStart::~WordsFromPhraseStart(){}
@@ -468,7 +468,7 @@ namespace cppmary {
     /*
      * the word amount from current phrase end
      */
-    WordsFromPhraseEnd::WordsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    WordsFromPhraseEnd::WordsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     WordsFromPhraseEnd::~WordsFromPhraseEnd(){}
@@ -500,7 +500,7 @@ namespace cppmary {
     /*
      * the word amount from current sentence start
      */
-    WordsFromSentenceStart::WordsFromSentenceStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    WordsFromSentenceStart::WordsFromSentenceStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     WordsFromSentenceStart::~WordsFromSentenceStart(){}
@@ -533,7 +533,7 @@ namespace cppmary {
     /*
      * the word amount from current sentence end
      */
-    WordsFromSentenceEnd::WordsFromSentenceEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    WordsFromSentenceEnd::WordsFromSentenceEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     WordsFromSentenceEnd::~WordsFromSentenceEnd(){}
@@ -566,7 +566,7 @@ namespace cppmary {
     /*
      * the phrase amount from current sentence start
      */
-    PhrasesFromSentenceStart::PhrasesFromSentenceStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    PhrasesFromSentenceStart::PhrasesFromSentenceStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     PhrasesFromSentenceStart::~PhrasesFromSentenceStart(){}
@@ -597,7 +597,7 @@ namespace cppmary {
     /*
      * the phrase amount from current sentence end
      */
-    PhrasesFromSentenceEnd::PhrasesFromSentenceEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    PhrasesFromSentenceEnd::PhrasesFromSentenceEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     PhrasesFromSentenceEnd::~PhrasesFromSentenceEnd(){}
@@ -629,7 +629,7 @@ namespace cppmary {
     /*
      * the segment amount from syllable start
      */
-    SegsFromSylStart::SegsFromSylStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    SegsFromSylStart::SegsFromSylStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     SegsFromSylStart::~SegsFromSylStart(){}
@@ -653,7 +653,7 @@ namespace cppmary {
     /*
      * the segment amount from syllable end
      */
-    SegsFromSylEnd::SegsFromSylEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    SegsFromSylEnd::SegsFromSylEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     SegsFromSylEnd::~SegsFromSylEnd(){}
@@ -677,7 +677,7 @@ namespace cppmary {
     /*
      * the segment amount from word start
      */
-    SegsFromWordStart::SegsFromWordStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    SegsFromWordStart::SegsFromWordStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     SegsFromWordStart::~SegsFromWordStart(){}
@@ -701,7 +701,7 @@ namespace cppmary {
     /*
      * the segment amount from word end
      */
-    SegsFromWordEnd::SegsFromWordEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    SegsFromWordEnd::SegsFromWordEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     SegsFromWordEnd::~SegsFromWordEnd(){}
@@ -726,7 +726,7 @@ namespace cppmary {
     /*
      * the syllable amount from word start
      */
-    SylsFromWordStart::SylsFromWordStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    SylsFromWordStart::SylsFromWordStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     SylsFromWordStart::~SylsFromWordStart(){}
@@ -750,7 +750,7 @@ namespace cppmary {
     /*
      * the syllable amout from word end
      */
-    SylsFromWordEnd::SylsFromWordEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    SylsFromWordEnd::SylsFromWordEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     SylsFromWordEnd::~SylsFromWordEnd(){}
@@ -774,7 +774,7 @@ namespace cppmary {
     /*
      * determinines the break level after this syllable
      */
-    SylBreak::SylBreak(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    SylBreak::SylBreak(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     SylBreak::~SylBreak(){}
@@ -843,7 +843,7 @@ namespace cppmary {
     /*
      * determinines the breakIndex
      */
-    BreakIndex::BreakIndex(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    BreakIndex::BreakIndex(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     BreakIndex::~BreakIndex(){}
@@ -922,7 +922,7 @@ namespace cppmary {
     /*
      * classifies the syllable as "single", "final", "initial" or "mid"
      */
-    PositionType::PositionType(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    PositionType::PositionType(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     PositionType::~PositionType(){}
@@ -951,7 +951,7 @@ namespace cppmary {
     /*
      * check if segment is pause
      */
-    IsPause::IsPause(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    IsPause::IsPause(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     IsPause::~IsPause(){}
@@ -971,7 +971,7 @@ namespace cppmary {
     /*
      * determine the word puctuation
      */
-    WordPunc::WordPunc(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    WordPunc::WordPunc(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     WordPunc::~WordPunc(){}
@@ -994,7 +994,7 @@ namespace cppmary {
     /*
      * determine the next word puctuation
      */
-    NextPunctuation::NextPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    NextPunctuation::NextPunctuation(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     NextPunctuation::~NextPunctuation(){}
@@ -1035,7 +1035,7 @@ namespace cppmary {
     /*
      * determine the prev word puctuation
      */
-    PrevPunctuation::PrevPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    PrevPunctuation::PrevPunctuation(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     PrevPunctuation::~PrevPunctuation(){}
@@ -1075,7 +1075,7 @@ namespace cppmary {
     /*
      * determine distance to next punctuation in the sentence
      */
-    WordsToNextPunctuation::WordsToNextPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    WordsToNextPunctuation::WordsToNextPunctuation(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     WordsToNextPunctuation::~WordsToNextPunctuation(){}
@@ -1127,7 +1127,7 @@ namespace cppmary {
      * determine distance to prev punctuation in the sentence
      * the posssibleValue is punc value, not feature value。。
      */
-    WordsToPrevPunctuation::WordsToPrevPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    WordsToPrevPunctuation::WordsToPrevPunctuation(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
     }
 
     WordsToPrevPunctuation::~WordsToPrevPunctuation(){}
@@ -1176,7 +1176,7 @@ namespace cppmary {
     /*
      * onset or coda
      */
-    SegOnsetCoda::SegOnsetCoda(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator, AllophoneSet phonset) : FeatureProcessor(name, possibleValues, navigator), phoneset_(phonset) {
+    SegOnsetCoda::SegOnsetCoda(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator, AllophoneSet phonset) : FeatureProcessor(name, possibleValues, navigator), phoneset_(phonset) {
     }
 
     SegOnsetCoda::~SegOnsetCoda(){}

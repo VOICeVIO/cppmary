@@ -8,23 +8,23 @@
 #include <string>
 #include "FeatureProcessor.h"
 #include "AllophoneSet.h"
+#include <memory>
 
 
 namespace cppmary {
-    class FeatureProcessorManager : public MaryBase {
+    class FeatureProcessorManager {
         public:
             FeatureProcessorManager(std::string localeString, std::string phonesetXmlStr);
             FeatureProcessorManager(const FeatureProcessorManager& manager);
             ~FeatureProcessorManager();
-            FeatureProcessorManager();
             void setupGenericFeatureProcessors();
             void setupPhoneFeatureProcessors();
-            void addFeatureProcessor(FeatureProcessor * fp);
-            FeatureProcessor * getFeatureProcessor(std::string name);
+            void addFeatureProcessor(std::shared_ptr<FeatureProcessor> fp);
+            std::shared_ptr<FeatureProcessor> getFeatureProcessor(std::string name);
 
         private:
             std::string localeString_;
-            std::map<std::string, FeatureProcessor *> processors_;
+            std::map<std::string, std::shared_ptr<FeatureProcessor> > processors_;
             std::map<std::string, std::vector<std::string> > phonefeature2values_;
             AllophoneSet phoneset_;
 

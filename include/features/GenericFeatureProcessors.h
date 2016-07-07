@@ -8,6 +8,7 @@
 #include "StringTranslator.h"
 #include <string>
 #include <vector>
+#include <memory>
 
 //通用特征定义MaryGenericFeatureProcessors的下半部分, 原本在例如,Phone, nextPhone等. 包含大量的类,大量的对象..
 namespace cppmary {
@@ -38,7 +39,7 @@ namespace cppmary {
      */
     class PhraseNumSyls : public FeatureProcessor  {
     public:
-        PhraseNumSyls(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        PhraseNumSyls(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~PhraseNumSyls();
         virtual int process(Target target);
     };
@@ -49,7 +50,7 @@ namespace cppmary {
      */
     class PhraseNumWords : public FeatureProcessor  {
     public:
-        PhraseNumWords(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        PhraseNumWords(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~PhraseNumWords();
         virtual int process(Target target);
     };
@@ -60,7 +61,7 @@ namespace cppmary {
      */
     class WordNumSyls : public FeatureProcessor  {
     public:
-        WordNumSyls(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        WordNumSyls(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~WordNumSyls();
         virtual int process(Target target);
     };
@@ -70,7 +71,7 @@ namespace cppmary {
      * @navigator: null
      */ class WordNumSegs : public FeatureProcessor  {
     public:
-        WordNumSegs(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        WordNumSegs(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~WordNumSegs();
         virtual int process(Target target);
     };
@@ -81,7 +82,7 @@ namespace cppmary {
      */
     class SylNumSegs : public FeatureProcessor  {
     public:
-        SylNumSegs(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        SylNumSegs(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~SylNumSegs();
         virtual int process(Target target);
     };
@@ -92,7 +93,7 @@ namespace cppmary {
      */
     class SentenceNumPhrases : public FeatureProcessor  {
     public:
-        SentenceNumPhrases(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        SentenceNumPhrases(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~SentenceNumPhrases();
         virtual int process(Target target);
     };
@@ -104,7 +105,7 @@ namespace cppmary {
      */
     class SentenceNumWords : public FeatureProcessor  {
     public:
-        SentenceNumWords(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        SentenceNumWords(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~SentenceNumWords();
         virtual int process(Target target);
     };
@@ -116,7 +117,7 @@ namespace cppmary {
      */
     class Style : public FeatureProcessor {
     public:
-        Style(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        Style(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~Style();
         virtual int process(Target target);
     };
@@ -128,7 +129,7 @@ namespace cppmary {
      */
     class TobiEndtone : public FeatureProcessor {
     public:
-        TobiEndtone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        TobiEndtone(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~TobiEndtone();
         virtual int process(Target target);
     };
@@ -140,7 +141,7 @@ namespace cppmary {
      */
     class TobiAccent : public FeatureProcessor {
     public:
-        TobiAccent(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        TobiAccent(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~TobiAccent();
         virtual int process(Target target);
     };
@@ -151,7 +152,7 @@ namespace cppmary {
      */
     class Accented : public FeatureProcessor {
     public:
-        Accented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        Accented(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~Accented();
         virtual int process(Target target);
     };
@@ -162,7 +163,7 @@ namespace cppmary {
      */
     class AccentedSylsFromPhraseStart : public FeatureProcessor {
     public:
-        AccentedSylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        AccentedSylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~AccentedSylsFromPhraseStart();
         virtual int process(Target target);
     };
@@ -173,7 +174,7 @@ namespace cppmary {
      */
     class AccentedSylsFromPhraseEnd : public FeatureProcessor {
     public:
-        AccentedSylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        AccentedSylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~AccentedSylsFromPhraseEnd();
         virtual int process(Target target);
     };
@@ -185,7 +186,7 @@ namespace cppmary {
      */
     class SylsFromPrevAccented : public FeatureProcessor {
     public:
-        SylsFromPrevAccented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        SylsFromPrevAccented(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~SylsFromPrevAccented();
         virtual int process(Target target);
     };
@@ -197,7 +198,7 @@ namespace cppmary {
      */
     class SylsToNextAccented : public FeatureProcessor {
     public:
-        SylsToNextAccented(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        SylsToNextAccented(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~SylsToNextAccented();
         virtual int process(Target target);
     };
@@ -209,7 +210,7 @@ namespace cppmary {
      */
     class SylsFromPhraseStart : public FeatureProcessor {
     public:
-        SylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        SylsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~SylsFromPhraseStart();
         virtual int process(Target target);
     };
@@ -221,7 +222,7 @@ namespace cppmary {
      */
     class SylsFromPhraseEnd : public FeatureProcessor {
     public:
-        SylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        SylsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~SylsFromPhraseEnd();
         virtual int process(Target target);
     };
@@ -232,7 +233,7 @@ namespace cppmary {
      */
     class WordsFromPhraseStart : public FeatureProcessor {
     public:
-        WordsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        WordsFromPhraseStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~WordsFromPhraseStart();
         virtual int process(Target target);
     };
@@ -244,7 +245,7 @@ namespace cppmary {
      */
     class WordsFromPhraseEnd : public FeatureProcessor {
     public:
-        WordsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        WordsFromPhraseEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~WordsFromPhraseEnd();
         virtual int process(Target target);
     };
@@ -255,7 +256,7 @@ namespace cppmary {
      */
     class WordsFromSentenceStart : public FeatureProcessor {
     public:
-        WordsFromSentenceStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        WordsFromSentenceStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~WordsFromSentenceStart();
         virtual int process(Target target);
     };
@@ -266,7 +267,7 @@ namespace cppmary {
      */
     class WordsFromSentenceEnd : public FeatureProcessor {
     public:
-        WordsFromSentenceEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        WordsFromSentenceEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~WordsFromSentenceEnd();
         virtual int process(Target target);
     };
@@ -277,7 +278,7 @@ namespace cppmary {
      */
     class PhrasesFromSentenceStart : public FeatureProcessor {
     public:
-        PhrasesFromSentenceStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        PhrasesFromSentenceStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~PhrasesFromSentenceStart();
         virtual int process(Target target);
     };
@@ -288,7 +289,7 @@ namespace cppmary {
      */
     class PhrasesFromSentenceEnd : public FeatureProcessor {
     public:
-        PhrasesFromSentenceEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        PhrasesFromSentenceEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~PhrasesFromSentenceEnd();
         virtual int process(Target target);
     };
@@ -301,7 +302,7 @@ namespace cppmary {
      */
     class SegsFromSylStart : public FeatureProcessor {
     public:
-        SegsFromSylStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        SegsFromSylStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~SegsFromSylStart();
         virtual int process(Target target);
     };
@@ -313,7 +314,7 @@ namespace cppmary {
      */
     class SegsFromSylEnd : public FeatureProcessor {
     public:
-        SegsFromSylEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        SegsFromSylEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~SegsFromSylEnd();
         virtual int process(Target target);
     };
@@ -325,7 +326,7 @@ namespace cppmary {
      */
     class SegsFromWordStart : public FeatureProcessor {
     public:
-        SegsFromWordStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        SegsFromWordStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~SegsFromWordStart();
         virtual int process(Target target);
     };
@@ -337,7 +338,7 @@ namespace cppmary {
      */
     class SegsFromWordEnd : public FeatureProcessor {
     public:
-        SegsFromWordEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        SegsFromWordEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~SegsFromWordEnd();
         virtual int process(Target target);
     };
@@ -349,7 +350,7 @@ namespace cppmary {
      */
     class SylsFromWordStart : public FeatureProcessor {
     public:
-        SylsFromWordStart(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        SylsFromWordStart(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~SylsFromWordStart();
         virtual int process(Target target);
     };
@@ -361,7 +362,7 @@ namespace cppmary {
      */
     class SylsFromWordEnd : public FeatureProcessor {
     public:
-        SylsFromWordEnd(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        SylsFromWordEnd(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~SylsFromWordEnd();
         virtual int process(Target target);
     };
@@ -372,7 +373,7 @@ namespace cppmary {
      */
     class SylBreak : public FeatureProcessor {
     public:
-        SylBreak(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        SylBreak(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~SylBreak();
         virtual int process(Target target);
     };
@@ -383,7 +384,7 @@ namespace cppmary {
     */
     class BreakIndex : public FeatureProcessor {
     public:
-        BreakIndex(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        BreakIndex(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~BreakIndex();
         virtual int process(Target target);
     };
@@ -395,7 +396,7 @@ namespace cppmary {
      */
     class PositionType : public FeatureProcessor {
     public:
-        PositionType(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        PositionType(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~PositionType();
         virtual int process(Target target);
     };
@@ -405,7 +406,7 @@ namespace cppmary {
      */
     class IsPause : public FeatureProcessor {
     public:
-        IsPause(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        IsPause(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~IsPause();
         virtual int process(Target target);
     };
@@ -416,7 +417,7 @@ namespace cppmary {
      */
     class WordPunc : public FeatureProcessor {
     public:
-        WordPunc(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        WordPunc(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~WordPunc();
         virtual int process(Target target);
     };
@@ -426,7 +427,7 @@ namespace cppmary {
      */
     class NextPunctuation : public FeatureProcessor {
     public:
-        NextPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        NextPunctuation(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~NextPunctuation();
         virtual int process(Target target);
     };
@@ -436,7 +437,7 @@ namespace cppmary {
      */
     class PrevPunctuation : public FeatureProcessor {
     public:
-        PrevPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        PrevPunctuation(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~PrevPunctuation();
         virtual int process(Target target);
     };
@@ -447,7 +448,7 @@ namespace cppmary {
      */
     class WordsToNextPunctuation : public FeatureProcessor {
     public:
-        WordsToNextPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        WordsToNextPunctuation(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~WordsToNextPunctuation();
         virtual int process(Target target);
     };
@@ -458,7 +459,7 @@ namespace cppmary {
      */
     class WordsToPrevPunctuation : public FeatureProcessor {
     public:
-        WordsToPrevPunctuation(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator);
+        WordsToPrevPunctuation(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
         virtual ~WordsToPrevPunctuation();
         virtual int process(Target target);
     };
@@ -469,7 +470,7 @@ namespace cppmary {
      */
     class SegOnsetCoda : public FeatureProcessor {
     public:
-        SegOnsetCoda(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator, AllophoneSet phonset);
+        SegOnsetCoda(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator, AllophoneSet phonset);
         virtual ~SegOnsetCoda();
         virtual int process(Target target);
     private:

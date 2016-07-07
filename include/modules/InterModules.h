@@ -9,7 +9,7 @@
 #include "limonp/Logging.hpp"
 
 namespace cppmary {
-    class InterModules : public MaryBase {
+    class InterModules {
     public:
         InterModules();
         virtual ~InterModules();

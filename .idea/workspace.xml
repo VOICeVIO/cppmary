@@ -11,6 +11,7 @@
       <config projectName="cppmary" targetName="HTSEngine" />
       <config projectName="cppmary" targetName="gtest" />
       <config projectName="cppmary" targetName="pugi_test" />
+      <config projectName="cppmary" targetName="libtest" />
       <config projectName="cppmary" targetName="jieba_test" />
       <config projectName="cppmary" targetName="htsengine_test" />
       <config projectName="cppmary" targetName="pinyin_utf8_test" />
@@ -25,13 +26,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7856b9b-4fe1-4bf5-9fcd-397921d0af9e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/cppmary.iml" afterPath="$PROJECT_DIR$/.idea/cppmary.iml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/include/common/MaryBase.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/common/MaryBase.cpp" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/libtest.cpp" afterPath="$PROJECT_DIR$/examples/libtest.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/common.h" afterPath="$PROJECT_DIR$/include/common.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/cppmary.h" afterPath="$PROJECT_DIR$/include/cppmary.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/features/FeatureProcessor.h" afterPath="$PROJECT_DIR$/include/features/FeatureProcessor.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/features/FeatureProcessorManager.h" afterPath="$PROJECT_DIR$/include/features/FeatureProcessorManager.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/features/GenericFeatureProcessors.h" afterPath="$PROJECT_DIR$/include/features/GenericFeatureProcessors.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/features/LanguageFeatureProcessors.h" afterPath="$PROJECT_DIR$/include/features/LanguageFeatureProcessors.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/features/PhoneTranslator.h" afterPath="$PROJECT_DIR$/include/features/PhoneTranslator.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/features/StringTranslator.h" afterPath="$PROJECT_DIR$/include/features/StringTranslator.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/features/Target.h" afterPath="$PROJECT_DIR$/include/features/Target.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/features/TargetElementNavigator.h" afterPath="$PROJECT_DIR$/include/features/TargetElementNavigator.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/features/TargetFeatureComputer.h" afterPath="$PROJECT_DIR$/include/features/TargetFeatureComputer.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/modules/InterModules.h" afterPath="$PROJECT_DIR$/include/modules/InterModules.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/modules/LabelGenerator.h" afterPath="$PROJECT_DIR$/include/modules/LabelGenerator.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cppmary.cpp" afterPath="$PROJECT_DIR$/src/cppmary.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cppmaryAll.cpp" afterPath="$PROJECT_DIR$/src/cppmaryAll.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/features/FeatureProcessor.cpp" afterPath="$PROJECT_DIR$/src/features/FeatureProcessor.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/features/FeatureProcessorManager.cpp" afterPath="$PROJECT_DIR$/src/features/FeatureProcessorManager.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/features/GenericFeatureProcessors.cpp" afterPath="$PROJECT_DIR$/src/features/GenericFeatureProcessors.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/features/LanguageFeatureProcessors.cpp" afterPath="$PROJECT_DIR$/src/features/LanguageFeatureProcessors.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/features/TargetFeatureComputer.cpp" afterPath="$PROJECT_DIR$/src/features/TargetFeatureComputer.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modules/LabelGenerator.cpp" afterPath="$PROJECT_DIR$/src/modules/LabelGenerator.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/module_test.cpp" afterPath="$PROJECT_DIR$/test/module_test.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/refcount_test.cpp" afterPath="$PROJECT_DIR$/test/refcount_test.cpp" />
     </list>
     <ignored path="cppmary.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,22 +72,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HTS_gstream.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_gstream.c">
+      <file leaf-file-name="Target.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/features/Target.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2400">
-              <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HTS_vocoder.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_vocoder.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="599">
-              <caret line="1213" column="0" selection-start-line="1213" selection-start-column="0" selection-end-line="1213" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="420">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding>
+                <element signature="e#89#106#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,40 +87,18 @@
       <file leaf-file-name="libtest.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/libtest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+            <state relative-caret-position="225">
+              <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JiebaSegment.h" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/include/common/JiebaSegment.h">
+      <file leaf-file-name="TargetElementNavigator.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/features/TargetElementNavigator.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JiebaSegment.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/JiebaSegment.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#95#127#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HTS_engine.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_engine.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3271">
-              <caret line="806" column="56" selection-start-line="806" selection-start-column="56" selection-end-line="806" selection-end-column="56" />
+            <state relative-caret-position="150">
+              <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -117,40 +107,75 @@
       <file leaf-file-name="cppmary.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cppmary.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HTS_engine.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/HTS_engine.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7500">
-              <caret line="500" column="13" selection-start-line="500" selection-start-column="13" selection-end-line="500" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HTS_hidden.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_hidden.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6735">
-              <caret line="449" column="5" selection-start-line="449" selection-start-column="5" selection-end-line="449" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HtsEngine.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modules/HtsEngine.cpp">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="600">
-              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+              <caret line="81" column="89" selection-start-line="81" selection-start-column="89" selection-end-line="81" selection-end-column="89" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cppmaryAll.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cppmaryAll.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cppmary.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/cppmary.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="28" column="69" selection-start-line="28" selection-start-column="69" selection-end-line="28" selection-end-column="69" />
               <folding>
-                <element signature="e#39#69#0" expanded="true" />
+                <element signature="e#91#110#0" expanded="true" />
+                <marker date="1467852480000" expanded="false" signature="100:152" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="module_test.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/module_test.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="202" column="76" selection-start-line="202" selection-start-column="76" selection-end-line="202" selection-end-column="76" />
+              <folding>
+                <element signature="e#161#181#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TargetFeatureComputer.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/features/TargetFeatureComputer.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InterModules.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/modules/InterModules.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+              <folding>
+                <element signature="e#100#117#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -164,15 +189,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/include/modules/Pronunciation.h" />
-        <option value="$PROJECT_DIR$/src/modules/Pronunciation.cpp" />
-        <option value="$PROJECT_DIR$/src/features/GenericFeatureProcessors.cpp" />
-        <option value="$PROJECT_DIR$/test/hmmFeaturesMapNew.txt" />
-        <option value="$PROJECT_DIR$/test/refcount_test.cpp" />
-        <option value="$PROJECT_DIR$/include/features/AllophoneSet.h" />
-        <option value="$PROJECT_DIR$/include/features/FeatureProcessorManager.h" />
         <option value="$PROJECT_DIR$/src/modules/LabelGenerator.cpp" />
-        <option value="$PROJECT_DIR$/include/features/TargetFeatureComputer.h" />
         <option value="$PROJECT_DIR$/3rdparty/cppjieba/HMMModel.hpp" />
         <option value="$PROJECT_DIR$/test/jieba_test.cpp" />
         <option value="$PROJECT_DIR$/include/common/WordsProcess.h" />
@@ -185,36 +202,44 @@
         <option value="$PROJECT_DIR$/include/common/ReferenceCounted.h" />
         <option value="$PROJECT_DIR$/src/common/ReferenceCounted.cpp" />
         <option value="$PROJECT_DIR$/include/common/MaryXml.h" />
-        <option value="$PROJECT_DIR$/include/features/PhoneTranslator.h" />
-        <option value="$PROJECT_DIR$/include/features/Target.h" />
         <option value="$PROJECT_DIR$/src/features/Allophone.cpp" />
         <option value="$PROJECT_DIR$/src/modules/InterModules.cpp" />
-        <option value="$PROJECT_DIR$/include/features/StringTranslator.h" />
-        <option value="$PROJECT_DIR$/include/features/LanguageFeatureProcessors.h" />
-        <option value="$PROJECT_DIR$/src/features/LanguageFeatureProcessors.cpp" />
-        <option value="$PROJECT_DIR$/src/features/FeatureProcessor.cpp" />
         <option value="$PROJECT_DIR$/src/features/TargetElementNavigator.cpp" />
-        <option value="$PROJECT_DIR$/include/features/GenericFeatureProcessors.h" />
         <option value="$PROJECT_DIR$/src/features/AllophoneSet.cpp" />
-        <option value="$PROJECT_DIR$/src/features/TargetFeatureComputer.cpp" />
         <option value="$PROJECT_DIR$/include/modules/LabelGenerator.h" />
-        <option value="$PROJECT_DIR$/include/modules/InterModules.h" />
         <option value="$PROJECT_DIR$/src/common/util.cpp" />
-        <option value="$PROJECT_DIR$/include/features/FeatureProcessor.h" />
         <option value="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_gstream.c" />
         <option value="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_model.c" />
         <option value="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_vocoder.c" />
-        <option value="$PROJECT_DIR$/src/cppmary.cpp" />
-        <option value="$PROJECT_DIR$/src/modules/HtsEngine.cpp" />
-        <option value="$PROJECT_DIR$/include/modules/HtsEngine.h" />
-        <option value="$PROJECT_DIR$/src/features/FeatureProcessorManager.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/src/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/test/module_test.cpp" />
         <option value="$PROJECT_DIR$/3rdparty/hts_engine/HTS_engine.h" />
         <option value="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_hidden.h" />
         <option value="$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_engine.c" />
+        <option value="$PROJECT_DIR$/include/modules/HtsEngine.h" />
         <option value="$PROJECT_DIR$/examples/libtest.cpp" />
+        <option value="$PROJECT_DIR$/src/modules/HtsEngine.cpp" />
+        <option value="$PROJECT_DIR$/test/pinyin_utf8_test.cpp" />
+        <option value="$PROJECT_DIR$/test/pugi_test.cpp" />
+        <option value="$PROJECT_DIR$/include/cppmary.h" />
+        <option value="$PROJECT_DIR$/src/cppmary.cpp" />
+        <option value="$PROJECT_DIR$/src/features/TargetFeatureComputer.cpp" />
+        <option value="$PROJECT_DIR$/include/features/TargetFeatureComputer.h" />
+        <option value="$PROJECT_DIR$/src/features/FeatureProcessor.cpp" />
+        <option value="$PROJECT_DIR$/include/features/FeatureProcessor.h" />
+        <option value="$PROJECT_DIR$/src/features/LanguageFeatureProcessors.cpp" />
+        <option value="$PROJECT_DIR$/include/features/LanguageFeatureProcessors.h" />
+        <option value="$PROJECT_DIR$/include/features/GenericFeatureProcessors.h" />
+        <option value="$PROJECT_DIR$/src/features/GenericFeatureProcessors.cpp" />
+        <option value="$PROJECT_DIR$/src/features/FeatureProcessorManager.cpp" />
+        <option value="$PROJECT_DIR$/include/features/StringTranslator.h" />
+        <option value="$PROJECT_DIR$/include/features/TargetElementNavigator.h" />
+        <option value="$PROJECT_DIR$/include/common.h" />
+        <option value="$PROJECT_DIR$/include/modules/InterModules.h" />
+        <option value="$PROJECT_DIR$/include/features/PhoneTranslator.h" />
+        <option value="$PROJECT_DIR$/include/features/Target.h" />
+        <option value="$PROJECT_DIR$/src/cppmaryAll.cpp" />
+        <option value="$PROJECT_DIR$/src/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/test/module_test.cpp" />
       </list>
     </option>
   </component>
@@ -384,6 +409,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cppmary" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cppmary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="include" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="features" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -726,7 +769,7 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="module_test" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cppmary" TARGET_NAME="module_test" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="cppmary" RUN_TARGET_NAME="module_test">
+    <configuration default="false" name="module_test" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cppmary" TARGET_NAME="libtest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cppmary" RUN_TARGET_NAME="module_test">
       <envs />
       <method />
     </configuration>
@@ -792,7 +835,7 @@
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2557895" sideWeight="0.5021254" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1663158" sideWeight="0.4978746" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23263158" sideWeight="0.4978746" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -843,7 +886,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/test/module_test.cpp</url>
-          <line>35</line>
+          <line>36</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -868,7 +911,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/examples/libtest.cpp</url>
-          <line>21</line>
+          <line>22</line>
           <option name="timeStamp" value="111" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -881,11 +924,6 @@
           <url>file://$PROJECT_DIR$/src/common/ReferenceCounted.cpp</url>
           <line>32</line>
           <option name="timeStamp" value="128" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/test/module_test.cpp</url>
-          <line>283</line>
-          <option name="timeStamp" value="132" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_vocoder.c</url>
@@ -909,14 +947,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/modules/HtsEngine.cpp</url>
-          <line>76</line>
+          <line>78</line>
           <option name="timeStamp" value="151" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/features/PhoneTranslator.cpp</url>
+          <line>25</line>
+          <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/cppmary.cpp</url>
+          <line>81</line>
+          <option name="timeStamp" value="154" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="153" />
+      <option name="time" value="155" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
@@ -925,202 +973,7 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_label.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="151" column="5" selection-start-line="151" selection-start-column="5" selection-end-line="151" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/hmmFeaturesMap1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="11" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/jieba_test.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="31" column="21" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/hts_engine.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-660">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/cppjieba/KeywordExtractor.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2226">
-          <caret line="170" column="19" selection-start-line="170" selection-start-column="19" selection-end-line="170" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/common/ReferenceCounted.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/ReferenceCounted.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/common/MaryXml.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/features/PhoneTranslator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/features/Target.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/features/Allophone.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/InterModules.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/features/StringTranslator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/features/LanguageFeatureProcessors.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/features/LanguageFeatureProcessors.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/features/FeatureProcessor.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-606">
-          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/features/AllophoneSet.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/features/TargetFeatureComputer.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/util.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/features/GenericFeatureProcessors.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/LabelGenerator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/modules/LabelGenerator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/modules/InterModules.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/features/GenericFeatureProcessors.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2040">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/features/FeatureProcessorManager.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/features/FeatureProcessor.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
@@ -1162,19 +1015,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/modules/HtsEngine.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_model.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="229" column="4" selection-start-line="229" selection-start-column="4" selection-end-line="229" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1185,43 +1029,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/features/FeatureProcessorManager.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="8" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="8" />
-          <folding>
-            <element signature="e#39#84#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cppmaryAll.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/module_test.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4140">
-          <caret line="276" column="38" selection-start-line="276" selection-start-column="38" selection-end-line="276" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1242,56 +1053,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/HtsEngine.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#39#69#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cppmary.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_gstream.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2400">
-          <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_engine.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3271">
-          <caret line="806" column="56" selection-start-line="806" selection-start-column="56" selection-end-line="806" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_vocoder.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="1213" column="0" selection-start-line="1213" selection-start-column="0" selection-end-line="1213" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/libtest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/JiebaSegment.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1306,6 +1067,464 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/modules/HtsEngine.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/HtsEngine.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding>
+            <element signature="e#39#69#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/pinyin_utf8_test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/pugi_test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="77" column="4" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#30#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/refcount_test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#19#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/jieba_test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-241">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/hts_engine.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1740">
+          <caret line="186" column="33" selection-start-line="186" selection-start-column="33" selection-end-line="186" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/features/PhoneTranslator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/string">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="1443" column="69" selection-start-line="1443" selection-start-column="69" selection-end-line="1443" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/modules/LabelGenerator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="56" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
+          <folding>
+            <element signature="e#106#143#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_engine.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="595" column="0" selection-start-line="595" selection-start-column="0" selection-end-line="595" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_vocoder.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="1173" column="37" selection-start-line="1173" selection-start-column="37" selection-end-line="1173" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3rdparty/hts_engine/src/HTS_gstream.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="242" column="0" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/LabelGenerator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/features/TargetFeatureComputer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="23" column="54" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
+          <folding>
+            <marker date="1467855463000" expanded="true" signature="241:1078" placeholder="{...}" />
+            <marker date="1467855463000" expanded="true" signature="275:1074" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/features/FeatureProcessor.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" column="58" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
+          <folding>
+            <marker date="1467855879000" expanded="true" signature="117:3644" placeholder="{...}" />
+            <marker date="1467855879000" expanded="true" signature="343:351" placeholder="{...}" />
+            <marker date="1467855879000" expanded="true" signature="396:467" placeholder="{...}" />
+            <marker date="1467855879000" expanded="true" signature="529:582" placeholder="{...}" />
+            <marker date="1467855879000" expanded="true" signature="628:657" placeholder="{...}" />
+            <marker date="1467855879000" expanded="true" signature="708:794" placeholder="{...}" />
+            <marker date="1467855879000" expanded="true" signature="847:874" placeholder="{...}" />
+            <marker date="1467855879000" expanded="true" signature="1010:1575" placeholder="{...}" />
+            <marker date="1467855879000" expanded="true" signature="1707:2320" placeholder="{...}" />
+            <marker date="1467855879000" expanded="true" signature="2451:2913" placeholder="{...}" />
+            <marker date="1467855879000" expanded="true" signature="3044:3640" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/features/LanguageFeatureProcessors.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="e#39#69#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/features/GenericFeatureProcessors.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="1207" column="0" selection-start-line="1207" selection-start-column="0" selection-end-line="1207" selection-end-column="0" />
+          <folding>
+            <marker date="1467856162000" expanded="true" signature="177:40451" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="450:457" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="495:502" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="1267:1274" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="1314:1321" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="2080:2087" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="2121:2128" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="2875:2882" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="2916:2923" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="3668:3675" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="3707:3714" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="4477:4484" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="4532:4539" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="5327:5334" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="5378:5385" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="6124:6131" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="6196:6682" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="6934:6941" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="8363:8370" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="8450:8765" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="9021:9028" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="9102:9324" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="9626:9633" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="9762:10239" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="10535:10542" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="10665:11138" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="11420:11427" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="11535:12012" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="12287:12294" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="12396:12873" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="13150:13157" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="13262:13729" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="14000:14007" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="14106:14569" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="14844:14851" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="14959:15711" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="15980:15987" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="16089:16837" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="17118:17125" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="17239:17999" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="18275:18282" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="18390:19146" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="19434:19441" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="19561:20260" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="20541:20548" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="20662:21357" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="21622:21629" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="21725:22186" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="22444:22451" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="22541:22998" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="23260:23267" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="23366:23808" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="24068:24075" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="24168:24606" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="24870:24877" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="24976:25432" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="25692:25699" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="25792:26244" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="26502:26509" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="26581:28486" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="28727:28734" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="31293:31300" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="31384:31976" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="32210:32217" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="32286:32533" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="32773:32780" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="32852:33412" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="33670:33677" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="33770:34774" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="35033:35040" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="36432:36439" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="38127:38134" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="38248:39464" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="39737:39744" placeholder="{...}" />
+            <marker date="1467856162000" expanded="true" signature="39828:40447" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/features/FeatureProcessorManager.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2415">
+          <caret line="161" column="101" selection-start-line="161" selection-start-column="101" selection-end-line="161" selection-end-column="101" />
+          <folding>
+            <element signature="e#39#84#0" expanded="false" />
+            <marker date="1467856774000" expanded="true" signature="199:13926" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/features/Allophone.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/features/AllophoneSet.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/features/FeatureProcessor.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="122" selection-start-line="25" selection-start-column="122" selection-end-line="25" selection-end-column="122" />
+          <folding>
+            <element signature="e#109#128#0" expanded="false" />
+            <marker date="1467859435000" expanded="true" signature="382:1470" placeholder="{...}" />
+            <marker date="1467859435000" expanded="true" signature="439:1467" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/features/FeatureProcessorManager.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/features/GenericFeatureProcessors.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+          <folding>
+            <marker date="1467856116000" expanded="true" signature="355:16828" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="2308:2540" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="3760:4000" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="4140:4376" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="4496:4710" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="5230:5454" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="5608:5828" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="8536:8780" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="8917:9157" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="9301:9549" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="9689:9933" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="10081:10333" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="10477:10725" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="13250:13470" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="13604:13828" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="14005:14233" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="14328:14546" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="15015:15249" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="15361:15595" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="15758:16006" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="16169:16417" placeholder="{...}" />
+            <marker date="1467856116000" expanded="true" signature="16529:16824" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/features/LanguageFeatureProcessors.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="113" selection-start-line="30" selection-start-column="113" selection-end-line="30" selection-end-column="113" />
+          <folding>
+            <element signature="e#127#144#0" expanded="false" />
+            <marker date="1467856099000" expanded="true" signature="298:1085" placeholder="{...}" />
+            <marker date="1467856099000" expanded="true" signature="342:563" placeholder="{...}" />
+            <marker date="1467856099000" expanded="true" signature="606:820" placeholder="{...}" />
+            <marker date="1467856099000" expanded="true" signature="866:1082" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/features/StringTranslator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#109#126#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/common.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#93#117#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/features/PhoneTranslator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="e#107#121#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/features/Target.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="e#89#106#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/features/TargetElementNavigator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/modules/InterModules.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding>
+            <element signature="e#100#117#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/cppmary.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="28" column="69" selection-start-line="28" selection-start-column="69" selection-end-line="28" selection-end-column="69" />
+          <folding>
+            <element signature="e#91#110#0" expanded="true" />
+            <marker date="1467852480000" expanded="false" signature="100:152" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cppmaryAll.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cppmary.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="81" column="89" selection-start-line="81" selection-start-column="89" selection-end-line="81" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/libtest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/features/TargetFeatureComputer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/module_test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="202" column="76" selection-start-line="202" selection-start-column="76" selection-end-line="202" selection-end-column="76" />
+          <folding>
+            <element signature="e#161#181#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>

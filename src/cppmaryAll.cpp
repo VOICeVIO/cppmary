@@ -18,7 +18,6 @@
 #include "common/JiebaSegment.cpp"
 #include "common/Lexicon.cpp"
 #include "common/ReferenceCounted.cpp"
-#include "common/MaryBase.cpp"
 
 
 

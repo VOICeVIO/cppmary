@@ -8,10 +8,9 @@
 #include <vector>
 #include <map>
 #include <iostream>
-#include "common/MaryBase.h"
 
 namespace cppmary {
-    class StringTranslator : public MaryBase {
+    class StringTranslator {
         public:
             StringTranslator(std::vector<std::string> strs);
             virtual ~StringTranslator();

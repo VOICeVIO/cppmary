@@ -7,22 +7,22 @@
 #include "limonp/Logging.hpp"
 
 namespace cppmary  {
-    TargetFeatureComputer::TargetFeatureComputer(FeatureProcessorManager* manager,
+    TargetFeatureComputer::TargetFeatureComputer(std::shared_ptr<FeatureProcessorManager> manager,
                                                  std::string featuresProcessorNames) {
         std::vector<std::string> featureNames = splitAndTrim(featuresProcessorNames, ' ');
         init(manager, featureNames);
     }
 
-    TargetFeatureComputer::TargetFeatureComputer(FeatureProcessorManager* manager,
+    TargetFeatureComputer::TargetFeatureComputer(std::shared_ptr<FeatureProcessorManager> manager,
                                                  std::vector<std::string> featureNamesVec) {
         init(manager, featureNamesVec);
     }
 
-    void TargetFeatureComputer::init(FeatureProcessorManager* manager,
+    void TargetFeatureComputer::init(std::shared_ptr<FeatureProcessorManager> manager,
                                                  std::vector<std::string> featureNamesVec) {
         processor_.clear();
         for (int i = 0; i < featureNamesVec.size(); i++) {
-            FeatureProcessor * fp = manager->getFeatureProcessor(featureNamesVec[i]);
+            std::shared_ptr<FeatureProcessor> fp = manager->getFeatureProcessor(featureNamesVec[i]);
             if (fp == NULL) {
                 XLOG(ERROR) << "can not get feature process for " << featureNamesVec[i];
             } else {

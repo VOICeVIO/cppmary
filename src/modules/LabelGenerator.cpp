@@ -6,21 +6,15 @@
 #include "common.h"
 
 namespace cppmary {
-    LabelGenerator::LabelGenerator(FeatureProcessorManager* manager, TargetFeatureComputer* featureComputer, std::vector<std::string> featureName, std::vector<std::string> featureAlias, PhoneTranslator* phoneTranslator) {
+    LabelGenerator::LabelGenerator(std::shared_ptr<FeatureProcessorManager> manager, std::shared_ptr<TargetFeatureComputer> featureComputer, std::vector<std::string> featureName, std::vector<std::string> featureAlias, std::shared_ptr<PhoneTranslator> phoneTranslator) {
         name_ = "LabelGenerator";
         manager_ = manager;
         featureComputer_ = featureComputer;
         featureName_ = featureName;
         featureAlias_ = featureAlias;
         phoneTranslator_ = phoneTranslator;
-        manager_->AddRef();
-        featureComputer_->AddRef();
-        phoneTranslator_->AddRef();
     }
     LabelGenerator::~LabelGenerator() {
-        manager_->ReleaseRef();
-        featureComputer_->ReleaseRef();
-        phoneTranslator_->ReleaseRef();
     }
 
     std::string LabelGenerator::process(std::string input) {

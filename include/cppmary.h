@@ -8,6 +8,7 @@
 #include "common.h"
 #include "modules.h"
 #include "feature.h"
+#include <memory>
 
 void synthesisSpeech(std::string input);
 
@@ -18,13 +19,13 @@ public:
     void init(std::string dir);
     void process(std::string input, std::string outfile);
 private:
-    cppmary::InterModules* phonemiser_;
-    cppmary::InterModules* prosody_;
-    cppmary::InterModules* pronuciation_;
-    cppmary::InterModules* label_;
-    cppmary::InterModules* htsengine_;
-    cppmary::InterModules* tokenizer_;
-    cppmary::FeatureProcessorManager *manager_;
-    cppmary::TargetFeatureComputer *featureComputer_;
+    std::shared_ptr<cppmary::InterModules> phonemiser_;
+    std::shared_ptr<cppmary::InterModules> prosody_;
+    std::shared_ptr<cppmary::InterModules> pronuciation_;
+    std::shared_ptr<cppmary::InterModules> label_;
+    std::shared_ptr<cppmary::InterModules> htsengine_;
+    std::shared_ptr<cppmary::InterModules> tokenizer_;
+    std::shared_ptr<cppmary::FeatureProcessorManager> manager_;
+    std::shared_ptr<cppmary::TargetFeatureComputer> featureComputer_;
 };
 #endif //CPPMARY_CPPMARY_H

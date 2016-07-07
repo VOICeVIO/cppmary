@@ -7,7 +7,7 @@
 
 namespace cppmary {
 
-    FeatureProcessor::FeatureProcessor(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+    FeatureProcessor::FeatureProcessor(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) :
         translator_(possibleValues), name_(name), navigator_(navigator) {
 
     }

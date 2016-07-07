@@ -8,6 +8,7 @@
 //#include "common/JiebaSegment.h"
 #include "cppmary.h"
 #include "feature.h"
+#include <memory>
 using namespace std;
 using namespace cppmary;
 
@@ -105,9 +106,8 @@ void featureTest(pugi::xml_node doc) {
     pugi::xml_parse_result result = doc1.load_file(allophoneSetName.c_str());
     std::string alloStr = MaryXml::saveDoc2String(doc1);
 
-    FeatureProcessorManager manager("zh", alloStr);
-    //TargetFeatureComputer featureComputer(manager, "phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zh_tone zh_tone next_zhtone nextnext_zh_tone pos tobi_accent prev_accent prevprev_tobi_accent next_accent nextnext_tobi_accent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent");
-    TargetFeatureComputer featureComputer(&manager, "phone syl_break breakindex phrase_numsyls zh_tone segs_from_syl_start segs_from_syl_end syls_from_phrase_start syls_from_phrase_end syl_break is_pause words_from_phrase_start words_from_phrase_end words_from_sentence_start words_from_sentence_end phrases_from_sentence_start phrases_from_sentence_end sentence_punc next_punctuation prev_punctuation words_to_next_punctuation words_from_prev_punctuation position_type");
+    std::shared_ptr<FeatureProcessorManager> manager = std::shared_ptr<FeatureProcessorManager>(new FeatureProcessorManager("zh", alloStr));
+    TargetFeatureComputer featureComputer(manager, "phone syl_break breakindex phrase_numsyls zh_tone segs_from_syl_start segs_from_syl_end syls_from_phrase_start syls_from_phrase_end syl_break is_pause words_from_phrase_start words_from_phrase_end words_from_sentence_start words_from_sentence_end phrases_from_sentence_start phrases_from_sentence_end sentence_punc next_punctuation prev_punctuation words_to_next_punctuation words_from_prev_punctuation position_type");
     //load feature map
     for (int i = 0; i < targets.size(); i++) {
         Target target = targets[i];
@@ -170,9 +170,8 @@ void LabelGeneratorTest() {
     result = doc1.load_file(allophoneSetName.c_str());
     std::string allosetStr = MaryXml::saveDoc2String(doc1);
 
-    FeatureProcessorManager manager("zh", allosetStr);
-    //TargetFeatureComputer featureComputer(manager, "phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zh_tone zh_tone next_zhtone nextnext_zh_tone pos tobi_accent prev_accent prevprev_tobi_accent next_accent nextnext_tobi_accent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent");
-    TargetFeatureComputer featureComputer(&manager, "phone prev_phone prev_prev_phone next_phone next_next_phone phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zh_tone zh_tone next_zhtone nextnext_zh_tone pos tobi_accent prev_accent prevprev_tobi_accent next_accent nextnext_tobi_accent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent syl_break breakindex phrase_numsyls zh_tone segs_from_syl_start segs_from_syl_end syls_from_phrase_start syls_from_phrase_end syl_break is_pause words_from_phrase_start words_from_phrase_end words_from_sentence_start words_from_sentence_end phrases_from_sentence_start phrases_from_sentence_end sentence_punc next_punctuation prev_punctuation words_to_next_punctuation words_from_prev_punctuation position_type tobi_accent");
+    std::shared_ptr<FeatureProcessorManager> manager = std::shared_ptr<FeatureProcessorManager>(new FeatureProcessorManager("zh", allosetStr));
+    std::shared_ptr<TargetFeatureComputer> featureComputer = std::shared_ptr<TargetFeatureComputer>(new TargetFeatureComputer(manager, "phone syl_break breakindex phrase_numsyls zh_tone segs_from_syl_start segs_from_syl_end syls_from_phrase_start syls_from_phrase_end syl_break is_pause words_from_phrase_start words_from_phrase_end words_from_sentence_start words_from_sentence_end phrases_from_sentence_start phrases_from_sentence_end sentence_punc next_punctuation prev_punctuation words_to_next_punctuation words_from_prev_punctuation position_type"));
 
     std::string featureMapName = "data/hmmFeaturesMap.txt";
 //    std::map<std::string, std::string> hmmFeatureMap;
@@ -182,13 +181,13 @@ void LabelGeneratorTest() {
 //        std::cout << iter->first << " ===> " << iter->second << std::endl;
 //    }
 
-    PhoneTranslator* phoneTranslator = new PhoneTranslator("data/trickyPhones.txt");
+    std::shared_ptr<PhoneTranslator> phoneTranslator = std::shared_ptr<PhoneTranslator>(new PhoneTranslator("data/trickyPhones.txt"));
 
     std::vector<string> featureName;
     std::vector<string> featureAlias;
     loadDict(featureName, featureAlias, featureMapName);
     assert(featureName.size() == featureAlias.size());
-    InterModules* label = new LabelGenerator(&manager, &featureComputer, featureName, featureAlias, phoneTranslator);
+    InterModules* label = new LabelGenerator(manager, featureComputer, featureName, featureAlias, phoneTranslator);
     std::string labelString = label->process(allophoneExample);
     std::string modelName = "data/labixx23.htsvoice";
     std::string modelStr = getFileString(modelName);
@@ -211,48 +210,42 @@ void HtsEngineTest() {
 }
 
 void totalTest() {
-    std::string rawXml = cppmary::TextToMaryXml::getInstance().process("这个世界上，为什么只有我这么帅呢?");
-    //std::string rawXml = cppmary::TextToMaryXml::getInstance().process("物流信息都显示已经在晋江揽件了，还让我整整等了你四天，你们快递公司是干什么吃的！为什么只有意干什么?"); //这句有时候出错,有时候不出错.可用于调试.
-    std::string jieba_buffer = getFileString("data/jieba/jieba.dict.utf8");
-    std::string hmm_model_buffer = getFileString("data/jieba/hmm_model.utf8");;
-    std::string user_buffer = getFileString("data/jieba/user.dict.utf8");
+    std::shared_ptr<cppmary::InterModules> phonemiser_;
+    std::shared_ptr<cppmary::InterModules> prosody_;
+    std::shared_ptr<cppmary::InterModules> pronuciation_;
+    std::shared_ptr<cppmary::InterModules> label_;
+    std::shared_ptr<cppmary::InterModules> htsengine_;
+    std::shared_ptr<cppmary::InterModules> tokenizer_;
+    std::shared_ptr<cppmary::FeatureProcessorManager> manager_;
+    std::shared_ptr<cppmary::TargetFeatureComputer> featureComputer_;
+
+    std::string basePath = "./";
+
+    std::string jieba_buffer = getFileString(basePath+"data/jieba/jieba.dict.utf8");
+    std::string hmm_model_buffer = getFileString(basePath+"data/jieba/hmm_model.utf8");;
+    std::string user_buffer = getFileString(basePath+"data/jieba/user.dict.utf8");
     JiebaSegment::Instance()->LoadResource(jieba_buffer,
                                            hmm_model_buffer,
                                            user_buffer);
-    cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
-    std::string tokenStr = tokenizer->process(rawXml);
-    std::string sylDictName = "data/pinyin_han.txt";
-    std::string wordDictName = "data/mix_pinyin_word.txt";
+    tokenizer_ = std::shared_ptr<cppmary::Tokenizer>(new cppmary::Tokenizer());
+    std::string sylDictName = basePath+"data/pinyin_han.txt";
+    std::string wordDictName = basePath+"data/mix_pinyin_word.txt";
     std::string sylDictStr = getFileString(sylDictName);
     std::string wordDictStr = getFileString(wordDictName);
-    std::string lexiconDictName = "data/zh_ph64_lexicon.dict";
+    std::string lexiconDictName = basePath+"data/zh_ph64_lexicon.dict";
     std::string lexiconDictStr = getFileString(lexiconDictName);
-    cppmary::InterModules* phonemiser = new cppmary::Phonemiser(wordDictStr, sylDictStr, lexiconDictStr);
-    std::string phoneStr = phonemiser->process(tokenStr);
-    cppmary::InterModules* prosody = new cppmary::Prosody();
-    std::string prodyStr = prosody->process(phoneStr);
-    cppmary::InterModules* pronuciation = new cppmary::Pronunciation();
-    std::string pronunStr = pronuciation->process(prodyStr);
-    pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_string(pronunStr.c_str());
-
-    std::string allophoneSetName = "data/allophones.zh_PH64.xml";
+    phonemiser_ = std::shared_ptr<cppmary::Phonemiser>(new cppmary::Phonemiser(wordDictStr, sylDictStr, lexiconDictStr));
+    prosody_ = std::shared_ptr<cppmary::Prosody>(new cppmary::Prosody());
+    pronuciation_ = std::shared_ptr<cppmary::Pronunciation>(new cppmary::Pronunciation());
+    std::string allophoneSetName = basePath+"data/allophones.zh_PH64.xml";
     std::string allophoneSetStr = getFileString(allophoneSetName);
-    pugi::xml_document doc1;
-    //result = doc1.load_file(allophoneSetName.c_str());
-    result = doc1.load_string(allophoneSetStr.c_str());
-    std::string allosetStr = MaryXml::saveDoc2String(doc1);
-
-    FeatureProcessorManager *manager = new FeatureProcessorManager("zh", allosetStr);
-    manager->AddRef();
-    //TargetFeatureComputer featureComputer(manager, "phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zh_tone zh_tone next_zhtone nextnext_zh_tone pos tobi_accent prev_accent prevprev_tobi_accent next_accent nextnext_tobi_accent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent");
-    //TargetFeatureComputer featureComputer(manager, "phone prev_phone prev_prev_phone next_phone next_next_phone phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zh_tone zh_tone next_zhtone nextnext_zh_tone pos tobi_accent prev_accent prevprev_tobi_accent next_accent nextnext_tobi_accent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent syl_break breakindex phrase_numsyls zh_tone segs_from_syl_start segs_from_syl_end syls_from_phrase_start syls_from_phrase_end syl_break is_pause words_from_phrase_start words_from_phrase_end words_from_sentence_start words_from_sentence_end phrases_from_sentence_start phrases_from_sentence_end sentence_punc next_punctuation prev_punctuation words_to_next_punctuation words_from_prev_punctuation position_type tobi_accent");
-    //TargetFeatureComputer featureComputer(manager, "phone prev_phone prev_prev_phone next_phone next_next_phone  next_zhtone breakindex word_numsegs prev_is_pause words_from_phrase_end sentence_numwords accented_syls_from_phrase_end next_is_pause prev_zh_tone segs_from_word_start syls_from_phrase_end prev_syl_break position_type next_punctuation syls_to_next_accent segs_from_word_end phrase_numsyls prev_punctuation syls_from_word_start words_from_sentence_end phrases_from_sentence_start tobi_accent word_numsyls segs_from_syl_end phrase_numwords zh_tone segs_from_syl_start next_tobi_accent syl_break prev_pos sentence_punc nextnext_zh_tone phrases_from_sentence_end accented_syls_from_phrase_start syls_from_prev_accent pos words_from_prev_punctuation words_from_sentence_start syls_from_word_end syl_numsegs next_pos accented next_accent words_to_next_punctuation prev_accent syls_from_phrase_start nextnext_tobi_accent sentence_numphrases words_from_phrase_start");
-    std::string trickyName = "data/trickyPhones.txt";
+    //FeatureProcessorManager manager("zh", allophoneSetStr);
+    manager_ = std::shared_ptr<FeatureProcessorManager>(new FeatureProcessorManager("zh", allophoneSetStr));
+    std::string trickyName = basePath+"data/trickyPhones.txt";
     std::string trickyStr = getFileString(trickyName);
-    PhoneTranslator* phoneTranslator = new PhoneTranslator(trickyStr);
-    phoneTranslator->AddRef();
-    std::string featureMapName = "data/hmmFeaturesMap.txt";
+    std::shared_ptr<PhoneTranslator> phoneTranslator = std::shared_ptr<PhoneTranslator>(new PhoneTranslator(trickyStr));
+    //std::string featureMapName = basePath+"data/hmmFeaturesMap1.txt";
+    std::string featureMapName = basePath+"data/hmmFeaturesMap.txt";
     std::vector<string> featureName;
     std::vector<string> featureAlias;
     loadDict(featureName, featureAlias, featureMapName);
@@ -263,28 +256,33 @@ void totalTest() {
     contextFeatureName.push_back("next_phone");
     contextFeatureName.push_back("next_next_phone");
     //TargetFeatureComputer featureComputer(manager, contextFeatureName);
-    TargetFeatureComputer* featureComputer = new TargetFeatureComputer(manager, contextFeatureName);
-    featureComputer->AddRef();
+    featureComputer_ = std::shared_ptr<TargetFeatureComputer>(new TargetFeatureComputer(manager_, contextFeatureName));
     std::cout << "context feature size: " << contextFeatureName.size() << std::endl;
     assert(featureName.size() == featureAlias.size());
-    InterModules* label = new LabelGenerator(manager, featureComputer, featureName, featureAlias, phoneTranslator);
-    label->AddRef();
-    std::string labelString = label->process(pronunStr);
-    std::string modelName = "data/labixx23.htsvoice";
+    label_ = std::shared_ptr<LabelGenerator>(new LabelGenerator(manager_, featureComputer_, featureName, featureAlias, phoneTranslator));
+    std::string modelName = basePath+"data/labixx23.htsvoice";
     std::string modelStr = getFileString(modelName);
-    std::string filterName = "data/mix_excitation_5filters_199taps_48Kz.txt";
+    std::string filterName = basePath+"data/mix_excitation_5filters_199taps_48Kz.txt";
     std::string filterStr = getFileString(filterName);
-    InterModules* htsengine = new HtsEngine(modelStr, filterStr);
-    htsengine->process(labelString);
-    //featureComputer->ReleaseRef();
-    label->ReleaseRef();
-    featureComputer->ReleaseRef();
-    manager->ReleaseRef();
-    delete htsengine;
-    phoneTranslator->ReleaseRef();
-    delete pronuciation;
-    delete phonemiser;
-    delete tokenizer;
+    htsengine_ = std::shared_ptr<HtsEngine>(new HtsEngine(modelStr, filterStr));
+
+    std::string input = "这个世界上，为什么只有我这么帅呢?";
+    std::string outfile = "2.wav";
+
+    clock_t start = clock();
+    std::string rawXml = cppmary::TextToMaryXml::getInstance().process(input);
+    std::string tokenStr = tokenizer_->process(rawXml);
+    std::string phoneStr = phonemiser_->process(tokenStr);
+    std::string prodyStr = prosody_->process(phoneStr);
+    std::string pronunStr = pronuciation_->process(prodyStr);
+    std::string labelString = label_->process(pronunStr);
+    std::cout << "before synthesis: " << (clock()-start) * 1000.0 / CLOCKS_PER_SEC << std::endl;
+    //((cppmary::HtsEngine*)htsengine_)->setOutFile(outfile);
+    std::shared_ptr<cppmary::HtsEngine> derived = std::dynamic_pointer_cast<cppmary::HtsEngine>(htsengine_);
+    derived->setOutFile(outfile);
+    htsengine_->process(labelString);
+    std::cout << "totaltime: " << (clock()-start) * 1000.0 / CLOCKS_PER_SEC << std::endl;
+    std::cout << "module total test ok" << std::endl;
 }
 
 int main() {
@@ -301,3 +299,4 @@ int main() {
     //HtsEngineTest();
     totalTest();
 }
+

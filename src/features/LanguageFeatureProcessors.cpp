@@ -7,7 +7,7 @@
 #include "common/util.h"
 
 namespace cppmary {
-    Phone::Phone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* segmentNavigator) :
+    Phone::Phone(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> segmentNavigator) :
             FeatureProcessor(name, possibleValues, segmentNavigator) {
     }
 
@@ -34,7 +34,7 @@ namespace cppmary {
     /*
      * pos
      */
-    Pos::Pos(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator *wordNavigator) :
+    Pos::Pos(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> wordNavigator) :
             FeatureProcessor(name, possibleValues, wordNavigator) {
     }
 
@@ -57,7 +57,7 @@ namespace cppmary {
      * Zhtone
      */
 
-    Zhtone::Zhtone(std::string name, std::vector<std::string> possibleValues, TargetElementNavigator* navigator) : 
+    Zhtone::Zhtone(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) :
         FeatureProcessor(name, possibleValues, navigator) {
     }
 

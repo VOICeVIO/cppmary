@@ -4,3 +4,4 @@ bin
 *.wav
 xcode
 *backup
+data

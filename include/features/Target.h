@@ -7,10 +7,9 @@
 #include <string>
 #include "pugixml/pugixml.hpp"
 #include <vector>
-#include "common/MaryBase.h"
 
 namespace cppmary {
-    class Target : public MaryBase {
+    class Target {
         public:
             Target(std::string name, pugi::xml_node maryxmlElement);
             Target(const Target& target);
