@@ -18,9 +18,11 @@ namespace cppmary {
         virtual std::string process(std::string labelString);
         /*synthses data with label file*/
         void synthesisWithLableName(std::string labelFile);
+        void setOutFile(const std::string& outfile);
     private:
         HTS_Engine engine_;
         char** fn_voices_;
+        std::string outfile_;
     };
 }
 

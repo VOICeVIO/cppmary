@@ -11,8 +11,8 @@
 using namespace std;
 using namespace cppmary;
 
-SpeechSynthesiser::SpeechSynthesiser() {
-    init();
+SpeechSynthesiser::SpeechSynthesiser(std::string dir) {
+    init(dir);
 }
 
 SpeechSynthesiser::~SpeechSynthesiser() {
@@ -27,33 +27,33 @@ SpeechSynthesiser::~SpeechSynthesiser() {
 
 }
 
-void SpeechSynthesiser::init() {
-    std::string jieba_buffer = getFileString("data/jieba/jieba.dict.utf8");
-    std::string hmm_model_buffer = getFileString("data/jieba/hmm_model.utf8");;
-    std::string user_buffer = getFileString("data/jieba/user.dict.utf8");
+void SpeechSynthesiser::init(std::string dir) {
+    std::string jieba_buffer = getFileString(dir+"data/jieba/jieba.dict.utf8");
+    std::string hmm_model_buffer = getFileString(dir+"data/jieba/hmm_model.utf8");;
+    std::string user_buffer = getFileString(dir+"data/jieba/user.dict.utf8");
     JiebaSegment::Instance()->LoadResource(jieba_buffer,
                                            hmm_model_buffer,
                                            user_buffer);
     tokenizer_ = new cppmary::Tokenizer();
-    std::string sylDictName = "test/pinyin_han.txt";
-    std::string wordDictName = "test/mix_pinyin_word.txt";
+    std::string sylDictName = dir+"data/pinyin_han.txt";
+    std::string wordDictName = dir+"data/mix_pinyin_word.txt";
     std::string sylDictStr = getFileString(sylDictName);
     std::string wordDictStr = getFileString(wordDictName);
-    std::string lexiconDictName = "test/zh_ph64_lexicon.dict";
+    std::string lexiconDictName = dir+"data/zh_ph64_lexicon.dict";
     std::string lexiconDictStr = getFileString(lexiconDictName);
     phonemiser_ = new cppmary::Phonemiser(wordDictStr, sylDictStr, lexiconDictStr);
     prosody_ = new cppmary::Prosody();
     pronuciation_ = new cppmary::Pronunciation();
-    std::string allophoneSetName = "test/allophones.zh_PH64.xml";
+    std::string allophoneSetName = dir+"data/allophones.zh_PH64.xml";
     std::string allophoneSetStr = getFileString(allophoneSetName);
     //FeatureProcessorManager manager("zh", allophoneSetStr);
     manager_ = new FeatureProcessorManager("zh", allophoneSetStr);
-    std::string trickyName = "test/trickyPhones.txt";
+    std::string trickyName = dir+"data/trickyPhones.txt";
     std::string trickyStr = getFileString(trickyName);
     PhoneTranslator* phoneTranslator = new PhoneTranslator(trickyStr);
     phoneTranslator->AddRef();
-    //std::string featureMapName = "test/hmmFeaturesMap1.txt";
-    std::string featureMapName = "test/hmmFeaturesMapNew.txt";
+    //std::string featureMapName = dir+"data/hmmFeaturesMap1.txt";
+    std::string featureMapName = dir+"data/hmmFeaturesMap.txt";
     std::vector<string> featureName;
     std::vector<string> featureAlias;
     loadDict(featureName, featureAlias, featureMapName);
@@ -68,9 +68,9 @@ void SpeechSynthesiser::init() {
     std::cout << "context feature size: " << contextFeatureName.size() << std::endl;
     assert(featureName.size() == featureAlias.size());
     label_ = new LabelGenerator(manager_, featureComputer_, featureName, featureAlias, phoneTranslator);
-    std::string modelName = "test/labixx23.htsvoice";
+    std::string modelName = dir+"data/labixx23.htsvoice";
     std::string modelStr = getFileString(modelName);
-    std::string filterName = "data/mix_excitation_5filters_199taps_48Kz.txt";
+    std::string filterName = dir+"data/mix_excitation_5filters_199taps_48Kz.txt";
     std::string filterStr = getFileString(filterName);
     tokenizer_->AddRef();
     htsengine_ = new HtsEngine(modelStr, filterStr);
@@ -85,7 +85,7 @@ void SpeechSynthesiser::init() {
 }
 
 
-void SpeechSynthesiser::process(std::string input) {
+void SpeechSynthesiser::process(std::string input, std::string outfile) {
     clock_t start = clock();
     std::string rawXml = cppmary::TextToMaryXml::getInstance().process(input);
     std::string tokenStr = tokenizer_->process(rawXml);
@@ -94,6 +94,7 @@ void SpeechSynthesiser::process(std::string input) {
     std::string pronunStr = pronuciation_->process(prodyStr);
     std::string labelString = label_->process(pronunStr);
     std::cout << "before synthesis: " << (clock()-start) * 1000.0 / CLOCKS_PER_SEC << std::endl;
+    ((cppmary::HtsEngine*)htsengine_)->setOutFile(outfile);
     htsengine_->process(labelString);
     std::cout << "totaltime: " << (clock()-start) * 1000.0 / CLOCKS_PER_SEC << std::endl;
 }

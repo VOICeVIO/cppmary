@@ -58,13 +58,15 @@ namespace cppmary {
         delete [] fileContent;
     }
 
-
-
     HtsEngine::~HtsEngine() {
         HTS_Engine_refresh(&engine_);
         //HTS_Engine_clear(&engine_);
         HTS_Engine_destory(&engine_);
         free(fn_voices_);
+    }
+
+    void HtsEngine::setOutFile(const std::string& outfile) {
+        outfile_ = outfile;
     }
 
     /*synthses data with label string*/
@@ -89,10 +91,15 @@ namespace cppmary {
             exit(1);
         }
         std::cout << "synthesis time: " << (clock()-start) * 1000.0 / CLOCKS_PER_SEC << std::endl;
-        FILE* wavfp = fopen("1.wav", "wb");
-        if (wavfp)
-            HTS_Engine_save_riff(&engine_, wavfp);
-        fclose(wavfp);
+        if (outfile_.empty()) {
+            outfile_ = "1.wav";
+        }
+        if (!outfile_.empty()) {
+            FILE* wavfp = fopen(outfile_.c_str(), "wb");
+            if (wavfp)
+                HTS_Engine_save_riff(&engine_, wavfp);
+            fclose(wavfp);
+        }
         for (int i = 0; i < lineNum; i++) {
             delete [] lines[i];
         }

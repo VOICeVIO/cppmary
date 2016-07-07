@@ -13,10 +13,10 @@ void synthesisSpeech(std::string input);
 
 class SpeechSynthesiser {
 public:
-    SpeechSynthesiser();
+    SpeechSynthesiser(std::string dir);
     ~SpeechSynthesiser();
-    void init();
-    void process(std::string input);
+    void init(std::string dir);
+    void process(std::string input, std::string outfile);
 private:
     cppmary::InterModules* phonemiser_;
     cppmary::InterModules* prosody_;
