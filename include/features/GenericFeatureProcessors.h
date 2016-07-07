@@ -110,6 +110,16 @@ namespace cppmary {
         virtual int process(Target target);
     };
 
+    /*
+     * The edge type of current word
+     * @navigator: word
+     */
+    class Edge : public FeatureProcessor {
+    public:
+        Edge(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator);
+        virtual ~Edge();
+        virtual int process(Target target);
+    };
 
     /*
      * The style of current target

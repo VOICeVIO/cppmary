@@ -183,6 +183,61 @@ namespace cppmary {
         std::vector<pugi::xml_node> nodes = tw.nodes_;
         return nodes.size() > RAIL_LIMIT ? RAIL_LIMIT : nodes.size();
     }
+    /*
+     * The edge type of current word
+     */
+    Edge::Edge(std::string name, std::vector<std::string> possibleValues, std::shared_ptr<TargetElementNavigator> navigator) : FeatureProcessor(name, possibleValues, navigator) {
+    }
+
+    Edge::~Edge() { }
+
+    int Edge::process(Target target) {
+        pugi::xml_node token = navigator_->getElement(target);
+        if (token.empty()) {
+            return 0;
+        }
+        pugi::xml_node sentence = MaryXml::getAncestor(token, MaryXml::SENTENCE);
+        if (sentence.empty()) {
+            return 0;
+        }
+        std::string type;
+        token_boundary_walker tw;
+        sentence.traverse(tw);
+        std::vector<pugi::xml_node> nodes = tw.nodes_;
+        pugi::xml_node prevToken = navigator_->prevElement(nodes, token);
+        pugi::xml_node nextToken = navigator_->nextElement(nodes, token);
+        if (nextToken.empty()) {
+            if (prevToken.empty()) {
+                type = "others";
+            } else {
+                type = "outbound";
+            }
+        } else if (prevToken.empty()) {
+            type = "outbound";
+        } else {
+            std::string nextTokenPos = nextToken.attribute("pos").as_string();
+            if (nextTokenPos == "X") {
+                type = "outbound";
+            } else {
+                type = "others";
+            }
+            std::string bi = nextToken.attribute("breakindex").as_string();
+            if (!bi.empty()) {
+                int biValue = std::stoi(bi);
+                if (biValue == 3) {
+                    type = "innerbound";
+                }
+            }
+            std::string pbi = prevToken.attribute("breakindex").as_string();
+            if (!pbi.empty()) {
+                int biValue = std::stoi(pbi);
+                if (biValue == 3) {
+                    type = "innerbound";
+                }
+            }
+        }
+        return translator_.getValue(type);
+    }
 
     /*
      * The style of current target

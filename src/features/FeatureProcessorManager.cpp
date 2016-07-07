@@ -152,6 +152,14 @@ namespace cppmary {
         onsetcodaValues.push_back("coda");
         addFeatureProcessor(std::shared_ptr<SegOnsetCoda>(new SegOnsetCoda("onsetcoda", onsetcodaValues, NULL, phoneset_)));
 
+        //edge
+        std::vector<std::string> edgeValues;
+        edgeValues.push_back("0");
+        edgeValues.push_back("outbound");
+        edgeValues.push_back("innerbound");
+        edgeValues.push_back("others");
+        addFeatureProcessor(std::shared_ptr<Edge>(new Edge("edge", edgeValues, wordNav)));
+
     }
 
     void FeatureProcessorManager::addFeatureProcessor(std::shared_ptr<FeatureProcessor> fp) {
