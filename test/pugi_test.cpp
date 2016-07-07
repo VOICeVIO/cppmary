@@ -23,7 +23,7 @@ bool try_imbue(std::wistream &stream, const char *name) {
 void simple_test() {
     pugi::xml_document doc;
 
-    pugi::xml_parse_result result = doc.load_file("test/tree.xml");
+    pugi::xml_parse_result result = doc.load_file("data/tree.xml");
 
     std::cout << "Load result: " << result.description() << ", mesh name: " <<
     doc.child("mesh").attribute("name").value() << std::endl;
@@ -54,7 +54,7 @@ void transverse_base(const pugi::xml_document &doc) {
 
 void wide_char_test() {
     pugi::xml_document doc;
-    std::wifstream stream("test/pos.xml");
+    std::wifstream stream("data/pos.xml");
 
     if (try_imbue(stream, "en_US.UTF-8")) // try Linux encoding
     {
@@ -67,7 +67,7 @@ void wide_char_test() {
 void narrow_char_test() {
     XLOG(INFO) << "in narrow char test" ;
     pugi::xml_document doc;
-    std::ifstream stream("test/pos.xml");
+    std::ifstream stream("data/pos.xml");
     pugi::xml_parse_result result = doc.load(stream);
     //print_doc("UTF8 file from wide stream", doc, result);
     transverse_base(doc);
@@ -75,7 +75,7 @@ void narrow_char_test() {
 
 void maryxml_test() {
     pugi::xml_document doc;
-    std::ifstream stream("test/pos.xml");
+    std::ifstream stream("data/pos.xml");
     pugi::xml_parse_result result = doc.load(stream);
     pugi::xml_node tokens = doc.child("maryxml").child("p").child("s");
     pugi::xml_node paragraph = doc.child("maryxml").child("p");

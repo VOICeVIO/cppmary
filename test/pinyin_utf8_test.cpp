@@ -30,8 +30,8 @@ void utf8_test() {
 }
 
 void pinyin_test() {
-    std::string sylDictName = "test/pinyin_han.txt";
-    std::string wordDictName = "test/mix_pinyin_word.txt";
+    std::string sylDictName = "data/pinyin_han.txt";
+    std::string wordDictName = "data/mix_pinyin_word.txt";
     cppmary::ConvertPinyin pinyinConverter(wordDictName, sylDictName);
     std::cout << pinyinConverter.getWordPinyin("你好") << std::endl;
     std::cout << pinyinConverter.getWordPinyin("只得") << std::endl;

@@ -42,11 +42,11 @@ void phonemiserTest() {
     std::string rawXml = cppmary::TextToMaryXml::getInstance().process("欢迎使用文本转语音服务!");
     cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
     std::string tokenStr = tokenizer->process(rawXml);
-    std::string sylDictName = "test/pinyin_han.txt";
-    std::string wordDictName = "test/mix_pinyin_word.txt";
+    std::string sylDictName = "data/pinyin_han.txt";
+    std::string wordDictName = "data/mix_pinyin_word.txt";
     std::string sylDictStr = getFileString(sylDictName);
     std::string wordDictStr = getFileString(wordDictName);
-    std::string lexiconDictName = "test/zh_ph64_lexicon.dict";
+    std::string lexiconDictName = "data/zh_ph64_lexicon.dict";
     std::string lexiconDictStr = getFileString(lexiconDictName);
     cppmary::InterModules* phonemiser = new cppmary::Phonemiser(wordDictStr, sylDictStr, lexiconDictStr);
     std::string phoneStr = phonemiser->process(tokenStr);
@@ -56,11 +56,11 @@ void prosodyTest() {
     std::string rawXml = cppmary::TextToMaryXml::getInstance().process("欢迎，使用。文本转！语音？服务!");
     cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
     std::string tokenStr = tokenizer->process(rawXml);
-    std::string sylDictName = "test/pinyin_han.txt";
-    std::string wordDictName = "test/mix_pinyin_word.txt";
+    std::string sylDictName = "data/pinyin_han.txt";
+    std::string wordDictName = "data/mix_pinyin_word.txt";
     std::string sylDictStr = getFileString(sylDictName);
     std::string wordDictStr = getFileString(wordDictName);
-    std::string lexiconDictName = "test/zh_ph64_lexicon.dict";
+    std::string lexiconDictName = "data/zh_ph64_lexicon.dict";
     std::string lexiconDictStr = getFileString(lexiconDictName);
     cppmary::InterModules* phonemiser = new cppmary::Phonemiser(wordDictStr, sylDictStr, lexiconDictStr);
     std::string phoneStr = phonemiser->process(tokenStr);
@@ -100,7 +100,7 @@ void featureTest(pugi::xml_node doc) {
     doc.traverse(tw);
     std::vector<Target> targets = createTargetWithPauses(tw.nodes_, "_");
 
-    std::string allophoneSetName = "test/allophones.zh_PH64.xml";
+    std::string allophoneSetName = "data/allophones.zh_PH64.xml";
     pugi::xml_document doc1;
     pugi::xml_parse_result result = doc1.load_file(allophoneSetName.c_str());
     std::string alloStr = MaryXml::saveDoc2String(doc1);
@@ -126,11 +126,11 @@ void pronunciationTest() {
     std::string rawXml = cppmary::TextToMaryXml::getInstance().process("这个世界上，为什么只有我这么帅呢？");
     cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
     std::string tokenStr = tokenizer->process(rawXml);
-    std::string sylDictName = "test/pinyin_han.txt";
-    std::string wordDictName = "test/mix_pinyin_word.txt";
+    std::string sylDictName = "data/pinyin_han.txt";
+    std::string wordDictName = "data/mix_pinyin_word.txt";
     std::string sylDictStr = getFileString(sylDictName);
     std::string wordDictStr = getFileString(wordDictName);
-    std::string lexiconDictName = "test/zh_ph64_lexicon.dict";
+    std::string lexiconDictName = "data/zh_ph64_lexicon.dict";
     std::string lexiconDictStr = getFileString(lexiconDictName);
     cppmary::InterModules* phonemiser = new cppmary::Phonemiser(wordDictStr, sylDictStr, lexiconDictStr);
     std::string phoneStr = phonemiser->process(tokenStr);
@@ -144,15 +144,15 @@ void pronunciationTest() {
 }
 
 void labelTest() {
-    //std::string puncxmlName = "test/punc.xml";
-    std::string puncxmlName = "test/labixx_example.xml";
+    //std::string puncxmlName = "data/punc.xml";
+    std::string puncxmlName = "data/labixx_example.xml";
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(puncxmlName.c_str());
     featureTest(doc);
 }
 
 void allophoneTest() {
-    std::string allophoneSetName = "test/allophones.zh_PH64.xml";
+    std::string allophoneSetName = "data/allophones.zh_PH64.xml";
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(allophoneSetName.c_str());
     std::string alloStr = MaryXml::saveDoc2String(doc);
@@ -160,12 +160,12 @@ void allophoneTest() {
 }
 
 void LabelGeneratorTest() {
-    std::string puncxmlName = "test/labixx_example.xml";
+    std::string puncxmlName = "data/labixx_example.xml";
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(puncxmlName.c_str());
     std::string allophoneExample = MaryXml::saveDoc2String(doc);
 
-    std::string allophoneSetName = "test/allophones.zh_PH64.xml";
+    std::string allophoneSetName = "data/allophones.zh_PH64.xml";
     pugi::xml_document doc1;
     result = doc1.load_file(allophoneSetName.c_str());
     std::string allosetStr = MaryXml::saveDoc2String(doc1);
@@ -174,7 +174,7 @@ void LabelGeneratorTest() {
     //TargetFeatureComputer featureComputer(manager, "phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zh_tone zh_tone next_zhtone nextnext_zh_tone pos tobi_accent prev_accent prevprev_tobi_accent next_accent nextnext_tobi_accent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent");
     TargetFeatureComputer featureComputer(&manager, "phone prev_phone prev_prev_phone next_phone next_next_phone phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zh_tone zh_tone next_zhtone nextnext_zh_tone pos tobi_accent prev_accent prevprev_tobi_accent next_accent nextnext_tobi_accent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent syl_break breakindex phrase_numsyls zh_tone segs_from_syl_start segs_from_syl_end syls_from_phrase_start syls_from_phrase_end syl_break is_pause words_from_phrase_start words_from_phrase_end words_from_sentence_start words_from_sentence_end phrases_from_sentence_start phrases_from_sentence_end sentence_punc next_punctuation prev_punctuation words_to_next_punctuation words_from_prev_punctuation position_type tobi_accent");
 
-    std::string featureMapName = "test/hmmFeaturesMap1.txt";
+    std::string featureMapName = "data/hmmFeaturesMap.txt";
 //    std::map<std::string, std::string> hmmFeatureMap;
 //    loadDict(hmmFeatureMap, featureMapName, " ");
 //    std::map<std::string, std::string>::iterator iter;
@@ -182,7 +182,7 @@ void LabelGeneratorTest() {
 //        std::cout << iter->first << " ===> " << iter->second << std::endl;
 //    }
 
-    PhoneTranslator* phoneTranslator = new PhoneTranslator("test/trickyPhones.txt");
+    PhoneTranslator* phoneTranslator = new PhoneTranslator("data/trickyPhones.txt");
 
     std::vector<string> featureName;
     std::vector<string> featureAlias;
@@ -190,7 +190,7 @@ void LabelGeneratorTest() {
     assert(featureName.size() == featureAlias.size());
     InterModules* label = new LabelGenerator(&manager, &featureComputer, featureName, featureAlias, phoneTranslator);
     std::string labelString = label->process(allophoneExample);
-    std::string modelName = "test/labixx23.htsvoice";
+    std::string modelName = "data/labixx23.htsvoice";
     std::string modelStr = getFileString(modelName);
     std::string filterName = "data/mix_excitation_5filters_199taps_48Kz.txt";
     std::string filterStr = getFileString(filterName);
@@ -199,12 +199,12 @@ void LabelGeneratorTest() {
 }
 
 void HtsEngineTest() {
-    std::string modelName = "test/labixx23.htsvoice";
+    std::string modelName = "data/labixx23.htsvoice";
     std::string modelStr = getFileString(modelName);
     std::string filterName = "data/mix_excitation_5filters_199taps_48Kz.txt";
     std::string filterStr = getFileString(filterName);
     InterModules* htsengine = new HtsEngine(modelStr, filterStr);
-    std::string labelName = "test/labixx.lab";
+    std::string labelName = "data/labixx.lab";
     //((HtsEngine*) htsengine)->synthesisWithLableName(labelName);
     std::string labelString = getFileString(labelName);
     htsengine->process(labelString);
@@ -221,11 +221,11 @@ void totalTest() {
                                            user_buffer);
     cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
     std::string tokenStr = tokenizer->process(rawXml);
-    std::string sylDictName = "test/pinyin_han.txt";
-    std::string wordDictName = "test/mix_pinyin_word.txt";
+    std::string sylDictName = "data/pinyin_han.txt";
+    std::string wordDictName = "data/mix_pinyin_word.txt";
     std::string sylDictStr = getFileString(sylDictName);
     std::string wordDictStr = getFileString(wordDictName);
-    std::string lexiconDictName = "test/zh_ph64_lexicon.dict";
+    std::string lexiconDictName = "data/zh_ph64_lexicon.dict";
     std::string lexiconDictStr = getFileString(lexiconDictName);
     cppmary::InterModules* phonemiser = new cppmary::Phonemiser(wordDictStr, sylDictStr, lexiconDictStr);
     std::string phoneStr = phonemiser->process(tokenStr);
@@ -236,7 +236,7 @@ void totalTest() {
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_string(pronunStr.c_str());
 
-    std::string allophoneSetName = "test/allophones.zh_PH64.xml";
+    std::string allophoneSetName = "data/allophones.zh_PH64.xml";
     std::string allophoneSetStr = getFileString(allophoneSetName);
     pugi::xml_document doc1;
     //result = doc1.load_file(allophoneSetName.c_str());
@@ -248,11 +248,11 @@ void totalTest() {
     //TargetFeatureComputer featureComputer(manager, "phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zh_tone zh_tone next_zhtone nextnext_zh_tone pos tobi_accent prev_accent prevprev_tobi_accent next_accent nextnext_tobi_accent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent");
     //TargetFeatureComputer featureComputer(manager, "phone prev_phone prev_prev_phone next_phone next_next_phone phrase_numsyls phone phrase_zhtone prevprev_zhtone prev_zh_tone zh_tone next_zhtone nextnext_zh_tone pos tobi_accent prev_accent prevprev_tobi_accent next_accent nextnext_tobi_accent accented accented_syls_from_phrase_start accented_syls_from_phrase_end syls_from_prev_accent syl_break breakindex phrase_numsyls zh_tone segs_from_syl_start segs_from_syl_end syls_from_phrase_start syls_from_phrase_end syl_break is_pause words_from_phrase_start words_from_phrase_end words_from_sentence_start words_from_sentence_end phrases_from_sentence_start phrases_from_sentence_end sentence_punc next_punctuation prev_punctuation words_to_next_punctuation words_from_prev_punctuation position_type tobi_accent");
     //TargetFeatureComputer featureComputer(manager, "phone prev_phone prev_prev_phone next_phone next_next_phone  next_zhtone breakindex word_numsegs prev_is_pause words_from_phrase_end sentence_numwords accented_syls_from_phrase_end next_is_pause prev_zh_tone segs_from_word_start syls_from_phrase_end prev_syl_break position_type next_punctuation syls_to_next_accent segs_from_word_end phrase_numsyls prev_punctuation syls_from_word_start words_from_sentence_end phrases_from_sentence_start tobi_accent word_numsyls segs_from_syl_end phrase_numwords zh_tone segs_from_syl_start next_tobi_accent syl_break prev_pos sentence_punc nextnext_zh_tone phrases_from_sentence_end accented_syls_from_phrase_start syls_from_prev_accent pos words_from_prev_punctuation words_from_sentence_start syls_from_word_end syl_numsegs next_pos accented next_accent words_to_next_punctuation prev_accent syls_from_phrase_start nextnext_tobi_accent sentence_numphrases words_from_phrase_start");
-    std::string trickyName = "test/trickyPhones.txt";
+    std::string trickyName = "data/trickyPhones.txt";
     std::string trickyStr = getFileString(trickyName);
     PhoneTranslator* phoneTranslator = new PhoneTranslator(trickyStr);
     phoneTranslator->AddRef();
-    std::string featureMapName = "test/hmmFeaturesMapNew.txt";
+    std::string featureMapName = "data/hmmFeaturesMap.txt";
     std::vector<string> featureName;
     std::vector<string> featureAlias;
     loadDict(featureName, featureAlias, featureMapName);
@@ -270,7 +270,7 @@ void totalTest() {
     InterModules* label = new LabelGenerator(manager, featureComputer, featureName, featureAlias, phoneTranslator);
     label->AddRef();
     std::string labelString = label->process(pronunStr);
-    std::string modelName = "test/labixx23.htsvoice";
+    std::string modelName = "data/labixx23.htsvoice";
     std::string modelStr = getFileString(modelName);
     std::string filterName = "data/mix_excitation_5filters_199taps_48Kz.txt";
     std::string filterStr = getFileString(filterName);

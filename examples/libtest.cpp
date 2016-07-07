@@ -11,10 +11,11 @@ using namespace std;
 
 int main() {
     std::string input;
-    SpeechSynthesiser *ttsEngine = new SpeechSynthesiser();
+    SpeechSynthesiser *ttsEngine = new SpeechSynthesiser("./");
     input = "这个世界上，为什么只有我这么帅呢?";
     std::cout << "input text: " << std::endl;
-    ttsEngine->process(input);
+    std::string outfile = "2.wav";
+    ttsEngine->process(input, outfile);
 //    while(cin >> input) {
 //        ttsEngine->process(input);
 //    }
