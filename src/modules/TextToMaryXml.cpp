@@ -7,6 +7,11 @@
 
 namespace cppmary {
     std::string TextToMaryXml::process(std::string text, std::string locale, std::string phoneset) {
+        text = replaceAll(text, "，", ",");
+        text = replaceAll(text, "、", ",");
+        text = replaceAll(text, "？", "?");
+        text = replaceAll(text, "！", "!");
+        text = replaceAll(text, "。", ".");
         return MaryXml::getMaryXmlHeaderWithLocale(locale) + "<p>\n" + text + "\n</p>\n</maryxml>" ;
     }
 }

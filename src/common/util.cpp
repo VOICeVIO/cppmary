@@ -125,6 +125,7 @@ namespace cppmary {
                 assert(buf.size() >= 2);
                 dict[trim(buf[0])] = trim(buf[1]);
             }
+            ifs.close();
         }
         //dumpStringMap(dict);
     }
@@ -152,6 +153,7 @@ namespace cppmary {
                 keys.push_back(buf[0]);
                 values.push_back(buf[1]);
             }
+            ifs.close();
         }
     }
 

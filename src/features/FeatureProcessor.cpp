@@ -50,6 +50,9 @@ namespace cppmary {
                 tempCount++;
             }
         }
+        if (count > 2) {
+            count = 2;
+        }
         return count;
     }
 
@@ -72,6 +75,9 @@ namespace cppmary {
                 break;
             }
         }
+        if (count > 2) {
+            count = 2;
+        }
         return count;
     }
 
@@ -90,6 +96,9 @@ namespace cppmary {
             if (node == current || count >= RAIL_LIMIT) {
                 break;
             }
+        }
+        if (count > 2) {
+            count = 2;
         }
         return count;
     }
@@ -113,6 +122,9 @@ namespace cppmary {
                 count = tempCount;
                 break;
             }
+        }
+        if (count > 2) {
+            count = 2;
         }
         return count;
     }
