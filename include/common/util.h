@@ -39,6 +39,8 @@ namespace cppmary {
 
     std::string replaceAll(const std::string& orig, const std::string& replaceThis, const std::string& replaceWith);
 
+    std::string replaceWith(const std::string& orig, const std::string& replaceThis, const std::string& replaceWith);
+
 
 
 }

@@ -60,6 +60,11 @@ namespace cppmary {
                 std::string featureValue;
                 if (detail_iterator != detail.end()) {
                     featureValue = detail[featureName].second;
+                    if (featureName == "sentence_punc" || featureName == "prev_punctuation" || featureName == "next_punctuation") {
+                        featureValue = phoneTranslator_->replacePunc(featureValue);
+                    } else if (featureName.find("tobi_") != std::string::npos) {
+                        featureValue = phoneTranslator_->replaceToBI(featureValue);
+                    }
                 } else {
                     XLOG(ERROR) << featureName << " has no feature processor";
                     featureValue = "0";
@@ -68,7 +73,7 @@ namespace cppmary {
             }
             label = label + "||\n";
         }
-        //std::cout << label << std::endl;
+        XLOG(INFO) << label;
         return label;
     }
 

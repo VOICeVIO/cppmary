@@ -8,6 +8,6 @@
 namespace cppmary {
     InterModules::InterModules() { }
     InterModules::~InterModules() {
-        XLOG(INFO) << "deconstruct module " << name_;
+        XLOG(DEBUG) << "deconstruct module " << name_;
     }
 }

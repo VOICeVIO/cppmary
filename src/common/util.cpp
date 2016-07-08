@@ -162,4 +162,12 @@ namespace cppmary {
         }
         return result;
     }
+
+    std::string replaceWith(const std::string& orig, const std::string& replaceThis, const std::string& replaceWith) {
+        std::string result = orig;
+        if (result.find(replaceThis) != std::string::npos) {
+            result = replaceWith;
+        }
+        return result;
+    }
 }

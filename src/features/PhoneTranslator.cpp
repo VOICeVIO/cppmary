@@ -40,6 +40,43 @@ namespace cppmary {
         return s;
     }
 
+    std::string PhoneTranslator::replacePunc(std::string lab) {
+        std::string s = lab;
+        s = replaceWith(s, ".", "pt");
+        s = replaceWith(s, ",", "cm");
+        s = replaceWith(s, "(", "op");
+        s = replaceWith(s, ")", "cp");
+        s = replaceWith(s, "?", "in");
+        s = replaceWith(s, "\"", "qt");
+        return s;
+    }
+
+    std::string PhoneTranslator::replaceBackPunc(std::string lab) {
+        std::string s = lab;
+        s = replaceWith(s, "pt", ".");
+        s = replaceWith(s, "cm", ",");
+        s = replaceWith(s, "op", "(");
+        s = replaceWith(s, "cp", ")");
+        s = replaceWith(s, "in", "?");
+        s = replaceWith(s, "qt", "\"");
+        return s;
+    }
+
+    std::string PhoneTranslator::replaceToBI(std::string lab) {
+        std::string s = lab;
+        s = replaceAll(s, "*", "st");
+        s = replaceAll(s, "%", "pc");
+        s = replaceAll(s, "^", "ht");
+        return s;
+    }
+
+    std::string PhoneTranslator::replaceBackToBI(std::string lab) {
+        std::string s = lab;
+        s = replaceAll(s, "st", "*");
+        s = replaceAll(s, "pc", "%");
+        s = replaceAll(s, "ht", "^");
+        return s;
+    }
 
 
 

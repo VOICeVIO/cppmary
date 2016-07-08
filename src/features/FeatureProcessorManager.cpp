@@ -22,7 +22,7 @@ namespace cppmary {
     }
 
     FeatureProcessorManager::~FeatureProcessorManager() {
-        XLOG(INFO) << "deconstruct FeatureProcessorManager ";
+        XLOG(DEBUG) << "deconstruct FeatureProcessorManager ";
     }
 
     void FeatureProcessorManager::setupGenericFeatureProcessors() {

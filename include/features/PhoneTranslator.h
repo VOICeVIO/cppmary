@@ -15,6 +15,10 @@ namespace cppmary {
         void loadTrickyPhones(const std::string& trickyPath);
         std::string replaceTrickyPhones(std::string lab);
         std::string replaceBackTrickyPhones(std::string lab);
+        std::string replacePunc(std::string lab);
+        std::string replaceBackPunc(std::string lab);
+        std::string replaceToBI(std::string lab);
+        std::string replaceBackToBI(std::string lab);
     private:
         std::map<std::string, std::string> trickyPhones_;
         std::map<std::string, std::string> actualPhones_;

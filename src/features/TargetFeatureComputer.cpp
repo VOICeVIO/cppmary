@@ -32,7 +32,7 @@ namespace cppmary  {
     }
 
     TargetFeatureComputer::~TargetFeatureComputer() {
-        XLOG(INFO) << "deconstruct TargetFeatureComputer";
+        XLOG(DEBUG) << "deconstruct TargetFeatureComputer";
     }
 
     std::vector<int> TargetFeatureComputer::computeFeatureVector(Target target, std::map<std::string, std::pair<int, std::string> > *detail) {
