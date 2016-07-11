@@ -7,6 +7,7 @@
 #include "pugixml/pugixml.hpp"
 //#include "common/JiebaSegment.h"
 #include "cppmary.h"
+#include <fstream>
 #include "feature.h"
 #include <memory>
 using namespace std;
@@ -160,7 +161,8 @@ void allophoneTest() {
 }
 
 void LabelGeneratorTest() {
-    std::string puncxmlName = "data/labixx_example.xml";
+    //std::string puncxmlName = "data/labixx_example.xml";
+    std::string puncxmlName = "data/allo710.xml";
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(puncxmlName.c_str());
     std::string allophoneExample = MaryXml::saveDoc2String(doc);
@@ -171,25 +173,25 @@ void LabelGeneratorTest() {
     std::string allosetStr = MaryXml::saveDoc2String(doc1);
 
     std::shared_ptr<FeatureProcessorManager> manager = std::shared_ptr<FeatureProcessorManager>(new FeatureProcessorManager("zh", allosetStr));
-    std::shared_ptr<TargetFeatureComputer> featureComputer = std::shared_ptr<TargetFeatureComputer>(new TargetFeatureComputer(manager, "phone syl_break breakindex phrase_numsyls zh_tone segs_from_syl_start segs_from_syl_end syls_from_phrase_start syls_from_phrase_end syl_break is_pause words_from_phrase_start words_from_phrase_end words_from_sentence_start words_from_sentence_end phrases_from_sentence_start phrases_from_sentence_end sentence_punc next_punctuation prev_punctuation words_to_next_punctuation words_from_prev_punctuation position_type"));
-
+    std::string trickyName = "data/trickyPhones.txt";
+    std::string trickyStr = getFileString(trickyName);
+    std::shared_ptr<PhoneTranslator> phoneTranslator = std::shared_ptr<PhoneTranslator>(new PhoneTranslator(trickyStr));
+    //std::string featureMapName = basePath+"data/hmmFeaturesMap1.txt";
     std::string featureMapName = "data/hmmFeaturesMap.txt";
-//    std::map<std::string, std::string> hmmFeatureMap;
-//    loadDict(hmmFeatureMap, featureMapName, " ");
-//    std::map<std::string, std::string>::iterator iter;
-//    for (iter = hmmFeatureMap.begin(); iter != hmmFeatureMap.end(); ++iter) {
-//        std::cout << iter->first << " ===> " << iter->second << std::endl;
-//    }
-
-    std::shared_ptr<PhoneTranslator> phoneTranslator = std::shared_ptr<PhoneTranslator>(new PhoneTranslator("data/trickyPhones.txt"));
-
     std::vector<string> featureName;
     std::vector<string> featureAlias;
     loadDict(featureName, featureAlias, featureMapName);
-    assert(featureName.size() == featureAlias.size());
+    std::vector<std::string> contextFeatureName = featureName;
+    contextFeatureName.push_back("phone");
+    contextFeatureName.push_back("prev_phone");
+    contextFeatureName.push_back("prev_prev_phone");
+    contextFeatureName.push_back("next_phone");
+    contextFeatureName.push_back("next_next_phone");
+    //TargetFeatureComputer featureComputer(manager, contextFeatureName);
+    std::shared_ptr<TargetFeatureComputer> featureComputer = std::shared_ptr<TargetFeatureComputer>(new TargetFeatureComputer(manager, contextFeatureName));
     InterModules* label = new LabelGenerator(manager, featureComputer, featureName, featureAlias, phoneTranslator);
     std::string labelString = label->process(allophoneExample);
-    std::string modelName = "data/labixx23.htsvoice";
+    std::string modelName = "data/labixx710.htsvoice";
     std::string modelStr = getFileString(modelName);
     std::string filterName = "data/mix_excitation_5filters_199taps_48Kz.txt";
     std::string filterStr = getFileString(filterName);
@@ -198,7 +200,7 @@ void LabelGeneratorTest() {
 }
 
 void HtsEngineTest() {
-    std::string modelName = "data/labixx23.htsvoice";
+    std::string modelName = "data/labixx710.htsvoice";
     std::string modelStr = getFileString(modelName);
     std::string filterName = "data/mix_excitation_5filters_199taps_48Kz.txt";
     std::string filterStr = getFileString(filterName);
@@ -260,14 +262,19 @@ void totalTest() {
     std::cout << "context feature size: " << contextFeatureName.size() << std::endl;
     assert(featureName.size() == featureAlias.size());
     label_ = std::shared_ptr<LabelGenerator>(new LabelGenerator(manager_, featureComputer_, featureName, featureAlias, phoneTranslator));
-    std::string modelName = basePath+"data/labixx23.htsvoice";
+    std::string modelName = basePath+"data/labixx710.htsvoice";
     std::string modelStr = getFileString(modelName);
     std::string filterName = basePath+"data/mix_excitation_5filters_199taps_48Kz.txt";
     std::string filterStr = getFileString(filterName);
     htsengine_ = std::shared_ptr<HtsEngine>(new HtsEngine(modelStr, filterStr));
 
-    std::string input = "这个世界上，为什么只有我这么帅呢?";
-    std::string outfile = "2.wav";
+    //std::string input = "这个世界上，为什么只有我这么帅呢?";
+    std::string input;
+    std::string testFile = "data/input.txt";
+    std::ifstream ifs(testFile.c_str());
+    getline(ifs, input);
+    ifs.close();
+    std::string outfile = "total_test.wav";
 
     clock_t start = clock();
     std::string rawXml = cppmary::TextToMaryXml::getInstance().process(input);

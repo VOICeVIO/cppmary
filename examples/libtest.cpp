@@ -5,6 +5,7 @@
 //test the cppmary lib
 
 #include <iostream>
+#include <fstream>
 #include "cppmary.h"
 
 using namespace std;
@@ -12,13 +13,14 @@ using namespace std;
 int main() {
     std::string input;
     SpeechSynthesiser *ttsEngine = new SpeechSynthesiser("./");
-    input = "这个世界上，为什么只有我这么帅呢?";
-    std::cout << "input text: " << std::endl;
+    std::string testFile = "data/input.txt";
+    std::ifstream ifs(testFile.c_str());
+    getline(ifs, input);
+    ifs.close();
+    //input = "你好hello";
+    std::cout << "input text: " << input << std::endl;
     std::string outfile = "2.wav";
     ttsEngine->process(input, outfile);
-//    while(cin >> input) {
-//        ttsEngine->process(input);
-//    }
     delete ttsEngine;
     std::cout << "ok" << std::endl;
 

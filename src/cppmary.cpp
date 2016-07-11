@@ -58,7 +58,7 @@ void SpeechSynthesiser::init(std::string dir) {
     std::cout << "context feature size: " << contextFeatureName.size() << std::endl;
     assert(featureName.size() == featureAlias.size());
     label_ = std::shared_ptr<LabelGenerator>(new LabelGenerator(manager_, featureComputer_, featureName, featureAlias, phoneTranslator));
-    std::string modelName = dir+"data/labixx23.htsvoice";
+    std::string modelName = dir+"data/labixx710.htsvoice";
     std::string modelStr = getFileString(modelName);
     std::string filterName = dir+"data/mix_excitation_5filters_199taps_48Kz.txt";
     std::string filterStr = getFileString(filterName);
