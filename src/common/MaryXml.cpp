@@ -142,4 +142,51 @@ namespace cppmary {
         return pugi::xml_node();
     }
 
+    int MaryXml::getTokenPositionType(const std::vector<pugi::xml_node>& tokens, int currentIndex, std::string & punc) {
+        if (tokens.size() <= 1) {
+            return tokenPositionType::TOKEN_LESS;
+        }
+        if (currentIndex == 0) {
+            return tokenPositionType::SENTENCE_FIRST; //句首
+        }
+        if (currentIndex == tokens.size() - 2 || currentIndex == tokens.size() - 1) { 
+            //处理复杂情况:多个标点符号, 无标点符号token的情况
+            if (!hasAttribute(tokens.back(), "ph")) {
+                punc = tokens.back().child_value();
+            }
+            return tokenPositionType::SENTENCE_END; //句尾
+        }
+        //assert(currentIndex > 0);
+        //assert(currentIndex < tokens.size() -1);
+        pugi::xml_node token = tokens[currentIndex];
+        pugi::xml_node prevToken = tokens[currentIndex - 1];
+        pugi::xml_node nextToken = tokens[currentIndex + 1];
+        if (!hasAttribute(nextToken, "ph")) {
+            if (!hasAttribute(tokens.back(), "ph")) {
+                punc = tokens.back().child_value();
+            }
+            return tokenPositionType::BEFORE_PUNC; //标点符号前分词
+        } else if (!hasAttribute(prevToken, "ph")) {
+            return tokenPositionType::AFTER_PUNC; //标点符号后分词
+        } else {
+            return tokenPositionType::SENTENCE_OTHER; //其他位置
+        }
+    }
+
+    int MaryXml::getSyllablePositionType(int totalSyllable, int currentIndex) {
+        int syllablePosition = 0;
+        if (totalSyllable == 1) {
+            syllablePosition = syllablePositionType::SINGLE; //单个字分词
+        } else {
+            if (currentIndex == 0) {
+                syllablePosition = syllablePositionType::TOKEN_FIRST; //分词第一个字
+            } else if (currentIndex == totalSyllable-1) {
+                syllablePosition = syllablePositionType::TOKEN_END; //分词最后一个字
+            } else {
+                syllablePosition = syllablePositionType::TOKEN_OTHER; //分词其他位置
+            }
+        }
+        return syllablePosition;
+    }
+
 }

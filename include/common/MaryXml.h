@@ -10,6 +10,23 @@
 #include <vector>
 
 namespace cppmary {
+
+    enum tokenPositionType {
+        TOKEN_LESS = 0,
+        SENTENCE_FIRST = 1,
+        SENTENCE_END = 2,
+        BEFORE_PUNC = 3,
+        AFTER_PUNC = 4,
+        SENTENCE_OTHER = 5
+    };
+
+    enum syllablePositionType {
+        SINGLE = 1,
+        TOKEN_FIRST = 2,
+        TOKEN_END = 3,
+        TOKEN_OTHER = 4
+    };
+
     struct xml_string_writer : pugi::xml_writer {
         std::string result;
         virtual void write(const void *data, size_t size) {
@@ -133,6 +150,8 @@ namespace cppmary {
         static const char* getMaryDataTypeStr(int enumVal);
         static pugi::xml_node getNextSiblingElement(pugi::xml_node current);
         static pugi::xml_node getPrevSiblingElement(pugi::xml_node current);
+        static int getTokenPositionType(const std::vector<pugi::xml_node> & tokens, int currentIndex, std::string& punc);
+        static int getSyllablePositionType(int totalSyllable, int currentIndex);
 
         static const char* MARYXML;
         static const char* PARAGRAPH;
@@ -150,8 +169,6 @@ namespace cppmary {
         static const char* SYLLABLE;
         static const char* PHONE;
         static const char* NONVERBAL;
-
-
     };
 }
 
