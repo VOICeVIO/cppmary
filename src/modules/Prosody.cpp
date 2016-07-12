@@ -44,7 +44,7 @@ namespace cppmary {
             tokenValue = cppmary::trim(tokenValue);
             if (isPuncinatiion(tokenValue)) {
                 pugi::xml_node newNode = tokens.insert_child_after("boundary", token);
-                int breakindexValue = 3;
+                int breakindexValue = 4;
                 if (newNode == tokens.last_child()) {
                     breakindexValue = 6;
                 }
