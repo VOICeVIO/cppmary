@@ -96,8 +96,10 @@ namespace cppmary {
         }
         if (!outfile_.empty()) {
             FILE* wavfp = fopen(outfile_.c_str(), "wb");
-            if (wavfp)
+            if (wavfp) {
                 HTS_Engine_save_riff(&engine_, wavfp);
+                std::cout << outfile_ << " saved" << std::endl;
+            }
             fclose(wavfp);
         }
         for (int i = 0; i < lineNum; i++) {

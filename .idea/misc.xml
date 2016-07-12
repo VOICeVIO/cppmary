@@ -10,6 +10,7 @@
       <file path="$PROJECT_DIR$/include" />
       <file path="$PROJECT_DIR$/src/common" />
       <file path="$PROJECT_DIR$/src/features" />
+      <file path="$PROJECT_DIR$/src/hts_engine" />
       <file path="$PROJECT_DIR$/src/modules" />
     </sourceRoots>
     <libraryRoots />

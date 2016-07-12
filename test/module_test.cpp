@@ -33,6 +33,12 @@ void TokenizerTest() {
 }
 
 void tokenModuleTest() {
+    std::string jieba_buffer = getFileString("data/jieba/jieba.dict.utf8");
+    std::string hmm_model_buffer = getFileString("data/jieba/hmm_model.utf8");;
+    std::string user_buffer = getFileString("data/jieba/user.dict.utf8");
+    JiebaSegment::Instance()->LoadResource(jieba_buffer,
+                                           hmm_model_buffer,
+                                           user_buffer);
     std::string rawXml = cppmary::TextToMaryXml::getInstance().process("欢迎使用文本转语音服务!");
     cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
     std::string result = tokenizer->process(rawXml);
@@ -124,6 +130,12 @@ void featureTest(pugi::xml_node doc) {
 }
 
 void pronunciationTest() {
+    std::string jieba_buffer = getFileString("data/jieba/jieba.dict.utf8");
+    std::string hmm_model_buffer = getFileString("data/jieba/hmm_model.utf8");;
+    std::string user_buffer = getFileString("data/jieba/user.dict.utf8");
+    JiebaSegment::Instance()->LoadResource(jieba_buffer,
+                                           hmm_model_buffer,
+                                           user_buffer);
     std::string rawXml = cppmary::TextToMaryXml::getInstance().process("这个世界上，为什么只有我这么帅呢？");
     cppmary::InterModules* tokenizer = new cppmary::Tokenizer();
     std::string tokenStr = tokenizer->process(rawXml);
@@ -139,9 +151,6 @@ void pronunciationTest() {
     std::string prodyStr = prosody->process(phoneStr);
     cppmary::InterModules* pronuciation = new cppmary::Pronunciation();
     std::string pronunStr = pronuciation->process(prodyStr);
-    pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_string(pronunStr.c_str());
-    featureTest(doc);
 }
 
 void labelTest() {
