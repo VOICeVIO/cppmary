@@ -163,7 +163,7 @@ namespace cppmary {
     }
 
     void FeatureProcessorManager::addFeatureProcessor(std::shared_ptr<FeatureProcessor> fp) {
-        std::cout << fp->getName() << " setup ";
+        XLOG(DEBUG) << fp->getName() << " setup ";
         processors_[fp->getName()] = fp;
     }
 

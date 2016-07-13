@@ -41,12 +41,11 @@ namespace cppmary {
             }
             features_[feature] = featureValue;
         }
-
-        std::cout << "allophone attribute: " << name_ << std::endl;
-        std::map<std::string, std::string>::iterator iter;
-        for (iter = features_.begin(); iter != features_.end(); ++iter) {
-            std::cout << iter->first << " " << iter->second << std::endl;
-        }
+//        XLOG(DEBUG) << "allophone attribute: " << name_;
+//        std::map<std::string, std::string>::iterator iter;
+//        for (iter = features_.begin(); iter != features_.end(); ++iter) {
+//            XLOG(DEBUG) << iter->first << " " << iter->second;
+//        }
     }
 
     Allophone::Allophone() {

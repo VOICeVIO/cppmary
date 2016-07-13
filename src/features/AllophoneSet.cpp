@@ -49,11 +49,11 @@ namespace cppmary {
                 featureSet.erase(valueIter);
             }
             std::vector<std::string> featureValues;
-            std::cout << "set size: " << featureSet.size() << std::endl;
+            //XLOG(DEBUG) << "set size: " << featureSet.size();
             featureValues.push_back("0");
             for (std::set<std::string>::iterator setIter = featureSet.begin(); setIter != featureSet.end(); ++setIter) {
                 std::string temp = *setIter;
-                std::cout << "ss: " << temp << std::endl;
+                //XLOG(DEBUG) << "ss: " << temp ;
                 featureValues.push_back(temp);
             }
             featureValuesMap_[feature] = featureValues;
