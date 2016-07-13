@@ -85,3 +85,12 @@ void SpeechSynthesiser::process(std::string input, std::string outfile) {
     htsengine_->process(labelString);
     std::cout << "totaltime: " << (clock()-start) * 1000.0 / CLOCKS_PER_SEC << std::endl;
 }
+
+std::string SpeechSynthesiser::getAllophone(const std::string& input) const {
+    std::string rawXml = cppmary::TextToMaryXml::getInstance().process(input);
+    std::string tokenStr = tokenizer_->process(rawXml);
+    std::string phoneStr = phonemiser_->process(tokenStr);
+    std::string prodyStr = prosody_->process(phoneStr);
+    std::string pronunStr = pronuciation_->process(prodyStr);
+    return pronunStr;
+}

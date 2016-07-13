@@ -18,6 +18,7 @@ public:
     ~SpeechSynthesiser();
     void init(const std::string& configPath);
     void process(std::string input, std::string outfile);
+    std::string getAllophone(const std::string& input) const;
 private:
     std::shared_ptr<cppmary::InterModules> phonemiser_;
     std::shared_ptr<cppmary::InterModules> prosody_;

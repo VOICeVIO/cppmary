@@ -5,3 +5,4 @@ MACRO(add_example name)
 ENDMACRO()
 
 add_example(libtest)
+add_example(HttpServer)
