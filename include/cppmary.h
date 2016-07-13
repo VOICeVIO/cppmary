@@ -14,9 +14,9 @@ void synthesisSpeech(std::string input);
 
 class SpeechSynthesiser {
 public:
-    SpeechSynthesiser(std::string dir);
+    SpeechSynthesiser(const std::string& dir);
     ~SpeechSynthesiser();
-    void init(std::string dir);
+    void init(const std::string& configPath);
     void process(std::string input, std::string outfile);
 private:
     std::shared_ptr<cppmary::InterModules> phonemiser_;

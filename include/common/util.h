@@ -41,6 +41,8 @@ namespace cppmary {
 
     std::string replaceWith(const std::string& orig, const std::string& replaceThis, const std::string& replaceWith);
 
+    std::string getParentPath(std::string location);
+
 
 
 }

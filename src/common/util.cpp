@@ -172,4 +172,14 @@ namespace cppmary {
         }
         return result;
     }
+
+    std::string getParentPath(std::string location) {
+        std::size_t found = location.rfind("/");
+        if(found == std::string::npos) {
+            std::cerr << "invalid path " << location << std::endl;
+            exit(0);
+        }
+        std::string parent = location.substr(0, found+1);
+        return parent;
+    }
 }

@@ -12,7 +12,7 @@ using namespace std;
 
 int main() {
     std::string input;
-    SpeechSynthesiser *ttsEngine = new SpeechSynthesiser("./");
+    SpeechSynthesiser *ttsEngine = new SpeechSynthesiser("data/labixx.conf");
     std::string testFile = "data/input.txt";
     std::ifstream ifs(testFile.c_str());
     getline(ifs, input);
