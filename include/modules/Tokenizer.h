@@ -11,7 +11,7 @@ namespace cppmary {
     public:
         Tokenizer();
         ~Tokenizer();
-        virtual std::string process(std::string input);
+        virtual std::string process(const std::string& input);
     };
 }
 

@@ -13,7 +13,7 @@ namespace cppmary {
         name_ = "Phonemiser";
     }
 
-    std::string Phonemiser::process(std::string input) {
+    std::string Phonemiser::process(const std::string& input) {
         XLOG(DEBUG) << "phonemizer input: " << input;
         pugi::xml_document doc;
         pugi::xml_parse_result result = doc.load_string(input.c_str());

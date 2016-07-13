@@ -15,7 +15,7 @@ namespace cppmary {
     public:
         LabelGenerator(std::shared_ptr<FeatureProcessorManager> manager, std::shared_ptr<TargetFeatureComputer> featureComputer, std::vector<std::string> featureName, std::vector<std::string> featureAlias, std::shared_ptr<PhoneTranslator> phoneTranslator = nullptr);
         virtual ~LabelGenerator();
-        virtual std::string process(std::string input);
+        virtual std::string process(const std::string& input);
         std::vector<Target> createTargetWithPauses(std::vector<pugi::xml_node> segmentsAndPauses,
                                                    std::string pauseSymbol);
     private:

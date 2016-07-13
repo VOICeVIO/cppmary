@@ -18,7 +18,7 @@ namespace cppmary {
     Tokenizer::~Tokenizer() {
     }
 
-    std::string Tokenizer::process(std::string input) {
+    std::string Tokenizer::process(const std::string& input) {
         XLOG(DEBUG) << "tokenizer input: " << input;
         pugi::xml_document doc;
         pugi::xml_parse_result result = doc.load_string(input.c_str());

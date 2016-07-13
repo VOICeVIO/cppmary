@@ -6,7 +6,8 @@
 #include "common.h"
 
 namespace cppmary {
-    std::string TextToMaryXml::process(std::string text, std::string locale, std::string phoneset) {
+    std::string TextToMaryXml::process(const std::string& input, std::string locale, std::string phoneset) {
+        std::string text = input;
         text = replaceAll(text, "，", ",");
         text = replaceAll(text, "、", ",");
         text = replaceAll(text, "？", "?");

@@ -15,7 +15,7 @@ namespace cppmary {
         HtsEngine(const std::string& modelName, const std::string& filterStr);
         ~HtsEngine();
         /*synthses data with label string*/
-        virtual std::string process(std::string labelString);
+        virtual std::string process(const std::string& labelString);
         /*synthses data with label file*/
         void synthesisWithLableName(std::string labelFile);
         void setOutFile(const std::string& outfile);

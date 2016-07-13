@@ -11,7 +11,7 @@ namespace cppmary {
     public:
         Pronunciation();
         virtual ~Pronunciation();
-        virtual std::string process(std::string input);
+        virtual std::string process(const std::string& input);
         int getLabixxAccent(int tokenPosition, int syllablePosition, int toneValue, std::string punc);
     };
 }

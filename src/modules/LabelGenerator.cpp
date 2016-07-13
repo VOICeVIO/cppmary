@@ -17,7 +17,7 @@ namespace cppmary {
     LabelGenerator::~LabelGenerator() {
     }
 
-    std::string LabelGenerator::process(std::string input) {
+    std::string LabelGenerator::process(const std::string& input) {
         pugi::xml_document doc;
         pugi::xml_parse_result result = doc.load_string(input.c_str());
         phone_boundary_walker tw;

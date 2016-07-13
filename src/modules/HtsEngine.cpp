@@ -70,7 +70,7 @@ namespace cppmary {
     }
 
     /*synthses data with label string*/
-    std::string HtsEngine::process(std::string labelString) {
+    std::string HtsEngine::process(const std::string& labelString) {
         clock_t start = clock();
         std::vector<std::string> buffervec = limonp::Split(labelString,"\n");
         int lineNum = buffervec.size();

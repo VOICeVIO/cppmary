@@ -13,7 +13,7 @@ namespace cppmary {
     public:
         InterModules();
         virtual ~InterModules();
-        virtual std::string process(std::string input) = 0;
+        virtual std::string process(const std::string& input) = 0;
     protected:
         std::string name_;
     };

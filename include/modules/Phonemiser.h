@@ -13,7 +13,7 @@ namespace cppmary {
     class Phonemiser : public InterModules {
     public:
         Phonemiser(const std::string& wordDictStr, const std::string& sylDictStr, const std::string& lexiconDictStr);
-        virtual std::string process(std::string input);
+        virtual std::string process(const std::string& input);
     private:
         cppmary::Lexicon lexiconTranslator_;
         cppmary::ConvertPinyin pinyinConverter_;

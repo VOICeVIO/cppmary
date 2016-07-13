@@ -15,7 +15,7 @@ namespace cppmary {
             return instance;
         }
 
-        std::string process(std::string text, std::string locale = "zh", std::string phoneset = "ph64");
+        std::string process(const std::string& input, std::string locale = "zh", std::string phoneset = "ph64");
 
     private:
         TextToMaryXml() { }

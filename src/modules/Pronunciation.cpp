@@ -23,7 +23,7 @@ namespace cppmary {
      *   <ph p="nnH"/>
      *   </syllable>
      */
-    std::string Pronunciation::process(std::string input) {
+    std::string Pronunciation::process(const std::string& input) {
         XLOG(DEBUG) << "Pronunciation input: " << input;
         pugi::xml_document doc;
         pugi::xml_parse_result result = doc.load_string(input.c_str());
@@ -63,7 +63,7 @@ namespace cppmary {
                     accentType = getLabixxAccent(tokenPosition, syllablePosition, toneValue, punc);
                 }
                 std::string accentValue = tobiAccents[accentType];
-                std::cout << "toneConvert: " << pinyin << " " <<  toneValue << " -> accent:  " << accentType << " " << accentValue << std::endl;
+                XLOG(DEBUG) << "toneConvert: " << pinyin << " " <<  toneValue << " -> accent:  " << accentType << " " << accentValue;
                 syllable.append_attribute("accent") = accentValue.c_str();
                 syllable.append_attribute("ph") = phone.c_str();
                 syllable.append_attribute("zhtone") = tone.c_str();

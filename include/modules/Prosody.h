@@ -17,7 +17,7 @@ namespace cppmary {
     public:
         Prosody();
         ~Prosody();
-        virtual std::string process(std::string input);
+        virtual std::string process(const std::string& input);
         bool resetPuncinations(const std::string& s);
         bool isPuncinatiion(std::string text);
     private:

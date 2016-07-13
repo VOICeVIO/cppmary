@@ -30,7 +30,7 @@ namespace cppmary {
     }
 
     //增加phase和bournary
-    std::string Prosody::process(std::string input) {
+    std::string Prosody::process(const std::string& input) {
         XLOG(DEBUG) << "Prosody input: " << input;
         pugi::xml_document doc;
         pugi::xml_parse_result result = doc.load_string(input.c_str());
@@ -76,7 +76,7 @@ namespace cppmary {
             return false;
         }
         for (size_t i = 0; i < runes.size(); i++) {
-            std::cout << i << " " << runes[i].rune << std::endl;
+            XLOG(DEBUG) << i << " " << runes[i].rune;
             if (!puncination_.insert(runes[i].rune).second) {
                 XLOG(INFO) << s.substr(runes[i].offset, runes[i].len) << " already exists";
                 return false;
